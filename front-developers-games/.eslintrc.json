@@ -25,6 +25,7 @@
             0,
             "error",
             "windows"
-        ]
+        ],
+        "react/prop-types": 0
     }
 }

@@ -2,12 +2,14 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import addParticipant from '../redux/actions/mainActions';
 
+import AppWrapper from '../components/AppWrapper/AppWrapper';
+
 function Home() {
   const dispatch = useDispatch();
   const { participants } = useSelector(({ mainReducer }) => mainReducer);
   return (
-    <>
-      <div>Hola</div>
+    <AppWrapper title="Inscribe a tu equipo">
+      <div className="prove-scss">Hola</div>
       <button
         type="button"
         onClick={() => {
@@ -20,7 +22,7 @@ function Home() {
       {participants?.map((participant) => (
         <span>{participant}</span>
       ))}
-    </>
+    </AppWrapper>
   );
 }
 
