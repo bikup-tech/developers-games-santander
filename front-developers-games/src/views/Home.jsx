@@ -7,7 +7,7 @@ function Home() {
   const { participants } = useSelector(({ mainReducer }) => mainReducer);
   return (
     <>
-      <div>Hola</div>
+      <div className="prove-scss">Hola</div>
       <button
         type="button"
         onClick={() => {
