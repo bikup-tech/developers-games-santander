@@ -8,10 +8,11 @@ import Home from './views/Home';
 function App() {
   return (
     <div className="App">
+      <Header />
       <Switch>
-        <Route path="/" component={Header} />
         <Route path="/" component={Home} />
       </Switch>
+
     </div>
   );
 }

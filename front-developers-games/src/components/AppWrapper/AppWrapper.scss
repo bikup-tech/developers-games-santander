@@ -4,8 +4,7 @@
 .app-wrapper {
     @include flex($flex-direction: column);
 
-    // height: 100%;
-    flex: 1;
+    flex-grow: 1;
 }
 
 .app-wrapper__title {
