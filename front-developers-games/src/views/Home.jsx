@@ -20,7 +20,7 @@ function Home() {
       </button>
 
       {participants?.map((participant) => (
-        <span>{participant}</span>
+        <span key={participant}>{participant}</span>
       ))}
     </AppWrapper>
   );
