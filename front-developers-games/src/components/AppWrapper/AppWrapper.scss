@@ -3,6 +3,8 @@
 
 .app-wrapper {
     @include flex($flex-direction: column);
+
+    height: 100%
 }
 
 .app-wrapper__title {
@@ -17,11 +19,21 @@
     font-weight: bold;
 }
 
-.app-wrapper__children {
-    @include flex($flex-direction: column);
+.app-wrapper__children-container {
+    @include flex($flex-direction: column, $justify-content: flex-start);
 
+    background-image: url('../../assets/images/bottom-gradient.svg');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    flex: 1;
     width: 100%;
     padding: $p-6;
+}
+
+.app-wrapper__children {
+    @include flex($flex-direction: column, $justify-content: flex-start);
 
     @media only screen and (min-width: $query-1280){
         max-width: $desktop-max-width;

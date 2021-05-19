@@ -8,8 +8,10 @@ function AppWrapper({ title, children }) {
       <div className="app-wrapper__title">
         <h2 className="title__text">{title}</h2>
       </div>
-      <div className="app-wrapper__children">
-        {children}
+      <div className="app-wrapper__children-container">
+        <div className="app-wrapper__children">
+          {children}
+        </div>
       </div>
     </div>
   );

@@ -29,7 +29,12 @@
   font-weight: 900;
 }
 
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'redhat-text','Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -51,6 +56,6 @@ code {
   -webkit-print-color-adjust: exact;
 }
 
-#app {
-  font-family: 'Roboto', sans-serif;
+#root {
+  height: 100%;
 }
