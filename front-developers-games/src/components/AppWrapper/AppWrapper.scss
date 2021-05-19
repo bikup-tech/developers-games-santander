@@ -1,0 +1,30 @@
+@import '../../assets/styles/mixins.scss';
+@import '../../assets/styles/styleConstants.scss';
+
+.app-wrapper {
+    @include flex($flex-direction: column);
+}
+
+.app-wrapper__title {
+    @include flex();
+    background-color: $semiBlue;
+    width: 100%;
+    height: 32px;
+    color: white;
+}
+
+.title__text {
+    font-weight: bold;
+}
+
+.app-wrapper__children {
+    @include flex($flex-direction: column);
+
+    width: 100%;
+    padding: $p-6;
+
+    @media only screen and (min-width: $query-1280){
+        max-width: $desktop-max-width;
+        padding: $p-12;
+    }
+}

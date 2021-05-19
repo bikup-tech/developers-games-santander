@@ -2,9 +2,36 @@
 @import './assets/styles/mixins.scss';
 @import './assets/styles/globalStyles.scss';
 
+@font-face{
+  font-family: 'redhat-text';
+  src: url('./assets/fonts/RedHatText-Regular.otf');
+  font-weight: normal;
+}
+
+@font-face{
+  font-family: 'redhat-display';
+  src: url('./assets/fonts/RedHatDisplay-Regular.otf');
+  font-weight: 400;
+}
+@font-face{
+  font-family: 'redhat-display';
+  src: url('./assets/fonts/RedHatDisplay-Medium.otf');
+  font-weight: 550;
+}
+@font-face{
+  font-family: 'redhat-display';
+  src: url('./assets/fonts/RedHatDisplay-Bold.otf');
+  font-weight: 700;
+}
+@font-face{
+  font-family: 'redhat-display';
+  src: url('./assets/fonts/RedHatDisplay-Black.otf');
+  font-weight: 900;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'redhat-text','Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -16,10 +43,11 @@ code {
     monospace;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'redhat-display';
   -webkit-print-color-adjust: exact;
 }
 
