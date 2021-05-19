@@ -9,6 +9,9 @@ import configureStore from './redux/store/configureStore';
 import initialState from './redux/store/initialState';
 
 import './index.scss';
+import './assets/styles/mixins.scss';
+import './assets/styles/styleConstants.scss';
+import './assets/styles/globalStyles.scss';
 
 ReactDOM.render(
   <React.StrictMode>

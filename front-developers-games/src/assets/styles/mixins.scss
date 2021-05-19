@@ -1,0 +1,16 @@
+// styling functions
+
+@mixin flex($flex-direction: row, $justify-content: center, $align-items: center) {
+    display: flex;
+    justify-content: $justify;
+  
+    @if $direction {
+      flex-direction: $direction;
+    }
+    @if $align {
+      align-items: $align;
+    }
+    @if not $align {
+      align-items: center;
+    }
+  }
