@@ -7,6 +7,11 @@ import './Home.scss';
 
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import Input from '../../components/Input/Input';
+import MainButton from '../../components/MainButton/MainButton';
+
+function testClick() {
+  console.log('works');
+}
 
 function Home() {
   const dispatch = useDispatch();
@@ -14,7 +19,10 @@ function Home() {
     <AppWrapper title="Inscribe a tu equipo">
       <div className="home">
         <div className="home__input">
-          <Input type="text" name="test" placeholder="placeholder test" />
+          <MainButton onClick={testClick}>Normal</MainButton>
+          <MainButton color="blue">Blue</MainButton>
+          <MainButton isSecondary>Secondary</MainButton>
+          <MainButton isBig isSecondary>Big</MainButton>
         </div>
       </div>
     </AppWrapper>
