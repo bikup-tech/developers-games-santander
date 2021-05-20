@@ -19,10 +19,22 @@ function Home() {
     <AppWrapper title="Inscribe a tu equipo">
       <div className="home">
         <div className="home__input">
+          <Input placeholder="asdasd" />
+        </div>
+        <br />
+        <div className="home__input">
           <MainButton onClick={testClick}>Normal</MainButton>
+          {' '}
+          <br />
           <MainButton color="blue">Blue</MainButton>
+          {' '}
+          <br />
           <MainButton isSecondary>Secondary</MainButton>
+          {' '}
+          <br />
           <MainButton isBig isSecondary>Big</MainButton>
+          {' '}
+          <br />
         </div>
       </div>
     </AppWrapper>
