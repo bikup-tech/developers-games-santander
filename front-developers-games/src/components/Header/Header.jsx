@@ -1,48 +1,98 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-debugger */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './Header.scss';
 
 import headerLogos from '../../assets/images/header-logos.svg';
 import openMenuIcon from '../../assets/images/menu-icon.svg';
-// import closeMenuIcon from '../../assets/images/close-menu-icon.svg';
+import closeMenuIcon from '../../assets/images/close-icon.svg';
 
-const navigation = ['nav1', 'nav2', 'nav3'];
-
-const renderNavigation = navigation.map((element) => <p key={element}>{element}</p>);
+const unregistredNavigation = [
+  { name: 'Participar', route: '/' },
+  { name: 'Premios', route: '/awards' },
+  { name: 'Bases y condiciones', route: '/conditions' },
+  { name: 'Entrar', route: '/login' },
+];
+const registredNavigation = [
+  { name: 'Premios', route: '/awards' },
+  { name: 'Bases y condiciones', route: '/conditions' },
+  { name: 'Desafíos', route: '/challenges' },
+  { name: 'TeamName', route: '/profile' },
+];
 
 function Header() {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUserLogged, setIsUserLogged] = useState(false);
 
   function handleHamburgerClick() {
-    setMenuIsOpen(!menuIsOpen);
+    setIsMenuOpen(!isMenuOpen);
   }
+
+  const renderMenu = isUserLogged
+    ? registredNavigation.map((element) => (
+      <NavLink
+        to={element.route}
+        key={element.name}
+        className="navigation__item"
+        activeClassName="navigation__item--active"
+        onClick={handleHamburgerClick}
+        exact
+      >
+        {element.name}
+      </NavLink>
+    ))
+    : unregistredNavigation.map((element) => (
+      <NavLink
+        to={element.route}
+        key={element.name}
+        className="navigation__item"
+        activeClassName="navigation__item--active"
+        onClick={handleHamburgerClick}
+        exact
+      >
+        {element.name}
+      </NavLink>
+    ));
 
   return (
     <header className="header">
       <div className="header__menu">
-        <Link to="/" className="menu__logo">
+        <NavLink to="/" className="menu__logo">
           <img
             className="logo__image"
             src={headerLogos}
             alt="Developers games Redhut and Santander logos"
           />
-        </Link>
+        </NavLink>
         <img
           src={openMenuIcon}
           alt="Open menu icon"
           onClick={handleHamburgerClick}
           className="menu__hamburger mobile"
         />
-        <nav className="menu__navigation desktop">{renderNavigation}</nav>
-        <div className="screen-opacity" />
-        {/* fer el ternario i dins del div de sobre que pinti screen-opacit o no screen-opacity */}
+        <nav className="menu__navigation desktop">{renderMenu}</nav>
+        <div
+          onClick={handleHamburgerClick}
+          className={`screen-opacity-hidden mobile ${
+            isMenuOpen && 'screenOpacity'
+          }`}
+        />
       </div>
-      <div className="header__hamburger-menu mobile">
-        {/* TODO:
-      pintar la cruz que cierra y un div con el renderNavigation */}
+      <div
+        className={`header__mobile-hidden mobile ${isMenuOpen && 'showMenu '}`}
+      >
+        <img
+          src={closeMenuIcon}
+          alt="Close menu icon"
+          className="mobile__close-menu"
+          onClick={handleHamburgerClick}
+        />
+        <nav className="menu__navigation">{renderMenu}</nav>
       </div>
     </header>
   );
