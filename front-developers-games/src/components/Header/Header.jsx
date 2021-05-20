@@ -10,6 +10,7 @@ import './Header.scss';
 import headerLogos from '../../assets/images/header-logos.svg';
 import openMenuIcon from '../../assets/images/menu-icon.svg';
 import closeMenuIcon from '../../assets/images/close-icon.svg';
+import headerBanner from '../../assets/images/home-big-banner.svg';
 
 const unregistredNavigation = [
   { name: 'Participar', route: '/' },
@@ -93,6 +94,7 @@ function Header() {
         />
         <nav className="menu__navigation">{renderMenu}</nav>
       </div>
+      <img src={headerBanner} alt="RedHut and Santander Developers Games" className="header__banner" />
     </header>
   );
 }

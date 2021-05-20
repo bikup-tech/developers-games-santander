@@ -13,7 +13,7 @@
     width: 100%;
     height: 100%;
     max-width: $desktop-max-width;
-    padding: $p-16 $p-32;
+    padding: $p-16 $p-24;
 }
 
 .menu__logo {
@@ -120,4 +120,12 @@
 
   .navigation__item--active {
       color: $lighterBlue;
+  }
+
+  .header__banner {
+      width: 100%;
+      height: 200px;
+      @media only screen and (min-width: $query-1280) {
+        height: 300px;
+      }
   }
