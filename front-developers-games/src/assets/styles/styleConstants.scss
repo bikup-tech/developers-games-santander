@@ -1,7 +1,19 @@
 // colors
+$lighterBlue: #3EC4C6;
+$lightBlue: #00ACAF;
 $semiBlue: #008A8C;
+$darkBlue: #056C6E;
+$red: #FF0000;
+$gray: #9C9C9C;
 
 // font-family (los de debajo van a ir en función de éste)
+$font-main: 'redhat-display';
+$font-text: 'redhat-text';
+
+$text-normal: normal;
+$text-semibold: 550;
+$text-bold: bold;
+$text-bolder: 900;
 
 // font weight
 
@@ -43,7 +55,7 @@ $m-32: 32px;
 $m-64: 64px;
 
 // border radius
-$rounded-button: 5px;
+$border-radius: 8px;
 
 // Media queries
 $query-1280: 1280px;

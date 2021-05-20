@@ -36,6 +36,7 @@ html {
 body {
   height: 100%;
   margin: 0;
+  font-size: 16px;
   font-family: -apple-system, BlinkMacSystemFont, 'redhat-text','Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -52,7 +53,7 @@ code {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'redhat-display';
+  font-family: $font-main;
   -webkit-print-color-adjust: exact;
 }
 
