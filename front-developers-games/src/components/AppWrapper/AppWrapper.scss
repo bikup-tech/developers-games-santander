@@ -4,7 +4,7 @@
 .app-wrapper {
     @include flex($flex-direction: column);
 
-    flex-grow: 1;
+    flex: 1;
 }
 
 .app-wrapper__title {
@@ -34,7 +34,8 @@
 
 .app-wrapper__children {
     @include flex($flex-direction: column, $justify-content: flex-start);
-
+    width: 100%;
+    height: 100%;
     @media only screen and (min-width: $query-1280){
         max-width: $desktop-max-width;
         padding: $p-12;
