@@ -4,6 +4,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import './Header.scss';
 
@@ -27,16 +28,13 @@ const registredNavigation = [
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // TODO: isUserLogged is recivied from the state
-  const [isUserLogged, setIsUserLogged] = useState(false);
+  const { user } = useSelector(({ authReducer }) => authReducer);
 
-  function handleHamburgerClick(element) {
+  function handleHamburgerClick() {
     setIsMenuOpen(!isMenuOpen);
-    if (element.name === 'Entrar') {
-      setIsUserLogged(!isUserLogged);
-    }
   }
 
-  const renderMenu = isUserLogged
+  const renderMenu = user.isLogged
     ? registredNavigation.map((element) => (
       <NavLink
         to={element.route}
@@ -55,7 +53,7 @@ function Header() {
         key={element.name}
         className="navigation__item"
         activeClassName="navigation__item--active"
-        onClick={() => handleHamburgerClick(element)}
+        onClick={handleHamburgerClick}
         exact
       >
         {element.name}
@@ -97,7 +95,7 @@ function Header() {
         />
         <nav className="menu__navigation">{renderMenu}</nav>
       </div>
-      <div className={isUserLogged ? 'header__banner--small' : 'header__banner--big'} />
+      <div className={user.isLogged ? 'header__banner--small' : 'header__banner--big'} />
     </header>
   );
 }
