@@ -10,7 +10,6 @@ import './Header.scss';
 import headerLogos from '../../assets/images/header-logos.svg';
 import openMenuIcon from '../../assets/images/menu-icon.svg';
 import closeMenuIcon from '../../assets/images/close-icon.svg';
-import headerBanner from '../../assets/images/home-big-banner.svg';
 
 const unregistredNavigation = [
   { name: 'Participar', route: '/' },
@@ -27,10 +26,14 @@ const registredNavigation = [
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // TODO: isUserLogged is recivied from the state
   const [isUserLogged, setIsUserLogged] = useState(false);
 
-  function handleHamburgerClick() {
+  function handleHamburgerClick(element) {
     setIsMenuOpen(!isMenuOpen);
+    if (element.name === 'Entrar') {
+      setIsUserLogged(!isUserLogged);
+    }
   }
 
   const renderMenu = isUserLogged
@@ -52,7 +55,7 @@ function Header() {
         key={element.name}
         className="navigation__item"
         activeClassName="navigation__item--active"
-        onClick={handleHamburgerClick}
+        onClick={() => handleHamburgerClick(element)}
         exact
       >
         {element.name}
@@ -94,7 +97,7 @@ function Header() {
         />
         <nav className="menu__navigation">{renderMenu}</nav>
       </div>
-      <img src={headerBanner} alt="RedHut and Santander Developers Games" className="header__banner" />
+      <div className={isUserLogged ? 'header__banner--small' : 'header__banner--big'} />
     </header>
   );
 }
