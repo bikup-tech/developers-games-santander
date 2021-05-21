@@ -21,6 +21,6 @@ app.use(urlencoded({ extended: true }));
 app.use(json());
 
 app.use('/api/auth', authRouter);
-app.use('/api/teams', authRouter);
+app.use('/api/teams', teamsRouter);
 
 app.listen(PORT, () => debug(`Server running in port: ${PORT}`));

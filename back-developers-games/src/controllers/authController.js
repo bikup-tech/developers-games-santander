@@ -1,4 +1,4 @@
-const participantsModel = require('../models/participantsModel');
+const participantsModel = require('../models/participantModel');
 
 // Constants
 const { BAD_REQUEST, OK } = require('../constants/statusCodes');

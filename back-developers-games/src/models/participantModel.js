@@ -1,8 +1,8 @@
 const { Schema, model } = require('mongoose');
 
-const participantsModel = new Schema({
-  isCaptain: { type: Boolean },
-  isAdmin: { type: Boolean },
+const participantModel = new Schema({
+  isCaptain: { type: Boolean, default: false },
+  isAdmin: { type: Boolean, default: false },
   email: { type: String },
   password: { type: String },
   name: { type: String },
@@ -10,4 +10,4 @@ const participantsModel = new Schema({
   phone: { type: String },
 });
 
-module.exports = model('Participants', participantsModel);
+module.exports = model('Participants', participantModel);

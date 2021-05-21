@@ -4,7 +4,7 @@ const challengeModel = new Schema({
   name: { type: String },
   title: { type: String },
   subtitle: { type: String },
-  isCompleted: { type: Boolean },
+  isCompleted: { type: Boolean, default: false },
   mentor: { type: String },
   description: { type: String },
   bonus: { type: String },
