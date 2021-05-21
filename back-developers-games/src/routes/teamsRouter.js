@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const authController = require('../controllers/authController');
+const teamsController = require('../controllers/teamsController');
 
 const router = Router();
 
 router.route('/')
-  .get(authController.login);
+  .post(teamsController.createTeam);
 
 module.exports = router;
