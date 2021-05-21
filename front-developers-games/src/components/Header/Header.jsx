@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -12,13 +11,13 @@ import headerLogos from '../../assets/images/header-logos.svg';
 import openMenuIcon from '../../assets/images/menu-icon.svg';
 import closeMenuIcon from '../../assets/images/close-icon.svg';
 
-const unregistredNavigation = [
+const unloggedNavigation = [
   { name: 'Participar', route: '/' },
   { name: 'Premios', route: '/awards' },
   { name: 'Bases y condiciones', route: '/conditions' },
   { name: 'Entrar', route: '/login' },
 ];
-const registredNavigation = [
+const loggedNavigation = [
   { name: 'Premios', route: '/awards' },
   { name: 'Bases y condiciones', route: '/conditions' },
   { name: 'Desafíos', route: '/challenges' },
@@ -27,48 +26,38 @@ const registredNavigation = [
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // TODO: isUserLogged is recivied from the state
+  const [renderedNavigation, setRenderedNavigation] = useState(unloggedNavigation);
+
   const { user } = useSelector(({ authReducer }) => authReducer);
+
+  useEffect(() => {
+    user?.isLogged
+      ? setRenderedNavigation(loggedNavigation)
+      : setRenderedNavigation(unloggedNavigation);
+  }, [user?.isLogged]);
 
   function handleHamburgerClick() {
     setIsMenuOpen(!isMenuOpen);
   }
 
-  const renderMenu = user.isLogged
-    ? registredNavigation.map((element) => (
-      <NavLink
-        to={element.route}
-        key={element.name}
-        className="navigation__item"
-        activeClassName="navigation__item--active"
-        onClick={handleHamburgerClick}
-        exact
-      >
-        {element.name}
-      </NavLink>
-    ))
-    : unregistredNavigation.map((element) => (
-      <NavLink
-        to={element.route}
-        key={element.name}
-        className="navigation__item"
-        activeClassName="navigation__item--active"
-        onClick={handleHamburgerClick}
-        exact
-      >
-        {element.name}
-      </NavLink>
-    ));
+  const renderMenu = renderedNavigation.map((element) => (
+    <NavLink
+      to={element.route}
+      key={element.name}
+      className="navigation__item"
+      activeClassName="navigation__item--active"
+      onClick={handleHamburgerClick}
+      exact
+    >
+      {element.name}
+    </NavLink>
+  ));
 
   return (
     <header className="header">
       <div className="header__menu">
         <NavLink to="/" className="menu__logo">
-          <img
-            className="logo__image"
-            src={headerLogos}
-            alt="Developers games Redhut and Santander logos"
-          />
+          <img className="logo__image" src={headerLogos} alt="Developers games Redhut and Santander logos" />
         </NavLink>
         <img
           src={openMenuIcon}
@@ -79,20 +68,11 @@ function Header() {
         <nav className="menu__navigation desktop">{renderMenu}</nav>
         <div
           onClick={handleHamburgerClick}
-          className={`screen-opacity-hidden mobile ${
-            isMenuOpen && 'screenOpacity'
-          }`}
+          className={`screen-opacity-hidden mobile ${isMenuOpen && 'screenOpacity'}`}
         />
       </div>
-      <div
-        className={`header__mobile-hidden mobile ${isMenuOpen && 'showMenu '}`}
-      >
-        <img
-          src={closeMenuIcon}
-          alt="Close menu icon"
-          className="mobile__close-menu"
-          onClick={handleHamburgerClick}
-        />
+      <div className={`header__mobile-hidden mobile ${isMenuOpen && 'showMenu '}`}>
+        <img src={closeMenuIcon} alt="Close menu icon" className="mobile__close-menu" onClick={handleHamburgerClick} />
         <nav className="menu__navigation">{renderMenu}</nav>
       </div>
       <div className={user.isLogged ? 'header__banner--small' : 'header__banner--big'} />
