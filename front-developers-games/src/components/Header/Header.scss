@@ -29,7 +29,7 @@
     cursor: pointer;
 }
 
-.screen-opacity-hidden {
+.mobile-menu__behind {
     width: 0vw;
     height: 100vh;
     z-index: 2;
@@ -43,14 +43,14 @@
     transform-origin: 100% 50%;
   }
   
-  .screenOpacity {
+  .mobile-menu__behind--visible {
     width: 100vw;
     position: fixed;
     -ms-transform: scaleX(2); /* IE 9 */
     transform: scaleX(1);
   }
   
-  .header__mobile-hidden {
+  .header__mobile-menu {
     @include flex($flex-direction: column);
     position: absolute;
     top: 0;
@@ -71,7 +71,7 @@
     padding: 20px 32px;
   }
   
-  .showMenu {
+  .header__mobile-menu--visible {
     position: fixed;
     right: 0;
     bottom: 0;
@@ -81,7 +81,7 @@
     padding: 20px 32px;
   }
 
-  .mobile__close-menu {
+  .mobile-menu__close {
     position: absolute;
     top: $p-16;
     right: $p-32;
@@ -127,9 +127,9 @@
       background-size: cover;
       background-position: center;
       width: 100%;
-      height: 200px;
+      height: 180px;
       @media only screen and (min-width: $query-1280) {
-        height: 300px;
+        height: 260px;
       }
   }
 
@@ -140,7 +140,6 @@
     background-position: center;
     width: 100%;
     height: 100px;
-
     @media only screen and (min-width: $query-1280) {
       height: 200px;
     }

@@ -66,13 +66,15 @@ function Header() {
           className="menu__hamburger mobile"
         />
         <nav className="menu__navigation desktop">{renderMenu}</nav>
-        <div
-          onClick={handleHamburgerClick}
-          className={`screen-opacity-hidden mobile ${isMenuOpen && 'screenOpacity'}`}
-        />
+
       </div>
-      <div className={`header__mobile-hidden mobile ${isMenuOpen && 'showMenu '}`}>
-        <img src={closeMenuIcon} alt="Close menu icon" className="mobile__close-menu" onClick={handleHamburgerClick} />
+      {/* Menu behind opacity */}
+      <div
+        onClick={handleHamburgerClick}
+        className={`mobile-menu__behind mobile ${isMenuOpen && 'mobile-menu__behind--visible'}`}
+      />
+      <div className={`header__mobile-menu mobile ${isMenuOpen && 'header__mobile-menu--visible '}`}>
+        <img src={closeMenuIcon} alt="Close menu icon" className="mobile-menu__close" onClick={handleHamburgerClick} />
         <nav className="menu__navigation">{renderMenu}</nav>
       </div>
       <div className={user.isLogged ? 'header__banner--small' : 'header__banner--big'} />
