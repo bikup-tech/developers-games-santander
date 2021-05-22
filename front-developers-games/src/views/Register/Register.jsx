@@ -6,6 +6,7 @@ import './Register.scss';
 
 import CamaraIcon from '../../assets/images/camara-icon.svg';
 
+import Participant from './Participant/Participant';
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import Input from '../../components/Input/Input';
 
@@ -25,6 +26,7 @@ const participantInitialState = {
 function Register() {
   const [teamRegister, setTeamRegister] = useState(teamInitialState);
   const [participantRegister, setParticipantRegister] = useState(participantInitialState);
+  const [participantsCounter, setParticipantsCounter] = useState(0);
   // TODO: crear warningMessage
   function handleTextInputChange({ target: { name, value } }) {
     //   TODO: guardar el valor en el state que le pertoca
@@ -47,8 +49,7 @@ function Register() {
             <img className="entry-photo__image" src={CamaraIcon} alt="Insert photo" />
             <p className="entry-photo__text">Sube la foto de tu equipo</p>
           </div>
-          <h3 className="register__title">Participante 1 - Capitán</h3>
-          {/* TODO: Pintar html */}
+          <Participant text="Participante" participantNumber={participantsCounter} isCaptain />
         </form>
       </section>
     </AppWrapper>

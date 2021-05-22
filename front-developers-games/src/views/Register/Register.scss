@@ -3,20 +3,24 @@
 @import '../../assets/styles/styleConstants.scss';
 
 .register-container {
-   @include flex($flex-direction: column)
+   @include flex($flex-direction: column);
+   overflow-y: auto;
 }
 
 .register__title {
     color: $darkBlue;
     font-size: $mobile-subtitle-18;
-    padding: $p-24 0px;
+    padding:$p-6 0px $p-12 0px;
+    text-align: center;
     @media only screen and (min-width:$query-1280) {
+        padding: $p-24 0px;
         font-size: $desktop-subtitle-20;
     }
 }
 
 .register__form {
-    @include flex($flex-direction: column)
+    @include flex($flex-direction: column);
+    width:100%;
 }
 
 .form__entry-photo{
@@ -26,7 +30,10 @@
 }
 
 .entry-photo__image {
+    height: 20px;
+    @media only screen and (min-width:$query-1280) {
     height: 30px;
+    }
 }
 
 .entry-photo__text {
@@ -43,7 +50,7 @@
 
 .form__input {
     // tasa de conversión 21
-    width: 500px;
+    width: 80%;
     height: 24px;
     @media only screen and (min-width:$query-1280) {
         width: 738px;
