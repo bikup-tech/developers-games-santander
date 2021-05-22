@@ -13,16 +13,16 @@ function teamService() {
       throw new CustomError(BAD_REQUEST, MISSING_QUERY);
     }
 
-    return teamModel.findOne(findQuery).populate('participants');
+    return teamModel.findOne(findQuery).populate('participants').populate('teamChallenges');
   }
 
-  async function createTeam(name, participants, teamChallenges) {
+  async function createTeam(name, participants, teamChallenges, captainId) {
     if (!name || !participants) {
       throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('participants or name'));
     }
 
     const createTeamQuery = {
-      name, participants, teamChallenges,
+      name, participants, teamChallenges, captainId,
     };
 
     return teamModel.create(createTeamQuery);

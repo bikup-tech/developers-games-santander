@@ -64,12 +64,14 @@ function teamsController() {
       const createdTeamChallengesIds = createdTeamChallenges.map(
         (teamChallenge) => teamChallenge._id,
       );
-      await teamService.createTeam(name, createdParticipantsIds, createdTeamChallengesIds);
-
-      // Send mail
       const teamCaptain = createdParticipants.find(
         (participant) => participant.isCaptain,
       );
+      await teamService.createTeam(
+        name, createdParticipantsIds, createdTeamChallengesIds, teamCaptain._id,
+      );
+
+      // Send mail
       await mailService.sendRegisteredUser(
         teamCaptain.email, teamCaptain.password,
       );
