@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 // Routers
 const authRouter = require('./src/routes/authRouter');
 const teamsRouter = require('./src/routes/teamsRouter');
+const tournamentChallengesRouter = require('./src/routes/tournamentChallengesRouter');
+const teamChallengesRouter = require('./src/routes/teamChallengesRouter');
 
 const app = express();
 const PORT = process.env.PORT || 4200;
@@ -22,5 +24,7 @@ app.use(json());
 
 app.use('/api/auth', authRouter);
 app.use('/api/teams', teamsRouter);
+app.use('/api/tournamentChallenges', tournamentChallengesRouter);
+app.use('/api/teamChallenges', teamChallengesRouter);
 
 app.listen(PORT, () => debug(`Server running in port: ${PORT}`));

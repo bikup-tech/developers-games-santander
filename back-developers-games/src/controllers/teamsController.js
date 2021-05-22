@@ -2,11 +2,16 @@
 const {
   BAD_REQUEST, CONFLICT, CREATED,
 } = require('../constants/statusCodes');
-const { MISSING_PROPERTIES, ALREADY_EXISTING_TEAM } = require('../constants/responseMessages');
+const {
+  MISSING_PROPERTIES, ALREADY_EXISTING_TEAM, REGISTER_TEAM_SUCCESS, NO_TOURNAMENT_FOUND,
+} = require('../constants/responseMessages');
 
 // Services
 const teamService = require('../services/teamService');
 const participantService = require('../services/participantService');
+const tournamentChallengeService = require('../services/tournamentChallengeService');
+const teamChallengeService = require('../services/teamChallengeService');
+const tournamentService = require('../services/tournamentService');
 const mailService = require('../services/mailService');
 
 // Utils
@@ -15,19 +20,20 @@ const handleResponseError = require('../utils/handleResponseError');
 const handleResponseSuccess = require('../utils/handleResponseSuccess');
 
 function teamsController() {
-  async function createTeam({ body: { name, participants } }, res) {
+  async function createTeam({ body: { name, participants, tournamentId } }, res) {
     try {
-      if (!participants || !name) {
-        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('participants or name'));
+      if (!participants || !name || !tournamentId) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('participants, name or tournamentId'));
       }
 
-      // Check team name
-      const searchTeamQuery = {
-        name,
-      };
-      const foundTeam = await teamService.findTeam(searchTeamQuery);
+      // Check team name && existing tournament
+      const foundTeam = await teamService.findTeam({ name });
       if (foundTeam) {
         throw new CustomError(CONFLICT, ALREADY_EXISTING_TEAM(name));
+      }
+      const foundTournament = await tournamentService.findTournamentById(tournamentId);
+      if (!foundTournament) {
+        throw new CustomError(CONFLICT, NO_TOURNAMENT_FOUND(tournamentId));
       }
 
       // Create participants
@@ -39,24 +45,37 @@ function teamsController() {
 
       const createdParticipants = await Promise.all(pendingParticipants);
 
+      // Find that tournament challenges
+      const tournamentChallenges = await tournamentChallengeService
+        .findTournamentChallengesByTournamentId(tournamentId);
+
+      // Create team challenges
+      const pendingTeamChallenges = [];
+      tournamentChallenges.forEach((tournamentChallenge) => {
+        const pendingTeamChallenge = teamChallengeService
+          .createTeamChallenge(tournamentChallenge._id);
+        pendingTeamChallenges.push(pendingTeamChallenge);
+      });
+
+      const createdTeamChallenges = await Promise.all(pendingTeamChallenges);
+
       // Create team
       const createdParticipantsIds = createdParticipants.map((participant) => participant._id);
-      const createdTeam = await teamService.createTeam(name, createdParticipantsIds);
+      const createdTeamChallengesIds = createdTeamChallenges.map(
+        (teamChallenge) => teamChallenge._id,
+      );
+      await teamService.createTeam(name, createdParticipantsIds, createdTeamChallengesIds);
 
       // Send mail
       const teamCaptain = createdParticipants.find(
         (participant) => participant.isCaptain,
       );
-
-      const sentMail = await mailService.sendRegisteredUser(
+      await mailService.sendRegisteredUser(
         teamCaptain.email, teamCaptain.password,
       );
 
-      console.log(sentMail);
-
-      return handleResponseSuccess(res, createdTeam, CREATED);
+      return handleResponseSuccess(res, REGISTER_TEAM_SUCCESS, CREATED);
     } catch (error) {
-      console.log(error);
       return handleResponseError(res, error);
     }
   }

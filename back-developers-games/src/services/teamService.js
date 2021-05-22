@@ -1,7 +1,7 @@
 const teamModel = require('../models/teamModel');
 
 // Constants
-const { BAD_REQUEST, OK } = require('../constants/statusCodes');
+const { BAD_REQUEST } = require('../constants/statusCodes');
 const { MISSING_PROPERTIES, MISSING_QUERY } = require('../constants/responseMessages');
 
 // Utils
@@ -16,13 +16,13 @@ function teamService() {
     return teamModel.findOne(findQuery).populate('participants');
   }
 
-  async function createTeam(name, participants) {
+  async function createTeam(name, participants, teamChallenges) {
     if (!name || !participants) {
       throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('participants or name'));
     }
 
     const createTeamQuery = {
-      name, participants,
+      name, participants, teamChallenges,
     };
 
     return teamModel.create(createTeamQuery);

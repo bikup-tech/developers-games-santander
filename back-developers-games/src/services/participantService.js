@@ -5,8 +5,8 @@ const generator = require('generate-password');
 const participantModel = require('../models/participantModel');
 
 // Constants
-const { BAD_REQUEST, OK } = require('../constants/statusCodes');
-const { MISSING_QUERY, MISSING_USER_PROPERTIES, MISSING_PROPERTIES } = require('../constants/responseMessages');
+const { BAD_REQUEST } = require('../constants/statusCodes');
+const { MISSING_USER_PROPERTIES, MISSING_PROPERTIES } = require('../constants/responseMessages');
 
 // Utils
 const CustomError = require('../utils/CustomError');

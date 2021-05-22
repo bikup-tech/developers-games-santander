@@ -5,7 +5,7 @@ const tournamentModel = new Schema({
   client: { type: String },
   clientLogo: { type: String },
   teams: [{ type: Schema.Types.ObjectId, ref: 'Teams' }],
-  challenges: [{ type: Schema.Types.ObjectId, ref: 'Challenges' }],
+  tournamentChallenges: [{ type: Schema.Types.ObjectId, ref: 'Challenges' }],
 });
 
 module.exports = model('Tournaments', tournamentModel);
