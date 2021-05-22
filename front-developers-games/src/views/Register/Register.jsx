@@ -51,6 +51,7 @@ function Register() {
           </div> */}
           <Participant text="Participante" participantNumber={participantsCounter} isCaptain />
         </form>
+
       </section>
     </AppWrapper>
   );

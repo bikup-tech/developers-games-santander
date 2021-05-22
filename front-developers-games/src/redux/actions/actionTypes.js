@@ -1,3 +1,4 @@
 export default {
   ADD_PARTICIPANT: 'ADD_PARTICIPANT',
+  SET_INPUT_VALUE: 'SET_INPUT_VALUE',
 };

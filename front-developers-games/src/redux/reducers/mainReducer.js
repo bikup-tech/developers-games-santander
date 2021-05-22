@@ -9,6 +9,9 @@ export default function mainReducer(state = {}, action) {
         participants: [...state.participants, action.participant],
       };
       break;
+    case actionTypes.SET_INPUT_VALUE:
+      newState = { ...state, [action.payload.name]: action.payload.value };
+      break;
     default:
       newState = state;
       break;
