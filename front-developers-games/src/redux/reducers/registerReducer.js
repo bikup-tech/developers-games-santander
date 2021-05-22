@@ -12,6 +12,15 @@ export default function registerReducer(state = {}, action) {
         },
       };
       break;
+
+    case actionTypes.ADD_PARTICIPANT:
+      newState = {
+        ...state,
+        [`participant${action.payload.participantNumber}`]:
+        action.payload.participantInitialState,
+      };
+      break;
+
     default:
       newState = state;
       break;

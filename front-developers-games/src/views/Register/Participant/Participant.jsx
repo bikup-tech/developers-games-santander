@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './Participant.scss';
 
-import setRegisterFormValue from '../../../redux/actions/registerActions';
+import { setRegisterFormValue } from '../../../redux/actions/registerActions';
 
 import Input from '../../../components/Input/Input';
 

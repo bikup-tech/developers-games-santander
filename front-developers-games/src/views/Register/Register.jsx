@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './Register.scss';
 
-import { addParticipantToTeam } from '../../redux/actions/mainActions';
+import { addParticipant } from '../../redux/actions/registerActions';
 
 // import CameraIcon from '../../assets/images/camara-icon.svg';
 import plusIcon from '../../assets/images/plus-icon.svg';
@@ -19,6 +19,7 @@ import MainButton from '../../components/MainButton/MainButton';
 function Register() {
   const [participantsCounter, setParticipantsCounter] = useState(1);
   const [warningMessage, setWarningMessage] = useState('');
+  const [renderedParticipants, setRenderedParticipants] = useState([]);
 
   const { teamName } = useSelector(({ registerReducer }) => registerReducer);
 
@@ -28,6 +29,16 @@ function Register() {
     if (participantsCounter <= 4) {
       e.preventDefault();
       setParticipantsCounter(participantsCounter + 1);
+      dispatch(addParticipant(participantsCounter + 1));
+      const toRenderParticipants = [];
+
+      for (let index = 0; index < participantsCounter; index += 1) {
+        toRenderParticipants.push(
+          <Participant participantNumber={participantsCounter} isCaptain={false} />,
+        );
+      }
+
+      setRenderedParticipants(toRenderParticipants);
     } else {
       setWarningMessage('No puedes crear equipos de más de 4 personas.');
     }
@@ -50,15 +61,35 @@ function Register() {
             <img className="entry-photo__image" src={CameraIcon} alt="Insert photo" />
             <p className="entry-photo__text">Sube la foto de tu equipo</p>
           </div> */}
-          <Participant participantNumber={participantsCounter} isCaptain />
-          <div className="form__button">
-            <MainButton isSecondary color="blue">
-              <div className="button-children">
-                <img className="button-children__image" src={plusIcon} alt="Add member icon" />
-                <p className="button-children__text">Añadir otro miembro del equipo</p>
+          <Participant participantNumber={1} isCaptain />
+          {
+            participantsCounter > 1 && (
+              <Participant participantNumber={2} />
+            )
+          }
+          {
+            participantsCounter > 2 && (
+              <Participant participantNumber={3} />
+            )
+          }
+          {
+            participantsCounter > 3 && (
+              <Participant participantNumber={4} />
+            )
+          }
+          {
+            participantsCounter < 4
+            && (
+              <div className="form__button">
+                <MainButton isSecondary color="blue" onClick={handleAddParticipantClick}>
+                  <div className="button-children">
+                    <img className="button-children__image" src={plusIcon} alt="Add member icon" />
+                    <p className="button-children__text">Añadir otro miembro del equipo</p>
+                  </div>
+                </MainButton>
               </div>
-            </MainButton>
-          </div>
+            )
+          }
         </form>
       </section>
     </AppWrapper>

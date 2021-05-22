@@ -4,7 +4,6 @@
 
 .register-container {
    @include flex($flex-direction: column);
-   overflow-y: auto;
 }
 
 .register__title {
@@ -63,5 +62,6 @@
 
 .button-children{
     @include flex();
+    cursor: pointer;
 }
 
