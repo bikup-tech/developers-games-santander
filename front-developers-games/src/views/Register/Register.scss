@@ -2,3 +2,51 @@
 @import '../../assets/styles/mixins.scss';
 @import '../../assets/styles/styleConstants.scss';
 
+.register-container {
+   @include flex($flex-direction: column)
+}
+
+.register__title {
+    color: $darkBlue;
+    font-size: $mobile-subtitle-18;
+    padding: $p-24 0px;
+    @media only screen and (min-width:$query-1280) {
+        font-size: $desktop-subtitle-20;
+    }
+}
+
+.register__form {
+    @include flex($flex-direction: column)
+}
+
+.form__entry-photo{
+    @include flex();
+    cursor: pointer;
+    padding: $p-16 0px;
+}
+
+.entry-photo__image {
+    height: 30px;
+}
+
+.entry-photo__text {
+    font-size: $text-16;
+    margin-left: $m-8;
+    &:hover {
+        color: $darkBlue;
+    }
+    &:focus {
+        color: $darkBlue;
+    }
+}
+
+
+.form__input {
+    // tasa de conversión 21
+    width: 500px;
+    height: 24px;
+    @media only screen and (min-width:$query-1280) {
+        width: 738px;
+        height:  35px;
+    }
+}
