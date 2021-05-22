@@ -1,18 +1,16 @@
 export default {
   mainReducer: {
-    participants: ['gerard'],
-    registerForm: {
-      team: {
-        name: '',
-        participants: [],
-      },
-      participant: {
-        isCaptain: false,
-        email: '',
-        name: '',
-        surname: '',
-        phone: '',
-      },
+
+  },
+  registerReducer: {
+    participants: [],
+    teamName: '',
+    participant1: {
+      isCaptain: true,
+      name: '',
+      surname: '',
+      email: '',
+      phone: '',
     },
   },
   authReducer: {

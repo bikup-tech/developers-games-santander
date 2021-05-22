@@ -56,3 +56,12 @@
         height:  35px;
     }
 }
+
+.form__button {
+    padding-top: $m-12;
+}
+
+.button-children{
+    @include flex();
+}
+

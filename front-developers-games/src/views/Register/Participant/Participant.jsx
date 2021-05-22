@@ -4,35 +4,31 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './Participant.scss';
 
-import { setInputValue } from '../../../redux/actions/mainActions';
+import setRegisterFormValue from '../../../redux/actions/registerActions';
 
 import Input from '../../../components/Input/Input';
 
-function Participant({ text, participantNumber, isCaptain }) {
+function Participant({ participantNumber, isCaptain }) {
   const [warningMessage, setWarningMessage] = useState('');
 
   const dispatch = useDispatch();
 
   const {
     email, name, surname, phone,
-  } = useSelector(({ mainReducer }) => mainReducer.registerForm);
+  } = useSelector(({ registerReducer }) => registerReducer[`participant${participantNumber}`]);
 
   function handleTextInputChange({ target }) {
-    //   TODO: guardar el valor en el state que le pertoca
-    dispatch(setInputValue(target.name, target.value));
-
-    console.log(`${target.name}: ${target.value}`);
+    dispatch(setRegisterFormValue(target.name, target.value, participantNumber));
+    setWarningMessage('');
   }
   return (
     <div className="register__participant">
       <h3 className="participant__title register__title">
-        {text}
+        Participante
         {' '}
         {participantNumber}
         {' '}
-        -
-        {' '}
-        {isCaptain ? 'Capitán' : ''}
+        {isCaptain ? '- Capitán' : ''}
       </h3>
       <div className="participant__inputs">
         <div className="inputs__entries">
