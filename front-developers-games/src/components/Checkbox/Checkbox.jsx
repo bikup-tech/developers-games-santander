@@ -6,8 +6,8 @@ import './Checkbox.scss';
 function Checkbox({ Text }) {
   return (
     <div className="input__checkbox">
-      <input type="checkbox" id="test1" />
-      <label htmlFor="test1">{Text}</label>
+      <input type="checkbox" id="animatedCheckbox" />
+      <label htmlFor="animatedCheckbox">{Text}</label>
     </div>
   );
 }
