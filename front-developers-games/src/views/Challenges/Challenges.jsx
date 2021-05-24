@@ -7,6 +7,7 @@ import { loadTeamChallenges } from '../../redux/actions/mainActions';
 
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
+import ChallengeCard from './components/ChallengeCard/ChallengeCard';
 
 function Challenges() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function Challenges() {
 
   return (
     <AppWrapper title={`Hola ${team.name} Team`}>
-      workjs
+      <ChallengeCard />
     </AppWrapper>
   );
 }
