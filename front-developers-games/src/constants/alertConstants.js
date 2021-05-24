@@ -9,10 +9,8 @@ export default {
     WARNING: 'WARNING',
   },
   messages: {
-    CREATE_BIKE_ERROR: 'Ha habido un error al crear tu bici. Vuelve a intentarlo.',
-    CREATE_BIKE_SUCCESS: 'Bici creada correctemente!',
-    UPDATE_BIKE_ERROR: 'Ha habido un error al añadir la ruta. Vuelve a intentarlo.',
-    UPDATE_BIKE_SUCCESS: 'Ruta añadida correctamente!',
+    CREATE_TEAM_ERROR: 'Ha habido un error al crear tu equipo. Vuelve a intentarlo.',
+    CREATE_TEAM_SUCCESS: 'Equipo creado correctemente!',
   },
   icons: {
     SUCCESS: alertSuccessIcon,
