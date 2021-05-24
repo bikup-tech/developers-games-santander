@@ -9,6 +9,7 @@ import { loadTeamChallenges } from '../../redux/actions/mainActions';
 
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
+import Loading from '../../components/Loading/Loading';
 import ChallengeCard from './components/ChallengeCard/ChallengeCard';
 
 function Challenges() {
@@ -29,19 +30,28 @@ function Challenges() {
   return (
     <AppWrapper title={`Hola ${team.name} Team`}>
       <div className="challenges">
-
         <p className="challenges__text">
           Entra en cada una de las disciplinas,
           completa todos los retos y asegúrate un lugar en el podio
         </p>
+
         <div className="challenges__challenge-list">
-          {teamChallenges && (
-            teamChallenges.map((challenge) => (
-              <ChallengeCard challenge={challenge} isCompleted={challenge.isCompleted} />
-            ))
-          )}
+          {
+            teamChallengesLoading
+              ? (
+                <div className="challenges__loading">
+                  <Loading text="Cargando desafíos..." />
+                </div>
+              )
+              : (teamChallenges && (
+                teamChallenges.map((challenge) => (
+                  <ChallengeCard challenge={challenge} isCompleted={challenge.isCompleted} />
+                ))
+              ))
+          }
         </div>
       </div>
+
     </AppWrapper>
   );
 }
