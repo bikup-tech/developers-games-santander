@@ -14,7 +14,9 @@ function teamChallengesController() {
       if (!teamId || teamId === 'undefined') {
         throw new CustomError(BAD_REQUEST, MISSING_QUERY_PROPERTIES('teamId'));
       }
+
       const foundTeamChallenges = await teamChallengeService.findTeamChallenges(teamId);
+
       return handleResponseSuccess(res, foundTeamChallenges);
     } catch (getTeamChallengesError) {
       return handleResponseError(res, getTeamChallengesError);
