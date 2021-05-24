@@ -57,7 +57,7 @@ function Header() {
     <header className="header">
       <div className="header__menu">
         <NavLink to="/" className="menu__logo">
-          <img className="logo__image" src={headerLogos} alt="Developers games Redhut and Santander logos" />
+          <img className="logo__image" src={headerLogos} alt="Developers games Redhat and Santander logos" />
         </NavLink>
         <img
           src={openMenuIcon}
