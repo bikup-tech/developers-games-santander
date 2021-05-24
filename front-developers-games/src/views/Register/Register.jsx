@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './Register.scss';
 
-import { addParticipant } from '../../redux/actions/registerActions';
+import { addTeamName, addParticipant } from '../../redux/actions/registerActions';
 
 // import CameraIcon from '../../assets/images/camara-icon.svg';
 import plusIcon from '../../assets/images/plus-icon.svg';
@@ -45,9 +45,9 @@ function Register() {
     }
   }
 
-  function handleTextInputChange({ target: { name, value } }) {
-    console.log(value);
-    console.log(name);
+  function handleTextInputChange({ target: { value } }) {
+    dispatch(addTeamName(value));
+    setWarningMessage('');
   }
 
   return (
@@ -56,7 +56,7 @@ function Register() {
         <h3 className="register__title">Tu equipo debe estar compuesto de un mínimo de 3 y un máximo de 4 participantes.</h3>
         <form className="register__form">
           <div className="form__input">
-            <Input type="text" name="name" placeholder="Nombre del equipo*" value={teamName} onChange={handleTextInputChange} />
+            <Input type="text" name="teamName" placeholder="Nombre del equipo*" value={teamName} onChange={handleTextInputChange} />
           </div>
           {/* <div className="form__entry-photo">
             <img className="entry-photo__image" src={CameraIcon} alt="Insert photo" />

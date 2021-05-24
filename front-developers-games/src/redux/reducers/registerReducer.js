@@ -3,6 +3,9 @@ import actionTypes from '../actions/actionTypes';
 export default function registerReducer(state = {}, action) {
   let newState = {};
   switch (action.type) {
+    case actionTypes.ADD_TEAM_NAME:
+      newState = { ...state, teamName: action.teamName };
+      break;
     case actionTypes.SET_REGISTER_INPUT_VALUE:
       newState = {
         ...state,

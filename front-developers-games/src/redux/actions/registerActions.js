@@ -1,5 +1,12 @@
 import actionTypes from './actionTypes';
 
+export function addTeamName(teamName) {
+  return {
+    type: actionTypes.ADD_TEAM_NAME,
+    teamName,
+  };
+}
+
 export function setRegisterFormValue(name, value, participantNumber) {
   return {
     type: actionTypes.SET_REGISTER_INPUT_VALUE,
@@ -19,7 +26,6 @@ export function addParticipant(participantNumber) {
     email: '',
     phone: '',
   };
-  console.log('he entrado');
   return {
     type: actionTypes.ADD_PARTICIPANT,
     payload: {
