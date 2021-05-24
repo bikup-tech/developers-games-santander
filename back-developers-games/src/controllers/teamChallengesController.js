@@ -11,12 +11,12 @@ const handleResponseSuccess = require('../utils/handleResponseSuccess');
 function teamChallengesController() {
   async function getTeamChallenges({ query: { teamId } }, res) {
     try {
-      if (!teamId) {
+      if (!teamId || teamId === 'undefined') {
         throw new CustomError(BAD_REQUEST, MISSING_QUERY_PROPERTIES('teamId'));
       }
-
+      console.log(teamId);
       const foundTeamChallenges = await teamChallengeService.findTeamChallenges(teamId);
-
+      console.log(foundTeamChallenges);
       return handleResponseSuccess(res, foundTeamChallenges);
     } catch (getTeamChallengesError) {
       return handleResponseError(res, getTeamChallengesError);

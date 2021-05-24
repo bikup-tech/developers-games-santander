@@ -1,6 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
+// Action-Creators
+import { loadTeamChallenges } from '../../redux/actions/mainActions';
 
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
@@ -13,6 +16,13 @@ function Challenges() {
     teamChallenges,
     team,
   } = useSelector(({ mainReducer }) => mainReducer);
+
+  useEffect(() => {
+    if (!teamChallenges) {
+      dispatch(loadTeamChallenges(team?._id));
+    }
+  }, []);
+
   return (
     <AppWrapper title={`Hola ${team.name} Team`}>
       workjs

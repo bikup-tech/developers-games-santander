@@ -31,13 +31,15 @@ export function loadTeamChallengesError(error) {
   };
 }
 
-export function loadTeamChallenges() {
+export function loadTeamChallenges(teamId) {
   return async (dispatch) => {
     try {
       dispatch(setTeamChallengesLoading());
 
-      const loadTeamChallengesEndpoint = `${APIConstants.HOSTNAME}${APIConstants.LOAD_TEAM_CHALLENGES_ENDPOINT}`;
+      const loadTeamChallengesEndpoint = `${APIConstants.HOSTNAME}${APIConstants.LOAD_TEAM_CHALLENGES_ENDPOINT(teamId)}`;
       const { data } = await axios.get(loadTeamChallengesEndpoint);
+      console.log(loadTeamChallengesEndpoint);
+      console.log(data);
       dispatch(loadTeamChallengesSuccess(data));
     } catch (teamChallengesError) {
       dispatch(loadTeamChallengesError(teamChallengesError));
