@@ -9,8 +9,8 @@ const handleResponseError = require('../utils/handleResponseError');
 const handleResponseSuccess = require('../utils/handleResponseSuccess');
 
 function teamChallengesController() {
-  function getTeamChallenges(req, res) {
-    return true;
+  function getTeamChallenges({ query: { teamId } }, res) {
+
   }
   return { getTeamChallenges };
 }
