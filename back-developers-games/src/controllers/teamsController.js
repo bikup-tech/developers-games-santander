@@ -67,9 +67,14 @@ function teamsController() {
       const teamCaptain = createdParticipants.find(
         (participant) => participant.isCaptain,
       );
-      await teamService.createTeam(
+      const createdTeam = await teamService.createTeam(
         name, createdParticipantsIds, createdTeamChallengesIds, teamCaptain._id, tournamentId,
       );
+
+      // Update team challenges (insert teamId property)
+      const updateQuery = { $set: { teamId: createdTeam._id } };
+      await teamChallengeService
+        .updateManyTeamChallenges(createdTeamChallengesIds, updateQuery);
 
       // Send mail
       await mailService.sendRegisteredUser(

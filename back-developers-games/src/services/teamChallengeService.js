@@ -17,12 +17,12 @@ function teamChallengeService() {
     return teamChallengeModel.findOne(filter).populate('tournamentChallengeId');
   }
 
-  function createTeamChallenge(tournamentChallengeId) {
-    if (!tournamentChallengeId) {
+  function createTeamChallenge(tournamentChallenge, teamId) {
+    if (!tournamentChallenge) {
       throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('tournamentChallengeId'));
     }
 
-    return teamChallengeModel.create({ tournamentChallengeId });
+    return teamChallengeModel.create({ tournamentChallenge, teamId });
   }
 
   function updateTeamChallenge(teamChallengeId, updateQuery) {
@@ -38,7 +38,32 @@ function teamChallengeService() {
     return teamChallengeModel.findOneAndUpdate(filter, updateQuery, updateOptions);
   }
 
-  return { findTeamChallengeById, createTeamChallenge, updateTeamChallenge };
+  function findTeamChallenges(teamId) {
+    if (!teamId) {
+      throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('teamId'));
+    }
+
+    return teamChallengeModel.find({ teamId }).populate('tournamentChallenge');
+  }
+
+  function updateManyTeamChallenges(teamChallengeIds, updateQuery) {
+    if (!teamChallengeIds || !teamChallengeIds.length) {
+      throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('teamChallengeIds'));
+    }
+
+    const filter = { _id: { $in: teamChallengeIds } };
+    const options = { new: true };
+
+    return teamChallengeModel.updateMany(filter, updateQuery, options);
+  }
+
+  return {
+    findTeamChallengeById,
+    createTeamChallenge,
+    updateTeamChallenge,
+    findTeamChallenges,
+    updateManyTeamChallenges,
+  };
 }
 
 module.exports = teamChallengeService();

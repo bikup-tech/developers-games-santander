@@ -4,7 +4,11 @@ $lightBlue: #00ACAF;
 $semiBlue: #008A8C;
 $darkBlue: #056C6E;
 $red: #FF0000;
+$lightRed: #b94242;
 $gray: #9C9C9C;
+
+$lighterBlue-transparent: rgba(62, 196, 198, 0.05);
+$blue-completed: #99DDDD;
 
 // font-family (los de debajo van a ir en función de éste)
 $font-main: 'redhat-display';
@@ -22,8 +26,13 @@ $text-bolder: 900;
 // letter spacing
 
 // font sizes
-$text-16: 16px;
 $text-14: 14px;
+$text-16: 16px;
+$text-20: 20px;
+$text-24: 24px;
+$text-32: 32px;
+$text-38: 38px;
+$text-42: 42px;
 $error-text-12:12px;
 
 $mobile-subtitle-18: 18px;
@@ -41,6 +50,8 @@ $p-12: 12px;
 $p-16: 16px;
 $p-24: 24px;
 $p-32: 32px;
+$p-42: 42px;
+$p-48: 48px;
 $p-64: 64px;
 
 // margin

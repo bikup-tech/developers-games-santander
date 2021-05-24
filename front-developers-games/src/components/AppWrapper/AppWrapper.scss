@@ -29,7 +29,11 @@
 
     flex: 1;
     width: 100%;
-    padding: $p-6;
+    padding: $p-12;
+    @media only screen and (min-width: $query-1280){
+        padding: $p-24;
+    }
+
 }
 
 .app-wrapper__children {

@@ -27,4 +27,20 @@ app.use('/api/teams', teamsRouter);
 app.use('/api/tournamentChallenges', tournamentChallengesRouter);
 app.use('/api/teamChallenges', teamChallengesRouter);
 
+// !! IMPORTANT DELETE THIS METHOD !!
+app.delete('/api/reset', (req, res) => {
+  // eslint-disable-next-line global-require
+  const teamChallengeModel = require('./src/models/teamChallengeModel');
+  // eslint-disable-next-line global-require
+  const teamModel = require('./src/models/teamModel');
+  // eslint-disable-next-line global-require
+  const participantModel = require('./src/models/participantModel');
+
+  teamChallengeModel.collection.drop();
+  teamModel.collection.drop();
+  participantModel.collection.drop();
+
+  res.send('done');
+});
+
 app.listen(PORT, () => debug(`Server running in port: ${PORT}`));

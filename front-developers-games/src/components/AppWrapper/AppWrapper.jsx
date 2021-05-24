@@ -2,9 +2,12 @@ import React from 'react';
 
 import './AppWrapper.scss';
 
+import Alert from '../Alert/Alert';
+
 function AppWrapper({ title, children }) {
   return (
     <div className="app-wrapper">
+      <Alert />
       <div className="app-wrapper__title">
         <h2 className="title__text">{title}</h2>
       </div>

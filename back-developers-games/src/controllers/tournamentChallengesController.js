@@ -37,7 +37,7 @@ function challengesController() {
   // TODO: This is a method to insert to DB, not public.
   async function createTournamentChallenge(req, res) {
     const challengeMock = {
-      number: 3,
+      number: 9,
       name: 'Create a Quarkus Library microservice',
       title: 'Crea una librería',
       subtitle: 'con microservicios de Quarkus',
