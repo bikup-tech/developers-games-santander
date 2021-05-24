@@ -15,6 +15,7 @@ import Participant from './Participant/Participant';
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import Input from '../../components/Input/Input';
 import MainButton from '../../components/MainButton/MainButton';
+import Checkbox from '../../components/Checkbox/Checkbox';
 
 function Register() {
   const [participantsCounter, setParticipantsCounter] = useState(1);
@@ -90,6 +91,16 @@ function Register() {
               </div>
             )
           }
+          <h3 className="register__title form__info">
+            Te enviaremos tu usuario y clave de acceso al estadio olímpico para que
+            podáis comenzar los desafios
+          </h3>
+          <div className="form__checkbox">
+            <Checkbox Text="He leído, acepto y entiendo el tratamiento de mis datos y bases del juego*" />
+          </div>
+          <div className="form__button">
+            <MainButton>Enviar Equipo</MainButton>
+          </div>
         </form>
       </section>
     </AppWrapper>
