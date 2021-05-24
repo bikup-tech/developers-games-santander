@@ -72,3 +72,10 @@
 .form__checkbox {
     text-align: center;
 }
+
+.form__warningMessage {
+    color: $red;
+    text-align: center;
+    padding: $p-12;
+    height: 20px;
+}

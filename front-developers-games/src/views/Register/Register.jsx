@@ -35,6 +35,9 @@ function Register() {
 
   function handleCheckboxChange({ target: { checked } }) {
     dispatch(isCheckedRegisterTherms(checked));
+    if (checked) {
+      setWarningMessage('');
+    }
   }
 
   function handleAddParticipantClick(e) {
@@ -57,7 +60,14 @@ function Register() {
   }
 
   function handleSendTeamClick(e) {
+    console.log(participantsCounter);
     e.preventDefault();
+    if (!registerThermsConditions) {
+      setWarningMessage('Por favor, lee y acepta el tratatamiento y bases del juego.');
+    }
+    if (participantsCounter < 2 && participantsCounter < 5) {
+      setWarningMessage('Los equipos deben de ser de entre 3 y 4 jugadores.');
+    }
     // TODO 3
     // let isFormValid = true;
     // const wrongValues = {};
@@ -117,7 +127,7 @@ function Register() {
               onChange={handleCheckboxChange}
             />
           </div>
-          <small>{warningMessage}</small>
+          <small className="form__warningMessage">{warningMessage}</small>
           <div className="form__button">
             <MainButton onClick={handleSendTeamClick}>Enviar Equipo</MainButton>
           </div>
