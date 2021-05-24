@@ -6,6 +6,7 @@ const teamModel = new Schema({
   solvedChallenges: { type: Number, default: 0 },
   participants: [{ type: Schema.Types.ObjectId, ref: 'Participants' }],
   teamChallenges: [{ type: Schema.Types.ObjectId, ref: 'Team_challenges' }],
+  tournamentId: { type: String },
 });
 
 module.exports = model('Teams', teamModel);

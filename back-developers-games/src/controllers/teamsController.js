@@ -68,7 +68,7 @@ function teamsController() {
         (participant) => participant.isCaptain,
       );
       await teamService.createTeam(
-        name, createdParticipantsIds, createdTeamChallengesIds, teamCaptain._id,
+        name, createdParticipantsIds, createdTeamChallengesIds, teamCaptain._id, tournamentId,
       );
 
       // Send mail
