@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './Register.scss';
 
-import { addTeamName, addParticipant } from '../../redux/actions/registerActions';
+import { addTeamName, addParticipant, isCheckedRegisterThermsConditions } from '../../redux/actions/registerActions';
 
 // import CameraIcon from '../../assets/images/camara-icon.svg';
 import plusIcon from '../../assets/images/plus-icon.svg';
@@ -22,13 +22,24 @@ function Register() {
   const [warningMessage, setWarningMessage] = useState('');
   const [renderedParticipants, setRenderedParticipants] = useState([]);
 
-  const { teamName } = useSelector(({ registerReducer }) => registerReducer);
+  const { teamName, registerThermsConditions } = useSelector((
+    { registerReducer },
+  ) => registerReducer);
 
   const dispatch = useDispatch();
 
+  function handleTextInputChange({ target: { value } }) {
+    dispatch(addTeamName(value));
+    setWarningMessage('');
+  }
+
+  function handleCheckboxChange({ target: { checked } }) {
+    dispatch(isCheckedRegisterThermsConditions(checked));
+  }
+
   function handleAddParticipantClick(e) {
-    if (participantsCounter <= 4) {
-      e.preventDefault();
+    e.preventDefault();
+    if (participantsCounter > 2 && participantsCounter < 5) {
       setParticipantsCounter(participantsCounter + 1);
       dispatch(addParticipant(participantsCounter + 1));
       const toRenderParticipants = [];
@@ -41,13 +52,16 @@ function Register() {
 
       setRenderedParticipants(toRenderParticipants);
     } else {
-      setWarningMessage('No puedes crear equipos de más de 4 personas.');
+      setWarningMessage('Los equipos deben de ser de entre 3 y 4 jugadores.');
     }
   }
 
-  function handleTextInputChange({ target: { value } }) {
-    dispatch(addTeamName(value));
-    setWarningMessage('');
+  function handleSendTeamClick(e) {
+    e.preventDefault();
+    // TODO 3
+    // let isFormValid = true;
+    // const wrongValues = {};
+    // const formValues =
   }
 
   return (
@@ -96,10 +110,16 @@ function Register() {
             podáis comenzar los desafios
           </h3>
           <div className="form__checkbox">
-            <Checkbox Text="He leído, acepto y entiendo el tratamiento de mis datos y bases del juego*" />
+            <Checkbox
+              text="He leído, acepto y entiendo el tratamiento de mis datos y bases del juego*"
+              name="registerThermsConditions"
+              isChecked={registerThermsConditions}
+              onChange={handleCheckboxChange}
+            />
           </div>
+          <small>{warningMessage}</small>
           <div className="form__button">
-            <MainButton>Enviar Equipo</MainButton>
+            <MainButton onClick={handleSendTeamClick}>Enviar Equipo</MainButton>
           </div>
         </form>
       </section>

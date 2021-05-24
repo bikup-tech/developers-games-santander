@@ -34,3 +34,10 @@ export function addParticipant(participantNumber) {
     },
   };
 }
+
+export function isCheckedRegisterThermsConditions(isChecked) {
+  return {
+    type: actionTypes.IS_CHECKED_REGISTER_CONDITIONS,
+    isChecked,
+  };
+}

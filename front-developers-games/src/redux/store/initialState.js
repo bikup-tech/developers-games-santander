@@ -12,6 +12,7 @@ export default {
       email: '',
       phone: '',
     },
+    registerThermsConditions: false,
   },
   authReducer: {
     user: { isLogged: false },

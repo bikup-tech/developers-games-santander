@@ -6,6 +6,7 @@ export default function registerReducer(state = {}, action) {
     case actionTypes.ADD_TEAM_NAME:
       newState = { ...state, teamName: action.teamName };
       break;
+
     case actionTypes.SET_REGISTER_INPUT_VALUE:
       newState = {
         ...state,
@@ -21,6 +22,13 @@ export default function registerReducer(state = {}, action) {
         ...state,
         [`participant${action.payload.participantNumber}`]:
         action.payload.participantInitialState,
+      };
+      break;
+
+    case actionTypes.IS_CHECKED_REGISTER_CONDITIONS:
+      newState = {
+        ...state,
+        registerThermsConditions: action.isChecked,
       };
       break;
 
