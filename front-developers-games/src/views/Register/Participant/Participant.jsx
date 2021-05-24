@@ -14,7 +14,7 @@ function Participant({ participantNumber, isCaptain }) {
   const dispatch = useDispatch();
 
   const {
-    email, name, surname, phone,
+    email, name, surname, phone, registerWrongValues,
   } = useSelector(({ registerReducer }) => registerReducer[`participant${participantNumber}`]);
 
   function handleTextInputChange({ target }) {
@@ -33,19 +33,47 @@ function Participant({ participantNumber, isCaptain }) {
       <div className="participant__inputs">
         <div className="inputs__entries">
           <div className="entries__name">
-            <Input type="text" name="name" placeholder="Nombre del participante*" value={name} onChange={handleTextInputChange} />
+            <Input
+              type="text"
+              name="name"
+              placeholder="Nombre del participante*"
+              value={name}
+              onChange={handleTextInputChange}
+              isIncorrect={registerWrongValues[`participant${participantNumber}`].name}
+            />
           </div>
           <div className="entries__surname">
-            <Input type="text" name="surname" placeholder="Apellido del participante*" value={surname} onChange={handleTextInputChange} />
+            <Input
+              type="text"
+              name="surname"
+              placeholder="Apellido del participante*"
+              value={surname}
+              onChange={handleTextInputChange}
+              isIncorrect={registerWrongValues[`participant${participantNumber}`].surname}
+            />
           </div>
         </div>
 
         <div className="inputs__entries">
           <div className="entries__mail">
-            <Input type="email" name="email" placeholder="e-mail*" value={email} onChange={handleTextInputChange} />
+            <Input
+              type="email"
+              name="email"
+              placeholder="e-mail*"
+              value={email}
+              onChange={handleTextInputChange}
+              isIncorrect={registerWrongValues[`participant${participantNumber}`].email}
+            />
           </div>
           <div className="entries__number">
-            <Input type="number" name="phone" placeholder="Teléfono*" value={phone} onChange={handleTextInputChange} />
+            <Input
+              type="number"
+              name="phone"
+              placeholder="Teléfono*"
+              value={phone}
+              onChange={handleTextInputChange}
+              isIncorrect={registerWrongValues[`participant${participantNumber}`].phone}
+            />
           </div>
         </div>
       </div>

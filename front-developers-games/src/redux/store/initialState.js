@@ -13,6 +13,15 @@ export default {
       phone: '',
     },
     registerThermsConditions: false,
+    registerWrongValues: {
+      teamName: false,
+      participant1: {
+        name: false,
+        surname: false,
+        email: false,
+        phone: false,
+      },
+    },
   },
   authReducer: {
     user: { isLogged: false },

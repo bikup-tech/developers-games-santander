@@ -41,3 +41,10 @@ export function isCheckedRegisterTherms(isChecked) {
     isChecked,
   };
 }
+
+export function setGeneralEntriesWrongValues(isWrongValue) {
+  return {
+    type: actionTypes.SET_GENERAL_ENTRIES_WRONG_VALUES,
+    isWrongValue,
+  };
+}

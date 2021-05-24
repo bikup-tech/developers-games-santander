@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable no-unused-vars */
@@ -6,7 +7,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './Register.scss';
 
-import { addTeamName, addParticipant, isCheckedRegisterTherms } from '../../redux/actions/registerActions';
+import {
+  addTeamName, addParticipant, isCheckedRegisterTherms, setGeneralEntriesWrongValues,
+} from '../../redux/actions/registerActions';
 
 // import CameraIcon from '../../assets/images/camara-icon.svg';
 import plusIcon from '../../assets/images/plus-icon.svg';
@@ -22,14 +25,18 @@ function Register() {
   const [warningMessage, setWarningMessage] = useState('');
   const [renderedParticipants, setRenderedParticipants] = useState([]);
 
-  const { teamName, registerThermsConditions } = useSelector((
+  const registerReducer = useSelector(({ registerReducer }) => registerReducer);
+
+  const { teamName, registerThermsConditions, registerWrongValues } = useSelector((
     { registerReducer },
   ) => registerReducer);
 
   const dispatch = useDispatch();
 
-  function handleTextInputChange({ target: { value } }) {
+  function handleTextInputChange({ target: { value, name } }) {
     dispatch(addTeamName(value));
+    registerWrongValues[name] = false;
+    dispatch(setGeneralEntriesWrongValues(registerWrongValues));
     setWarningMessage('');
   }
 
@@ -42,36 +49,46 @@ function Register() {
 
   function handleAddParticipantClick(e) {
     e.preventDefault();
-    if (participantsCounter > 2 && participantsCounter < 5) {
-      setParticipantsCounter(participantsCounter + 1);
-      dispatch(addParticipant(participantsCounter + 1));
-      const toRenderParticipants = [];
+    setParticipantsCounter(participantsCounter + 1);
+    dispatch(addParticipant(participantsCounter + 1));
+    /* TODO:
+    Cuando añado un participante:
+      - Crearlo tambien dentro de registerWrongValues (aprovechando la action --> addParticipant)
+      - Ponerle los valores a false
+    Cuando hago click en submit:
+      -Recorrer los valores teamName i participants
+      - Si hay alguno incorrecto pasar la action que lo ponga a true
+    */
+    const toRenderParticipants = [];
 
-      for (let index = 0; index < participantsCounter; index += 1) {
-        toRenderParticipants.push(
-          <Participant participantNumber={participantsCounter} isCaptain={false} />,
-        );
-      }
-
-      setRenderedParticipants(toRenderParticipants);
-    } else {
-      setWarningMessage('Los equipos deben de ser de entre 3 y 4 jugadores.');
+    for (let index = 0; index < participantsCounter; index += 1) {
+      toRenderParticipants.push(
+        <Participant participantNumber={participantsCounter} isCaptain={false} />,
+      );
     }
+
+    setRenderedParticipants(toRenderParticipants);
   }
 
   function handleSendTeamClick(e) {
-    console.log(participantsCounter);
+    const formValues = {};
+    const wrongValues = {};
     e.preventDefault();
+    let isFormValid = true;
     if (!registerThermsConditions) {
-      setWarningMessage('Por favor, lee y acepta el tratatamiento y bases del juego.');
+      setWarningMessage('Por favor, lee y acepta el tratamiento y bases del juego.');
+      isFormValid = false;
     }
     if (participantsCounter < 2 && participantsCounter < 5) {
       setWarningMessage('Los equipos deben de ser de entre 3 y 4 jugadores.');
+      isFormValid = false;
     }
-    // TODO 3
-    // let isFormValid = true;
-    // const wrongValues = {};
-    // const formValues =
+    if (isFormValid) {
+      // me guardo los jugadores en un objeto (que dentro tiene objetos)
+      const developersParticipants = (({
+        participants, teamName, registerThermsConditions, registerWrongValues, ...o
+      }) => o)(registerReducer);
+    }
   }
 
   return (
@@ -80,7 +97,14 @@ function Register() {
         <h3 className="register__title">Tu equipo debe estar compuesto de un mínimo de 3 y un máximo de 4 participantes.</h3>
         <form className="register__form">
           <div className="form__input">
-            <Input type="text" name="teamName" placeholder="Nombre del equipo*" value={teamName} onChange={handleTextInputChange} />
+            <Input
+              type="text"
+              name="teamName"
+              placeholder="Nombre del equipo*"
+              value={teamName}
+              onChange={handleTextInputChange}
+              isIncorrect={registerWrongValues.teamName}
+            />
           </div>
           {/* <div className="form__entry-photo">
             <img className="entry-photo__image" src={CameraIcon} alt="Insert photo" />
