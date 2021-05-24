@@ -45,6 +45,29 @@ export default function mainReducer(state = {}, action) {
       };
       break;
 
+    // CHALLENGE DETAIL
+    case actionTypes.SET_TO_LOAD_CHALLENGE_DETAIL:
+      newState = { ...state, toLoadChallengeDetail: action.challengeId };
+      break;
+    case actionTypes.SET_CHALLENGE_LOADING:
+      newState = {
+        ...state, challengeDetailLoading: true,
+      };
+      break;
+    case actionTypes.LOAD_CHALLENGE_ERROR:
+      newState = {
+        ...state, challengeDetailLoading: false, challengeDetailError: action.error,
+      };
+      break;
+    case actionTypes.LOAD_CHALLENGE_SUCCESS:
+      newState = {
+        ...state,
+        challengeDetailLoading: false,
+        challengeDetailError: null,
+        challengeDetail: action.challengeDetail,
+      };
+      break;
+
     default:
       newState = state;
       break;

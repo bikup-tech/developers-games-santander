@@ -44,8 +44,48 @@ export function loadTeamChallenges(teamId) {
 
       dispatch(loadTeamChallengesSuccess(data));
     } catch (teamChallengesError) {
-      console.log(teamChallengesError);
       dispatch(loadTeamChallengesError(teamChallengesError));
+    }
+  };
+}
+
+export function setToLoadChallengeDetail(challengeId) {
+  localStorage.setItem('toLoadChallengeDetail', challengeId);
+  return {
+    type: actionTypes.SET_TO_LOAD_CHALLENGE_DETAIL,
+    challengeId,
+  };
+}
+
+export function setLoadChallengeLoading() {
+  return {
+    type: actionTypes.SET_CHALLENGE_LOADING,
+  };
+}
+
+export function loadChallengeDetailError(error) {
+  return {
+    type: actionTypes.LOAD_CHALLENGE_ERROR,
+    error,
+  };
+}
+
+export function loadChallengeDetailSuccess(challengeDetail) {
+  return {
+    type: actionTypes.LOAD_CHALLENGE_SUCCESS,
+    challengeDetail,
+  };
+}
+
+export function loadChallengeDetail(challengeId) {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoadChallengeLoading());
+      const loadChallengeDetailEndpoint = `${APIConstants.HOSTNAME}${APIConstants.LOAD_CHALLENGE_DETAIL(challengeId)}`;
+      const { data } = await axios.get(loadChallengeDetailEndpoint);
+      dispatch(loadChallengeDetailSuccess(data));
+    } catch (error) {
+      dispatch(loadChallengeDetailError(error));
     }
   };
 }
