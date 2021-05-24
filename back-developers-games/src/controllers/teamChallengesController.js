@@ -1,5 +1,5 @@
-const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
-const { MISSING_PROPERTIES, NO_CHALLENGE_FOUND } = require('../constants/responseMessages');
+const { BAD_REQUEST } = require('../constants/statusCodes');
+const { MISSING_QUERY_PROPERTIES } = require('../constants/responseMessages');
 
 const teamChallengeService = require('../services/teamChallengeService');
 
@@ -9,8 +9,18 @@ const handleResponseError = require('../utils/handleResponseError');
 const handleResponseSuccess = require('../utils/handleResponseSuccess');
 
 function teamChallengesController() {
-  function getTeamChallenges({ query: { teamId } }, res) {
+  async function getTeamChallenges({ query: { teamId } }, res) {
+    try {
+      if (!teamId) {
+        throw new CustomError(BAD_REQUEST, MISSING_QUERY_PROPERTIES('teamId'));
+      }
 
+      const foundTeamChallenges = await teamChallengeService.findTeamChallenges(teamId);
+
+      return handleResponseSuccess(res, foundTeamChallenges);
+    } catch (getTeamChallengesError) {
+      return handleResponseError(res, getTeamChallengesError);
+    }
   }
   return { getTeamChallenges };
 }

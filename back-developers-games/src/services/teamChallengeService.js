@@ -38,7 +38,17 @@ function teamChallengeService() {
     return teamChallengeModel.findOneAndUpdate(filter, updateQuery, updateOptions);
   }
 
-  return { findTeamChallengeById, createTeamChallenge, updateTeamChallenge };
+  function findTeamChallenges(teamId) {
+    if (!teamId) {
+      throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('teamId'));
+    }
+
+    return teamChallengeModel.find({ teamId });
+  }
+
+  return {
+    findTeamChallengeById, createTeamChallenge, updateTeamChallenge, findTeamChallenges,
+  };
 }
 
 module.exports = teamChallengeService();
