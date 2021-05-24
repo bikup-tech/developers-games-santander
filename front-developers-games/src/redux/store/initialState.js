@@ -5,6 +5,8 @@ export default {
       name: 'bikUP',
       _id: '60aba9248e75d2458b9f9761',
     },
+    alert: { type: '', message: '' },
+
   },
   authReducer: {
     user: { isLogged: true },

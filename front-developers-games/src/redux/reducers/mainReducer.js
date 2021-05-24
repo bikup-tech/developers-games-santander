@@ -3,6 +3,21 @@ import actionTypes from '../actions/actionTypes';
 export default function mainReducer(state = {}, action) {
   let newState = {};
   switch (action.type) {
+    // ALERT
+    case actionTypes.SET_ALERT_DATA:
+      newState = {
+        ...state,
+        alert: { type: action.payload.type, message: action.payload.message },
+      };
+      break;
+
+    case actionTypes.RESET_ALERT_DATA:
+      newState = {
+        ...state,
+        alert: { type: '', message: '' },
+      };
+      break;
+
     case actionTypes.ADD_PARTICIPANT:
       newState = {
         ...state,
