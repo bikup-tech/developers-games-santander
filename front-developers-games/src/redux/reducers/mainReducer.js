@@ -23,7 +23,9 @@ export default function mainReducer(state = {}, action) {
       break;
     case actionTypes.LOAD_TEAM_CHALLENGES_SUCCESS:
       newState = {
-        ...state, teamChallengesLoading: false, teamChallenges: action.teamChallenges,
+        ...state,
+        teamChallengesLoading: false,
+        teamChallenges: action.teamChallenges,
       };
       break;
 

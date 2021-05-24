@@ -7,9 +7,9 @@
     padding: $p-12;
     border: 1px solid $lighterBlue;
     border-radius: $border-radius;
-    width: 80%;
-
-    max-width: 275px;
+    width: 100%;
+    max-width: 280px;
+    margin: $m-8;
 
     &:hover {
         background-color: $lighterBlue-transparent
@@ -17,11 +17,12 @@
 
     @media only screen and (min-width: $query-1280){
         padding: $p-16;
+        margin: $m-12 ;
     }
 }
 
 .challenge__number {
-    font-size: $text-32;
+    font-size: $text-38;
     color: $lighterBlue;
 }
 
@@ -39,4 +40,12 @@
     height: 24px;
     width: 24px;
     margin: 12px 0;
+}
+
+.challenge__button {
+    width: 160px;
+}
+
+.isCompleted {
+    color: $blue-completed;
 }

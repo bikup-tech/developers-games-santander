@@ -18,9 +18,12 @@ export function setTeamChallengesLoading() {
 }
 
 export function loadTeamChallengesSuccess(teamChallenges) {
+  const sortedChallenges = teamChallenges.sort(
+    (a, b) => a.tournamentChallenge.number - b.tournamentChallenge.number,
+  );
   return {
     type: actionTypes.LOAD_TEAM_CHALLENGES_SUCCESS,
-    teamChallenges,
+    teamChallenges: sortedChallenges,
   };
 }
 
@@ -41,6 +44,7 @@ export function loadTeamChallenges(teamId) {
 
       dispatch(loadTeamChallengesSuccess(data));
     } catch (teamChallengesError) {
+      console.log(teamChallengesError);
       dispatch(loadTeamChallengesError(teamChallengesError));
     }
   };

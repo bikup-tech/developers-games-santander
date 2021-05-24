@@ -29,15 +29,21 @@ function ChallengeCard({ challenge }) {
     <>
       {challenge && (
         <div className="challenge-card">
-          <h3 className="challenge__number">
+          <h3 className={`challenge__number ${challenge.isCompleted && 'isCompleted'}`}>
             {renderChallengeNumber(challenge.tournamentChallenge.number)}
           </h3>
-          <h4 className="challenge__title">{challenge.tournamentChallenge.title}</h4>
-          <p className="challenge__subtitle">{challenge.tournamentChallenge.subtitle}</p>
+          <h4 className={`challenge__title ${challenge.isCompleted && 'isCompleted'}`}>{challenge.tournamentChallenge.title}</h4>
+          <p className={`challenge__subtitle ${challenge.isCompleted && 'isCompleted'}`}>{challenge.tournamentChallenge.subtitle}</p>
           <img className="challenge__img" src={renderChallengeImg()} alt="" />
           <div className="challenge__button">
-            <MainButton>
-              <Link to={`/challenges/${challenge._id}`}>Acceder al desafío</Link>
+            <MainButton color={challenge.isCompleted ? 'blue' : 'red'}>
+              <Link to={`/challenges/${challenge._id}`}>
+                {
+                  challenge.isCompleted
+                    ? 'Desafío completado'
+                    : 'Acceder al desafío'
+                  }
+              </Link>
             </MainButton>
           </div>
         </div>

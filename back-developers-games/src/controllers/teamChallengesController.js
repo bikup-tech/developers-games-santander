@@ -16,7 +16,6 @@ function teamChallengesController() {
       }
 
       const foundTeamChallenges = await teamChallengeService.findTeamChallenges(teamId);
-
       return handleResponseSuccess(res, foundTeamChallenges);
     } catch (getTeamChallengesError) {
       return handleResponseError(res, getTeamChallengesError);

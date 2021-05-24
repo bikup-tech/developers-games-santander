@@ -2,6 +2,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import './Challenges.scss';
+
 // Action-Creators
 import { loadTeamChallenges } from '../../redux/actions/mainActions';
 
@@ -28,14 +30,17 @@ function Challenges() {
     <AppWrapper title={`Hola ${team.name} Team`}>
       <div className="challenges">
 
-        <p className>
+        <p className="challenges__text">
           Entra en cada una de las disciplinas,
           completa todos los retos y asegúrate un lugar en el podio
         </p>
-        {teamChallenges && (
-          teamChallenges.map((challenge) => <ChallengeCard challenge={challenge} />)
-
-        )}
+        <div className="challenges__challenge-list">
+          {teamChallenges && (
+            teamChallenges.map((challenge) => (
+              <ChallengeCard challenge={challenge} isCompleted={challenge.isCompleted} />
+            ))
+          )}
+        </div>
       </div>
     </AppWrapper>
   );
