@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import './ChallengeDetail.scss';
+
 // Action-Creators
 import { loadChallengeDetail } from '../../redux/actions/mainActions';
 
