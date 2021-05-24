@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './Register.scss';
 
-import { addTeamName, addParticipant, isCheckedRegisterThermsConditions } from '../../redux/actions/registerActions';
+import { addTeamName, addParticipant, isCheckedRegisterTherms } from '../../redux/actions/registerActions';
 
 // import CameraIcon from '../../assets/images/camara-icon.svg';
 import plusIcon from '../../assets/images/plus-icon.svg';
@@ -34,7 +34,7 @@ function Register() {
   }
 
   function handleCheckboxChange({ target: { checked } }) {
-    dispatch(isCheckedRegisterThermsConditions(checked));
+    dispatch(isCheckedRegisterTherms(checked));
   }
 
   function handleAddParticipantClick(e) {
