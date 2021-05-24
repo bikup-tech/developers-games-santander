@@ -26,10 +26,17 @@ function Challenges() {
 
   return (
     <AppWrapper title={`Hola ${team.name} Team`}>
-      {teamChallenges && (
-        <ChallengeCard challenge={teamChallenges[0]} />
+      <div className="challenges">
 
-      )}
+        <p className>
+          Entra en cada una de las disciplinas,
+          completa todos los retos y asegúrate un lugar en el podio
+        </p>
+        {teamChallenges && (
+          teamChallenges.map((challenge) => <ChallengeCard challenge={challenge} />)
+
+        )}
+      </div>
     </AppWrapper>
   );
 }
