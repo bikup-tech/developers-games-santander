@@ -1,10 +1,29 @@
 import React from 'react';
 
-function ChallengeCard() {
+function renderChallengeNumber(number) {
+  let renderedNumber = '';
+  if (number.toString().length > 1) {
+    renderedNumber = `#${number}`;
+  } else {
+    renderedNumber = `#0${number}`;
+  }
+
+  return renderedNumber;
+}
+
+function ChallengeCard({ challenge }) {
+  console.log(challenge);
   return (
-    <div className="challenge-card">
-      works
-    </div>
+    <>
+      {challenge && (
+        <div className="challenge-card">
+          <h3 className="challenge-number">
+            {renderChallengeNumber(challenge.number)}
+          </h3>
+
+        </div>
+      )}
+    </>
   );
 }
 

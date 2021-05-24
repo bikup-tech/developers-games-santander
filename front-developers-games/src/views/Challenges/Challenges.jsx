@@ -26,7 +26,10 @@ function Challenges() {
 
   return (
     <AppWrapper title={`Hola ${team.name} Team`}>
-      <ChallengeCard />
+      {teamChallenges && (
+        <ChallengeCard challenge={teamChallenges[0]} />
+
+      )}
     </AppWrapper>
   );
 }

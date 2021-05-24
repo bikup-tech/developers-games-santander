@@ -3,7 +3,7 @@ export default {
     participants: ['gerard'],
     team: {
       name: 'bikUP',
-      _id: '60a92dde8eb2bf17ca5c7b49',
+      _id: '60ab86954c0a943937abc360',
     },
   },
   authReducer: {
