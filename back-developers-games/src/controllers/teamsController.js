@@ -38,7 +38,7 @@ function teamsController() {
 
       // Create participants
       const pendingParticipants = [];
-      participants.forEach(async (participant) => {
+      participants.forEach((participant) => {
         const pendingParticipant = participantService.createParticipant(participant);
         pendingParticipants.push(pendingParticipant);
       });
