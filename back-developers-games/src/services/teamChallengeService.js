@@ -14,7 +14,7 @@ function teamChallengeService() {
     }
 
     const filter = { _id: teamChallengeId };
-    return teamChallengeModel.findOne(filter).populate('tournamentChallengeId');
+    return teamChallengeModel.findOne(filter).populate('tournamentChallenge');
   }
 
   function createTeamChallenge(tournamentChallenge, teamId) {
