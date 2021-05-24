@@ -38,8 +38,7 @@ export function loadTeamChallenges(teamId) {
 
       const loadTeamChallengesEndpoint = `${APIConstants.HOSTNAME}${APIConstants.LOAD_TEAM_CHALLENGES_ENDPOINT(teamId)}`;
       const { data } = await axios.get(loadTeamChallengesEndpoint);
-      console.log(loadTeamChallengesEndpoint);
-      console.log(data);
+
       dispatch(loadTeamChallengesSuccess(data));
     } catch (teamChallengesError) {
       dispatch(loadTeamChallengesError(teamChallengesError));
