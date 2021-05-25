@@ -21,6 +21,18 @@ import Loading from '../../components/Loading/Loading';
 import LoadingError from '../../components/LoadingError/LoadingError';
 import MainButton from '../../components/MainButton/MainButton';
 
+function renderLevelBoxes(duration) {
+  const renderedBoxes = [];
+  for (let index = 0; index < 5; index += 1) {
+    const tempBoxElement = (
+      <div className={`boxes__box ${index < duration && 'boxes__box--full'}`} />
+    );
+    renderedBoxes.push(tempBoxElement);
+  }
+
+  return renderedBoxes;
+}
+
 function ChallengeDetail() {
   const dispatch = useDispatch();
   const {
@@ -49,7 +61,7 @@ function ChallengeDetail() {
           {teamChallengesError && (<LoadingError />)}
           {challengeDetail && (
             <div className="challenge-detail">
-              <h2>{tournamentChallenge.name}</h2>
+              <h2 className="challenge__name">{tournamentChallenge.name}</h2>
 
               <div className="challenge__info-group">
                 <p className="info-group__title">Mentor</p>
@@ -57,21 +69,45 @@ function ChallengeDetail() {
               </div>
               <div className="challenge__info-group">
                 <p className="info-group__title">Mentor</p>
-                <p className="info-group__description">{tournamentChallenge.mentor}</p>
+                <p className="info-group__description">{tournamentChallenge.description}</p>
               </div>
               <div className="challenge__video">
+                <div className="video__background" />
                 <video src={testVideo} controls className="video__player" />
               </div>
               <div className="challenge__specific-info">
                 <div className="specific-info__column">
                   <div className="challenge__info-group--leftalign">
                     <p className="info-group__title">Bonus</p>
-                    <p className="info-group__description">{tournamentChallenge.bonus}</p>
+                    <p className="info-group__description info-group__description--leftalign">{tournamentChallenge.bonus}</p>
                   </div>
-                  {/*
-                    Duration
-                    */}
+                  <div className="challenge__duration">
+                    <p className="info-group__title">Duration &#38; difficulty:</p>
+                    {
+                      tournamentChallenge?.duration?.map((level) => (
+                        <div className="duration__level">
+                          <p className="level__title">
+                            {level.level}
+                            {' '}
+                            level:
+                          </p>
+                          <div className="level__bottom">
+                            <div className="bottom__boxes">
+                              {renderLevelBoxes(level.duration)}
+                            </div>
+                            <p>
+                              {level.duration}
+                              {' '}
+                              hours
+                            </p>
+                          </div>
+                        </div>
+                      ))
+                    }
+                  </div>
                   <div className="challenge__info-group--leftalign">
+                    <p className="info-group__title">Technologies:</p>
+
                     <ul className="info-group__list">
                       {tournamentChallenge.technologies?.map((technology) => (
                         <li className="list__element" key={technology}>{technology}</li>
@@ -82,18 +118,18 @@ function ChallengeDetail() {
 
                 <div className="specific-info__separator" />
 
-                <div className="specific-info__column">
+                <div className="specific-info__column specific-info__column--spaced">
                   <div className="challenge__info-group--leftalign">
                     <p className="info-group__title">Deliverable</p>
-                    <p className="info-group__description">{challengeDetail.deliverable}</p>
+                    <p className="info-group__description info-group__description--leftalign">{challengeDetail.deliverable}</p>
                   </div>
                   <div className="challenge__info-group--leftalign">
                     <p className="info-group__title">Hints</p>
-                    <p className="info-group__description">{tournamentChallenge.hints}</p>
+                    <p className="info-group__description info-group__description--leftalign">{tournamentChallenge.hints}</p>
                   </div>
                   <div className="challenge__info-group--leftalign">
                     <p className="info-group__title">Notes for owner</p>
-                    <p className="info-group__description">{tournamentChallenge.notes}</p>
+                    <p className="info-group__description info-group__description--leftalign">{tournamentChallenge.notes}</p>
                   </div>
                 </div>
               </div>
