@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable no-shadow */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/img-redundant-alt */
@@ -8,7 +9,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import './Register.scss';
 
 import {
-  addTeamName, addParticipant, isCheckedRegisterTherms, setGeneralEntriesWrongValues,
+  addTeamName, addParticipant, isCheckedRegisterTherms,
+  setGeneralEntriesWrongValues, setParticipantWrongValues,
 } from '../../redux/actions/registerActions';
 
 // import CameraIcon from '../../assets/images/camara-icon.svg';
@@ -63,15 +65,18 @@ function Register() {
   }
 
   function handleSendTeamClick(e) {
-    const formValues = {};
-    const wrongValues = {};
     e.preventDefault();
     let isFormValid = true;
-
     const developersParticipants = (({
       participants, teamName, registerThermsConditions, registerWrongValues, ...o
     }) => o)(registerReducer);
-    console.log(developersParticipants);
+    Object.entries(developersParticipants).forEach(([participantName, participantValues]) => {
+      Object.entries(participantValues).forEach(([participantKey, participantValue]) => {
+        if (participantValue === '') {
+          setParticipantWrongValues(true, participantName, participantKey);
+        }
+      });
+    });
 
     if (!registerThermsConditions) {
       setWarningMessage('Por favor, lee y acepta el tratamiento y bases del juego.');
@@ -90,7 +95,7 @@ function Register() {
     }
     if (isFormValid) {
       setWarningMessage('');
-      // me guardo los jugadores en un objeto (que dentro tiene objetos)
+      // enviar los datos al back
     }
   }
 

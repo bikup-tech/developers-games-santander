@@ -57,12 +57,24 @@ export function setGeneralEntriesWrongValues(wrongValue) {
   };
 }
 
-export function setParticipantWrongValues(wrongValue, participantNumber, nameProperty) {
+export function setParticipantCorrectValues(wrongValue, participantNumber, nameProperty) {
+  return {
+    type: actionTypes.SET_PARTICIPANT_CORRECT_VALUES,
+    payload: {
+      wrongValue,
+      participantNumber,
+      nameProperty,
+    },
+  };
+}
+
+export function setParticipantWrongValues(wrongValue, participantName, nameProperty) {
+  console.log('recibe: todas las propiedades que son false ->solo tienes que ser una!!');
   return {
     type: actionTypes.SET_PARTICIPANT_WRONG_VALUES,
     payload: {
       wrongValue,
-      participantNumber,
+      participantName,
       nameProperty,
     },
   };
