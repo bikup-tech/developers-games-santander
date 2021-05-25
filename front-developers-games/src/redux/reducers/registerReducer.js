@@ -21,7 +21,22 @@ export default function registerReducer(state = {}, action) {
       newState = {
         ...state,
         [`participant${action.payload.participantNumber}`]:
-        action.payload.participantInitialState,
+          action.payload.participantInitialState,
+        registerWrongValues: {
+          ...state.registerWrongValues,
+          [`participant${action.payload.participantNumber}`]:
+            action.payload.participantWrongValues,
+        },
+      };
+      break;
+
+    case actionTypes.SET_ENTRIES_WRONG_VALUES:
+      newState = {
+        ...state,
+        registerWrongValues: {
+          ...state.registerWrongValues,
+          teamName: action.wrongValue,
+        },
       };
       break;
 

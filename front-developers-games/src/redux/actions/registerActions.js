@@ -26,11 +26,19 @@ export function addParticipant(participantNumber) {
     email: '',
     phone: '',
   };
+  const participantWrongValues = {
+    name: false,
+    surname: false,
+    email: false,
+    phone: false,
+  };
+
   return {
     type: actionTypes.ADD_PARTICIPANT,
     payload: {
       participantNumber,
       participantInitialState,
+      participantWrongValues,
     },
   };
 }
@@ -42,9 +50,11 @@ export function isCheckedRegisterTherms(isChecked) {
   };
 }
 
-export function setGeneralEntriesWrongValues(isWrongValue) {
+export function setGeneralEntriesWrongValues(wrongValue) {
+  // console.log(participantWrongValues);
+  // console.log(participantNumber);
   return {
-    type: actionTypes.SET_GENERAL_ENTRIES_WRONG_VALUES,
-    isWrongValue,
+    type: actionTypes.SET_ENTRIES_WRONG_VALUES,
+    wrongValue,
   };
 }

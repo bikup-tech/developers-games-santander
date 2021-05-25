@@ -33,10 +33,10 @@ function Register() {
 
   const dispatch = useDispatch();
 
-  function handleTextInputChange({ target: { value, name } }) {
+  function handleTextInputChange({ target: { value } }) {
     dispatch(addTeamName(value));
-    registerWrongValues[name] = false;
-    dispatch(setGeneralEntriesWrongValues(registerWrongValues));
+    registerWrongValues.teamName = false;
+    dispatch(setGeneralEntriesWrongValues(registerWrongValues.teamName));
     setWarningMessage('');
   }
 
@@ -51,14 +51,6 @@ function Register() {
     e.preventDefault();
     setParticipantsCounter(participantsCounter + 1);
     dispatch(addParticipant(participantsCounter + 1));
-    /* TODO:
-    Cuando añado un participante:
-      - Crearlo tambien dentro de registerWrongValues (aprovechando la action --> addParticipant)
-      - Ponerle los valores a false
-    Cuando hago click en submit:
-      -Recorrer los valores teamName i participants
-      - Si hay alguno incorrecto pasar la action que lo ponga a true
-    */
     const toRenderParticipants = [];
 
     for (let index = 0; index < participantsCounter; index += 1) {
