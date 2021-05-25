@@ -13,7 +13,7 @@ import testUploadIcon from '../../assets/images/challenge-5-done-icon.svg';
 import renderChallengeNumber from '../../utils/renderChallengeNumber';
 
 // Action-Creators
-import { loadChallengeDetail } from '../../redux/actions/mainActions';
+import { loadChallengeDetail, uploadChallengeDeliverable } from '../../redux/actions/mainActions';
 
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
@@ -25,7 +25,7 @@ function renderLevelBoxes(duration) {
   const renderedBoxes = [];
   for (let index = 0; index < 5; index += 1) {
     const tempBoxElement = (
-      <div className={`boxes__box ${index < duration && 'boxes__box--full'}`} />
+      <div className={`boxes__box ${index < duration && 'boxes__box--full'}`} key={`box-${index}`} />
     );
     renderedBoxes.push(tempBoxElement);
   }
@@ -48,6 +48,15 @@ function ChallengeDetail() {
       setTournamentChallenge(challengeDetail.tournamentChallenge);
     }
   }, [toLoadChallengeDetail, challengeDetail]);
+
+  function handleUploadClick() {
+    const fileInputElement = document.getElementById('deliverable__input');
+    fileInputElement && fileInputElement.click();
+  }
+
+  function handleFileOnChange({ target: { files } }) {
+    dispatch(uploadChallengeDeliverable(challengeDetail._id, files[0]));
+  }
 
   return (
     teamChallengesLoading
@@ -85,7 +94,7 @@ function ChallengeDetail() {
                     <p className="info-group__title">Duration &#38; difficulty:</p>
                     {
                       tournamentChallenge?.duration?.map((level) => (
-                        <div className="duration__level">
+                        <div className="duration__level" key={level.level}>
                           <p className="level__title">
                             {level.level}
                             {' '}
@@ -135,11 +144,18 @@ function ChallengeDetail() {
               </div>
               <div className="challenge__actions">
                 <div className="actions__upload-button">
-                  <MainButton isSecondary>
+                  <MainButton isSecondary onClick={handleUploadClick}>
                     <img src={testUploadIcon} alt="upload" className="upload-button__icon" />
                     <span>Subir entregable</span>
+                    <input type="file" id="deliverable__input" name="deliverable__input" onChange={handleFileOnChange} />
                   </MainButton>
                 </div>
+                <div className="actions__submit-button">
+                  <MainButton>
+                    <p className="submit-button__text">Enviar</p>
+                  </MainButton>
+                </div>
+
               </div>
             </div>
           )}

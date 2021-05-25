@@ -49,7 +49,31 @@ function teamChallengeController() {
     }
   }
 
-  return { getTeamChallengeById, updateTeamChallenge };
+  async function uploadDeliverable({ params, files, body }, res) {
+    const { teamChallengeId } = params;
+    console.log('start');
+
+    try {
+      if (!teamChallengeId) {
+        console.log('tirant error');
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('teamChallengeId or file'));
+      }
+      console.log('imprimint files...');
+      console.log(files);
+      console.log(body);
+      const updateQuery = {
+        $set: { deliverable: 'algo' },
+      };
+      // const updatedChallenge = await teamChallengeService
+      //   .updateTeamChallenge(teamChallengeId, updateQuery);
+
+      return handleResponseSuccess(res, 'asd');
+    } catch (updateChallengeError) {
+      return handleResponseError(res, updateChallengeError);
+    }
+  }
+
+  return { getTeamChallengeById, updateTeamChallenge, uploadDeliverable };
 }
 
 module.exports = teamChallengeController();

@@ -89,3 +89,26 @@ export function loadChallengeDetail(challengeId) {
     }
   };
 }
+
+export function uploadChallengeDeliverable(challengeId, file) {
+  // eslint-disable-next-line no-unused-vars
+  return async (dispatch) => {
+    try {
+      const loadChallengeDetailEndpoint = `${APIConstants.HOSTNAME}${APIConstants.UPLOAD_CHALLENGE_DELIVERABLE(challengeId)}`;
+
+      const formData = new FormData();
+      formData.append('deliverable', file);
+
+      const { data } = await axios({
+        method: 'post',
+        url: loadChallengeDetailEndpoint,
+        data: formData,
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

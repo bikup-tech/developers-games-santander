@@ -5,6 +5,7 @@ const cors = require('cors');
 const { urlencoded, json } = require('body-parser');
 const debug = require('debug')('app');
 const mongoose = require('mongoose');
+const fileupload = require('express-fileupload');
 
 // Routers
 const authRouter = require('./src/routes/authRouter');
@@ -21,6 +22,8 @@ app.use(cors());
 
 app.use(urlencoded({ extended: true }));
 app.use(json());
+
+app.use(fileupload());
 
 app.use('/api/auth', authRouter);
 app.use('/api/teams', teamsRouter);

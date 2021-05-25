@@ -51,7 +51,7 @@
     @include flex();
     width: 100%;
     background: $semiBlue;
-    margin: $m-16 0;
+    margin: $m-18 0;
     position: relative;
     z-index: 1;
     @media only screen and (min-width: $query-1280) {
@@ -79,6 +79,8 @@
 .challenge__specific-info {
     @include flex($flex-direction: column);
     width: 100%;
+    margin-top: $m-12;
+    margin-bottom: $m-32;
 
     @media only screen and(min-width:$query-1280){
         flex-direction: row;
@@ -98,7 +100,7 @@
 }
 
 .specific-info__column--spaced {
-    padding-left: $p-8;
+    padding-left: $p-24;
 }
 
 .specific-info__separator {
@@ -106,7 +108,6 @@
     width: 2px;
     border-radius: 999px;
     background: $lighterBlue;
-    margin-right: $m-32;
 }
 
 .challenge__duration {
@@ -132,6 +133,11 @@
     font-weight: $text-semibold;
     margin-bottom: $m-6;
     width: 100%;
+    text-align: center;
+
+    @media only screen and(min-width:$query-1280){
+        text-align: left;
+    }
 }
 
 .level__bottom {
@@ -157,20 +163,6 @@
     font-weight: bold;
 }
 
-.challenge__actions {
-    width: 100%;
-}
-
-.actions__upload-button {
-    display: flex;
-    width: 180px;
-}
-
-.upload-button__icon {
-    width: 32px;
-    margin-right: $m-8;
-}
-
 .bottom__boxes {
     @include flex();
 }
@@ -185,4 +177,33 @@
 
 .boxes__box--full {
     background: $lighterBlue;
+}
+
+.challenge__actions {
+    @include flex();
+    width: 100%;
+}
+
+
+.actions__upload-button {
+    display: flex;
+    width: 180px;
+    margin-right: $m-24;
+}
+
+.upload-button__icon {
+    width: 32px;
+    margin-right: $m-8;
+}
+
+.actions__submit-button {
+    width: 80px;
+}
+
+.submit-button__text {
+    font-weight: $text-bold;
+}
+
+#deliverable__input {
+    display: none;
 }

@@ -68,9 +68,18 @@ export default function mainReducer(state = {}, action) {
       };
       break;
 
+    // DELIVERABLE UPLOADING
+    case actionTypes.SET_DELIVERABLE_FILE:
+      newState = {
+        ...state, challengeDeliverable: action.file,
+      };
+      console.log(newState);
+      break;
+
     default:
       newState = state;
       break;
   }
+
   return newState;
 }
