@@ -66,8 +66,6 @@ function teamChallengeController() {
       const updatedChallenge = await teamChallengeService
         .updateTeamChallenge(teamChallengeId, updateQuery);
 
-      console.log(updatedChallenge);
-
       return handleResponseSuccess(res, updatedChallenge);
     } catch (updateChallengeError) {
       return handleResponseError(res, updateChallengeError);
