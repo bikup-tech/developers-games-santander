@@ -5,3 +5,35 @@
 .challenge-detail {
     @include flex($flex-direction: column);
 }
+
+
+
+.challenge__video {
+    @include flex();
+    width: calc(100vw - 15px);
+    background: $semiBlue;
+    
+}
+
+.video__player{
+    width: 100%;
+
+    @media only screen and(min-width:$query-1280){
+        width: unset;
+        height: 275px;
+    }
+}
+
+.challenge__actions {
+    width: 100%;
+}
+
+.actions__upload-button {
+    display: flex;
+    width: 180px;
+}
+
+.upload-button__icon {
+    width: 32px;
+    margin-right: $m-8;
+}

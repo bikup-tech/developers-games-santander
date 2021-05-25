@@ -1,8 +1,16 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import './ChallengeDetail.scss';
+
+// Assets
+import testVideo from '../../assets/videos/test-video.mp4';
+import testUploadIcon from '../../assets/images/challenge-5-done-icon.svg';
+
+// Utils
+import renderChallengeNumber from '../../utils/renderChallengeNumber';
 
 // Action-Creators
 import { loadChallengeDetail } from '../../redux/actions/mainActions';
@@ -11,6 +19,7 @@ import { loadChallengeDetail } from '../../redux/actions/mainActions';
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import Loading from '../../components/Loading/Loading';
 import LoadingError from '../../components/LoadingError/LoadingError';
+import MainButton from '../../components/MainButton/MainButton';
 
 function ChallengeDetail() {
   const dispatch = useDispatch();
@@ -36,7 +45,7 @@ function ChallengeDetail() {
         </AppWrapper>
       )
       : (
-        <AppWrapper title="Challenge">
+        <AppWrapper title={`Challenge ${renderChallengeNumber(tournamentChallenge.number)}`}>
           {teamChallengesError && (<LoadingError />)}
           {challengeDetail && (
             <div className="challenge-detail">
@@ -51,7 +60,7 @@ function ChallengeDetail() {
                 <p className="info-group__description">{tournamentChallenge.mentor}</p>
               </div>
               <div className="challenge__video">
-                <img src="" alt="" />
+                <video src={testVideo} controls className="video__player" />
               </div>
               <div className="challenge__specific-info">
                 <div className="specific-info__column">
@@ -86,6 +95,14 @@ function ChallengeDetail() {
                     <p className="info-group__title">Notes for owner</p>
                     <p className="info-group__description">{tournamentChallenge.notes}</p>
                   </div>
+                </div>
+              </div>
+              <div className="challenge__actions">
+                <div className="actions__upload-button">
+                  <MainButton isSecondary>
+                    <img src={testUploadIcon} alt="upload" className="upload-button__icon" />
+                    <span>Subir entregable</span>
+                  </MainButton>
                 </div>
               </div>
             </div>

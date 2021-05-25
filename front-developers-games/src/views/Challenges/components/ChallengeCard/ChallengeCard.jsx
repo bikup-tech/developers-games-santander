@@ -6,23 +6,13 @@ import './ChallengeCard.scss';
 
 // utils
 import selectChallengeIcon from '../../../../utils/selectChallengeIcon';
+import renderChallengeNumber from '../../../../utils/renderChallengeNumber';
 
 // Action-Creators
 import { setToLoadChallengeDetail } from '../../../../redux/actions/mainActions';
 
 // Components
 import MainButton from '../../../../components/MainButton/MainButton';
-
-function renderChallengeNumber(number) {
-  let renderedNumber = '';
-  if (number.toString().length > 1) {
-    renderedNumber = `#${number}`;
-  } else {
-    renderedNumber = `#0${number}`;
-  }
-
-  return renderedNumber;
-}
 
 function ChallengeCard({ challenge }) {
   const dispatch = useDispatch();
