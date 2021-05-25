@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './Participant.scss';
 
-import { setRegisterFormValue } from '../../../redux/actions/registerActions';
+import { setRegisterFormValue, setParticipantWrongValues } from '../../../redux/actions/registerActions';
 
 import Input from '../../../components/Input/Input';
 
@@ -21,7 +21,7 @@ function Participant({ participantNumber, isCaptain }) {
 
   function handleTextInputChange({ target }) {
     dispatch(setRegisterFormValue(target.name, target.value, participantNumber));
-    registerWrongValues[target.name] = true;
+    dispatch(setParticipantWrongValues(false, participantNumber, target.name));
     setWarningMessage('');
   }
   return (

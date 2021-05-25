@@ -51,10 +51,19 @@ export function isCheckedRegisterTherms(isChecked) {
 }
 
 export function setGeneralEntriesWrongValues(wrongValue) {
-  // console.log(participantWrongValues);
-  // console.log(participantNumber);
   return {
-    type: actionTypes.SET_ENTRIES_WRONG_VALUES,
+    type: actionTypes.SET_GENERAL_ENTRIES_WRONG_VALUES,
     wrongValue,
+  };
+}
+
+export function setParticipantWrongValues(wrongValue, participantNumber, nameProperty) {
+  return {
+    type: actionTypes.SET_PARTICIPANT_WRONG_VALUES,
+    payload: {
+      wrongValue,
+      participantNumber,
+      nameProperty,
+    },
   };
 }
