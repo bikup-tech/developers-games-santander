@@ -56,8 +56,6 @@ function teamChallengeController() {
       if (!teamChallengeId || !files || !files.deliverable) {
         throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('teamChallengeId or file.deliverable'));
       }
-
-      console.log(files.deliverable);
       const updateQuery = {
         $set: {
           deliverable: files.deliverable.data,
@@ -67,6 +65,8 @@ function teamChallengeController() {
       };
       const updatedChallenge = await teamChallengeService
         .updateTeamChallenge(teamChallengeId, updateQuery);
+
+      console.log(updatedChallenge);
 
       return handleResponseSuccess(res, updatedChallenge);
     } catch (updateChallengeError) {

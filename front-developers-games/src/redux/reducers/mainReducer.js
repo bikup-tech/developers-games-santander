@@ -69,9 +69,9 @@ export default function mainReducer(state = {}, action) {
       break;
 
     // DELIVERABLE UPLOADING
-    case actionTypes.SET_DELIVERABLE_FILE:
+    case 'TEST':
       newState = {
-        ...state, challengeDeliverable: action.file,
+        ...state, challengeDeliverable: action.buffer,
       };
       console.log(newState);
       break;

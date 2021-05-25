@@ -94,8 +94,14 @@ export function loadChallengeDetail(challengeId) {
   };
 }
 
+function uploadChallengeDeliverableSuccess(buffer) {
+  return {
+    type: 'TEST',
+    buffer,
+  };
+}
+
 export function uploadChallengeDeliverable(challengeId, file) {
-  // eslint-disable-next-line no-unused-vars
   return async (dispatch) => {
     try {
       const loadChallengeDetailEndpoint = `${APIConstants.HOSTNAME}${APIConstants.UPLOAD_CHALLENGE_DELIVERABLE(challengeId)}`;
@@ -109,13 +115,10 @@ export function uploadChallengeDeliverable(challengeId, file) {
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-
-      // TODO: dispatch alert success
       console.log(data);
+      dispatch(uploadChallengeDeliverableSuccess(data.deliverable.data));
       dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.UPLOAD_FILE_SUCCESS));
     } catch (error) {
-      // TODO: dispatch alert error
-      console.log(error);
       dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.UPLOAD_FILE_ERROR));
     }
   };
