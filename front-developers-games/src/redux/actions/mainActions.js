@@ -3,6 +3,10 @@ import axios from 'axios';
 // Constants
 import actionTypes from './actionTypes';
 import APIConstants from '../../constants/APIConstants';
+import alertConstants from '../../constants/alertConstants';
+
+// Action-Creators
+import { setAlert } from './alertActions';
 
 export function addParticipant(participant) {
   return {
@@ -106,9 +110,13 @@ export function uploadChallengeDeliverable(challengeId, file) {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
+      // TODO: dispatch alert success
       console.log(data);
+      dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.UPLOAD_FILE_SUCCESS));
     } catch (error) {
+      // TODO: dispatch alert error
       console.log(error);
+      dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.UPLOAD_FILE_ERROR));
     }
   };
 }

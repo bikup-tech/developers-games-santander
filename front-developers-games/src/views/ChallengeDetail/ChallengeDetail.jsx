@@ -130,7 +130,7 @@ function ChallengeDetail() {
                 <div className="specific-info__column specific-info__column--spaced">
                   <div className="challenge__info-group--leftalign">
                     <p className="info-group__title">Deliverable</p>
-                    <p className="info-group__description info-group__description--leftalign">{challengeDetail.deliverable}</p>
+                    <p className="info-group__description info-group__description--leftalign">PENDENT POSAR FILENAME AQUI I DESCARREGAR</p>
                   </div>
                   <div className="challenge__info-group--leftalign">
                     <p className="info-group__title">Hints</p>

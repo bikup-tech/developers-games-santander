@@ -49,25 +49,26 @@ function teamChallengeController() {
     }
   }
 
-  async function uploadDeliverable({ params, files, body }, res) {
+  async function uploadDeliverable({ params, files }, res) {
     const { teamChallengeId } = params;
-    console.log('start');
 
     try {
-      if (!teamChallengeId) {
-        console.log('tirant error');
-        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('teamChallengeId or file'));
+      if (!teamChallengeId || !files || !files.deliverable) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('teamChallengeId or file.deliverable'));
       }
-      console.log('imprimint files...');
-      console.log(files);
-      console.log(body);
-      const updateQuery = {
-        $set: { deliverable: 'algo' },
-      };
-      // const updatedChallenge = await teamChallengeService
-      //   .updateTeamChallenge(teamChallengeId, updateQuery);
 
-      return handleResponseSuccess(res, 'asd');
+      console.log(files.deliverable);
+      const updateQuery = {
+        $set: {
+          deliverable: files.deliverable.data,
+          filename: files.deliverable.name,
+          mimetype: files.deliverable.mimetype,
+        },
+      };
+      const updatedChallenge = await teamChallengeService
+        .updateTeamChallenge(teamChallengeId, updateQuery);
+
+      return handleResponseSuccess(res, updatedChallenge);
     } catch (updateChallengeError) {
       return handleResponseError(res, updateChallengeError);
     }
