@@ -37,8 +37,7 @@ function Register() {
 
   function handleTextInputChange({ target: { value } }) {
     dispatch(addTeamName(value));
-    registerWrongValues.teamName = false;
-    dispatch(setGeneralEntriesWrongValues(registerWrongValues.teamName));
+    dispatch(setGeneralEntriesWrongValues(false));
     setWarningMessage('');
   }
 
@@ -75,14 +74,17 @@ function Register() {
       Object.entries(participantValues).forEach(([participantKey, participantValue]) => {
         if (participantValue === '') {
           dispatch(setParticipantWrongValues(true, participantName, participantKey));
-          // dispatch(setParticipantWrongValues(
-          //   true, participantsCounter, participantKey,
-          // ));
           isFormValid = false;
-          setWarningMessage('Faltan campor por rellenar.');
+          setWarningMessage('Faltan campos de participantes por rellenar.');
         }
       });
     });
+
+    if (teamName === '') {
+      setWarningMessage('Falta ponerle un nombre al equipo.');
+      dispatch(setGeneralEntriesWrongValues(true));
+      isFormValid = false;
+    }
 
     if (!registerThermsConditions) {
       setWarningMessage('Por favor, lee y acepta el tratamiento y bases del juego.');
