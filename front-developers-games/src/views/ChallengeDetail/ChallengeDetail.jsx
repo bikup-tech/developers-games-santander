@@ -58,6 +58,18 @@ function ChallengeDetail() {
     dispatch(uploadChallengeDeliverable(challengeDetail._id, files[0]));
   }
 
+  function handleDownloadClick() {
+    const buffer = challengeDetail.deliverable.data;
+    const type = challengeDetail.mimetype;
+
+    console.log(buffer);
+    console.log(type);
+
+    const blob = new Blob(buffer, { type });
+    const url = URL.createObjectURL(blob);
+    window.open(url);
+  }
+
   return (
     teamChallengesLoading
       ? (
@@ -151,7 +163,7 @@ function ChallengeDetail() {
                   </MainButton>
                 </div>
                 <div className="actions__submit-button">
-                  <MainButton>
+                  <MainButton onClick={handleDownloadClick}>
                     <p className="submit-button__text">Enviar</p>
                   </MainButton>
                 </div>

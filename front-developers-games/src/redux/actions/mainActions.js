@@ -94,10 +94,13 @@ export function loadChallengeDetail(challengeId) {
   };
 }
 
-function uploadChallengeDeliverableSuccess(buffer) {
+function uploadChallengeDeliverableSuccess(buffer, type) {
   return {
     type: 'TEST',
-    buffer,
+    payload: {
+      buffer,
+      type,
+    },
   };
 }
 
@@ -115,7 +118,8 @@ export function uploadChallengeDeliverable(challengeId, file) {
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      dispatch(uploadChallengeDeliverableSuccess(data.deliverable.data));
+      console.log(data);
+      dispatch(uploadChallengeDeliverableSuccess(data.deliverable.data, data.mimeType));
       dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.UPLOAD_FILE_SUCCESS));
     } catch (error) {
       dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.UPLOAD_FILE_ERROR));
