@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './Register.scss';
 
+import warningMessages from '../../constants/warningMessages';
+
 import {
   addTeamName, addParticipant, isCheckedRegisterTherms,
   setGeneralEntriesWrongValues, setParticipantWrongValues,
@@ -75,30 +77,26 @@ function Register() {
         if (participantValue === '') {
           dispatch(setParticipantWrongValues(true, participantName, participantKey));
           isFormValid = false;
-          setWarningMessage('Faltan campos de participantes por rellenar.');
+          setWarningMessage(warningMessages.inputs.PARTICIPANT_REQUIRED_ENTRY);
         }
       });
     });
 
     if (teamName === '') {
-      setWarningMessage('Falta ponerle un nombre al equipo.');
+      setWarningMessage(warningMessages.inputs.TEAM_NAME);
       dispatch(setGeneralEntriesWrongValues(true));
       isFormValid = false;
     }
 
     if (!registerThermsConditions) {
-      setWarningMessage('Por favor, lee y acepta el tratamiento y bases del juego.');
+      setWarningMessage(warningMessages.inputs.TERMS_AND_CONDITIONS_NO_CHECKED);
       isFormValid = false;
     }
     if (participantsCounter < 2 && participantsCounter < 5) {
-      setWarningMessage('Los equipos deben de ser de entre 3 y 4 jugadores.');
+      setWarningMessage(warningMessages.inputs.MIN_TEAM_PARTICIPANTS);
       isFormValid = false;
     }
 
-    if (registerWrongValues.teamName === true) {
-      setWarningMessage('Los equipos deben de ser de entre 3 y 4 jugadores.');
-      isFormValid = false;
-    }
     if (isFormValid) {
       setWarningMessage('');
       // enviar los datos al back
