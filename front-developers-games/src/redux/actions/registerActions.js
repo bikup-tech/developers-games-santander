@@ -27,10 +27,10 @@ export function addParticipant(participantNumber) {
     phone: '',
   };
   const participantWrongValues = {
-    name: false,
-    surname: false,
-    email: false,
-    phone: false,
+    wrongname: false,
+    wrongsurname: false,
+    wrongemail: false,
+    wrongphone: false,
   };
 
   return {
@@ -69,7 +69,6 @@ export function setParticipantCorrectValues(wrongValue, participantNumber, nameP
 }
 
 export function setParticipantWrongValues(wrongValue, participantName, nameProperty) {
-  console.log('recibe: todas las propiedades que son false ->solo tienes que ser una!!');
   return {
     type: actionTypes.SET_PARTICIPANT_WRONG_VALUES,
     payload: {

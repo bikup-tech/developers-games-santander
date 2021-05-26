@@ -47,7 +47,7 @@ export default function registerReducer(state = {}, action) {
           ...state.registerWrongValues,
           [`participant${action.payload.participantNumber}`]: {
             ...state.registerWrongValues[`participant${action.payload.participantNumber}`],
-            [action.payload.nameProperty]: action.payload.wrongValue,
+            [`wrong${action.payload.nameProperty}`]: action.payload.wrongValue,
           },
         },
       };
@@ -59,8 +59,8 @@ export default function registerReducer(state = {}, action) {
         registerWrongValues: {
           ...state.registerWrongValues,
           [action.payload.participantName]: {
-            ...state.registerWrongValues.participantName,
-            [action.payload.nameProperty]: action.payload.wrongValue,
+            ...state.registerWrongValues[action.payload.participantName],
+            [`wrong${action.payload.nameProperty}`]: action.payload.wrongValue,
           },
         },
       };

@@ -70,10 +70,16 @@ function Register() {
     const developersParticipants = (({
       participants, teamName, registerThermsConditions, registerWrongValues, ...o
     }) => o)(registerReducer);
+
     Object.entries(developersParticipants).forEach(([participantName, participantValues]) => {
       Object.entries(participantValues).forEach(([participantKey, participantValue]) => {
         if (participantValue === '') {
-          setParticipantWrongValues(true, participantName, participantKey);
+          dispatch(setParticipantWrongValues(true, participantName, participantKey));
+          // dispatch(setParticipantWrongValues(
+          //   true, participantsCounter, participantKey,
+          // ));
+          isFormValid = false;
+          setWarningMessage('Faltan campor por rellenar.');
         }
       });
     });
@@ -86,8 +92,6 @@ function Register() {
       setWarningMessage('Los equipos deben de ser de entre 3 y 4 jugadores.');
       isFormValid = false;
     }
-    // dispatch action de poner teamName a true
-    // dispatch action de poner participant.property a true
 
     if (registerWrongValues.teamName === true) {
       setWarningMessage('Los equipos deben de ser de entre 3 y 4 jugadores.');

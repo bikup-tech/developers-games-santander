@@ -16,10 +16,10 @@ export default {
     registerWrongValues: {
       teamName: false,
       participant1: {
-        name: false,
-        surname: false,
-        email: false,
-        phone: false,
+        wrongname: false,
+        wrongsurname: false,
+        wrongemail: false,
+        wrongphone: false,
       },
     },
   },

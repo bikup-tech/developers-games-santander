@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import './Participant.scss';
@@ -10,11 +10,11 @@ import { setRegisterFormValue, setParticipantCorrectValues } from '../../../redu
 import Input from '../../../components/Input/Input';
 
 function Participant({ participantNumber, isCaptain }) {
-  const [warningMessage, setWarningMessage] = useState('');
-
   const dispatch = useDispatch();
 
-  const { registerWrongValues } = useSelector(({ registerReducer }) => registerReducer);
+  const {
+    wrongname, wrongsurname, wrongemail, wrongphone,
+  } = useSelector(({ registerReducer }) => registerReducer.registerWrongValues[`participant${participantNumber}`]);
   const {
     email, name, surname, phone,
   } = useSelector(({ registerReducer }) => registerReducer[`participant${participantNumber}`]);
@@ -22,7 +22,6 @@ function Participant({ participantNumber, isCaptain }) {
   function handleTextInputChange({ target }) {
     dispatch(setRegisterFormValue(target.name, target.value, participantNumber));
     dispatch(setParticipantCorrectValues(false, participantNumber, target.name));
-    setWarningMessage('');
   }
   return (
     <div className="register__participant">
@@ -42,7 +41,7 @@ function Participant({ participantNumber, isCaptain }) {
               placeholder="Nombre del participante*"
               value={name}
               onChange={handleTextInputChange}
-              isIncorrect={name}
+              isIncorrect={wrongname}
             />
           </div>
           <div className="entries__surname">
@@ -52,7 +51,7 @@ function Participant({ participantNumber, isCaptain }) {
               placeholder="Apellido del participante*"
               value={surname}
               onChange={handleTextInputChange}
-              isIncorrect={surname}
+              isIncorrect={wrongsurname}
             />
           </div>
         </div>
@@ -65,7 +64,7 @@ function Participant({ participantNumber, isCaptain }) {
               placeholder="e-mail*"
               value={email}
               onChange={handleTextInputChange}
-              isIncorrect={email}
+              isIncorrect={wrongemail}
             />
           </div>
           <div className="entries__number">
@@ -75,7 +74,7 @@ function Participant({ participantNumber, isCaptain }) {
               placeholder="Teléfono*"
               value={phone}
               onChange={handleTextInputChange}
-              isIncorrect={phone}
+              isIncorrect={wrongphone}
             />
           </div>
         </div>
