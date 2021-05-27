@@ -121,11 +121,44 @@ export function uploadChallengeDeliverable(challengeId, file) {
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      console.log(data);
+
       dispatch(uploadChallengeDeliverableSuccess(data.deliverable.data, data.mimeType));
       dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.UPLOAD_FILE_SUCCESS));
     } catch (error) {
       dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.UPLOAD_FILE_ERROR));
+    }
+  };
+}
+
+export function sendChallengeSuccess() {
+  return {
+    type: actionTypes.SEND_CHALLENGE_SUCCESS,
+  };
+}
+
+export function sendChallengeError(error) {
+  return {
+    type: actionTypes.SEND_CHALLENGE_ERROR,
+    error,
+  };
+}
+
+export function sendChallenge(challengeId) {
+  return async (dispatch) => {
+    try {
+      const endpoint = `${APIConstants.HOSTNAME}${APIConstants.UPDATE_CHALLENGE(challengeId)}`;
+
+      const body = { isCompleted: true };
+      await axios.patch(endpoint, body);
+
+      dispatch(
+        setAlert(alertConstants.types.SUCCESS, alertConstants.messages.SEND_CHALLENGE_SUCCESS),
+      );
+      dispatch(sendChallengeSuccess());
+    } catch (error) {
+      console.log(error);
+      dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.SEND_CHALLENGE_ERROR));
+      dispatch(sendChallengeError(error));
     }
   };
 }

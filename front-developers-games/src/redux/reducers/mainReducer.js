@@ -67,6 +67,15 @@ export default function mainReducer(state = {}, action) {
         challengeDetail: action.challengeDetail,
       };
       break;
+    case actionTypes.SEND_CHALLENGE_SUCCESS:
+      newState = {
+        ...state,
+        challengeDetail: {
+          ...state.challengeDetail,
+          isCompleted: true,
+        },
+      };
+      break;
 
     // DELIVERABLE UPLOADING
     case 'TEST':

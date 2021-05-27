@@ -13,6 +13,8 @@ export default {
     CREATE_TEAM_SUCCESS: 'Equipo creado correctemente!',
     UPLOAD_FILE_SUCCESS: 'Se ha subido tu entregable con éxito',
     UPLOAD_FILE_ERROR: 'Ha habido un error al subir tu entregable.',
+    SEND_CHALLENGE_SUCCESS: 'Challenge enviado!',
+    SEND_CHALLENGE_ERROR: 'Ha habido un error al enviar el challange. Vuelve a intentarlo.',
   },
   icons: {
     SUCCESS: alertSuccessIcon,

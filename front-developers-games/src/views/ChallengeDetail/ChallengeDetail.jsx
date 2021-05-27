@@ -13,7 +13,7 @@ import testUploadIcon from '../../assets/images/challenge-5-done-icon.svg';
 import renderChallengeNumber from '../../utils/renderChallengeNumber';
 
 // Action-Creators
-import { loadChallengeDetail, uploadChallengeDeliverable } from '../../redux/actions/mainActions';
+import { loadChallengeDetail, uploadChallengeDeliverable, sendChallenge } from '../../redux/actions/mainActions';
 
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
@@ -47,7 +47,11 @@ function ChallengeDetail() {
     } else {
       setTournamentChallenge(challengeDetail.tournamentChallenge);
     }
-  }, [toLoadChallengeDetail, challengeDetail]);
+  }, [challengeDetail]);
+
+  useEffect(() => {
+    dispatch(loadChallengeDetail(toLoadChallengeDetail));
+  }, [toLoadChallengeDetail]);
 
   function handleUploadClick() {
     const fileInputElement = document.getElementById('deliverable__input');
@@ -58,16 +62,21 @@ function ChallengeDetail() {
     dispatch(uploadChallengeDeliverable(challengeDetail._id, files[0]));
   }
 
-  function handleDownloadClick() {
-    const buffer = challengeDetail.deliverable.data;
-    const type = challengeDetail.mimetype;
+  // function handleDownloadClick() {
+  //   const buffer = challengeDetail.deliverable.data;
+  //   const type = challengeDetail.mimetype;
 
-    console.log(buffer);
-    console.log(type);
+  //   const blob = new Blob(buffer, { type });
+  //   const url = URL.createObjectURL(blob);
+  //   window.open(url);
+  // }
 
-    const blob = new Blob(buffer, { type });
-    const url = URL.createObjectURL(blob);
-    window.open(url);
+  function handleSubmitClick() {
+    if (!challengeDetail.isCompleted) {
+      if (window.confirm('Estas seguro que quieres marcar el challenge como finalizado?')) {
+        dispatch(sendChallenge(challengeDetail._id));
+      }
+    }
   }
 
   return (
@@ -163,8 +172,10 @@ function ChallengeDetail() {
                   </MainButton>
                 </div>
                 <div className="actions__submit-button">
-                  <MainButton onClick={handleDownloadClick}>
-                    <p className="submit-button__text">Enviar</p>
+                  <MainButton onClick={handleSubmitClick} color={challengeDetail.isCompleted ? 'blue' : 'red'}>
+                    <p className="submit-button__text">
+                      {challengeDetail.isCompleted ? 'Completado' : 'Enviar'}
+                    </p>
                   </MainButton>
                 </div>
 
