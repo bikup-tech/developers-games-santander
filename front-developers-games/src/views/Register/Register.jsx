@@ -9,7 +9,7 @@ import warningMessages from '../../constants/warningMessages';
 
 import {
   addTeamName, addParticipant, isCheckedRegisterTherms,
-  setGeneralEntriesWrongValues, setParticipantWrongValues,
+  setGeneralEntriesWrongValues, setParticipantWrongValues, registerTeam,
 } from '../../redux/actions/registerActions';
 
 // import CameraIcon from '../../assets/images/camara-icon.svg';
@@ -27,6 +27,7 @@ function Register() {
   const [renderedParticipants, setRenderedParticipants] = useState([]);
 
   const registerReducer = useSelector(({ registerReducer }) => registerReducer);
+  const { tournamentId } = useSelector(({ mainReducer }) => mainReducer);
 
   const { teamName, registerThermsConditions, registerWrongValues } = useSelector((
     { registerReducer },
@@ -95,10 +96,13 @@ function Register() {
     }
 
     if (isFormValid) {
+      const participants = [];
       setWarningMessage('');
-      // TODO convertir developersParticipants en un array y enviarlo juntamente con el teamName
-      // y el torunamentId
-      // a una action
+
+      Object.entries(developersParticipants).map((element) => (
+        participants.push(element[1])
+      ));
+      dispatch(registerTeam(tournamentId, teamName, participants));
     }
   }
 

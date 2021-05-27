@@ -1,4 +1,6 @@
+import axios from 'axios';
 import actionTypes from './actionTypes';
+import APIConstants from '../../constants/APIConstants';
 
 export function addTeamName(teamName) {
   return {
@@ -25,6 +27,7 @@ export function addParticipant(participantNumber) {
     surname: '',
     email: '',
     phone: '',
+    teamNumber: participantNumber,
   };
   const participantWrongValues = {
     wrongname: false,
@@ -76,5 +79,34 @@ export function setParticipantWrongValues(wrongValue, participantName, namePrope
       participantName,
       nameProperty,
     },
+  };
+}
+
+export function registerTeamSuccess(createdTeam) {
+  // pasar action a REDUX
+  return {
+    type: actionTypes.REGISTER_TEAM,
+    createdTeam,
+  };
+}
+
+export function registerTeamError(error) {
+  // pasar action a REDUX
+  return {
+    type: actionTypes.REGISTER_TEAM_ERROR,
+    error,
+  };
+}
+
+export function registerTeam(tournamentId, name, participants) {
+  return async (dispatch) => {
+    try {
+      const body = { tournamentId, name, participants };
+      const registerTeamEndpoint = `${APIConstants.HOSTNAME}${APIConstants.REGISTER_TEAM}`;
+      const { data } = await axios.post(registerTeamEndpoint, body);
+      dispatch(registerTeamSuccess(data));
+    } catch (registerError) {
+      dispatch(registerTeamError(registerError));
+    }
   };
 }
