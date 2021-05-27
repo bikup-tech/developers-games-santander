@@ -161,6 +161,20 @@ export function sendChallenge(challengeId) {
   };
 }
 
+export function incrementTeamSolvedChallengesSuccess(updatedTeam) {
+  return {
+    type: actionTypes.INCREMENT_SOLVED_CHALLENGES_SUCCESS,
+    updatedTeam,
+  };
+}
+
+export function incrementTeamSolvedChallengesError(error) {
+  return {
+    type: actionTypes.INCREMENT_SOLVED_CHALLENGES_ERROR,
+    error,
+  };
+}
+
 export function incrementTeamSolvedChallenges(teamId) {
   return async (dispatch) => {
     try {
@@ -169,9 +183,9 @@ export function incrementTeamSolvedChallenges(teamId) {
         $inc: { solvedChallenges: 1 },
       };
       const { data } = await axios.patch(endpoint, body);
-      console.log(data);
-    } catch (error) {
-      dispatch();
+      dispatch(incrementTeamSolvedChallengesSuccess(data));
+    } catch (incrementChallengesError) {
+      dispatch(incrementTeamSolvedChallengesError(incrementChallengesError));
     }
   };
 }

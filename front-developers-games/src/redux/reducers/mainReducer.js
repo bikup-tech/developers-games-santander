@@ -97,6 +97,21 @@ export default function mainReducer(state = {}, action) {
       };
       break;
 
+    // TEAM
+    case actionTypes.INCREMENT_SOLVED_CHALLENGES_ERROR:
+      newState = {
+        ...state,
+        teamError: action.error,
+      };
+      break;
+    case actionTypes.INCREMENT_SOLVED_CHALLENGES_SUCCESS:
+      newState = {
+        ...state,
+        teamError: null,
+        team: action.updatedTeam,
+      };
+      break;
+
     default:
       newState = state;
       break;
