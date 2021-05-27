@@ -3,7 +3,7 @@ export default {
     participants: ['gerard'],
     team: {
       name: 'bikUP',
-      _id: '60aba9248e75d2458b9f9761',
+      _id: '60afcf7a83a2f45281f45fdf',
     },
     alert: { type: '', message: '' },
     toLoadChallengeDetail: localStorage.getItem('toLoadChallengeDetail') || '',
