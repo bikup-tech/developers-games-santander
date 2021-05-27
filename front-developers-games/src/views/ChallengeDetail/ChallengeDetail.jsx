@@ -13,7 +13,9 @@ import testUploadIcon from '../../assets/images/challenge-5-done-icon.svg';
 import renderChallengeNumber from '../../utils/renderChallengeNumber';
 
 // Action-Creators
-import { loadChallengeDetail, uploadChallengeDeliverable, sendChallenge } from '../../redux/actions/mainActions';
+import {
+  loadChallengeDetail, uploadChallengeDeliverable, sendChallenge, incrementTeamSolvedChallenges,
+} from '../../redux/actions/mainActions';
 
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
@@ -36,7 +38,7 @@ function renderLevelBoxes(duration) {
 function ChallengeDetail() {
   const dispatch = useDispatch();
   const {
-    challengeDetail, toLoadChallengeDetail, teamChallengesError, teamChallengesLoading,
+    challengeDetail, toLoadChallengeDetail, teamChallengesError, teamChallengesLoading, team,
   } = useSelector(({ mainReducer }) => mainReducer);
 
   const [tournamentChallenge, setTournamentChallenge] = useState({});
@@ -75,6 +77,7 @@ function ChallengeDetail() {
     if (!challengeDetail.isCompleted) {
       if (window.confirm('Estas seguro que quieres marcar el challenge como finalizado?')) {
         dispatch(sendChallenge(challengeDetail._id));
+        dispatch(incrementTeamSolvedChallenges(team._id));
       }
     }
   }

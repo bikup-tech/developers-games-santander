@@ -7,7 +7,10 @@ const router = Router();
 router.route('/')
   .post(teamsController.createTeam);
 
-router.route('/:captainId')
+router.route('/:teamId')
+  .patch(teamController.updateTeam);
+
+router.route('/captain/:captainId')
   .get(teamController.getTeamByCaptainId);
 
 module.exports = router;

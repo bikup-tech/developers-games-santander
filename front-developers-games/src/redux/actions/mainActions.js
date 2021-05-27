@@ -160,3 +160,18 @@ export function sendChallenge(challengeId) {
     }
   };
 }
+
+export function incrementTeamSolvedChallenges(teamId) {
+  return async (dispatch) => {
+    try {
+      const endpoint = `${APIConstants.HOSTNAME}${APIConstants.UPDATE_TEAM(teamId)}`;
+      const body = {
+        $inc: { solvedChallenges: 1 },
+      };
+      const { data } = await axios.patch(endpoint, body);
+      console.log(data);
+    } catch (error) {
+      dispatch();
+    }
+  };
+}

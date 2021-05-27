@@ -4,4 +4,5 @@ export default {
   LOAD_CHALLENGE_DETAIL: (challengeId) => `/api/teamChallenges/${challengeId}`,
   UPLOAD_CHALLENGE_DELIVERABLE: (challengeId) => `/api/teamChallenges/deliverable/${challengeId}`,
   UPDATE_CHALLENGE: (challengeId) => `/api/teamChallenges/${challengeId}`,
+  UPDATE_TEAM: (teamId) => `/api/teams/${teamId}`,
 };

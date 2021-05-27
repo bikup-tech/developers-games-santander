@@ -24,7 +24,22 @@ function teamController() {
     }
   }
 
-  return { getTeamByCaptainId };
+  async function updateTeam({ params, body }, res) {
+    const { teamId } = params;
+
+    try {
+      if (!teamId || !Object.keys(body).length) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('teamId or update query'));
+      }
+      const updatedTeam = await teamService.updateTeam(teamId, body);
+
+      return handleResponseSuccess(res, updatedTeam);
+    } catch (updateTeamError) {
+      return handleResponseError(res, updateTeamError);
+    }
+  }
+
+  return { getTeamByCaptainId, updateTeam };
 }
 
 module.exports = teamController();
