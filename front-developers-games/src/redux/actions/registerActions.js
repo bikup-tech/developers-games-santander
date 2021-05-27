@@ -1,6 +1,12 @@
 import axios from 'axios';
+
+// constants
 import actionTypes from './actionTypes';
 import APIConstants from '../../constants/APIConstants';
+import alertConstants from '../../constants/alertConstants';
+
+// actionCreators
+import { setAlert } from './alertActions';
 
 export function addTeamName(teamName) {
   return {
@@ -82,14 +88,6 @@ export function setParticipantWrongValues(wrongValue, participantName, namePrope
   };
 }
 
-export function registerTeamSuccess(createdTeam) {
-  // pasar action a REDUX
-  return {
-    type: actionTypes.REGISTER_TEAM,
-    createdTeam,
-  };
-}
-
 export function registerTeamError(error) {
   // pasar action a REDUX
   return {
@@ -103,9 +101,11 @@ export function registerTeam(tournamentId, name, participants) {
     try {
       const body = { tournamentId, name, participants };
       const registerTeamEndpoint = `${APIConstants.HOSTNAME}${APIConstants.REGISTER_TEAM}`;
-      const { data } = await axios.post(registerTeamEndpoint, body);
-      dispatch(registerTeamSuccess(data));
+      await axios.post(registerTeamEndpoint, body);
+      dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.CREATE_TEAM_SUCCESS));
     } catch (registerError) {
+      console.log(registerError);
+      dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.CREATE_TEAM_ERROR));
       dispatch(registerTeamError(registerError));
     }
   };

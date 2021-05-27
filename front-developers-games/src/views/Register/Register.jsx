@@ -90,7 +90,7 @@ function Register() {
       setWarningMessage(warningMessages.inputs.TERMS_AND_CONDITIONS_NO_CHECKED);
       isFormValid = false;
     }
-    if (participantsCounter < 2 && participantsCounter < 5) {
+    if (participantsCounter < 3 && participantsCounter > 4) {
       setWarningMessage(warningMessages.inputs.MIN_TEAM_PARTICIPANTS);
       isFormValid = false;
     }
