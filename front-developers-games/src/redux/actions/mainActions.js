@@ -81,6 +81,12 @@ export function loadChallengeDetailSuccess(challengeDetail) {
   };
 }
 
+export function clearChallengeDetail() {
+  return {
+    type: actionTypes.CLEAR_CHALLENGE_DETAIL,
+  };
+}
+
 export function loadChallengeDetail(challengeId) {
   return async (dispatch) => {
     try {

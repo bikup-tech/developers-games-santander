@@ -38,22 +38,18 @@ function renderLevelBoxes(duration) {
 function ChallengeDetail() {
   const dispatch = useDispatch();
   const {
-    challengeDetail, toLoadChallengeDetail, teamChallengesError, teamChallengesLoading, team,
+    challengeDetail, toLoadChallengeDetail, teamChallengesError, challengeDetailLoading, team,
   } = useSelector(({ mainReducer }) => mainReducer);
-
-  const [tournamentChallenge, setTournamentChallenge] = useState({});
-
-  useEffect(() => {
-    if (!challengeDetail) {
-      dispatch(loadChallengeDetail(toLoadChallengeDetail));
-    } else {
-      setTournamentChallenge(challengeDetail.tournamentChallenge);
-    }
-  }, [challengeDetail, challengeDetail?.filename]);
 
   useEffect(() => {
     dispatch(loadChallengeDetail(toLoadChallengeDetail));
   }, [toLoadChallengeDetail]);
+
+  useEffect(() => {
+    if (!challengeDetail) {
+      dispatch(loadChallengeDetail(toLoadChallengeDetail));
+    }
+  }, [challengeDetail, challengeDetail?.filename]);
 
   function handleUploadClick() {
     const fileInputElement = document.getElementById('deliverable__input');
@@ -83,26 +79,26 @@ function ChallengeDetail() {
   }
 
   return (
-    teamChallengesLoading
+    challengeDetailLoading
       ? (
         <AppWrapper title="Challenge">
           <Loading text="Cargando datos del desafío..." />
         </AppWrapper>
       )
       : (
-        <AppWrapper title={`Challenge ${renderChallengeNumber(tournamentChallenge.number)}`}>
+        <AppWrapper title={`Challenge ${renderChallengeNumber(challengeDetail?.tournamentChallenge?.number)}`}>
           {teamChallengesError && (<LoadingError />)}
           {challengeDetail && (
             <div className="challenge-detail">
-              <h2 className="challenge__name">{tournamentChallenge.name}</h2>
+              <h2 className="challenge__name">{challengeDetail.tournamentChallenge.name}</h2>
 
               <div className="challenge__info-group">
                 <p className="info-group__title">Mentor</p>
-                <p className="info-group__description info-group__description--underlined">{tournamentChallenge.mentor}</p>
+                <p className="info-group__description info-group__description--underlined">{challengeDetail.tournamentChallenge.mentor}</p>
               </div>
               <div className="challenge__info-group">
                 <p className="info-group__title">Mentor</p>
-                <p className="info-group__description">{tournamentChallenge.description}</p>
+                <p className="info-group__description">{challengeDetail.tournamentChallenge.description}</p>
               </div>
               <div className="challenge__video">
                 <div className="video__background" />
@@ -112,12 +108,12 @@ function ChallengeDetail() {
                 <div className="specific-info__column">
                   <div className="challenge__info-group--leftalign">
                     <p className="info-group__title">Bonus</p>
-                    <p className="info-group__description info-group__description--leftalign">{tournamentChallenge.bonus}</p>
+                    <p className="info-group__description info-group__description--leftalign">{challengeDetail.tournamentChallenge.bonus}</p>
                   </div>
                   <div className="challenge__duration">
                     <p className="info-group__title">Duration &#38; difficulty:</p>
                     {
-                      tournamentChallenge?.duration?.map((level) => (
+                      challengeDetail?.tournamentChallenge?.duration?.map((level) => (
                         <div className="duration__level" key={level.level}>
                           <p className="level__title">
                             {level.level}
@@ -142,7 +138,7 @@ function ChallengeDetail() {
                     <p className="info-group__title">Technologies:</p>
 
                     <ul className="info-group__list">
-                      {tournamentChallenge.technologies?.map((technology) => (
+                      {challengeDetail.tournamentChallenge.technologies?.map((technology) => (
                         <li className="list__element" key={technology}>{technology}</li>
                       ))}
                     </ul>
@@ -158,11 +154,11 @@ function ChallengeDetail() {
                   </div>
                   <div className="challenge__info-group--leftalign">
                     <p className="info-group__title">Hints</p>
-                    <p className="info-group__description info-group__description--leftalign">{tournamentChallenge.hints}</p>
+                    <p className="info-group__description info-group__description--leftalign">{challengeDetail.tournamentChallenge.hints}</p>
                   </div>
                   <div className="challenge__info-group--leftalign">
                     <p className="info-group__title">Notes for owner</p>
-                    <p className="info-group__description info-group__description--leftalign">{tournamentChallenge.notes}</p>
+                    <p className="info-group__description info-group__description--leftalign">{challengeDetail.tournamentChallenge.notes}</p>
                   </div>
                 </div>
               </div>

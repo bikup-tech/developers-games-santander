@@ -9,7 +9,7 @@ import selectChallengeIcon from '../../../../utils/selectChallengeIcon';
 import renderChallengeNumber from '../../../../utils/renderChallengeNumber';
 
 // Action-Creators
-import { setToLoadChallengeDetail } from '../../../../redux/actions/mainActions';
+import { clearChallengeDetail, setToLoadChallengeDetail } from '../../../../redux/actions/mainActions';
 
 // Components
 import MainButton from '../../../../components/MainButton/MainButton';
@@ -22,6 +22,7 @@ function ChallengeCard({ challenge }) {
   }
 
   function handleButtonClick() {
+    dispatch(clearChallengeDetail());
     dispatch(setToLoadChallengeDetail(challenge._id));
   }
 

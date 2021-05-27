@@ -2,7 +2,7 @@
 
 .alert-background {
     background-color: $semiBlue;
-    position: absolute;
+    position: fixed;
     top: 65px;
     right: $p-12;
     z-index: 10;

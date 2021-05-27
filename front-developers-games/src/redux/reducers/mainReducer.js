@@ -49,6 +49,11 @@ export default function mainReducer(state = {}, action) {
     case actionTypes.SET_TO_LOAD_CHALLENGE_DETAIL:
       newState = { ...state, toLoadChallengeDetail: action.challengeId };
       break;
+    case actionTypes.CLEAR_CHALLENGE_DETAIL:
+      newState = {
+        ...state, challengeDetail: {}, challengeDetailLoading: true,
+      };
+      break;
     case actionTypes.SET_CHALLENGE_LOADING:
       newState = {
         ...state, challengeDetailLoading: true,
