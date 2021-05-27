@@ -46,7 +46,11 @@ function Challenges() {
           {
           teamChallenges && (
             teamChallenges.map((challenge) => (
-              <ChallengeCard challenge={challenge} isCompleted={challenge.isCompleted} />
+              <ChallengeCard
+                challenge={challenge}
+                isCompleted={challenge.isCompleted}
+                key={challenge._id}
+              />
             ))
           )
             }
