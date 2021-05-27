@@ -1,9 +1,6 @@
-/* eslint-disable no-debugger */
-/* eslint-disable no-shadow */
-/* eslint-disable react/button-has-type */
-/* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+/* eslint-disable no-shadow */
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import './Register.scss';
@@ -99,7 +96,9 @@ function Register() {
 
     if (isFormValid) {
       setWarningMessage('');
-      // enviar los datos al back
+      // TODO convertir developersParticipants en un array y enviarlo juntamente con el teamName
+      // y el torunamentId
+      // a una action
     }
   }
 

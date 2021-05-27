@@ -19,6 +19,11 @@
     }
 }
 
+.main-button a {
+    color: white;
+    text-decoration: none;
+}
+
 .main-button--big {
     padding: $p-8 $p-12;
     font-size: $text-16;

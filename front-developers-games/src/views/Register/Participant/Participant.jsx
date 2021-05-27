@@ -23,6 +23,7 @@ function Participant({ participantNumber, isCaptain }) {
     dispatch(setRegisterFormValue(target.name, target.value, participantNumber));
     dispatch(setParticipantCorrectValues(false, participantNumber, target.name));
   }
+
   return (
     <div className="register__participant">
       <h3 className="participant__title register__title">

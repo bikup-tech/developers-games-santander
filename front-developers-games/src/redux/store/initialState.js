@@ -1,7 +1,13 @@
 export default {
   mainReducer: {
-
+    participants: ['gerard'],
+    team: {
+      name: 'bikUP',
+      _id: '60aba9248e75d2458b9f9761',
+    },
+    alert: { type: '', message: '' },
   },
+
   registerReducer: {
     participants: [],
     teamName: '',
@@ -22,8 +28,10 @@ export default {
         wrongphone: false,
       },
     },
+
   },
+
   authReducer: {
-    user: { isLogged: false },
+    user: { isLogged: true },
   },
 };
