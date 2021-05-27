@@ -46,11 +46,8 @@ export function loadTeamChallenges(teamId) {
       const loadTeamChallengesEndpoint = `${APIConstants.HOSTNAME}${APIConstants.LOAD_TEAM_CHALLENGES_ENDPOINT(teamId)}`;
       const { data } = await axios.get(loadTeamChallengesEndpoint);
 
-      console.log(data);
-
       dispatch(loadTeamChallengesSuccess(data));
     } catch (teamChallengesError) {
-      console.log(teamChallengesError);
       dispatch(loadTeamChallengesError(teamChallengesError));
     }
   };
@@ -97,12 +94,13 @@ export function loadChallengeDetail(challengeId) {
   };
 }
 
-function uploadChallengeDeliverableSuccess(buffer, type) {
+function uploadChallengeDeliverableSuccess(buffer, fileType, filename) {
   return {
-    type: 'TEST',
+    type: actionTypes.UPLOAD_DELIVERABLE_SUCCESS,
     payload: {
       buffer,
-      type,
+      fileType,
+      filename,
     },
   };
 }
@@ -121,8 +119,10 @@ export function uploadChallengeDeliverable(challengeId, file) {
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-
-      dispatch(uploadChallengeDeliverableSuccess(data.deliverable.data, data.mimeType));
+      console.log(data);
+      dispatch(uploadChallengeDeliverableSuccess(
+        data.deliverable, data.mimeType, data.filename,
+      ));
       dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.UPLOAD_FILE_SUCCESS));
     } catch (error) {
       dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.UPLOAD_FILE_ERROR));
@@ -156,7 +156,6 @@ export function sendChallenge(challengeId) {
       );
       dispatch(sendChallengeSuccess());
     } catch (error) {
-      console.log(error);
       dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.SEND_CHALLENGE_ERROR));
       dispatch(sendChallengeError(error));
     }

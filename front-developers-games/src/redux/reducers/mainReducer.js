@@ -67,9 +67,16 @@ export default function mainReducer(state = {}, action) {
         challengeDetail: action.challengeDetail,
       };
       break;
+    case actionTypes.SEND_CHALLENGE_ERROR:
+      newState = {
+        ...state,
+        sendChallengeError: action.error,
+      };
+      break;
     case actionTypes.SEND_CHALLENGE_SUCCESS:
       newState = {
         ...state,
+        sendChallengeError: null,
         challengeDetail: {
           ...state.challengeDetail,
           isCompleted: true,
@@ -78,12 +85,15 @@ export default function mainReducer(state = {}, action) {
       break;
 
     // DELIVERABLE UPLOADING
-    case 'TEST':
+    case actionTypes.UPLOAD_DELIVERABLE_SUCCESS:
       newState = {
         ...state,
-        challengeDeliverableBuffer: action.payload.buffer,
-        challengeDeliverableType: action.payload.type,
-
+        challengeDetail: {
+          ...state.challengeDetail,
+          filename: action.payload.filename,
+          deliverable: action.payload.buffer,
+          mimetype: action.payload.fileType,
+        },
       };
       break;
 

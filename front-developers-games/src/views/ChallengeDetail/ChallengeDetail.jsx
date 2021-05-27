@@ -47,7 +47,7 @@ function ChallengeDetail() {
     } else {
       setTournamentChallenge(challengeDetail.tournamentChallenge);
     }
-  }, [challengeDetail]);
+  }, [challengeDetail, challengeDetail?.filename]);
 
   useEffect(() => {
     dispatch(loadChallengeDetail(toLoadChallengeDetail));
@@ -151,7 +151,7 @@ function ChallengeDetail() {
                 <div className="specific-info__column specific-info__column--spaced">
                   <div className="challenge__info-group--leftalign">
                     <p className="info-group__title">Deliverable</p>
-                    <p className="info-group__description info-group__description--leftalign">PENDENT POSAR FILENAME AQUI I DESCARREGAR</p>
+                    <p className="info-group__description info-group__description--leftalign">{challengeDetail.filename}</p>
                   </div>
                   <div className="challenge__info-group--leftalign">
                     <p className="info-group__title">Hints</p>
