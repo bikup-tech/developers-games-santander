@@ -8,6 +8,7 @@ const participantModel = new Schema({
   name: { type: String },
   surname: { type: String },
   phone: { type: String },
+  teamNumber: { type: Number },
 });
 
 module.exports = model('Participants', participantModel);

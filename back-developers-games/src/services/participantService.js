@@ -11,23 +11,17 @@ const { MISSING_USER_PROPERTIES, MISSING_PROPERTIES } = require('../constants/re
 // Utils
 const CustomError = require('../utils/CustomError');
 
-function isParticipantMissingRequiredProps(participant) {
-  const requiredParticipantProps = ['email', 'name', 'surname', 'phone'];
-
-  let isMissingProps = false;
-
-  requiredParticipantProps.forEach((prop) => {
-    if (!participant[prop]) {
-      isMissingProps = true;
-    }
-  });
-
-  return isMissingProps;
+function participantHasRequiredProps(participant) {
+  return participant.email
+    && participant.name
+    && participant.surname
+    && participant.phone
+    && participant.teamNumber;
 }
 
 function participantService() {
   async function createParticipant(participant) {
-    if (isParticipantMissingRequiredProps(participant)) {
+    if (!participantHasRequiredProps(participant)) {
       throw new CustomError(BAD_REQUEST, MISSING_USER_PROPERTIES);
     }
 

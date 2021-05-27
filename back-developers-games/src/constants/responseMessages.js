@@ -9,4 +9,5 @@ module.exports = {
   ALREADY_EXISTING_TEAM: (teamName) => `A team called ${teamName} already exist.`,
   MISSING_PARTICIPANT_PROPERTIES: 'Some participant is missing required fields. Be sure to include the name, surname, email and phone for each participant.',
   REGISTER_TEAM_SUCCESS: 'Team registered successfully.',
+  MISSING_USER_PROPERTIES: 'Some user is missing a required camp. Be sure to include: name, surname, email, phone and teamNumber',
 };
