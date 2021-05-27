@@ -119,7 +119,6 @@ export function uploadChallengeDeliverable(challengeId, file) {
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      console.log(data);
       dispatch(uploadChallengeDeliverableSuccess(
         data.deliverable, data.mimeType, data.filename,
       ));

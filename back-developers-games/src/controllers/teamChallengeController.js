@@ -45,8 +45,6 @@ function teamChallengeController() {
 
       return handleResponseSuccess(res, updatedChallenge);
     } catch (updateChallengeError) {
-      console.log(updateChallengeError);
-
       return handleResponseError(res, updateChallengeError);
     }
   }
