@@ -1,0 +1,14 @@
+@import '../../assets/styles/mixins.scss';
+@import '../../assets/styles/globalStyles.scss';
+@import '../../assets/styles/styleConstants.scss';
+
+.teams {
+    @include flex();
+    width: 100%;
+}
+
+.teams__list {
+    @include flex($flex-direction:column);
+
+    width: 100%;
+}

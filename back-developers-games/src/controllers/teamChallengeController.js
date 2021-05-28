@@ -58,9 +58,7 @@ function teamChallengeController() {
       }
       const updateQuery = {
         $set: {
-          deliverable: files.deliverable.data,
           filename: files.deliverable.name,
-          mimetype: files.deliverable.mimetype,
         },
       };
       const updatedChallenge = await teamChallengeService

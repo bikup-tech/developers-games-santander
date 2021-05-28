@@ -15,6 +15,7 @@ export default {
     UPLOAD_FILE_ERROR: 'Ha habido un error al subir tu entregable.',
     SEND_CHALLENGE_SUCCESS: 'Challenge enviado!',
     SEND_CHALLENGE_ERROR: 'Ha habido un error al enviar el challange. Vuelve a intentarlo.',
+    LOAD_TEAMS_ERROR: 'Ha habido un error al cargar los equipos del torneo. Vuelve a intentarlo.',
   },
   icons: {
     SUCCESS: alertSuccessIcon,

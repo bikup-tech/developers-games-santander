@@ -195,3 +195,38 @@ export function incrementTeamSolvedChallenges(teamId) {
     }
   };
 }
+
+export function setTournamentTeamsLoading() {
+  return {
+    type: actionTypes.TEAMS_LOADING,
+  };
+}
+
+export function loadTournamentTeamsError(error) {
+  return {
+    type: actionTypes.LOAD_TEAMS_ERROR,
+    error,
+  };
+}
+
+export function loadTournamentTeamsSuccess(teams) {
+  return {
+    type: actionTypes.LOAD_TEAMS_SUCCESS,
+    teams,
+  };
+}
+
+export function loadTournamentTeams(tournamentId) {
+  return async (dispatch) => {
+    try {
+      dispatch(setTournamentTeamsLoading());
+      const endpoint = `${APIConstants.HOSTNAME}${APIConstants.LOAD_TOURNAMENT_TEAMS(tournamentId)}`;
+      const { data } = await axios.get(endpoint);
+
+      dispatch(loadTournamentTeamsSuccess(data));
+    } catch (error) {
+      dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.LOAD_TEAMS_ERROR));
+      dispatch(loadTournamentTeamsError(error.message));
+    }
+  };
+}
