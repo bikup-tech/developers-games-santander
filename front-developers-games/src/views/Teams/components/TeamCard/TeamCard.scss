@@ -3,21 +3,25 @@
 @import '../../../../assets/styles/styleConstants.scss';
 
 .team-card {
-    @include flex();
+    @include flex($flex-direction: column);
     border: 1px solid $darkBlue;
     margin-bottom: $m-24;
     width: 100%;
     padding: $p-6 $p-12;
     background-color: white;
-
     @media only screen and(min-width: $query-1280){
         max-width: 1024px;
     }
 }
 
-.team__info {
+// .cosoVis {
+//     max-height: 1000px;
+// }
+
+.team-card__info {
     @include flex($justify-content: flex-start);
     width: 100%;
+    padding: $p-6 0;
 }
 
 .info__avatar {
@@ -53,7 +57,7 @@
     width: 100%;
     font-size: 18px;
     padding-bottom: $p-2;
-    border-bottom: 0.5px solid $lightBlue;
+    border-bottom: 0.5px solid $lighterBlue;
     margin-bottom: $m-4;
 
     @media only screen and(min-width: $query-1280){
@@ -126,6 +130,34 @@
 .completed__separator{
     width: 1px;
     height: 100%;
-    background: $lightBlue;
+    background: $lighterBlue;
     margin-right: $m-12;
+}
+
+.team-card__extra {
+    border-top: 1px solid $lighterBlue;
+    padding: $p-6 0;
+    width: 100%;
+    max-height: 0px;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: all 0.5s ease;
+}
+
+.team-card__extra--visible {
+    @include flex($flex-direction: column);
+    max-height: 900px;
+    transform: scaleY(1);
+    
+}
+
+.extra__members {
+    @include flex($flex-direction: column);
+    width: 100%;
+    border-bottom: 1px solid $lighterBlue;
+}
+
+.extra__challenges {
+    @include flex($flex-direction: column);
+    width: 100%;
 }
