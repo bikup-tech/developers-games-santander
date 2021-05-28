@@ -69,7 +69,7 @@ export default function registerReducer(state = {}, action) {
     case actionTypes.IS_CHECKED_REGISTER_CONDITIONS:
       newState = {
         ...state,
-        registerThermsConditions: action.isChecked,
+        registerTermsConditions: action.isChecked,
       };
       break;
 

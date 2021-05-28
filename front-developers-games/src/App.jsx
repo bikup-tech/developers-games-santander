@@ -21,7 +21,6 @@ function App() {
 
         <ProtectedRoute path="/challenges" component={Challenges} />
         <Route path="/terms" component={TermsAndConditions} />
-        <ProtectedRoute path="/challenges" exact component={Challenges} />
         <ProtectedRoute path="/challenges/:challengeId" component={ChallengeDetail} />
       </Switch>
 

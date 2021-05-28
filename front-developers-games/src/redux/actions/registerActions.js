@@ -90,7 +90,6 @@ export function setParticipantWrongValues(wrongValue, participantName, namePrope
 }
 
 export function registerTeamError(error) {
-  // pasar action a REDUX
   return {
     type: actionTypes.REGISTER_TEAM_ERROR,
     error,
@@ -114,8 +113,6 @@ export function registerTeamSuccess() {
 export function registerTeam(tournamentId, name, participants) {
   return async (dispatch) => {
     try {
-      // eslint-disable-next-line no-debugger
-      debugger;
       const body = { tournamentId, name, participants };
       const registerTeamEndpoint = `${APIConstants.HOSTNAME}${APIConstants.REGISTER_TEAM}`;
       await axios.post(registerTeamEndpoint, body);

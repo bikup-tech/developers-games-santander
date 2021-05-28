@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -31,7 +31,7 @@ function Register() {
   const { tournamentId } = useSelector(({ mainReducer }) => mainReducer);
 
   const {
-    teamName, registerThermsConditions, registerWrongValues, isTeamRegistered, registerTeamError,
+    teamName, registerTermsConditions, registerWrongValues, isTeamRegistered, registerTeamError,
   } = useSelector((
     { registerReducer },
   ) => registerReducer);
@@ -79,9 +79,9 @@ function Register() {
     e.preventDefault();
     let isFormValid = true;
     const developersParticipants = (({
-      participants, teamName, registerThermsConditions, registerWrongValues,
-      registerTeamError, isTeamRegistered, ...o
-    }) => o)(registerReducer);
+      participants, teamName, registerTermsConditions, registerWrongValues,
+      registerTeamError, isTeamRegistered, ...rest
+    }) => rest)(registerReducer);
 
     Object.entries(developersParticipants).forEach(([participantName, participantValues]) => {
       Object.entries(participantValues).forEach(([participantKey, participantValue]) => {
@@ -99,7 +99,7 @@ function Register() {
       isFormValid = false;
     }
 
-    if (!registerThermsConditions) {
+    if (!registerTermsConditions) {
       setWarningMessage(warningMessages.inputs.TERMS_AND_CONDITIONS_NO_CHECKED);
       isFormValid = false;
     }
@@ -176,8 +176,8 @@ function Register() {
           <div className="form__checkbox">
             <Checkbox
               text="He leído, acepto y entiendo el tratamiento de mis datos y bases del juego*"
-              name="registerThermsConditions"
-              isChecked={registerThermsConditions}
+              name="registerTermsConditions"
+              isChecked={registerTermsConditions}
               onChange={handleCheckboxChange}
             />
           </div>

@@ -21,7 +21,7 @@ export default {
       phone: '',
       teamNumber: 1,
     },
-    registerThermsConditions: false,
+    registerTermsConditions: false,
     registerWrongValues: {
       teamName: false,
       participant1: {

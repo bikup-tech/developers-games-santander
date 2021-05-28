@@ -24,7 +24,7 @@ function challengesController() {
       const tournamentChallenges = await tournamentChallengeService
         .findTournamentChallengesByTournamentId(tournamentId);
 
-      if (!tournamentChallenges.length) {
+      if (!tournamentChallenges?.length) {
         throw new CustomError(CONFLICT, NO_TOURNAMENT_CHALLENGES_FOUND(tournamentId));
       }
 
