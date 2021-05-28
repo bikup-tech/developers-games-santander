@@ -45,9 +45,82 @@ export default function mainReducer(state = {}, action) {
       };
       break;
 
+    // CHALLENGE DETAIL
+    case actionTypes.SET_TO_LOAD_CHALLENGE_DETAIL:
+      newState = { ...state, toLoadChallengeDetail: action.challengeId };
+      break;
+    case actionTypes.CLEAR_CHALLENGE_DETAIL:
+      newState = {
+        ...state, challengeDetail: {}, challengeDetailLoading: true,
+      };
+      break;
+    case actionTypes.SET_CHALLENGE_LOADING:
+      newState = {
+        ...state, challengeDetailLoading: true,
+      };
+      break;
+    case actionTypes.LOAD_CHALLENGE_ERROR:
+      newState = {
+        ...state, challengeDetailLoading: false, challengeDetailError: action.error,
+      };
+      break;
+    case actionTypes.LOAD_CHALLENGE_SUCCESS:
+      newState = {
+        ...state,
+        challengeDetailLoading: false,
+        challengeDetailError: null,
+        challengeDetail: action.challengeDetail,
+      };
+      break;
+    case actionTypes.SEND_CHALLENGE_ERROR:
+      newState = {
+        ...state,
+        sendChallengeError: action.error,
+      };
+      break;
+    case actionTypes.SEND_CHALLENGE_SUCCESS:
+      newState = {
+        ...state,
+        sendChallengeError: null,
+        challengeDetail: {
+          ...state.challengeDetail,
+          isCompleted: true,
+        },
+      };
+      break;
+
+    // DELIVERABLE UPLOADING
+    case actionTypes.UPLOAD_DELIVERABLE_SUCCESS:
+      newState = {
+        ...state,
+        challengeDetail: {
+          ...state.challengeDetail,
+          filename: action.payload.filename,
+          deliverable: action.payload.buffer,
+          mimetype: action.payload.fileType,
+        },
+      };
+      break;
+
+    // TEAM
+    case actionTypes.INCREMENT_SOLVED_CHALLENGES_ERROR:
+      newState = {
+        ...state,
+        teamError: action.error,
+      };
+      break;
+    case actionTypes.INCREMENT_SOLVED_CHALLENGES_SUCCESS:
+      newState = {
+        ...state,
+        teamError: null,
+        team: action.updatedTeam,
+      };
+      break;
+
     default:
       newState = state;
       break;
   }
+
   return newState;
 }

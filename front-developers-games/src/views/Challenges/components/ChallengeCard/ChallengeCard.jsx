@@ -1,28 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import './ChallengeCard.scss';
 
 // utils
 import selectChallengeIcon from '../../../../utils/selectChallengeIcon';
+import renderChallengeNumber from '../../../../utils/renderChallengeNumber';
+
+// Action-Creators
+import { clearChallengeDetail, setToLoadChallengeDetail } from '../../../../redux/actions/mainActions';
 
 // Components
 import MainButton from '../../../../components/MainButton/MainButton';
 
-function renderChallengeNumber(number) {
-  let renderedNumber = '';
-  if (number.toString().length > 1) {
-    renderedNumber = `#${number}`;
-  } else {
-    renderedNumber = `#0${number}`;
-  }
-
-  return renderedNumber;
-}
-
 function ChallengeCard({ challenge }) {
+  const dispatch = useDispatch();
+
   function renderChallengeImg() {
     return selectChallengeIcon(challenge.tournamentChallenge.number, challenge.isCompleted);
+  }
+
+  function handleButtonClick() {
+    dispatch(clearChallengeDetail());
+    dispatch(setToLoadChallengeDetail(challenge._id));
   }
 
   return (
@@ -36,7 +37,7 @@ function ChallengeCard({ challenge }) {
           <p className={`challenge__subtitle ${challenge.isCompleted && 'isCompleted'}`}>{challenge.tournamentChallenge.subtitle}</p>
           <img className="challenge__img" src={renderChallengeImg()} alt="" />
           <div className="challenge__button">
-            <MainButton color={challenge.isCompleted ? 'blue' : 'red'}>
+            <MainButton color={challenge.isCompleted ? 'blue' : 'red'} onClick={handleButtonClick}>
               <Link to={`/challenges/${challenge._id}`}>
                 {
                   challenge.isCompleted

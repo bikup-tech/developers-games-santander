@@ -14,12 +14,12 @@ import closeMenuIcon from '../../assets/images/close-icon.svg';
 const unloggedNavigation = [
   { name: 'Participar', route: '/' },
   { name: 'Premios', route: '/awards' },
-  { name: 'Bases y condiciones', route: '/conditions' },
+  { name: 'Bases y condiciones', route: '/terms' },
   { name: 'Entrar', route: '/login' },
 ];
 const loggedNavigation = [
   { name: 'Premios', route: '/awards' },
-  { name: 'Bases y condiciones', route: '/conditions' },
+  { name: 'Bases y condiciones', route: '/terms' },
   { name: 'Desafíos', route: '/challenges' },
   { name: 'TeamName', route: '/profile' },
 ];

@@ -2,9 +2,9 @@
 
 .alert-background {
     background-color: $semiBlue;
-    position: absolute;
-    top: 90px;
-    right: $p-32;
+    position: fixed;
+    top: 65px;
+    right: $p-12;
     z-index: 10;
     transition: all 0.3s ease-in;
     border-radius: $border-radius;

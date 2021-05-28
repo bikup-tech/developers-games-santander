@@ -3,10 +3,11 @@ export default {
     participants: ['gerard'],
     team: {
       name: 'bikUP',
-      _id: '60aba9248e75d2458b9f9761',
+      _id: '60afcf7a83a2f45281f45fdf',
     },
     alert: { type: '', message: '' },
     tournamentId: '60a909ec62f534c96ab339d7',
+    toLoadChallengeDetail: localStorage.getItem('toLoadChallengeDetail') || '',
   },
 
   registerReducer: {
@@ -30,7 +31,6 @@ export default {
         wrongphone: false,
       },
     },
-
   },
 
   authReducer: {

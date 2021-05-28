@@ -13,7 +13,7 @@ function teamService() {
       throw new CustomError(BAD_REQUEST, MISSING_QUERY);
     }
 
-    return teamModel.findOne(findQuery).populate('participants').populate('teamChallenges');
+    return teamModel.findOne(findQuery).populate('participants');
   }
 
   async function createTeam(name, participants, teamChallenges, captainId, tournamentId) {
@@ -28,7 +28,15 @@ function teamService() {
     return teamModel.create(createTeamQuery);
   }
 
-  return { findTeam, createTeam };
+  async function updateTeam(_id, updateQuery) {
+    const updateOptions = {
+      new: true, useFindAndModify: false,
+    };
+
+    return teamModel.findOneAndUpdate({ _id }, updateQuery, updateOptions);
+  }
+
+  return { findTeam, createTeam, updateTeam };
 }
 
 module.exports = teamService();
