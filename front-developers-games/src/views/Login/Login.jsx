@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+// import {useSelecor} from 'react-redux';
 
 import './Login.scss';
 
@@ -8,10 +9,19 @@ import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import Input from '../../components/Input/Input';
 import MainButton from '../../components/MainButton/MainButton';
 
+const initialLoginState = {
+  captainEmail: '',
+  captainPassword: '',
+  captainWrongEmail: false,
+  captainWrongPassword: false,
+};
+
 function Login() {
   const [warningMessage, setWarningMessage] = useState('');
+  const [loginForm, setLoginForm] = useState(initialLoginState);
 
-  function handleTextInputChange({ target }) {
+  function handleTextInputChange({ target: { name, value } }) {
+    console.log(value);
     setWarningMessage('');
   }
 
@@ -26,19 +36,21 @@ function Login() {
           <div className="form__input form__login">
             <Input
               type="text"
-              name="teamEmail"
+              name="captainEmail"
               placeholder="e-mail(Capitán)"
-              //   value={teamName}
+              value={loginForm.captainEmail}
               onChange={handleTextInputChange}
+              isIncorrect={loginForm.captainWrongEmail}
             />
           </div>
           <div className="form__input form__login">
             <Input
               type="text"
-              name="teamEmail"
-              placeholder="e-mail(Capitán)"
-              //   value={teamName}
+              name="captainPassword"
+              placeholder="Contraseña"
+              value={loginForm.captainPassword}
               onChange={handleTextInputChange}
+              isIncorrect={loginForm.captainWrongPassword}
             />
           </div>
           <small className="form__warningMessage">{warningMessage}</small>
@@ -47,7 +59,6 @@ function Login() {
           </div>
         </form>
         <div className="login__info">
-
           <h3 className="app__title">
             Recuerda que tienes hasta el XX/XX/2021 para subir los proyectos.
           </h3>
@@ -55,7 +66,6 @@ function Login() {
             Mucha suerte
           </h3>
         </div>
-
       </section>
     </AppWrapper>
   );
