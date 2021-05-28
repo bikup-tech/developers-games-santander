@@ -54,7 +54,11 @@ function teamsController() {
       const pendingTeamChallenges = [];
       tournamentChallenges.forEach((tournamentChallenge) => {
         const pendingTeamChallenge = teamChallengeService
-          .createTeamChallenge(tournamentChallenge._id);
+          .createTeamChallenge(
+            tournamentChallenge._id,
+            tournamentChallenge.name,
+            tournamentChallenge.number,
+          );
         pendingTeamChallenges.push(pendingTeamChallenge);
       });
 

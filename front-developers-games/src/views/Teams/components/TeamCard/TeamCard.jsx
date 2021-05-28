@@ -64,7 +64,6 @@ function TeamCard({ team, number }) {
           <div className="members__member-list">
             {team.teamChallenges.map((challenge) => {
               if (challenge.isCompleted) {
-                console.log('pinto');
                 printedChallenges += 1;
                 return (
                   <div className={`member-list__member ${printedChallenges % 2 !== 0 && 'dark-background'}`}>

@@ -17,12 +17,12 @@ function teamChallengeService() {
     return teamChallengeModel.findOne(filter).populate('tournamentChallenge');
   }
 
-  function createTeamChallenge(tournamentChallenge, teamId) {
+  function createTeamChallenge(tournamentChallenge, challengeName, challengeNumber) {
     if (!tournamentChallenge) {
       throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('tournamentChallengeId'));
     }
 
-    return teamChallengeModel.create({ tournamentChallenge, teamId });
+    return teamChallengeModel.create({ tournamentChallenge, challengeName, challengeNumber });
   }
 
   function updateTeamChallenge(teamChallengeId, updateQuery) {
