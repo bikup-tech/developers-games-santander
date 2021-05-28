@@ -1,7 +1,7 @@
 import axios from 'axios';
-import actionTypes from './actionTypes';
 
 // Constants
+import actionTypes from './actionTypes';
 import APIConstants from '../../constants/APIConstants';
 import alertConstants from '../../constants/alertConstants';
 

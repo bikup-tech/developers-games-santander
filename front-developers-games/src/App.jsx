@@ -4,11 +4,13 @@ import './App.scss';
 
 // Views
 import Challenges from './views/Challenges/Challenges';
-import ChallengeDetail from './views/ChallengeDetail/ChallengeDetail';
 import TermsAndConditions from './views/TermsAndConditions/TermsAndConditions';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-import Header from './components/Header/Header';
 import Register from './views/Register/Register';
+
+// Components
+import Header from './components/Header/Header';
+import ChallengeDetail from './views/ChallengeDetail/ChallengeDetail';
 
 function App() {
   return (
