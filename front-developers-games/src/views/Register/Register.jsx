@@ -31,7 +31,7 @@ function Register() {
   const { tournamentId } = useSelector(({ mainReducer }) => mainReducer);
 
   const {
-    teamName, registerThermsConditions, registerWrongValues, isTeamRegistered,
+    teamName, registerThermsConditions, registerWrongValues, isTeamRegistered, registerTeamError,
   } = useSelector((
     { registerReducer },
   ) => registerReducer);
@@ -79,7 +79,8 @@ function Register() {
     e.preventDefault();
     let isFormValid = true;
     const developersParticipants = (({
-      participants, teamName, registerThermsConditions, registerWrongValues, ...o
+      participants, teamName, registerThermsConditions, registerWrongValues,
+      registerTeamError, isTeamRegistered, ...o
     }) => o)(registerReducer);
 
     Object.entries(developersParticipants).forEach(([participantName, participantValues]) => {

@@ -31,6 +31,7 @@ export default {
         wrongphone: false,
       },
     },
+    registerTeamError: null,
   },
 
   authReducer: {

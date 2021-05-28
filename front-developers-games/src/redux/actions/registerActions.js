@@ -114,6 +114,8 @@ export function registerTeamSuccess() {
 export function registerTeam(tournamentId, name, participants) {
   return async (dispatch) => {
     try {
+      // eslint-disable-next-line no-debugger
+      debugger;
       const body = { tournamentId, name, participants };
       const registerTeamEndpoint = `${APIConstants.HOSTNAME}${APIConstants.REGISTER_TEAM}`;
       await axios.post(registerTeamEndpoint, body);
