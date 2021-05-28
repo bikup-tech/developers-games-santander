@@ -3,8 +3,10 @@
 import React, { useState } from 'react';
 import './TeamCard.scss';
 
+// Images
 import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import viewIcon from '../../../../assets/images/view-icon.svg';
+import linkIcon from '../../../../assets/images/link-icon.svg';
 
 function renderPendingChallenges(completedChallenges) {
   return 6 - completedChallenges;
@@ -68,9 +70,19 @@ function TeamCard({ team, number }) {
                 return (
                   <div className={`member-list__member ${printedChallenges % 2 !== 0 && 'dark-background'}`}>
                     <div className="member__info">
-                      <span className="member__name">{challenge.tournamentChallenge}</span>
+                      <span className="completed-challenge__name">
+                        #
+                        {challenge.challengeNumber}
+                        {' '}
+                        {' '}
+                        {challenge.challengeName}
+                      </span>
                     </div>
-                    <div className="member__actions" />
+                    <div className="member__actions">
+                      <a href={challenge.deliverable} className="actions__link" target="_blank" rel="noreferrer">
+                        <img src={linkIcon} alt="link" className="link__img" />
+                      </a>
+                    </div>
                   </div>
                 );
               }

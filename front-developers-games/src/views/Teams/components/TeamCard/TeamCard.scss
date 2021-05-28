@@ -215,6 +215,11 @@
     } 
 }
 
+.member__actions {
+    @include flex($justify-content: flex-end);
+    width: 15%;
+}
+
 .extra__challenges {
     @include flex($flex-direction: column);
     width: 100%;
@@ -225,10 +230,17 @@
     } 
 }
 
+.completed-challenge__name {
+    color: $darkBlue;
+    text-align: left;
+    font-weight: $text-semibold;
+    font-size: 18px;
+}
 
-
-
-
+.link__img {
+    height: 25px;
+    width: 25px;
+}
 
 
 
