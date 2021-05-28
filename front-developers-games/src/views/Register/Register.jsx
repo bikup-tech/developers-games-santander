@@ -124,7 +124,7 @@ function Register() {
   return (
     <AppWrapper title="Inscribe a tu equipo">
       <section className="register-container">
-        <h3 className="register__title">Tu equipo debe estar compuesto de un mínimo de 3 y un máximo de 4 participantes.</h3>
+        <h3 className="app__title">Tu equipo debe estar compuesto de un mínimo de 3 y un máximo de 4 participantes.</h3>
         <form className="register__form">
           <div className="form__input">
             <Input
@@ -169,7 +169,7 @@ function Register() {
               </div>
             )
           }
-          <h3 className="register__title form__info">
+          <h3 className="app__title form__info">
             Te enviaremos tu usuario y clave de acceso al estadio olímpico para que
             podáis comenzar los desafios
           </h3>
