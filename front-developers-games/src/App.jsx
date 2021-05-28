@@ -7,6 +7,7 @@ import Challenges from './views/Challenges/Challenges';
 import TermsAndConditions from './views/TermsAndConditions/TermsAndConditions';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Register from './views/Register/Register';
+import Login from './views/Login/Login';
 
 // Components
 import Header from './components/Header/Header';
@@ -18,7 +19,7 @@ function App() {
       <Header />
       <Switch>
         <Route path="/" exact component={Register} />
-
+        <Route path="/login" exact component={Login} />
         <ProtectedRoute path="/challenges" component={Challenges} />
         <Route path="/terms" component={TermsAndConditions} />
         <ProtectedRoute path="/challenges/:challengeId" component={ChallengeDetail} />
