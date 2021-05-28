@@ -6,9 +6,11 @@ import './App.scss';
 import Home from './views/Home/Home';
 import Challenges from './views/Challenges/Challenges';
 import ChallengeDetail from './views/ChallengeDetail/ChallengeDetail';
+import Teams from './views/Teams/Teams';
 
 // Components
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import SuperProtectedRoute from './components/SuperProtectedRoute/SuperProtectedRoute';
 import Header from './components/Header/Header';
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
         <Route path="/" exact component={Home} />
         <ProtectedRoute path="/challenges" exact component={Challenges} />
         <ProtectedRoute path="/challenges/:challengeId" component={ChallengeDetail} />
+        <SuperProtectedRoute path="/teams" component={Teams} />
       </Switch>
 
     </div>
