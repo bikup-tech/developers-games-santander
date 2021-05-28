@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 import './App.scss';
 
 // Views
-import Home from './views/Home/Home';
 import Challenges from './views/Challenges/Challenges';
 
 // Components
@@ -16,8 +15,7 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
-        <Route path="/" component={Register} />
-        <Route path="/" exact component={Home} />
+        <Route path="/" exact component={Register} />
         <ProtectedRoute path="/challenges" component={Challenges} />
       </Switch>
 

@@ -4,6 +4,7 @@ import axios from 'axios';
 import actionTypes from './actionTypes';
 import APIConstants from '../../constants/APIConstants';
 import alertConstants from '../../constants/alertConstants';
+import initialState from '../store/initialState';
 
 // actionCreators
 import { setAlert } from './alertActions';
@@ -96,15 +97,24 @@ export function registerTeamError(error) {
   };
 }
 
+export function cleanRegisterForm() {
+  const cleanState = initialState.registerReducer;
+  return {
+    type: actionTypes.CLEAN_REGISTER_FORM,
+    cleanState,
+  };
+}
+
 export function registerTeam(tournamentId, name, participants) {
+  console.log(initialState.registerReducer);
   return async (dispatch) => {
     try {
       const body = { tournamentId, name, participants };
       const registerTeamEndpoint = `${APIConstants.HOSTNAME}${APIConstants.REGISTER_TEAM}`;
       await axios.post(registerTeamEndpoint, body);
       dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.CREATE_TEAM_SUCCESS));
+      dispatch(cleanRegisterForm());
     } catch (registerError) {
-      console.log(registerError);
       dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.CREATE_TEAM_ERROR));
       dispatch(registerTeamError(registerError));
     }

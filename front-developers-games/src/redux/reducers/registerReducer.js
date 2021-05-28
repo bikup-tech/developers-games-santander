@@ -73,6 +73,13 @@ export default function registerReducer(state = {}, action) {
       };
       break;
 
+    case actionTypes.CLEAN_REGISTER_FORM:
+      newState = {
+        ...state,
+        [registerReducer]: action.cleanState,
+      };
+      break;
+
     default:
       newState = state;
       break;

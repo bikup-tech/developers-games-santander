@@ -23,6 +23,7 @@ import Checkbox from '../../components/Checkbox/Checkbox';
 
 function Register() {
   const [participantsCounter, setParticipantsCounter] = useState(1);
+  console.log(participantsCounter);
   const [warningMessage, setWarningMessage] = useState('');
   const [renderedParticipants, setRenderedParticipants] = useState([]);
 
@@ -90,7 +91,9 @@ function Register() {
       setWarningMessage(warningMessages.inputs.TERMS_AND_CONDITIONS_NO_CHECKED);
       isFormValid = false;
     }
-    if (participantsCounter < 3 && participantsCounter > 4) {
+    // eslint-disable-next-line no-debugger
+    debugger;
+    if (participantsCounter < 3 || participantsCounter > 4) {
       setWarningMessage(warningMessages.inputs.MIN_TEAM_PARTICIPANTS);
       isFormValid = false;
     }
