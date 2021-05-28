@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-// import {useSelecor} from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import './Login.scss';
 
@@ -20,9 +20,15 @@ function Login() {
   const [warningMessage, setWarningMessage] = useState('');
   const [loginForm, setLoginForm] = useState(initialLoginState);
 
+  const dispatch = useDispatch();
+  //   do redux flux
+
   function handleTextInputChange({ target: { name, value } }) {
-    console.log(value);
     setWarningMessage('');
+  }
+
+  function handleLoginClick() {
+
   }
 
   return (
@@ -55,7 +61,7 @@ function Login() {
           </div>
           <small className="form__warningMessage">{warningMessage}</small>
           <div className="form__button">
-            <MainButton>Acceder</MainButton>
+            <MainButton onClick={handleLoginClick}>Acceder</MainButton>
           </div>
         </form>
         <div className="login__info">
