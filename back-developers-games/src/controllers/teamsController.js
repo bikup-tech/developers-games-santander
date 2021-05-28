@@ -98,7 +98,7 @@ function teamsController() {
 
       return handleResponseSuccess(res, tournamentTeams);
     } catch (getTournamentTeamsError) {
-      return handleResponseError(res, getTournamentTeams);
+      return handleResponseError(res, getTournamentTeamsError);
     }
   }
 
