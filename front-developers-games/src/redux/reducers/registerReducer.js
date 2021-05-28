@@ -74,10 +74,22 @@ export default function registerReducer(state = {}, action) {
       break;
 
     case actionTypes.CLEAN_REGISTER_FORM:
+      newState = action.cleanState;
+      break;
+
+    case actionTypes.REGISTER_TEAM_ERROR:
       newState = {
         ...state,
-        registerReducer: action.cleanState,
+        registerTeamError: action.error,
       };
+      break;
+
+    case actionTypes.REGISTER_TEAM_SUCCESS:
+      newState = { ...state, isTeamRegistered: true };
+      break;
+
+    case actionTypes.CLEAR_IS_TEAM_REGISTERED:
+      newState = { ...state, isTeamRegistered: false };
       break;
 
     default:

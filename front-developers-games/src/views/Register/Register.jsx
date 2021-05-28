@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-shadow */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import './Register.scss';
 
@@ -9,7 +10,7 @@ import warningMessages from '../../constants/warningMessages';
 
 import {
   addTeamName, addParticipant, isCheckedRegisterTherms,
-  setGeneralEntriesWrongValues, setParticipantWrongValues, registerTeam,
+  setGeneralEntriesWrongValues, setParticipantWrongValues, registerTeam, clearisTeamRegistered,
 } from '../../redux/actions/registerActions';
 
 // import CameraIcon from '../../assets/images/camara-icon.svg';
@@ -29,11 +30,15 @@ function Register() {
   const registerReducer = useSelector(({ registerReducer }) => registerReducer);
   const { tournamentId } = useSelector(({ mainReducer }) => mainReducer);
 
-  const { teamName, registerThermsConditions, registerWrongValues } = useSelector((
+  const {
+    teamName, registerThermsConditions, registerWrongValues, isTeamRegistered,
+  } = useSelector((
     { registerReducer },
   ) => registerReducer);
 
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   function handleTextInputChange({ target: { value } }) {
     dispatch(addTeamName(value));
@@ -47,6 +52,13 @@ function Register() {
       setWarningMessage('');
     }
   }
+
+  useEffect(() => {
+    if (isTeamRegistered) {
+      history.replace('/login');
+      dispatch(clearisTeamRegistered());
+    }
+  }, [isTeamRegistered]);
 
   function handleAddParticipantClick(e) {
     e.preventDefault();
@@ -103,6 +115,7 @@ function Register() {
       Object.entries(developersParticipants).map((element) => (
         participants.push(element[1])
       ));
+      setParticipantsCounter(1);
       dispatch(registerTeam(tournamentId, teamName, participants));
     }
   }

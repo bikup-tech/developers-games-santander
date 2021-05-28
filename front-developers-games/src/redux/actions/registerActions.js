@@ -3,8 +3,8 @@ import axios from 'axios';
 // constants
 import actionTypes from './actionTypes';
 import APIConstants from '../../constants/APIConstants';
-import alertConstants from '../../constants/alertConstants';
 import initialState from '../store/initialState';
+import alertConstants from '../../constants/alertConstants';
 
 // actionCreators
 import { setAlert } from './alertActions';
@@ -105,8 +105,13 @@ export function cleanRegisterForm() {
   };
 }
 
+export function registerTeamSuccess() {
+  return {
+    type: actionTypes.REGISTER_TEAM_SUCCESS,
+  };
+}
+
 export function registerTeam(tournamentId, name, participants) {
-  console.log(initialState.registerReducer);
   return async (dispatch) => {
     try {
       const body = { tournamentId, name, participants };
@@ -114,9 +119,16 @@ export function registerTeam(tournamentId, name, participants) {
       await axios.post(registerTeamEndpoint, body);
       dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.CREATE_TEAM_SUCCESS));
       dispatch(cleanRegisterForm());
+      dispatch(registerTeamSuccess());
     } catch (registerError) {
       dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.CREATE_TEAM_ERROR));
       dispatch(registerTeamError(registerError));
     }
+  };
+}
+
+export function clearisTeamRegistered() {
+  return {
+    type: actionTypes.CLEAR_IS_TEAM_REGISTERED,
   };
 }
