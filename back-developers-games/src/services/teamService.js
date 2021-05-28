@@ -37,7 +37,7 @@ function teamService() {
   }
 
   async function findTournamentTeams(tournamentId) {
-    return teamModel.find({ tournamentId }).populate('participants').populate('teamChallenges');
+    return teamModel.find({ tournamentId }).populate('participants').populate('teamChallenges').populate('tournamentChallenge');
   }
 
   return {

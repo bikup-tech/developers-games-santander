@@ -17,6 +17,8 @@ function TeamCard({ team, number }) {
     setIsExtraVisible(!isExtraVisible);
   }
 
+  let printedChallenges = 0;
+
   return (
     <div className={`team-card ${isExtraVisible && 'cosoVis'}`}>
       <div className="team-card__info">
@@ -43,16 +45,39 @@ function TeamCard({ team, number }) {
       </div>
       <div className={`team-card__extra ${isExtraVisible && 'team-card__extra--visible'} `}>
         <div className="extra__members">
-          <p>1</p>
-          <p>1</p>
-          <p>1</p>
-          <p>1</p>
+          <h3 className="members__title">Miembros del equipo</h3>
+          <div className="members__member-list">
+            {team.participants.map((participant, index) => (
+              <div className={`member-list__member ${index % 2 === 0 && 'dark-background'}`}>
+                <div className="member__info">
+                  <span className="member__name">{participant.name}</span>
+                  <span className="member__email desktop">{participant.email}</span>
+                  <span className="member__phone">{participant.phone}</span>
+                </div>
+                <div className="member__actions" />
+              </div>
+            ))}
+          </div>
         </div>
         <div className="extra__challenges">
-          <p>1</p>
-          <p>1</p>
-          <p>1</p>
-          <p>1</p>
+          <h3 className="members__title">Desafíos completados</h3>
+          <div className="members__member-list">
+            {team.teamChallenges.map((challenge) => {
+              if (challenge.isCompleted) {
+                console.log('pinto');
+                printedChallenges += 1;
+                return (
+                  <div className={`member-list__member ${printedChallenges % 2 !== 0 && 'dark-background'}`}>
+                    <div className="member__info">
+                      <span className="member__name">{challenge.tournamentChallenge}</span>
+                    </div>
+                    <div className="member__actions" />
+                  </div>
+                );
+              }
+              return null;
+            })}
+          </div>
         </div>
       </div>
     </div>
