@@ -24,10 +24,44 @@
     @include flex($flex-direction:column, $align-items:center);
 
     width: 100%;
+    margin-bottom: $m-24;
 
     @media only screen and (min-width: $query-1280){
         @include flex($flex-direction:row, $align-items:center, $justify-content: space-between);
         flex-wrap: wrap;
         max-width: 980px;
     }
+}
+
+.challenges__actions {
+    @include flex($flex-direction:column);
+
+    width: 100%;
+}
+
+.actions__welcome-kit {
+    width: 185px;
+    margin-bottom: $m-12;
+}
+
+.welcome-kit__link {
+    @include flex();
+}
+
+.link__image {
+    width: 25px;
+    margin-right: $m-8;
+}
+
+.link__text{
+    color: $darkBlue;
+    font-weight: bold;
+}
+
+.actions__edit-team {
+    width: 230px;
+}
+
+.edit-team__link {
+    @include flex();
 }

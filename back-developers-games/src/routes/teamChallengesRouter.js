@@ -11,4 +11,7 @@ router.route('/:teamChallengeId')
   .get(teamChallengeController.getTeamChallengeById)
   .patch(teamChallengeController.updateTeamChallenge);
 
+router.route('/deliverable/:teamChallengeId')
+  .post(teamChallengeController.uploadDeliverable);
+
 module.exports = router;
