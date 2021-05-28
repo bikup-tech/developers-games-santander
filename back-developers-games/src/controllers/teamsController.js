@@ -4,6 +4,7 @@ const {
 } = require('../constants/statusCodes');
 const {
   MISSING_PROPERTIES, ALREADY_EXISTING_TEAM, REGISTER_TEAM_SUCCESS, NO_TOURNAMENT_FOUND,
+  MISSING_QUERY_PROPERTIES,
 } = require('../constants/responseMessages');
 
 // Services
@@ -87,7 +88,21 @@ function teamsController() {
     }
   }
 
-  return { createTeam };
+  async function getTournamentTeams({ query: { tournamentId } }, res) {
+    try {
+      if (!tournamentId) {
+        throw new CustomError(BAD_REQUEST, MISSING_QUERY_PROPERTIES('tournamentId'));
+      }
+
+      const tournamentTeams = await teamService.findTournamentTeams(tournamentId);
+
+      return handleResponseSuccess(res, tournamentTeams);
+    } catch (getTournamentTeamsError) {
+      return handleResponseError(res, getTournamentTeams);
+    }
+  }
+
+  return { createTeam, getTournamentTeams };
 }
 
 module.exports = teamsController();

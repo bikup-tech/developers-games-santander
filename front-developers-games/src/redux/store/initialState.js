@@ -9,6 +9,6 @@ export default {
     toLoadChallengeDetail: localStorage.getItem('toLoadChallengeDetail') || '',
   },
   authReducer: {
-    user: { isLogged: true },
+    user: { isLogged: true, isAdmin: true },
   },
 };
