@@ -18,8 +18,6 @@ function teamController() {
 
       const foundTeam = await teamService.findTeam({ captainId });
 
-      console.log(foundTeam);
-
       return handleResponseSuccess(res, foundTeam);
     } catch (getTeamByCaptainIdError) {
       return handleResponseError(res, getTeamByCaptainIdError);

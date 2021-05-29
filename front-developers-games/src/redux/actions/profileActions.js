@@ -31,7 +31,10 @@ export function updateTeamProfile(credentials, body) {
           setAlert(alertConstants.types.SUCCESS, alertConstants.messages.MODIFY_PROFILE_SUCCESS),
         );
 
-        dispatch(loadTeam(credentials.userId));
+        // If team name is modified, reload team info
+        if (body.teamName) {
+          dispatch(loadTeam(credentials.userId));
+        }
       } else {
         dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.WRONG_PASSWORD));
       }
