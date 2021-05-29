@@ -30,7 +30,7 @@ export default function login(email, password) {
     try {
       const body = { email, password };
       const loginEndpoint = `${APIconstants.HOSTNAME}${APIconstants.LOGIN}`;
-      const { data } = await axios.get(loginEndpoint, body);
+      const { data } = await axios.post(loginEndpoint, body);
 
       dispatch(
         setAlert(
@@ -44,7 +44,7 @@ export default function login(email, password) {
       dispatch(
         setAlert(
           alertConstants.types.ERROR,
-          alertConstants.messages.LOGIN_TEAM_ERROR,
+          alertConstants.messages.LOGIN_ERROR,
           alertConstants.icons.WARNING,
         ),
       );
