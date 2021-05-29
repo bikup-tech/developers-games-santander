@@ -11,6 +11,7 @@ function EditProfile() {
   // eslint-disable-next-line no-unused-vars
   const dispatch = useDispatch();
   const { user } = useSelector(({ authReducer }) => authReducer);
+  const { team } = useSelector(({ mainReducer }) => mainReducer);
   return (
     user?.isAdmin
       ? (
@@ -19,7 +20,7 @@ function EditProfile() {
         </AppWrapper>
       )
       : (
-        <AppWrapper title={`Hola ${user.name} team`}>
+        <AppWrapper title={`Hola ${team.name} team`}>
           <TeamProfile />
         </AppWrapper>
       )

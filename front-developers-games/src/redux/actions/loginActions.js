@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // constants
 import actionTypes from './actionTypes';
-import APIconstants from '../../constants/APIConstants';
+import APIConstants from '../../constants/APIConstants';
 import alertConstants from '../../constants/alertConstants';
 
 // actions
@@ -26,7 +26,7 @@ export function login(email, password) {
   return async (dispatch) => {
     try {
       const body = { email, password };
-      const loginEndpoint = `${APIconstants.HOSTNAME}${APIconstants.LOGIN}`;
+      const loginEndpoint = `${APIConstants.HOSTNAME}${APIConstants.LOGIN}`;
       const { data } = await axios.post(loginEndpoint, body);
 
       dispatch(
@@ -51,5 +51,41 @@ export function login(email, password) {
 export function clearLoginError() {
   return {
     type: actionTypes.CLEAR_LOGIN_ERROR,
+  };
+}
+
+// TODO: crear actions load team
+export function setLoadTeamLoading() {
+  return {
+    type: actionTypes.LOAD_TEAM_LOADING,
+  };
+}
+
+export function loadTeamError(error) {
+  return {
+    type: actionTypes.LOAD_TEAM_ERROR,
+    error,
+  };
+}
+
+export function loadTeamSuccess(team) {
+  return {
+    type: actionTypes.LOAD_TEAM_SUCCESS,
+    team,
+  };
+}
+
+export function loadTeam(captainId) {
+  return async (dispatch) => {
+    try {
+      const endpoint = `${APIConstants.HOSTNAME}${APIConstants.LOAD_TEAM(captainId)}`;
+      console.log(endpoint);
+      dispatch(setLoadTeamLoading());
+      const { data } = await axios.get(endpoint);
+      console.log(data);
+      dispatch(loadTeamSuccess(data));
+    } catch (error) {
+      dispatch(loadTeamError(error.message));
+    }
   };
 }
