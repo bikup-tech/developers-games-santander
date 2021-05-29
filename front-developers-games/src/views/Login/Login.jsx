@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import './Login.scss';
 
 // action creators
-import login from '../../redux/actions/loginActions';
+import { login, clearLoginError } from '../../redux/actions/loginActions';
 
 // components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
@@ -30,6 +30,7 @@ function Login() {
   const [loginForm, setLoginForm] = useState(initialLoginState);
 
   function handleTextInputChange({ target: { name, value } }) {
+    dispatch(clearLoginError());
     setLoginForm({ ...loginForm, [name]: value, [`${name}IsWrong`]: false });
     setWarningMessage('');
   }
@@ -37,6 +38,9 @@ function Login() {
   useEffect(() => {
     if (user.isLogged) {
       history.replace('/challenges');
+    }
+    if (loginError) {
+      setWarningMessage('Inicio de sesión inválido.');
     }
   });
 

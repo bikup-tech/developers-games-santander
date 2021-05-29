@@ -11,6 +11,9 @@ export default function authReducer(state = {}, action) {
       newState = { ...state, loginError: action.error };
       break;
 
+    case actionTypes.CLEAR_LOGIN_ERROR:
+      newState = { ...state, loginError: null };
+      break;
     default:
       newState = state;
       break;

@@ -22,7 +22,7 @@ export function loginError(error) {
   };
 }
 
-export default function login(email, password) {
+export function login(email, password) {
   return async (dispatch) => {
     try {
       const body = { email, password };
@@ -47,5 +47,11 @@ export default function login(email, password) {
       );
       dispatch(loginError(logError.message));
     }
+  };
+}
+
+export function clearLoginError() {
+  return {
+    type: actionTypes.CLEAR_LOGIN_ERROR,
   };
 }
