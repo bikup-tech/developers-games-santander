@@ -2,7 +2,7 @@ const participantsModel = require('../models/participantModel');
 
 // Constants
 const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
-const { MISSING_PROPERTIES, NO_USER_FOUND, WRONG_PASSWORD } = require('../constants/responseMessages');
+const { MISSING_PROPERTIES, NO_USER_FOUND } = require('../constants/responseMessages');
 
 // Utils
 const CustomError = require('../utils/CustomError');
@@ -23,14 +23,14 @@ function authController() {
         password: userPassword,
       };
 
-      const data = await participantsModel.findOne(findQuery);
+      const foundParticipant = await participantsModel.findOne(findQuery);
 
-      if (!data) {
-        return handleResponseSuccess(res, NO_USER_FOUND);
+      if (!foundParticipant) {
+        throw new CustomError(CONFLICT, NO_USER_FOUND);
       }
 
       // Create the participant object without the password property
-      const { password, ...participant } = data._doc;
+      const { password, ...participant } = foundParticipant._doc;
 
       return handleResponseSuccess(res, participant);
     } catch (error) {

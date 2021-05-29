@@ -24,7 +24,7 @@ function Participant({ participantNumber, isCaptain }) {
 
   return (
     <div className="register__participant">
-      <h3 className="participant__title register__title">
+      <h3 className="participant__title app__title">
         Participante
         {' '}
         {participantNumber}

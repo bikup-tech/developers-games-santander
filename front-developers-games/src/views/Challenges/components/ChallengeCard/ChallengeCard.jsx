@@ -9,7 +9,10 @@ import selectChallengeIcon from '../../../../utils/selectChallengeIcon';
 import renderChallengeNumber from '../../../../utils/renderChallengeNumber';
 
 // Action-Creators
-import { clearChallengeDetail, setToLoadChallengeDetail } from '../../../../redux/actions/mainActions';
+import {
+  setToLoadChallengeDetail,
+  clearChallengeDetail,
+} from '../../../../redux/actions/mainActions';
 
 // Components
 import MainButton from '../../../../components/MainButton/MainButton';

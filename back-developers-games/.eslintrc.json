@@ -11,6 +11,13 @@
         "ecmaVersion": 12
     },
     "rules": {
-        "no-underscore-dangle": 0
+        "no-underscore-dangle": 0,
+        "linebreak-style": 0,
+        "global-require": 0,
+        "eslint linebreak-style": [
+            0,
+            "error",
+            "windows"
+        ]
     }
 }

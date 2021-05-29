@@ -23,22 +23,20 @@ import MainButton from '../../components/MainButton/MainButton';
 import Checkbox from '../../components/Checkbox/Checkbox';
 
 function Register() {
-  const [participantsCounter, setParticipantsCounter] = useState(1);
-  const [warningMessage, setWarningMessage] = useState('');
-  const [renderedParticipants, setRenderedParticipants] = useState([]);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const registerReducer = useSelector(({ registerReducer }) => registerReducer);
   const { tournamentId } = useSelector(({ mainReducer }) => mainReducer);
-
   const {
     teamName, registerTermsConditions, registerWrongValues, isTeamRegistered, registerTeamError,
   } = useSelector((
     { registerReducer },
   ) => registerReducer);
 
-  const dispatch = useDispatch();
-
-  const history = useHistory();
+  const [participantsCounter, setParticipantsCounter] = useState(1);
+  const [warningMessage, setWarningMessage] = useState('');
+  const [renderedParticipants, setRenderedParticipants] = useState([]);
 
   function handleTextInputChange({ target: { value } }) {
     dispatch(addTeamName(value));
@@ -124,7 +122,7 @@ function Register() {
   return (
     <AppWrapper title="Inscribe a tu equipo">
       <section className="register-container">
-        <h3 className="register__title">Tu equipo debe estar compuesto de un mínimo de 3 y un máximo de 4 participantes.</h3>
+        <h3 className="app__title">Tu equipo debe estar compuesto de un mínimo de 3 y un máximo de 4 participantes.</h3>
         <form className="register__form">
           <div className="form__input">
             <Input
@@ -169,7 +167,7 @@ function Register() {
               </div>
             )
           }
-          <h3 className="register__title form__info">
+          <h3 className="app__title form__info">
             Te enviaremos tu usuario y clave de acceso al estadio olímpico para que
             podáis comenzar los desafios
           </h3>
