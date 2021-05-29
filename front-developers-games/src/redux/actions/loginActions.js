@@ -9,6 +9,8 @@ import alertConstants from '../../constants/alertConstants';
 import { setAlert } from './alertActions';
 
 export function loginSuccess(user) {
+  console.log(user);
+  console.log('he entrado al success');
   return {
     type: actionTypes.LOGIN_SUCCESS,
     user,
@@ -16,6 +18,7 @@ export function loginSuccess(user) {
 }
 
 export function loginError(error) {
+  console.log('he entrado al error');
   return {
     type: actionTypes.LOGIN_ERROR,
     error,
@@ -26,8 +29,8 @@ export default function login(email, password) {
   return async (dispatch) => {
     try {
       const body = { email, password };
-      const loginTeamEndpoint = `${APIconstants.HOSTNAME}${APIconstants.LOGIN_TEAM}`;
-      const { data } = await axios.get(loginTeamEndpoint, body);
+      const loginEndpoint = `${APIconstants.HOSTNAME}${APIconstants.LOGIN}`;
+      const { data } = await axios.get(loginEndpoint, body);
 
       dispatch(
         setAlert(
@@ -42,7 +45,7 @@ export default function login(email, password) {
         setAlert(
           alertConstants.types.ERROR,
           alertConstants.messages.LOGIN_TEAM_ERROR,
-          alertConstants.icons.SUCCESS,
+          alertConstants.icons.WARNING,
         ),
       );
       dispatch(loginError(logError));

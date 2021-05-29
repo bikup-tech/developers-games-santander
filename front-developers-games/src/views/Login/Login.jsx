@@ -46,9 +46,8 @@ function Login() {
     });
 
     if (isFormValid) {
-      // accio que envii al back
       dispatch(login(loginForm.captainEmail, loginForm.captainPassword));
-      // resultat mostrat amb l'alert
+      setWarningMessage('');
     }
   }
 
