@@ -7,7 +7,6 @@ export default {
       _id: '60b12eac47602f97820f7434',
     },
     alert: { type: '', message: '' },
-    tournamentId: '60a909ec62f534c96ab339d7',
     toLoadChallengeDetail: localStorage.getItem('toLoadChallengeDetail') || '',
   },
 
