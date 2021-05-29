@@ -129,7 +129,6 @@ export function registerTeam(tournamentId, name, participants) {
         setAlert(
           alertConstants.types.SUCCESS,
           alertConstants.messages.CREATE_TEAM_SUCCESS,
-          alertConstants.icons.SUCCESS,
         ),
       );
       dispatch(cleanRegisterForm());
@@ -139,7 +138,6 @@ export function registerTeam(tournamentId, name, participants) {
         setAlert(
           alertConstants.types.ERROR,
           alertConstants.messages.CREATE_TEAM_ERROR,
-          alertConstants.icons.WARNING,
         ),
       );
       dispatch(registerTeamError(registerError));

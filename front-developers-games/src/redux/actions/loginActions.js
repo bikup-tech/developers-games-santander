@@ -33,7 +33,6 @@ export function login(email, password) {
         setAlert(
           alertConstants.types.SUCCESS,
           alertConstants.messages.LOGIN_TEAM,
-          alertConstants.icons.SUCCESS,
         ),
       );
       dispatch(loginSuccess(data));
@@ -42,7 +41,6 @@ export function login(email, password) {
         setAlert(
           alertConstants.types.ERROR,
           alertConstants.messages.LOGIN_ERROR,
-          alertConstants.icons.WARNING,
         ),
       );
       dispatch(loginError(logError.message));
