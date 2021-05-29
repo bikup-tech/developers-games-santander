@@ -8,6 +8,19 @@ import alertConstants from '../../constants/alertConstants';
 // actions
 import { setAlert } from './alertActions';
 
+export function loginTeamSuccess() {
+  return {
+    type: actionTypes.TEAM_LOGIN_SUCCESS,
+  };
+}
+
+export function loginTeamError(error) {
+  return {
+    type: actionTypes.TEAM_LOGIN_ERROR,
+    error,
+  };
+}
+
 export default function loginTeam(email, password) {
   return async (dispatch) => {
     try {
@@ -22,7 +35,7 @@ export default function loginTeam(email, password) {
           alertConstants.icons.SUCCESS,
         ),
       );
-      dispatch(loginTeamSuccess(data));
+      dispatch(loginTeamSuccess());
     } catch (loginError) {
       dispatch(
         setAlert(
