@@ -11,25 +11,28 @@ const handleResponseSuccess = require('../utils/handleResponseSuccess');
 
 function authController() {
   async function login(req, res) {
-    const { email, password } = req.body;
+    const { email, password: userPassword } = req.body;
 
     try {
-      if (!email || !password) {
+      if (!email || !userPassword) {
         throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('Email or Pasword'));
       }
 
       const findQuery = {
         email,
-        password,
+        password: userPassword,
       };
 
-      const createdParticipant = await participantsModel.findOne(findQuery);
+      const data = await participantsModel.findOne(findQuery);
 
-      if (!createdParticipant) {
+      if (!data) {
         return handleResponseSuccess(res, NO_USER_FOUND);
       }
 
-      return handleResponseSuccess(res, createdParticipant);
+      // Create the participant object without the password property
+      const { password, ...participant } = data._doc;
+
+      return handleResponseSuccess(res, participant);
     } catch (error) {
       return handleResponseError(res, error);
     }
