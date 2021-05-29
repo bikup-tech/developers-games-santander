@@ -9,8 +9,6 @@ import alertConstants from '../../constants/alertConstants';
 import { setAlert } from './alertActions';
 
 export function loginSuccess(user) {
-  console.log(user);
-  console.log('he entrado al success');
   return {
     type: actionTypes.LOGIN_SUCCESS,
     user,
@@ -18,7 +16,6 @@ export function loginSuccess(user) {
 }
 
 export function loginError(error) {
-  console.log('he entrado al error');
   return {
     type: actionTypes.LOGIN_ERROR,
     error,
@@ -48,7 +45,7 @@ export default function login(email, password) {
           alertConstants.icons.WARNING,
         ),
       );
-      dispatch(loginError(logError));
+      dispatch(loginError(logError.message));
     }
   };
 }

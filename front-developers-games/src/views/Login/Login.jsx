@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import './Login.scss';
 
@@ -21,6 +22,9 @@ const initialLoginState = {
 
 function Login() {
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const { loginError, user } = useSelector(({ authReducer }) => authReducer);
 
   const [warningMessage, setWarningMessage] = useState('');
   const [loginForm, setLoginForm] = useState(initialLoginState);
@@ -29,6 +33,12 @@ function Login() {
     setLoginForm({ ...loginForm, [name]: value, [`${name}IsWrong`]: false });
     setWarningMessage('');
   }
+
+  useEffect(() => {
+    if (user.isLogged) {
+      history.replace('/challenges');
+    }
+  });
 
   function handleLoginClick() {
     let isFormValid = true;
