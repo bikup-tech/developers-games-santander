@@ -37,8 +37,10 @@
     width: 80%;
 
     @media only screen and(min-width: $query-1280){
-       flex-direction: row;
+        flex-direction: row;
         padding: $p-24;
+        width: 100%;
+
     }
 }
 
@@ -105,7 +107,7 @@
     @media only screen and(min-width: $query-1280){
         height: 100%;
         width: 1px;
-        margin: 0 $m-8;
+        margin: 0 $m-16;
 
     }
 }

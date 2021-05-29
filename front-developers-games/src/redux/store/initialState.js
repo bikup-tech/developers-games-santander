@@ -37,4 +37,10 @@ export default {
   authReducer: {
     user: { isLogged: true, isAdmin: false, name: 'Bikup' },
   },
+
+  profileReducer: {
+    teamName: '',
+    password: '',
+    newPassword: '',
+  },
 };
