@@ -9,6 +9,7 @@ import './AdminProfile.scss';
 // Images
 import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
+import viewIcon from '../../../../assets/images/view-icon.svg';
 
 // components
 import Input from '../../../../components/Input/Input';
@@ -29,10 +30,13 @@ function AdminProfile() {
   };
 
   const [editAdminProfile, setEditAdminProfile] = useState(initialState);
+  const [warningMessage, setWarningMessage] = useState('');
 
   function handleInputChange({ target }) {
-
+    setEditAdminProfile({ ...editAdminProfile, [target.name]: target.value });
   }
+
+  function handleSaveChangesClick() {}
 
   return (
     <section className="view-profile">
@@ -40,7 +44,7 @@ function AdminProfile() {
         <span className="top__text">Edita tu perfil</span>
         <div className="profile-button-container">
 
-          <MainButton>Guardar Cambios</MainButton>
+          <MainButton onClick={handleSaveChangesClick}>Guardar Cambios</MainButton>
         </div>
       </div>
       <form className="team-profile__login-info">
@@ -67,6 +71,19 @@ function AdminProfile() {
           </div>
         </div>
       </form>
+      <div className="view-profile__top bottom">
+        <div className="profile-button-container">
+          <MainButton isSecondary>
+            <div className="button-children">
+              <img className="button-children__image" src={viewIcon} alt="See Developers Games teams" />
+              <p className="button-children__text">Ver equipos</p>
+            </div>
+          </MainButton>
+        </div>
+        <div className="profile-button-container">
+          <MainButton onClick={handleSaveChangesClick}>Guardar Cambios</MainButton>
+        </div>
+      </div>
     </section>
   );
 }

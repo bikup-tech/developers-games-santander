@@ -2,4 +2,12 @@
 @import '../../../../assets/styles/mixins.scss';
 @import '../../../../assets/styles/styleConstants.scss';
 @import '../TeamProfile/TeamProfile.scss';
+@import '../../../Register/Register.scss';
 
+.bottom{
+    margin-top: $m-16;
+}
+
+.button-children__image {
+    height: 20px;
+}
