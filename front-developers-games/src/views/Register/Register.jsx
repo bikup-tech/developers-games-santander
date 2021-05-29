@@ -23,22 +23,20 @@ import MainButton from '../../components/MainButton/MainButton';
 import Checkbox from '../../components/Checkbox/Checkbox';
 
 function Register() {
-  const [participantsCounter, setParticipantsCounter] = useState(1);
-  const [warningMessage, setWarningMessage] = useState('');
-  const [renderedParticipants, setRenderedParticipants] = useState([]);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const registerReducer = useSelector(({ registerReducer }) => registerReducer);
   const { tournamentId } = useSelector(({ mainReducer }) => mainReducer);
-
   const {
     teamName, registerTermsConditions, registerWrongValues, isTeamRegistered, registerTeamError,
   } = useSelector((
     { registerReducer },
   ) => registerReducer);
 
-  const dispatch = useDispatch();
-
-  const history = useHistory();
+  const [participantsCounter, setParticipantsCounter] = useState(1);
+  const [warningMessage, setWarningMessage] = useState('');
+  const [renderedParticipants, setRenderedParticipants] = useState([]);
 
   function handleTextInputChange({ target: { value } }) {
     dispatch(addTeamName(value));

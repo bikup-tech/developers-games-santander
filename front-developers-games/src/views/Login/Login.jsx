@@ -4,6 +4,9 @@ import { useDispatch } from 'react-redux';
 
 import './Login.scss';
 
+// action creators
+import addLoginValues from '../../redux/actions/loginActions';
+
 // components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import Input from '../../components/Input/Input';
@@ -12,23 +15,34 @@ import MainButton from '../../components/MainButton/MainButton';
 const initialLoginState = {
   captainEmail: '',
   captainPassword: '',
-  captainWrongEmail: false,
-  captainWrongPassword: false,
+  captainEmailIsWrong: false,
+  captainPasswordIsWrong: false,
 };
 
 function Login() {
+  const dispatch = useDispatch();
+
   const [warningMessage, setWarningMessage] = useState('');
   const [loginForm, setLoginForm] = useState(initialLoginState);
 
-  const dispatch = useDispatch();
-  //   do redux flux
-
   function handleTextInputChange({ target: { name, value } }) {
+    setLoginForm({ ...loginForm, [name]: value, [`${name}IsWrong`]: false });
     setWarningMessage('');
   }
 
   function handleLoginClick() {
+    const isFormValid = false;
+    const loginInputsToValdate = (({
+      captainWrongEmail,
+      captainWrongPassword, ...rest
+    }) => rest)(loginForm);
 
+    Object.entries(loginInputsToValdate).forEach(([key, value]) => {
+      if (value === '') {
+        setLoginForm({ ...loginForm, [`${key}IsWrong`]: true });
+        setWarningMessage('Faltan campos por rellenar.');
+      }
+    });
   }
 
   return (
@@ -46,17 +60,17 @@ function Login() {
               placeholder="e-mail(Capitán)"
               value={loginForm.captainEmail}
               onChange={handleTextInputChange}
-              isIncorrect={loginForm.captainWrongEmail}
+              isIncorrect={loginForm.captainEmailIsWrong}
             />
           </div>
           <div className="form__input form__login">
             <Input
-              type="text"
+              type="password"
               name="captainPassword"
               placeholder="Contraseña"
               value={loginForm.captainPassword}
               onChange={handleTextInputChange}
-              isIncorrect={loginForm.captainWrongPassword}
+              isIncorrect={loginForm.captainPasswordIsWrong}
             />
           </div>
           <small className="form__warningMessage">{warningMessage}</small>
