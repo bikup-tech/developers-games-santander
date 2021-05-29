@@ -13,7 +13,6 @@ import Register from './views/Register/Register';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import SuperProtectedRoute from './components/SuperProtectedRoute/SuperProtectedRoute';
 import Header from './components/Header/Header';
-import ChallengeDetail from './views/ChallengeDetail/ChallengeDetail';
 
 function App() {
   return (
