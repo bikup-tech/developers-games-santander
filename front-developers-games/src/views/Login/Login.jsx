@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import './Login.scss';
 
 // action creators
-import loginTeam from '../../redux/actions/loginActions';
+import login from '../../redux/actions/loginActions';
 
 // components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
@@ -47,7 +47,7 @@ function Login() {
 
     if (isFormValid) {
       // accio que envii al back
-      dispatch(loginTeam(loginForm.captainEmail, loginForm.captainPassword));
+      dispatch(login(loginForm.captainEmail, loginForm.captainPassword));
       // resultat mostrat amb l'alert
     }
   }
