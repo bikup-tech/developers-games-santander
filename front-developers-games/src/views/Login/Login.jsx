@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import './Login.scss';
 
 // action creators
-import addLoginValues from '../../redux/actions/loginActions';
+import loginTeam from '../../redux/actions/loginActions';
 
 // components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
@@ -31,7 +31,7 @@ function Login() {
   }
 
   function handleLoginClick() {
-    const isFormValid = false;
+    let isFormValid = true;
     const loginInputsToValdate = (({
       captainWrongEmail,
       captainWrongPassword, ...rest
@@ -41,8 +41,15 @@ function Login() {
       if (value === '') {
         setLoginForm({ ...loginForm, [`${key}IsWrong`]: true });
         setWarningMessage('Faltan campos por rellenar.');
+        isFormValid = false;
       }
     });
+
+    if (isFormValid) {
+      // accio que envii al back
+      dispatch(loginTeam(loginForm.captainEmail, loginForm.captainPassword));
+      // resultat mostrat amb l'alert
+    }
   }
 
   return (
