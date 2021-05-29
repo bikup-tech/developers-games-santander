@@ -1,0 +1,142 @@
+@import '../../../../assets/styles/globalStyles.scss';
+@import '../../../../assets/styles/mixins.scss';
+@import '../../../../assets/styles/styleConstants.scss';
+
+.team-profile {
+    @include flex($flex-direction: column);
+    width: 100%;
+    max-width: 1024px;
+}
+
+.team-profile__top {
+    @include flex($justify-content: space-between);
+
+    width: 80%;
+    margin-bottom: $m-12;
+    padding: $p-2;
+
+    @media only screen and(min-width: $query-1280){
+        width: 100%;
+     }
+}
+
+.top__text {
+    font-weight: $text-bold;
+    color: $darkBlue
+}
+
+.profile-button-container {
+    width: 135px;
+}
+
+.team-profile__login-info {
+    @include flex($flex-direction: column);
+
+    border: 1px solid $semiBlue;
+    padding: $p-12;
+    width: 80%;
+
+    @media only screen and(min-width: $query-1280){
+       flex-direction: row;
+        padding: $p-24;
+    }
+}
+
+
+.login-info__avatar {
+    width: 70px;
+    height: 70px;
+    border: 1px solid $semiBlue;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: $m-12;
+    position: relative;
+    @media only screen and(min-width: $query-1280){
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.avatar__image  {
+    width: 100%;
+    height: 100%;
+}
+
+.avatar__photo-container {
+    @include flex();
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25px;
+    background: $semiBlue;
+    z-index: 1;
+
+    @media only screen and(min-width: $query-1280){
+        height: 35px;
+    }
+
+}
+
+.photo-container__img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1);
+    cursor: pointer;
+    transition: all 0.5s;
+    
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    @media only screen and(min-width: $query-1280){
+        width: 24px;
+        height: 24px;   
+    }
+}
+
+.login-separator {
+    width: 100%;
+    height: 1px;
+    background: $lighterBlue;
+    margin-bottom: $m-12;
+
+    @media only screen and(min-width: $query-1280){
+        height: 100%;
+        width: 1px;
+        margin: 0 $m-8;
+
+    }
+}
+
+.login-info__data {
+    @include flex($flex-direction: column);
+    width: 100%;
+}
+
+.profile-input-container {
+    margin-bottom: $m-12;
+    width: 100%;
+}
+
+.profile-input-container--small {
+    @media only screen and(min-width: $query-1280){
+        width: 48%;
+    }
+}
+
+.profile-input__label {
+    font-weight: bold;
+    color: gray;
+    padding-left: $p-4;
+}
+
+.data__password {
+    width: 100%;
+
+    @media only screen and(min-width: $query-1280){
+        @include flex($justify-content: space-between);
+
+    }
+}

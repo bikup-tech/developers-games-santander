@@ -8,7 +8,7 @@
     border: 1px solid $lightBlue;
     width: 100%;
     height: 100%;
-    padding: 0 $p-12;
+    padding: $p-4 $p-12;
     font-family: $font-text;
     font-size: $text-14;
 
@@ -23,4 +23,10 @@
 
 .input__field--incorrect {
     border: 1px solid $red;
+}
+
+.blue-text {
+    color: $semiBlue;
+    font-weight: $text-bold;
+    font-size: 16px;
 }
