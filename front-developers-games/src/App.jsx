@@ -21,8 +21,8 @@ function App() {
       <Switch>
         <Route path="/" exact component={Register} />
 
-        <ProtectedRoute path="/challenges" component={Challenges} />
         <Route path="/terms" component={TermsAndConditions} />
+        <ProtectedRoute path="/challenges" exact component={Challenges} />
         <ProtectedRoute path="/challenges/:challengeId" component={ChallengeDetail} />
         <SuperProtectedRoute path="/teams" component={Teams} />
       </Switch>

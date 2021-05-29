@@ -3,7 +3,6 @@
 
 .app-wrapper {
     @include flex($flex-direction: column);
-
     flex: 1;
 }
 
@@ -22,10 +21,17 @@
 .app-wrapper__children-container {
     @include flex($flex-direction: column, $justify-content: flex-start);
 
+    background-image: url('../../assets/images/bottom-gradient.svg');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+
     flex: 1;
     width: 100%;
     padding: $p-12 $p-16;
 
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .app-wrapper__children {
