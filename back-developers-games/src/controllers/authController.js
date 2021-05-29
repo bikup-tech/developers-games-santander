@@ -1,8 +1,8 @@
 const participantsModel = require('../models/participantModel');
 
 // Constants
-const { BAD_REQUEST, OK } = require('../constants/statusCodes');
-const { MISSING_PROPERTIES, NO_USER_FOUND } = require('../constants/responseMessages');
+const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
+const { MISSING_PROPERTIES, NO_USER_FOUND, WRONG_PASSWORD } = require('../constants/responseMessages');
 
 // Utils
 const CustomError = require('../utils/CustomError');
@@ -29,13 +29,36 @@ function authController() {
         return handleResponseSuccess(res, NO_USER_FOUND);
       }
 
-      return handleResponseSuccess(res, createdParticipant, OK);
+      return handleResponseSuccess(res, createdParticipant);
     } catch (error) {
       return handleResponseError(res, error);
     }
   }
 
-  return { login };
+  async function checkCorrectPassword({ body: { userId, password } }, res) {
+    try {
+      if (!userId || !password) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('userId or Pasword'));
+      }
+
+      const findQuery = {
+        _id: userId,
+        password,
+      };
+
+      const foundUser = await participantsModel.findOne(findQuery);
+
+      if (!foundUser) {
+        return handleResponseSuccess(res, false);
+      }
+
+      return handleResponseSuccess(res, true);
+    } catch (error) {
+      return handleResponseError(res, error);
+    }
+  }
+
+  return { login, checkCorrectPassword };
 }
 
 module.exports = authController();

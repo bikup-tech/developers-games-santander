@@ -15,4 +15,5 @@ module.exports = {
   UPDATE_PROFILE_SUCCESS: 'Tu perfil ha sido actualizado correctamente.',
   NO_TEAM_FOUND: (teamId) => `No se ha encontrado un equipo con el ID ${teamId}.`,
   NO_USER_ID_FOUND: (userId) => `No se ha encontrado un usuario con el ID ${userId}.`,
+  WRONG_PASSWORD: 'La contraseña no es correcta',
 };

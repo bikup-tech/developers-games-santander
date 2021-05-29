@@ -6,4 +6,7 @@ const router = Router();
 router.route('/')
   .get(authController.login);
 
+router.route('/check')
+  .post(authController.checkCorrectPassword);
+
 module.exports = router;
