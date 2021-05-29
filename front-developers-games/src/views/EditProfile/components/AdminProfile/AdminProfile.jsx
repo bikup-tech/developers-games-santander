@@ -29,6 +29,8 @@ function AdminProfile() {
     },
   };
 
+  //   TODO: tot relacionat amb inputs nous (añadir a initialState...) boton ver equipos y validar form
+
   const [editAdminProfile, setEditAdminProfile] = useState(initialState);
   const [warningMessage, setWarningMessage] = useState('');
 
@@ -70,6 +72,7 @@ function AdminProfile() {
             </div>
           </div>
         </div>
+        {/* TODO: Añadir inputs email que no es editable y mobil */}
       </form>
       <div className="view-profile__top bottom">
         <div className="profile-button-container">
