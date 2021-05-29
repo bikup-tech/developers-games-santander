@@ -17,12 +17,24 @@ function TeamCard({ team, number }) {
 
   function handleShowExtraClick() {
     setIsExtraVisible(!isExtraVisible);
+    const membersElement = document.querySelector(`.members-${team._id}`);
+    const challengesElement = document.querySelector(`.challenges-${team._id}`);
+
+    if (isExtraVisible) {
+      setTimeout(() => {
+        membersElement.classList.add('display-none');
+        challengesElement.classList.add('display-none');
+      }, 700);
+    } else {
+      membersElement.classList.remove('display-none');
+      challengesElement.classList.remove('display-none');
+    }
   }
 
   let printedChallenges = 0;
 
   return (
-    <div className={`team-card ${isExtraVisible && 'cosoVis'}`}>
+    <div className="team-card">
       <div className="team-card__info">
         <div className="info__avatar">
           <img src={avatarIcon} alt="team avatar" className="avatar__image" />
@@ -45,8 +57,8 @@ function TeamCard({ team, number }) {
           </div>
         </div>
       </div>
-      <div className={`team-card__extra ${isExtraVisible && 'team-card__extra--visible'} `}>
-        <div className="extra__members">
+      <div id={`team-card__extra-${team._id}`} className={`team-card__extra ${isExtraVisible && 'team-card__extra--visible'} `}>
+        <div className={`extra__members members-${team._id}`}>
           <h3 className="members__title">Miembros del equipo</h3>
           <div className="members__member-list">
             {team.participants.map((participant, index) => (
@@ -61,7 +73,7 @@ function TeamCard({ team, number }) {
             ))}
           </div>
         </div>
-        <div className="extra__challenges">
+        <div className={`extra__challenges challenges-${team._id}`}>
           <h3 className="members__title">Desafíos completados</h3>
           <div className="members__member-list">
             {team.teamChallenges.map((challenge) => {
@@ -80,7 +92,7 @@ function TeamCard({ team, number }) {
                     </div>
                     <div className="member__actions">
                       <a href={challenge.deliverable} className="actions__link" target="_blank" rel="noreferrer">
-                        <img src={linkIcon} alt="link" className="link__img" />
+                        <img src={linkIcon} alt="link" className="link__img" title="Go to Github" />
                       </a>
                     </div>
                   </div>
