@@ -2,33 +2,6 @@
 @import '../../../../assets/styles/mixins.scss';
 @import '../../../../assets/styles/styleConstants.scss';
 
-.team-profile {
-    @include flex($flex-direction: column);
-    width: 100%;
-    max-width: 1024px;
-}
-
-.team-profile__top {
-    @include flex($justify-content: space-between);
-
-    width: 80%;
-    margin-bottom: $m-12;
-    padding: $p-2;
-
-    @media only screen and(min-width: $query-1280){
-        width: 100%;
-     }
-}
-
-.top__text {
-    font-weight: $text-bold;
-    color: $darkBlue
-}
-
-.profile-button-container {
-    width: 135px;
-}
-
 .team-profile__login-info {
     @include flex($flex-direction: column);
 

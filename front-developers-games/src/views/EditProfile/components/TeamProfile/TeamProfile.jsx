@@ -36,8 +36,8 @@ function TeamProfile() {
   }
 
   return (
-    <div className="team-profile">
-      <div className="team-profile__top">
+    <div className="view-profile">
+      <div className="view-profile__top">
         <span className="top__text">Edita tu perfil</span>
         <div className="profile-button-container">
 

@@ -1,0 +1,74 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import './AdminProfile.scss';
+
+// Images
+import avatarIcon from '../../../../assets/images/avatar-icon.svg';
+import cameraIcon from '../../../../assets/images/camera-icon.svg';
+
+// components
+import Input from '../../../../components/Input/Input';
+import MainButton from '../../../../components/MainButton/MainButton';
+
+function AdminProfile() {
+  const { name } = useSelector(({ authReducer }) => authReducer.user);
+
+  const initialState = {
+    adminName: name,
+    password: '',
+    newPassword: '',
+    isIncorrectValues: {
+      adminName: false,
+      password: false,
+      newPassword: false,
+    },
+  };
+
+  const [editAdminProfile, setEditAdminProfile] = useState(initialState);
+
+  function handleInputChange({ target }) {
+
+  }
+
+  return (
+    <section className="view-profile">
+      <div className="view-profile__top">
+        <span className="top__text">Edita tu perfil</span>
+        <div className="profile-button-container">
+
+          <MainButton>Guardar Cambios</MainButton>
+        </div>
+      </div>
+      <form className="team-profile__login-info">
+        <div className="login-info__avatar">
+          <img src={avatarIcon} alt="team avatar" className="avatar__image" />
+          <div className="avatar__photo-container">
+            <img src={cameraIcon} alt="change avatar" className="photo-container__img" />
+          </div>
+        </div>
+        <div className="login-separator" />
+        <div className="login-info__data">
+          <div className="data__teamname profile-input-container">
+            <Input type="text" name="adminName" placeholder="Nombre del Administrador" value={editAdminProfile.adminName} blueText onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.adminName} />
+          </div>
+          <div className="data__password">
+            <div className="password-input profile-input-container profile-input-container--small ">
+              <label className="profile-input__label" htmlFor="password">Contraseña</label>
+              <Input type="password" name="password" placeholder="Entra tu contraseña" value={editAdminProfile.password} autocomplete onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.password} />
+            </div>
+            <div className="password__repeat-input profile-input-container profile-input-container--small">
+              <label className="profile-input__label" htmlFor="repeat-password">Nueva contraseña</label>
+              <Input type="password" name="newPassword" placeholder="Nueva contraseña" value={editAdminProfile.newPassword} autocomplete onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.newPassword} />
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+  );
+}
+
+export default AdminProfile;

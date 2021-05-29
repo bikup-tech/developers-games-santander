@@ -35,7 +35,7 @@ export default {
   },
 
   authReducer: {
-    user: { isLogged: false, isAdmin: false, name: 'Bikup' },
+    user: { isLogged: true, isAdmin: true, name: 'Bikup' },
   },
 
   profileReducer: {
