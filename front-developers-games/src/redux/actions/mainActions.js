@@ -15,6 +15,24 @@ export function addParticipant(participant) {
   };
 }
 
+export function setInputValue(name, value, participant) {
+  return {
+    type: actionTypes.SET_INPUT_VALUE,
+    payload: {
+      name,
+      value,
+      participant,
+    },
+  };
+}
+
+export function addParticipantToTeam(participant) {
+  return {
+    type: actionTypes.ADD_PARTICIPANT_TO_TEAM,
+    participant,
+  };
+}
+
 export function setTeamChallengesLoading() {
   return {
     type: actionTypes.SET_TEAM_CHALLENGES_LOADING,

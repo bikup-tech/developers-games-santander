@@ -17,18 +17,18 @@ function TeamCard({ team, number }) {
 
   function handleShowExtraClick() {
     setIsExtraVisible(!isExtraVisible);
-    // const membersElement = document.querySelector(`.members-${team._id}`);
-    // const challengesElement = document.querySelector(`.challenges-${team._id}`);
+    const membersElement = document.querySelector(`.members-${team._id}`);
+    const challengesElement = document.querySelector(`.challenges-${team._id}`);
 
-    // if (isExtraVisible) {
-    //   setTimeout(() => {
-    //     membersElement.classList.add('display-none');
-    //     challengesElement.classList.add('display-none');
-    //   }, 700);
-    // } else {
-    //   membersElement.classList.remove('display-none');
-    //   challengesElement.classList.remove('display-none');
-    // }
+    if (isExtraVisible) {
+      setTimeout(() => {
+        membersElement.classList.add('display-none');
+        challengesElement.classList.add('display-none');
+      }, 700);
+    } else {
+      membersElement.classList.remove('display-none');
+      challengesElement.classList.remove('display-none');
+    }
   }
 
   let printedChallenges = 0;
