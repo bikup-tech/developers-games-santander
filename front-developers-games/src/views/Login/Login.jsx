@@ -5,6 +5,9 @@ import { useHistory } from 'react-router-dom';
 
 import './Login.scss';
 
+// constants
+import warningMessages from '../../constants/warningMessages';
+
 // action creators
 import { login, clearLoginError } from '../../redux/actions/loginActions';
 
@@ -40,7 +43,7 @@ function Login() {
       history.replace('/challenges');
     }
     if (loginError) {
-      setWarningMessage('Inicio de sesión inválido.');
+      setWarningMessage(warningMessages.login.LOGIN_ERROR);
     }
   });
 
@@ -54,7 +57,7 @@ function Login() {
     Object.entries(loginInputsToValdate).forEach(([key, value]) => {
       if (value === '') {
         setLoginForm({ ...loginForm, [`${key}IsWrong`]: true });
-        setWarningMessage('Faltan campos por rellenar.');
+        setWarningMessage(warningMessages.loginLOGIN_REQUIRED_ENTRY);
         isFormValid = false;
       }
     });
