@@ -6,4 +6,5 @@ export default {
   UPLOAD_CHALLENGE_DELIVERABLE: (challengeId) => `/api/teamChallenges/deliverable/${challengeId}`,
   UPDATE_CHALLENGE: (challengeId) => `/api/teamChallenges/${challengeId}`,
   UPDATE_TEAM: (teamId) => `/api/teams/${teamId}`,
+  LOAD_TOURNAMENT_TEAMS: (tournamentId) => `/api/teams?tournamentId=${tournamentId}`,
 };

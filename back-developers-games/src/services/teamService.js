@@ -36,7 +36,13 @@ function teamService() {
     return teamModel.findOneAndUpdate({ _id }, updateQuery, updateOptions);
   }
 
-  return { findTeam, createTeam, updateTeam };
+  async function findTournamentTeams(tournamentId) {
+    return teamModel.find({ tournamentId }).populate('participants').populate('teamChallenges').populate('tournamentChallenge');
+  }
+
+  return {
+    findTeam, createTeam, updateTeam, findTournamentTeams,
+  };
 }
 
 module.exports = teamService();

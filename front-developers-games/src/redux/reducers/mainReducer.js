@@ -117,6 +117,29 @@ export default function mainReducer(state = {}, action) {
       };
       break;
 
+    // TEAMS
+    case actionTypes.TEAMS_LOADING:
+      newState = {
+        ...state,
+        teamsLoading: true,
+      };
+      break;
+    case actionTypes.LOAD_TEAMS_ERROR:
+      newState = {
+        ...state,
+        teamsLoading: false,
+        loadTeamsError: action.error,
+      };
+      break;
+    case actionTypes.LOAD_TEAMS_SUCCESS:
+      newState = {
+        ...state,
+        teamsLoading: false,
+        loadTeamsError: null,
+        tournamentTeams: action.teams,
+      };
+      break;
+
     default:
       newState = state;
       break;
