@@ -17,6 +17,7 @@ export default {
     SEND_CHALLENGE_ERROR: 'Ha habido un error al enviar el challange. Vuelve a intentarlo.',
     LOGIN_TEAM: 'Inicio de sesión correcto!',
     LOGIN_TEAM_ERROR: 'Ha habido un error en tu inicio de sesión. Vuelve a intentarlo.',
+    LOAD_TEAMS_ERROR: 'Ha habido un error al cargar los equipos del torneo. Vuelve a intentarlo.',
   },
   icons: {
     SUCCESS: alertSuccessIcon,

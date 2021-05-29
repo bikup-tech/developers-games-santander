@@ -5,6 +5,7 @@ const teamController = require('../controllers/teamController');
 const router = Router();
 
 router.route('/')
+  .get(teamsController.getTournamentTeams)
   .post(teamsController.createTeam);
 
 router.route('/:teamId')
