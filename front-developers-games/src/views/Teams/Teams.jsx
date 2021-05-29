@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -16,7 +15,7 @@ import TeamCard from './components/TeamCard/TeamCard';
 function Teams() {
   const dispatch = useDispatch();
   const {
-    tournamentTeams, tournamentId, teamsLoading, loadTeamsError, isTeamRegistered,
+    tournamentTeams, tournamentId, teamsLoading, loadTeamsError,
   } = useSelector(({ mainReducer }) => mainReducer);
 
   useEffect(() => {
