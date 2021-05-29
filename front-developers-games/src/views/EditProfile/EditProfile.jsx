@@ -5,6 +5,7 @@ import './EditProfile.scss';
 
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
+import TeamProfile from './components/TeamProfile/TeamProfile';
 
 function EditProfile() {
   // eslint-disable-next-line no-unused-vars
@@ -19,7 +20,7 @@ function EditProfile() {
       )
       : (
         <AppWrapper title={`Hola ${user.name} team`}>
-          team
+          <TeamProfile />
         </AppWrapper>
       )
 

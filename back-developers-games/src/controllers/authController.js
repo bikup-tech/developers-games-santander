@@ -1,7 +1,7 @@
 const participantsModel = require('../models/participantModel');
 
 // Constants
-const { BAD_REQUEST, OK, CONFLICT } = require('../constants/statusCodes');
+const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
 const { MISSING_PROPERTIES, NO_USER_FOUND } = require('../constants/responseMessages');
 
 // Utils
@@ -11,31 +11,57 @@ const handleResponseSuccess = require('../utils/handleResponseSuccess');
 
 function authController() {
   async function login(req, res) {
-    const { email, password } = req.body;
+    const { email, password: userPassword } = req.body;
 
     try {
-      if (!email || !password) {
+      if (!email || !userPassword) {
         throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('Email or Pasword'));
       }
 
       const findQuery = {
         email,
-        password,
+        password: userPassword,
       };
 
-      const createdParticipant = await participantsModel.findOne(findQuery);
+      const foundParticipant = await participantsModel.findOne(findQuery);
 
-      if (!createdParticipant) {
+      if (!foundParticipant) {
         throw new CustomError(CONFLICT, NO_USER_FOUND);
       }
 
-      return handleResponseSuccess(res, createdParticipant, OK);
+      // Create the participant object without the password property
+      const { password, ...participant } = foundParticipant._doc;
+
+      return handleResponseSuccess(res, participant);
     } catch (error) {
       return handleResponseError(res, error);
     }
   }
 
-  return { login };
+  async function checkCorrectPassword({ body: { userId, password } }, res) {
+    try {
+      if (!userId || !password) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('userId or Pasword'));
+      }
+
+      const findQuery = {
+        _id: userId,
+        password,
+      };
+
+      const foundUser = await participantsModel.findOne(findQuery);
+
+      if (!foundUser) {
+        return handleResponseSuccess(res, false);
+      }
+
+      return handleResponseSuccess(res, true);
+    } catch (error) {
+      return handleResponseError(res, error);
+    }
+  }
+
+  return { login, checkCorrectPassword };
 }
 
 module.exports = authController();
