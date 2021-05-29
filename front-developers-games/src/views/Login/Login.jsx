@@ -44,7 +44,7 @@ function Login() {
     if (loginError) {
       setWarningMessage(warningMessages.login.LOGIN_ERROR);
     }
-  });
+  }, [user?.isLogged, loginError]);
 
   function handleLoginClick() {
     let isFormValid = true;
@@ -56,7 +56,7 @@ function Login() {
     Object.entries(loginInputsToValdate).forEach(([key, value]) => {
       if (value === '') {
         setLoginForm({ ...loginForm, [`${key}IsWrong`]: true });
-        setWarningMessage(warningMessages.loginLOGIN_REQUIRED_ENTRY);
+        setWarningMessage(warningMessages.login.LOGIN_REQUIRED_ENTRY);
         isFormValid = false;
       }
     });
