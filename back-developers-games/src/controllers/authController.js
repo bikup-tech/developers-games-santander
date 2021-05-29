@@ -1,7 +1,7 @@
 const participantsModel = require('../models/participantModel');
 
 // Constants
-const { BAD_REQUEST, OK } = require('../constants/statusCodes');
+const { BAD_REQUEST, OK, CONFLICT } = require('../constants/statusCodes');
 const { MISSING_PROPERTIES, NO_USER_FOUND } = require('../constants/responseMessages');
 
 // Utils
@@ -26,7 +26,7 @@ function authController() {
       const createdParticipant = await participantsModel.findOne(findQuery);
 
       if (!createdParticipant) {
-        return handleResponseSuccess(res, NO_USER_FOUND);
+        throw new CustomError(CONFLICT, NO_USER_FOUND);
       }
 
       return handleResponseSuccess(res, createdParticipant, OK);

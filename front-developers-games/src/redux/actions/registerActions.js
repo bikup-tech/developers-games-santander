@@ -67,7 +67,11 @@ export function setGeneralEntriesWrongValues(wrongValue) {
   };
 }
 
-export function setParticipantCorrectValues(wrongValue, participantNumber, nameProperty) {
+export function setParticipantCorrectValues(
+  wrongValue,
+  participantNumber,
+  nameProperty,
+) {
   return {
     type: actionTypes.SET_PARTICIPANT_CORRECT_VALUES,
     payload: {
@@ -78,7 +82,11 @@ export function setParticipantCorrectValues(wrongValue, participantNumber, nameP
   };
 }
 
-export function setParticipantWrongValues(wrongValue, participantName, nameProperty) {
+export function setParticipantWrongValues(
+  wrongValue,
+  participantName,
+  nameProperty,
+) {
   return {
     type: actionTypes.SET_PARTICIPANT_WRONG_VALUES,
     payload: {
@@ -116,11 +124,24 @@ export function registerTeam(tournamentId, name, participants) {
       const body = { tournamentId, name, participants };
       const registerTeamEndpoint = `${APIConstants.HOSTNAME}${APIConstants.REGISTER_TEAM}`;
       await axios.post(registerTeamEndpoint, body);
-      dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.CREATE_TEAM_SUCCESS));
+
+      dispatch(
+        setAlert(
+          alertConstants.types.SUCCESS,
+          alertConstants.messages.CREATE_TEAM_SUCCESS,
+          alertConstants.icons.SUCCESS,
+        ),
+      );
       dispatch(cleanRegisterForm());
       dispatch(registerTeamSuccess());
     } catch (registerError) {
-      dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.CREATE_TEAM_ERROR));
+      dispatch(
+        setAlert(
+          alertConstants.types.ERROR,
+          alertConstants.messages.CREATE_TEAM_ERROR,
+          alertConstants.icons.WARNING,
+        ),
+      );
       dispatch(registerTeamError(registerError));
     }
   };

@@ -1,10 +1,18 @@
-// import actionTypes from '../actions/actionTypes';
+import actionTypes from '../actions/actionTypes';
 
 export default function authReducer(state = {}, action) {
   let newState = {};
   switch (action.type) {
-    case 'LOGIN':
-      newState = { ...state, user: { isLogged: true } };
+    case actionTypes.LOGIN_SUCCESS:
+      newState = { ...state, user: { isLogged: true, userLogged: action.user, loginError: null } };
+      break;
+
+    case actionTypes.LOGIN_ERROR:
+      newState = { ...state, loginError: action.error };
+      break;
+
+    case actionTypes.CLEAR_LOGIN_ERROR:
+      newState = { ...state, loginError: null };
       break;
     default:
       newState = state;
