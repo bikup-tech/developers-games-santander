@@ -137,7 +137,7 @@
     max-height: 0px;
     opacity: 0;
     transform-origin: top;
-    transition: max-height 0.7s, opacity 0.4s;
+    transition: max-height 0.7s, opacity 0.4s ease-in-out;
     display: block;
 
 }
