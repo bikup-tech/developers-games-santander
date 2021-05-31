@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import './AdminProfile.scss';
@@ -16,12 +17,16 @@ import Input from '../../../../components/Input/Input';
 import MainButton from '../../../../components/MainButton/MainButton';
 
 function AdminProfile() {
-  const { name } = useSelector(({ authReducer }) => authReducer.user);
+  const {
+    name, password, email, phone,
+  } = useSelector(({ authReducer }) => authReducer.user);
 
   const initialState = {
     adminName: name,
-    password: '',
+    password,
     newPassword: '',
+    email,
+    phone,
     isIncorrectValues: {
       adminName: false,
       password: false,
@@ -82,7 +87,7 @@ function AdminProfile() {
               type="email"
               name="email"
               placeholder="e-mail*"
-                // value={email}
+              value={editAdminProfile.email}
               onChange={handleInputChange}
               disabled
             />
@@ -92,7 +97,7 @@ function AdminProfile() {
               type="number"
               name="phone"
               placeholder="Teléfono*"
-                // value={phone}
+              value={editAdminProfile.phone}
               onChange={handleInputChange}
             />
           </div>
@@ -101,10 +106,10 @@ function AdminProfile() {
       <div className="view-profile__bottom">
         <div className="profile-button-container m-12--mobile">
           <MainButton isSecondary>
-            <div className="button-children">
+            <Link to="/teams" className="button-children">
               <img className="button-children__image" src={viewIcon} alt="See Developers Games teams" />
               <p className="button-children__text">Ver equipos</p>
-            </div>
+            </Link>
           </MainButton>
         </div>
         <div className="profile-button-container">

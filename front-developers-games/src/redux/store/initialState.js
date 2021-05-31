@@ -35,7 +35,9 @@ export default {
   },
 
   authReducer: {
-    user: { isLogged: true, isAdmin: true, name: 'Bikup' },
+    user: {
+      isLogged: true, isAdmin: true, name: 'Bikup', password: 'bearsdvas', email: 'mourin@gmail.com', phone: '9999999',
+    },
   },
 
   profileReducer: {
