@@ -35,7 +35,10 @@ export default {
 
   authReducer: {
     user: {
-      isLogged: true, isAdmin: false, userLogged: { name: 'Bikup', _id: '60b4f66b4562c2e7a047f928' },
+      isLogged: true,
+      userLogged: {
+        name: 'gerard', _id: '60b4f66b4562c2e7a047f928', isCaptain: true, isAdmin: true,
+      },
     },
   },
 

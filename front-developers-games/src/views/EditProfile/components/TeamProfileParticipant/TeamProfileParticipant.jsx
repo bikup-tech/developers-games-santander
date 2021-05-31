@@ -8,7 +8,7 @@ function TeamProfileParticipant({ participantNumber, participant }) {
   // TODO: Adaptar xk pinti els valors dels participants pero no permeti escriure res
 
   return (
-    <div className="register__participant">
+    <div className="register__participant register__participant-border">
       <h3 className="participant__title app__title">
         Participante
         {' '}

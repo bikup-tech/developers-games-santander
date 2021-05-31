@@ -50,7 +50,7 @@ function TeamProfile() {
       const updateProfile = {};
 
       if (newPassword) {
-        updateProfile.participantId = user.loggedUser._id;
+        updateProfile.participantId = user.userLogged._id;
         updateProfile.newPassword = newPassword;
       }
 
@@ -60,7 +60,7 @@ function TeamProfile() {
       }
 
       const credentials = {
-        userId: user.loggedUser._id,
+        userId: user.userLogged._id,
         password,
       };
 

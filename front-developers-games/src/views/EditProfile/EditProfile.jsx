@@ -13,9 +13,9 @@ function EditProfile() {
   const { user } = useSelector(({ authReducer }) => authReducer);
   const { team } = useSelector(({ mainReducer }) => mainReducer);
   return (
-    user?.isAdmin
+    user?.userLogged?.isAdmin
       ? (
-        <AppWrapper title={`Hola ${user.loggedUser.name}`}>
+        <AppWrapper title={`Hola ${user.userLogged.name}`}>
           admin
         </AppWrapper>
       )
