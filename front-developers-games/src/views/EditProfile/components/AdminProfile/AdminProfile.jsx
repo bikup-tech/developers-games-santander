@@ -7,6 +7,9 @@ import { useSelector } from 'react-redux';
 
 import './AdminProfile.scss';
 
+// constants
+import warningMessages from '../../../../constants/warningMessages';
+
 // Images
 import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
@@ -23,7 +26,7 @@ function AdminProfile() {
 
   const initialState = {
     adminName: name,
-    password,
+    password: '',
     newPassword: '',
     email,
     phone,
@@ -43,7 +46,14 @@ function AdminProfile() {
   const [warningMessage, setWarningMessage] = useState('');
 
   function handleInputChange({ target }) {
-    setEditAdminProfile({ ...editAdminProfile, [target.name]: target.value });
+    setEditAdminProfile({
+      ...editAdminProfile,
+      [target.name]: target.value,
+      isIncorrectValues: {
+        ...editAdminProfile.isIncorrectValues,
+        [target.name]: false,
+      },
+    });
     setWarningMessage('');
   }
 
@@ -52,9 +62,7 @@ function AdminProfile() {
     const inputsToValidate = (({ isIncorrectValues, ...rest }) => rest)(editAdminProfile);
 
     Object.entries(inputsToValidate).forEach(([key, value]) => {
-      if (value === '') {
-        // // eslint-disable-next-line no-debugger
-        // debugger;
+      if (!value) {
         setEditAdminProfile({
           ...editAdminProfile,
           isIncorrectValues: {
@@ -62,8 +70,13 @@ function AdminProfile() {
             [key]: true,
           },
         });
-        // console.log(editAdminProfile);
+        setWarningMessage(warningMessages.login.LOGIN_REQUIRED_ENTRY);
         isFormValid = false;
+      }
+
+      if (isFormValid) {
+        // dispatch de la accio
+        setWarningMessage('');
       }
     });
   }
@@ -73,7 +86,6 @@ function AdminProfile() {
       <div className="view-profile__top">
         <span className="top__text">Edita tu perfil</span>
         <div className="profile-button-container">
-
           <MainButton onClick={handleSaveChangesClick}>Guardar Cambios</MainButton>
         </div>
       </div>
