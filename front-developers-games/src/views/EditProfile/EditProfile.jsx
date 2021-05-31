@@ -6,6 +6,7 @@ import './EditProfile.scss';
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import TeamProfile from './components/TeamProfile/TeamProfile';
+import AdminProfile from './components/AdminProfile/AdminProfile';
 
 function EditProfile() {
   // eslint-disable-next-line no-unused-vars
@@ -16,7 +17,7 @@ function EditProfile() {
     user?.userLogged?.isAdmin
       ? (
         <AppWrapper title={`Hola ${user.userLogged.name}`}>
-          admin
+          <AdminProfile />
         </AppWrapper>
       )
       : (
