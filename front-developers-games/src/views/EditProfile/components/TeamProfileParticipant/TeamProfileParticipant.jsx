@@ -7,7 +7,7 @@ import Input from '../../../../components/Input/Input';
 function TeamProfileParticipant({ participantNumber, participant }) {
   return (
     <div className="register__participant register__participant-border">
-      <h3 className="participant__title app__title">
+      <h3 className="participant__title app__title app__title--noPadding">
         Participante
         {' '}
         {participantNumber}
