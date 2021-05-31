@@ -1,9 +1,7 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import './AdminProfile.scss';
 
@@ -20,10 +18,8 @@ import Input from '../../../../components/Input/Input';
 import MainButton from '../../../../components/MainButton/MainButton';
 
 function AdminProfile() {
-  const dispatch = usedispatch();
-
   const {
-    name, password, email, phone,
+    name, email, phone,
   } = useSelector(({ authReducer }) => authReducer.user);
 
   const initialState = {
