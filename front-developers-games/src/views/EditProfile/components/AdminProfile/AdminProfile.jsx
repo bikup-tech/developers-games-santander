@@ -31,6 +31,8 @@ function AdminProfile() {
       adminName: false,
       password: false,
       newPassword: false,
+      email: false,
+      phone: false,
     },
   };
 
@@ -42,9 +44,29 @@ function AdminProfile() {
 
   function handleInputChange({ target }) {
     setEditAdminProfile({ ...editAdminProfile, [target.name]: target.value });
+    setWarningMessage('');
   }
 
-  function handleSaveChangesClick() {}
+  function handleSaveChangesClick() {
+    let isFormValid = true;
+    const inputsToValidate = (({ isIncorrectValues, ...rest }) => rest)(editAdminProfile);
+
+    Object.entries(inputsToValidate).forEach(([key, value]) => {
+      if (value === '') {
+        // // eslint-disable-next-line no-debugger
+        // debugger;
+        setEditAdminProfile({
+          ...editAdminProfile,
+          isIncorrectValues: {
+            ...editAdminProfile.isIncorrectValues,
+            [key]: true,
+          },
+        });
+        // console.log(editAdminProfile);
+        isFormValid = false;
+      }
+    });
+  }
 
   return (
     <section className="view-profile">
@@ -90,6 +112,7 @@ function AdminProfile() {
               value={editAdminProfile.email}
               onChange={handleInputChange}
               disabled
+              isIncorrect={editAdminProfile.isIncorrectValues.email}
             />
           </div>
           <div className="entries__number last-entry">
@@ -99,18 +122,20 @@ function AdminProfile() {
               placeholder="Teléfono*"
               value={editAdminProfile.phone}
               onChange={handleInputChange}
+              isIncorrect={editAdminProfile.isIncorrectValues.phone}
             />
           </div>
         </div>
       </form>
+      <small className="form__warningMessage">{warningMessage}</small>
       <div className="view-profile__bottom">
         <div className="profile-button-container m-12--mobile">
-          <MainButton isSecondary>
-            <Link to="/teams" className="button-children">
+          <Link to="/teams" className="button-children">
+            <MainButton isSecondary>
               <img className="button-children__image" src={viewIcon} alt="See Developers Games teams" />
               <p className="button-children__text">Ver equipos</p>
-            </Link>
-          </MainButton>
+            </MainButton>
+          </Link>
         </div>
         <div className="profile-button-container">
           <MainButton onClick={handleSaveChangesClick}>Guardar Cambios</MainButton>
