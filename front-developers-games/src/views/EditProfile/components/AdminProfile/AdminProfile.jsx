@@ -29,7 +29,8 @@ function AdminProfile() {
     },
   };
 
-  //   TODO: tot relacionat amb inputs nous (añadir a initialState...) boton ver equipos y validar form
+  //   TODO: tot relacionat amb inputs nous (añadir a initialState...)
+  //   boton ver equipos y validar form
 
   const [editAdminProfile, setEditAdminProfile] = useState(initialState);
   const [warningMessage, setWarningMessage] = useState('');
