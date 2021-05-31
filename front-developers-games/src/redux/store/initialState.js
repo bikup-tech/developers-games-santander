@@ -4,7 +4,6 @@ export default {
     participants: ['gerard'],
     team: {
       name: 'bikUP',
-      _id: '60b12eac47602f97820f7434',
     },
     alert: { type: '', message: '' },
     toLoadChallengeDetail: localStorage.getItem('toLoadChallengeDetail') || '',
@@ -35,7 +34,12 @@ export default {
   },
 
   authReducer: {
-    user: { isLogged: false, isAdmin: false, name: 'Bikup' },
+    user: {
+      isLogged: true,
+      userLogged: {
+        name: 'gerard', _id: '60b4f66b4562c2e7a047f928', isCaptain: true, isAdmin: true,
+      },
+    },
   },
 
   profileReducer: {

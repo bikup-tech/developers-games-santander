@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -11,6 +10,7 @@ import kitIcon from '../../assets/images/kit-icon.svg';
 
 // Action-Creators
 import { loadTeamChallenges } from '../../redux/actions/mainActions';
+import { loadTeam } from '../../redux/actions/loginActions';
 
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
@@ -27,12 +27,19 @@ function Challenges() {
     teamChallenges,
     team,
   } = useSelector(({ mainReducer }) => mainReducer);
+  const { user } = useSelector(({ authReducer }) => authReducer);
 
   useEffect(() => {
-    if (!teamChallenges) {
+    if (!team || !team?._id) {
+      dispatch(loadTeam(user?.userLogged?._id));
+    }
+  }, [team, team?._id]);
+
+  useEffect(() => {
+    if (!teamChallenges && team?._id) {
       dispatch(loadTeamChallenges(team?._id));
     }
-  }, []);
+  }, [teamChallenges, team?._id]);
 
   const challengesRender = teamChallengesError
     ? (
@@ -77,7 +84,7 @@ function Challenges() {
     );
 
   return (
-    <AppWrapper title={`Hola ${team.name} Team`}>
+    <AppWrapper title={`Hola ${team?.name} Team`}>
       <div className="challenges">
         <p className="challenges__text">
           Entra en cada una de las disciplinas,
