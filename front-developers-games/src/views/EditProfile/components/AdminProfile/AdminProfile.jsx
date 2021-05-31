@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import './AdminProfile.scss';
 
@@ -20,6 +20,8 @@ import Input from '../../../../components/Input/Input';
 import MainButton from '../../../../components/MainButton/MainButton';
 
 function AdminProfile() {
+  const dispatch = usedispatch();
+
   const {
     name, password, email, phone,
   } = useSelector(({ authReducer }) => authReducer.user);
@@ -38,9 +40,6 @@ function AdminProfile() {
       phone: false,
     },
   };
-
-  //   TODO: tot relacionat amb inputs nous (añadir a initialState...)
-  //   boton ver equipos y validar form
 
   const [editAdminProfile, setEditAdminProfile] = useState(initialState);
   const [warningMessage, setWarningMessage] = useState('');
@@ -75,7 +74,7 @@ function AdminProfile() {
       }
 
       if (isFormValid) {
-        // dispatch de la accio
+        // dispatch update admin action in profileController
         setWarningMessage('');
       }
     });
