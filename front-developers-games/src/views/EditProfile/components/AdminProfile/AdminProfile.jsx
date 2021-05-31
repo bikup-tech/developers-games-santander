@@ -77,13 +77,14 @@ function AdminProfile() {
         </div>
         {/* TODO: Añadir inputs email que no es editable y mobil */}
         <div className="login-info__general profile">
-          <div className="entries__mail m-12">
+          <div className="entries__mail m-12--mobile">
             <Input
               type="email"
               name="email"
               placeholder="e-mail*"
                 // value={email}
               onChange={handleInputChange}
+              disabled
             />
           </div>
           <div className="entries__number last-entry">
@@ -97,8 +98,8 @@ function AdminProfile() {
           </div>
         </div>
       </form>
-      <div className="view-profile__top bottom">
-        <div className="profile-button-container">
+      <div className="view-profile__bottom">
+        <div className="profile-button-container m-12--mobile">
           <MainButton isSecondary>
             <div className="button-children">
               <img className="button-children__image" src={viewIcon} alt="See Developers Games teams" />

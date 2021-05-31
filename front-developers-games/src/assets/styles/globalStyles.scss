@@ -21,6 +21,13 @@
     }
 }
 
+.m-12--mobile{
+    margin-bottom: $m-12;
+    @media only screen and(min-width: $query-1280){
+        margin-bottom: unset;
+    }
+}
+
 // form styles
 .form__warningMessage {
     color: $red;

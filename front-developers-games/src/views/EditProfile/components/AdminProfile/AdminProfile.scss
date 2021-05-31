@@ -4,9 +4,6 @@
 @import '../TeamProfile/TeamProfile.scss';
 @import '../../../Register/Register.scss';
 
-.bottom{
-    margin-top: $m-16;
-}
 
 .button-children__image {
     height: 20px;
@@ -46,11 +43,17 @@
     margin-bottom: unset !important;
 }
 
-.m-12{
-    margin-bottom: $m-12;
+.view-profile__bottom {
+    @include flex($flex-direction: column);
+    width: 80%;
+    margin-bottom: $m-16;
+    margin-top: $m-16;
+    padding: $p-2;
+
     @media only screen and(min-width: $query-1280){
-        margin-bottom: unset;
-    }
+        width: 100%;
+        @include flex($justify-content: space-between);
+     }
 }
 
 
