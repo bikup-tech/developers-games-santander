@@ -82,7 +82,7 @@ export function loadTeam(captainId) {
 
       dispatch(setLoadTeamLoading());
       const { data } = await axios.get(endpoint);
-
+      console.log(data);
       dispatch(loadTeamSuccess(data));
     } catch (error) {
       dispatch(loadTeamError(error.message));
