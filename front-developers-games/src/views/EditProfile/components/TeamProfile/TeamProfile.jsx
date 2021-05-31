@@ -45,7 +45,6 @@ function TeamProfile() {
   function handleSaveClick() {
     const isFormValid = !!(password && teamName);
 
-    // TODO: Validar form
     if (isFormValid) {
       const updateProfile = {};
 

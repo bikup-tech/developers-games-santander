@@ -54,7 +54,6 @@ export function clearLoginError() {
   };
 }
 
-// TODO: crear actions load team
 export function setLoadTeamLoading() {
   return {
     type: actionTypes.LOAD_TEAM_LOADING,
