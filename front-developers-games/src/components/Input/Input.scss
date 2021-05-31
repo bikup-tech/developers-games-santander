@@ -25,6 +25,10 @@
     border: 1px solid $red;
 }
 
+.input__field--disabled {
+    border: 1px solid $gray;
+}
+
 .blue-text {
     color: $semiBlue;
     font-weight: $text-bold;
