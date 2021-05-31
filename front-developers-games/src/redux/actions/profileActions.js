@@ -25,8 +25,7 @@ export function updateTeamProfile(credentials, body) {
       const { data: isAllowed } = await axios.post(checkEndpoint, credentials);
 
       if (isAllowed) {
-        const { data } = await axios.patch(editProfileEndpoint, body);
-        console.log(data);
+        await axios.patch(editProfileEndpoint, body);
         dispatch(
           setAlert(alertConstants.types.SUCCESS, alertConstants.messages.MODIFY_PROFILE_SUCCESS),
         );
@@ -39,9 +38,8 @@ export function updateTeamProfile(credentials, body) {
         dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.WRONG_PASSWORD));
       }
     } catch (error) {
-      // dispatch(setAlert(alertConstants.types.ERROR, alertConstants.
-      // messages.MODIFY_PROFILE_ERROR));
-      dispatch(setAlert(alertConstants.types.ERROR, error.message));
+      dispatch(setAlert(alertConstants.types.ERROR, alertConstants
+        .messages.MODIFY_PROFILE_ERROR));
     }
   };
 }

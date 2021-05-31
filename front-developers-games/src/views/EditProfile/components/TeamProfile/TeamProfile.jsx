@@ -15,6 +15,7 @@ import { setProfileInputValue, updateTeamProfile } from '../../../../redux/actio
 // Components
 import Input from '../../../../components/Input/Input';
 import MainButton from '../../../../components/MainButton/MainButton';
+import TeamProfileParticipant from '../TeamProfileParticipant/TeamProfileParticipant';
 
 const initialWrongValues = {
   password: false,
@@ -49,7 +50,7 @@ function TeamProfile() {
       const updateProfile = {};
 
       if (newPassword) {
-        updateProfile.participantId = user._id;
+        updateProfile.participantId = user.loggedUser._id;
         updateProfile.newPassword = newPassword;
       }
 
@@ -59,7 +60,7 @@ function TeamProfile() {
       }
 
       const credentials = {
-        userId: user._id,
+        userId: user.loggedUser._id,
         password,
       };
 
@@ -72,7 +73,6 @@ function TeamProfile() {
       <div className="team-profile__top">
         <span className="top__text">Edita tu perfil</span>
         <div className="profile-button-container">
-
           <MainButton onClick={handleSaveClick}>Guardar Cambios</MainButton>
         </div>
       </div>
@@ -100,6 +100,11 @@ function TeamProfile() {
           </div>
         </div>
       </form>
+      <div className="team-profile__members">
+        {team?.participants?.map((participant, index) => (
+          <TeamProfileParticipant participantNumber={index} participant={participant} />
+        ))}
+      </div>
     </div>
   );
 }

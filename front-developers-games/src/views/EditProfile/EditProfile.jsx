@@ -15,7 +15,7 @@ function EditProfile() {
   return (
     user?.isAdmin
       ? (
-        <AppWrapper title={`Hola ${user.name}`}>
+        <AppWrapper title={`Hola ${user.loggedUser.name}`}>
           admin
         </AppWrapper>
       )

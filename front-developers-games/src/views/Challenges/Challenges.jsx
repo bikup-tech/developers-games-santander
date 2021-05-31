@@ -33,14 +33,12 @@ function Challenges() {
 
   useEffect(() => {
     if (!team || !team?._id) {
-      dispatch(loadTeam(user.userLogged._id));
+      dispatch(loadTeam(user?.userLogged?._id));
     }
   }, [team, team?._id]);
 
   useEffect(() => {
-    debugger;
     if (!teamChallenges && team?._id) {
-      debugger;
       dispatch(loadTeamChallenges(team?._id));
     }
   }, [teamChallenges, team?._id]);
