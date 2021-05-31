@@ -50,30 +50,52 @@ function AdminProfile() {
           <MainButton onClick={handleSaveChangesClick}>Guardar Cambios</MainButton>
         </div>
       </div>
-      <form className="team-profile__login-info">
-        <div className="login-info__avatar">
-          <img src={avatarIcon} alt="team avatar" className="avatar__image" />
-          <div className="avatar__photo-container">
-            <img src={cameraIcon} alt="change avatar" className="photo-container__img" />
-          </div>
-        </div>
-        <div className="login-separator" />
-        <div className="login-info__data">
-          <div className="data__teamname profile-input-container">
-            <Input type="text" name="adminName" placeholder="Nombre del Administrador" value={editAdminProfile.adminName} blueText onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.adminName} />
-          </div>
-          <div className="data__password">
-            <div className="password-input profile-input-container profile-input-container--small ">
-              <label className="profile-input__label" htmlFor="password">Contraseña</label>
-              <Input type="password" name="password" placeholder="Entra tu contraseña" value={editAdminProfile.password} autocomplete onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.password} />
+      <form className="team-profile__login-info--admin">
+        <div className="login-info__general">
+          <div className="login-info__avatar">
+            <img src={avatarIcon} alt="team avatar" className="avatar__image" />
+            <div className="avatar__photo-container">
+              <img src={cameraIcon} alt="change avatar" className="photo-container__img" />
             </div>
-            <div className="password__repeat-input profile-input-container profile-input-container--small">
-              <label className="profile-input__label" htmlFor="repeat-password">Nueva contraseña</label>
-              <Input type="password" name="newPassword" placeholder="Nueva contraseña" value={editAdminProfile.newPassword} autocomplete onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.newPassword} />
+          </div>
+          <div className="login-separator" />
+          <div className="login-info__data">
+            <div className="data__teamname profile-input-container">
+              <Input type="text" name="adminName" placeholder="Nombre del Administrador" value={editAdminProfile.adminName} blueText onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.adminName} />
+            </div>
+            <div className="data__password">
+              <div className="password-input profile-input-container profile-input-container--small ">
+                <label className="profile-input__label" htmlFor="password">Contraseña</label>
+                <Input type="password" name="password" placeholder="Entra tu contraseña" value={editAdminProfile.password} autocomplete onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.password} />
+              </div>
+              <div className="password__repeat-input profile-input-container profile-input-container--small">
+                <label className="profile-input__label" htmlFor="repeat-password">Nueva contraseña</label>
+                <Input type="password" name="newPassword" placeholder="Nueva contraseña" value={editAdminProfile.newPassword} autocomplete onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.newPassword} />
+              </div>
             </div>
           </div>
         </div>
         {/* TODO: Añadir inputs email que no es editable y mobil */}
+        <div className="login-info__general profile">
+          <div className="entries__mail m-12">
+            <Input
+              type="email"
+              name="email"
+              placeholder="e-mail*"
+                // value={email}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="entries__number last-entry">
+            <Input
+              type="number"
+              name="phone"
+              placeholder="Teléfono*"
+                // value={phone}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
       </form>
       <div className="view-profile__top bottom">
         <div className="profile-button-container">
