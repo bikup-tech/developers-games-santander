@@ -8,11 +8,12 @@ function TeamProfileParticipant({ participantNumber, participant }) {
   return (
     <div className="register__participant register__participant-border">
       <h3 className="participant__title app__title app__title--noPadding">
-        Participante
-        {' '}
         {participantNumber}
+        {' - '}
+        {participant.name}
         {' '}
-        {participant.isCaptain ? '- Capitán' : ''}
+        {participant.isCaptain ? '(Capitán)' : ''}
+
       </h3>
       <div className="participant__inputs">
         <div className="inputs__entries">
