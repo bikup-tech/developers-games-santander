@@ -1,0 +1,10 @@
+@import '../../assets/styles/mixins.scss';
+@import '../../assets/styles/styleConstants.scss';
+
+.footer-container {
+    @include flex();
+    background-color: $semiBlue;
+    width: 100%;
+    height: 32px;
+    color: white;
+}
