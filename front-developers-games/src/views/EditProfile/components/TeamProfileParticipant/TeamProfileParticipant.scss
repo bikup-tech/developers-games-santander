@@ -4,7 +4,19 @@
 
 
 .register__participant-border {
-    border: 1px solid $darkBlue;
+    border: 1px solid $semiBlue;
     margin: $m-12;
     padding: $p-12;
+    max-width: 1024px;
+    width: 80%;
+
+    background: white;
+    @media only screen and (min-width: $query-1280){
+        width: 100%;
+        align-items: flex-start;
+    }
+}
+
+.app__title--noPadding {
+    padding: $p-6 !important;
 }

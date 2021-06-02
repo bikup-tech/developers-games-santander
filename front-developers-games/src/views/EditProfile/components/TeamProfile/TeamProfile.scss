@@ -8,6 +8,7 @@
     border: 1px solid $semiBlue;
     padding: $p-12;
     width: 80%;
+    background: white;
 
     @media only screen and(min-width: $query-1280){
         flex-direction: row;
@@ -114,4 +115,9 @@
         @include flex($justify-content: space-between);
 
     }
+}
+
+.team-profile__members {
+    @include flex($flex-direction:column);
+    width: 100%;
 }

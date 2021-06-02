@@ -7,12 +7,13 @@ import Input from '../../../../components/Input/Input';
 function TeamProfileParticipant({ participantNumber, participant }) {
   return (
     <div className="register__participant register__participant-border">
-      <h3 className="participant__title app__title">
-        Participante
-        {' '}
+      <h3 className="participant__title app__title app__title--noPadding">
         {participantNumber}
+        {' - '}
+        {participant.name}
         {' '}
-        {participant.isCaptain ? '- Capitán' : ''}
+        {participant.isCaptain ? '(Capitán)' : ''}
+
       </h3>
       <div className="participant__inputs">
         <div className="inputs__entries">
