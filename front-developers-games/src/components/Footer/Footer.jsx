@@ -35,9 +35,11 @@ function Footer() {
   return (
     <footer className="footer-container">
       <p>Copyright ©2021 Red Hat, Inc</p>
-      {
-                renderedFooter
-            }
+      <nav>
+        {
+            renderedFooter
+        }
+      </nav>
     </footer>
   );
 }
