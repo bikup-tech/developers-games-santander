@@ -24,7 +24,6 @@ function authController() {
       };
 
       const foundParticipant = await participantsModel.findOne(findQuery);
-
       if (!foundParticipant) {
         throw new CustomError(CONFLICT, NO_USER_FOUND);
       }
