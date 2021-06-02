@@ -21,7 +21,7 @@ function EditProfile() {
         </AppWrapper>
       )
       : (
-        <AppWrapper title={`Hola ${team.name} team`}>
+        <AppWrapper title={`Hola ${team.name}`}>
           <TeamProfile />
         </AppWrapper>
       )

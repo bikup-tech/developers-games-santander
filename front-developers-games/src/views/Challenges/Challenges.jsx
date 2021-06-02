@@ -36,7 +36,7 @@ function Challenges() {
   }, [team, team?._id]);
 
   useEffect(() => {
-    if (!teamChallenges && team?._id) {
+    if (!teamChallenges || !teamChallenges?.length) {
       dispatch(loadTeamChallenges(team?._id));
     }
   }, [teamChallenges, team?._id]);

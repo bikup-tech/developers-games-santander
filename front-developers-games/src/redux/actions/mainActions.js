@@ -39,6 +39,12 @@ export function setTeamChallengesLoading() {
   };
 }
 
+export function clearTeamChallenges() {
+  return {
+    type: actionTypes.CLEAR_TEAM_CHALLENGES,
+  };
+}
+
 export function loadTeamChallengesSuccess(teamChallenges) {
   const sortedChallenges = teamChallenges.sort(
     (a, b) => a.tournamentChallenge.number - b.tournamentChallenge.number,
