@@ -9,6 +9,7 @@ const fileupload = require('express-fileupload');
 
 // Routers
 const authRouter = require('./src/routes/authRouter');
+const profileRouter = require('./src/routes/profileRouter');
 const teamsRouter = require('./src/routes/teamsRouter');
 const tournamentChallengesRouter = require('./src/routes/tournamentChallengesRouter');
 const teamChallengesRouter = require('./src/routes/teamChallengesRouter');
@@ -26,6 +27,7 @@ app.use(json());
 app.use(fileupload());
 
 app.use('/api/auth', authRouter);
+app.use('/api/profile', profileRouter);
 app.use('/api/teams', teamsRouter);
 app.use('/api/tournamentChallenges', tournamentChallengesRouter);
 app.use('/api/teamChallenges', teamChallengesRouter);

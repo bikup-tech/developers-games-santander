@@ -26,6 +26,12 @@ export default function mainReducer(state = {}, action) {
       break;
 
     // TEAM CHALLENGES
+    case actionTypes.CLEAR_TEAM_CHALLENGES:
+      newState = {
+        ...state,
+        teamChallenges: [],
+      };
+      break;
     case actionTypes.SET_TEAM_CHALLENGES_LOADING:
       newState = {
         ...state, teamChallengesLoading: true,
@@ -103,6 +109,18 @@ export default function mainReducer(state = {}, action) {
       break;
 
     // TEAM
+    case actionTypes.LOAD_TEAM_LOADING:
+      newState = { ...state, teamLoading: true };
+      break;
+    case actionTypes.LOAD_TEAM_ERROR:
+      newState = { ...state, teamLoading: false, teamError: action.error };
+      break;
+    case actionTypes.LOAD_TEAM_SUCCESS:
+      newState = {
+        ...state, teamLoading: false, teamError: null, team: action.team,
+      };
+
+      break;
     case actionTypes.INCREMENT_SOLVED_CHALLENGES_ERROR:
       newState = {
         ...state,

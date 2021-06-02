@@ -38,6 +38,7 @@
 .button-children{
     @include flex();
     cursor: pointer;
+    text-decoration: unset;
 }
 
 .form__info {

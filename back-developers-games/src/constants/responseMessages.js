@@ -10,4 +10,10 @@ module.exports = {
   MISSING_PARTICIPANT_PROPERTIES: 'Some participant is missing required fields. Be sure to include the name, surname, email and phone for each participant.',
   REGISTER_TEAM_SUCCESS: 'Team registered successfully.',
   MISSING_USER_PROPERTIES: 'Some user is missing a required camp. Be sure to include: name, surname, email, phone and teamNumber',
+  EMPTY_BODY: 'The request body is empty.',
+  WRONG_PROPERTIES: 'Some of the request body properties are not valid.',
+  UPDATE_PROFILE_SUCCESS: 'Tu perfil ha sido actualizado correctamente.',
+  NO_TEAM_FOUND: (teamId) => `No se ha encontrado un equipo con el ID ${teamId}.`,
+  NO_USER_ID_FOUND: (userId) => `No se ha encontrado un usuario con el ID ${userId}.`,
+  WRONG_PASSWORD: 'La contraseña no es correcta',
 };
