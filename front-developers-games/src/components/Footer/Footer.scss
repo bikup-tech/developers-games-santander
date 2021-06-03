@@ -43,12 +43,15 @@
     text-decoration: none;
     color: white;
     padding: $p-2;
+    &:focus{
+        text-decoration: underline;
+    }
 
     @media only screen and (min-width:$query-1280){
         padding: unset;
+        &:hover{
+            text-decoration: underline;
+        }
     }
 
-    &:hover :focus{
-        text-decoration: underline;
-    }
 }
