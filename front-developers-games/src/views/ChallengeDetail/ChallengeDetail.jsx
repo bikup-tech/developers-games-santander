@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import './ChallengeDetail.scss';
@@ -15,6 +14,7 @@ import renderChallengeNumber from '../../utils/renderChallengeNumber';
 // Action-Creators
 import {
   loadChallengeDetail, uploadChallengeDeliverable, sendChallenge, incrementTeamSolvedChallenges,
+  clearTeamChallenges,
 } from '../../redux/actions/mainActions';
 
 // Components
@@ -43,6 +43,7 @@ function ChallengeDetail() {
 
   useEffect(() => {
     dispatch(loadChallengeDetail(toLoadChallengeDetail));
+    dispatch(clearTeamChallenges());
   }, [toLoadChallengeDetail]);
 
   useEffect(() => {

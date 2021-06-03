@@ -101,7 +101,7 @@ function TeamProfile() {
       </form>
       <div className="team-profile__members">
         {team?.participants?.map((participant, index) => (
-          <TeamProfileParticipant participantNumber={index} participant={participant} />
+          <TeamProfileParticipant participantNumber={index + 1} participant={participant} />
         ))}
       </div>
     </div>

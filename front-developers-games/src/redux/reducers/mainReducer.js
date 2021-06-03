@@ -26,6 +26,12 @@ export default function mainReducer(state = {}, action) {
       break;
 
     // TEAM CHALLENGES
+    case actionTypes.CLEAR_TEAM_CHALLENGES:
+      newState = {
+        ...state,
+        teamChallenges: [],
+      };
+      break;
     case actionTypes.SET_TEAM_CHALLENGES_LOADING:
       newState = {
         ...state, teamChallengesLoading: true,

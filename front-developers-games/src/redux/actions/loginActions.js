@@ -29,12 +29,6 @@ export function login(email, password) {
       const loginEndpoint = `${APIConstants.HOSTNAME}${APIConstants.LOGIN}`;
       const { data } = await axios.post(loginEndpoint, body);
 
-      dispatch(
-        setAlert(
-          alertConstants.types.SUCCESS,
-          alertConstants.messages.LOGIN_TEAM,
-        ),
-      );
       dispatch(loginSuccess(data));
     } catch (logError) {
       dispatch(

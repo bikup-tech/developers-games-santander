@@ -33,7 +33,7 @@ function teamService() {
       new: true, useFindAndModify: false,
     };
 
-    return teamModel.findOneAndUpdate({ _id }, updateQuery, updateOptions);
+    return teamModel.findOneAndUpdate({ _id }, updateQuery, updateOptions).populate('participants');
   }
 
   async function findTournamentTeams(tournamentId) {
