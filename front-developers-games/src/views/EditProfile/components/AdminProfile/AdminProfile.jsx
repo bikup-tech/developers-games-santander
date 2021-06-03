@@ -20,7 +20,7 @@ import MainButton from '../../../../components/MainButton/MainButton';
 function AdminProfile() {
   const {
     name, email, phone,
-  } = useSelector(({ authReducer }) => authReducer.user);
+  } = useSelector(({ authReducer }) => authReducer.user.userLogged);
 
   const initialState = {
     adminName: name,
