@@ -15,16 +15,16 @@ const adminFooter = [
 ];
 
 function Footer() {
-  const [renderFooter, setRenderFooter] = useState(participantFooter);
+  const [footerNavigation, setFooterNavigation] = useState(participantFooter);
   const { isAdmin } = useSelector(({ authReducer }) => authReducer.user.userLogged);
 
   useEffect(() => {
     isAdmin
-      ? setRenderFooter(adminFooter)
-      : setRenderFooter(participantFooter);
+      ? setFooterNavigation(adminFooter)
+      : setFooterNavigation(participantFooter);
   }, [isAdmin]);
 
-  const renderedFooter = renderFooter.map((element) => (
+  const renderedFooter = footerNavigation.map((element) => (
     <Link
       to={element.route}
       key={element.name}
