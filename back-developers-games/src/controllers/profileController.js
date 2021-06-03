@@ -12,14 +12,21 @@ const CustomError = require('../utils/CustomError');
 const handleResponseError = require('../utils/handleResponseError');
 const handleResponseSuccess = require('../utils/handleResponseSuccess');
 
-const validProps = {
+const teamValidProps = {
   teamName: 'teamName',
   teamId: 'teamId',
   newPassword: 'newPassword',
   participantId: 'participantId',
 };
 
-function bodyHasWrongProps([...props]) {
+const adminValidProps = {
+  name: 'name',
+  newPassword: 'newPassword',
+  phone: 'phone',
+  participantId: 'participantId',
+};
+
+function bodyHasWrongProps([...props], validProps) {
   let hasWrongProperties = false;
 
   props.forEach((prop) => {
@@ -38,7 +45,7 @@ function profileController() {
         throw new CustomError(BAD_REQUEST, EMPTY_BODY);
       }
 
-      if (bodyHasWrongProps(Object.keys(body))) {
+      if (bodyHasWrongProps(Object.keys(body), teamValidProps)) {
         throw new CustomError(BAD_REQUEST, WRONG_PROPERTIES);
       }
 
@@ -66,7 +73,31 @@ function profileController() {
     }
   }
 
-  return { modifyTeamProfile };
+  async function modifyAdminProfile({ body }, res) {
+    try {
+      if (!Object.keys(body).length) {
+        throw new CustomError(BAD_REQUEST, EMPTY_BODY);
+      }
+
+      if (bodyHasWrongProps(Object.keys(body), adminValidProps)) {
+        throw new CustomError(BAD_REQUEST, WRONG_PROPERTIES);
+      }
+
+      const { newPassword, participantId, ...bodyProps } = body;
+
+      if (newPassword) {
+        bodyProps.password = newPassword;
+      }
+
+      await participantService.updateParticipant(participantId, bodyProps);
+
+      return handleResponseSuccess(res, UPDATE_PROFILE_SUCCESS);
+    } catch (modifyAdminError) {
+      return handleResponseError(res, modifyAdminError);
+    }
+  }
+
+  return { modifyTeamProfile, modifyAdminProfile };
 }
 
 module.exports = profileController();

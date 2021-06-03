@@ -9,6 +9,7 @@ export default {
   UPDATE_TEAM: (teamId) => `/api/teams/${teamId}`,
   LOAD_TOURNAMENT_TEAMS: (tournamentId) => `/api/teams?tournamentId=${tournamentId}`,
   EDIT_TEAM_PROFILE: '/api/profile/team',
+  EDIT_ADMIN_PROFILE: '/api/profile/admin',
   CHECK_PASSWORD: '/api/auth/check',
   LOAD_TEAM: (captainId) => `/api/teams/captain/${captainId}`,
 };
