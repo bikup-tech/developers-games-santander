@@ -28,18 +28,21 @@ function Footer() {
     <Link
       to={element.route}
       key={element.name}
+      className="items__item"
     >
       {element.name}
     </Link>
   ));
   return (
     <footer className="footer-container">
-      <p>Copyright ©2021 Red Hat, Inc</p>
-      <nav>
-        {
+      <div className="footer__items">
+        <p className="items__text">Copyright ©2021 Red Hat, Inc</p>
+        <nav className="items__navigation">
+          {
             renderedFooter
-        }
-      </nav>
+          }
+        </nav>
+      </div>
     </footer>
   );
 }
