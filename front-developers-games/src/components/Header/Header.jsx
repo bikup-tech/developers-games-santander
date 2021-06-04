@@ -17,11 +17,19 @@ const unloggedNavigation = [
   { name: 'Bases y condiciones', route: '/terms' },
   { name: 'Entrar', route: '/login' },
 ];
-const loggedNavigation = [
-  { name: 'Premios', route: '/awards' },
-  { name: 'Bases y condiciones', route: '/terms' },
-  { name: 'Desafíos', route: '/challenges' },
+const participantNavigation = [
+  { name: 'Desafios', route: '/challenges' },
+  { name: 'Pide tu welcome kit', route: '/' },
   { name: 'TeamName', route: '/profile' },
+];
+const adminNavigation = [
+  { name: 'Ver equipos', route: '/teams' },
+  { name: 'Añadir administradores', route: '/profile' },
+  { name: 'adminName', route: '/profile' },
+];
+const mentorNavigation = [
+  { name: 'Ver equipos', route: '/teams' },
+  { name: 'mentorName', route: '/profile' },
 ];
 
 function Header() {
@@ -32,7 +40,7 @@ function Header() {
 
   useEffect(() => {
     user?.isLogged
-      ? setRenderedNavigation(loggedNavigation)
+      ? setRenderedNavigation(participantNavigation)
       : setRenderedNavigation(unloggedNavigation);
   }, [user?.isLogged]);
 
