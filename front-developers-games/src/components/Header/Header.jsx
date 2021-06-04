@@ -1,7 +1,7 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -68,9 +68,7 @@ function Header() {
         exact
       >
         {element.name}
-        {
-          console.log(element.name)
-        }
+
       </NavLink>
     )
     : (
@@ -82,7 +80,6 @@ function Header() {
         onClick={handleHamburgerClick}
       >
         {element.name}
-        {console.log(element.name)}
       </a>
     )));
 
