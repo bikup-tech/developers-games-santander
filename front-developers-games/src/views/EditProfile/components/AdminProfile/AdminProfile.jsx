@@ -115,7 +115,7 @@ function AdminProfile() {
           <div className="login-separator" />
           <div className="login-info__data">
             <div className="data__teamname profile-input-container">
-              <Input type="text" name="adminName" placeholder="Nombre del Administrador" value={editAdminProfile.adminName} blueText onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.adminName} />
+              <Input type="text" name="adminName" placeholder="Nombre del Administrador" value={editAdminProfile.adminName} blueText onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.adminName} maxLength={18} />
             </div>
             <div className="data__password">
               <div className="password-input profile-input-container profile-input-container--small ">

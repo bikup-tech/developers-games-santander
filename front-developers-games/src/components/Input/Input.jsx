@@ -2,7 +2,8 @@ import React from 'react';
 import './Input.scss';
 
 function Input({
-  type, name, placeholder, value, isIncorrect, onChange, autocomplete, blueText, disabled,
+  type, name, placeholder, value, isIncorrect, onChange,
+  autocomplete, blueText, disabled, maxLength,
 }) {
   return (
     <input
@@ -15,6 +16,7 @@ function Input({
       value={value}
       autoComplete={autocomplete ? 'on' : 'off'}
       disabled={disabled}
+      maxLength={maxLength}
     />
   );
 }

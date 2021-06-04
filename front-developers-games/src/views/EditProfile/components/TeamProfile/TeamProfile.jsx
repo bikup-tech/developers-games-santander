@@ -30,8 +30,6 @@ function TeamProfile() {
 
   const [isNameModified, setIsNameModified] = useState(false);
 
-  console.log('newPassword: ', newPassword);
-
   useEffect(() => {
     if (team) {
       dispatch(setProfileInputValue('teamName', team.name));
@@ -89,7 +87,7 @@ function TeamProfile() {
         <div className="login-separator" />
         <div className="login-info__data">
           <div className="data__teamname profile-input-container">
-            <Input type="text" name="teamName" placeholder="Nombre del equipo" value={teamName} blueText onChange={handleInputChange} isIncorrect={!teamName} />
+            <Input type="text" name="teamName" placeholder="Nombre del equipo" value={teamName} blueText onChange={handleInputChange} isIncorrect={!teamName} maxLength={18} />
           </div>
           <div className="data__password">
             <div className="password-input profile-input-container profile-input-container--small ">

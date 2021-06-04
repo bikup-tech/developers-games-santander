@@ -41,6 +41,7 @@ function Participant({ participantNumber, isCaptain }) {
               value={name}
               onChange={handleTextInputChange}
               isIncorrect={wrongname}
+              maxLength={18}
             />
           </div>
           <div className="entries__surname">
