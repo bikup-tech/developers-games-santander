@@ -39,7 +39,11 @@ function Login() {
 
   useEffect(() => {
     if (user.isLogged) {
-      history.replace('/challenges');
+      if (user.userLogged.isAdmin) {
+        history.replace('/profile');
+      } else {
+        history.replace('/challenges');
+      }
     }
     if (loginError) {
       setWarningMessage(warningMessages.login.LOGIN_ERROR);

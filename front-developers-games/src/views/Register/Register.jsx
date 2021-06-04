@@ -1,5 +1,4 @@
 /* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -29,13 +28,12 @@ function Register() {
   const registerReducer = useSelector(({ registerReducer }) => registerReducer);
   const { tournamentId } = useSelector(({ mainReducer }) => mainReducer);
   const {
-    teamName, registerTermsConditions, registerWrongValues, isTeamRegistered, registerTeamError,
-  } = useSelector((
-    { registerReducer },
-  ) => registerReducer);
+    teamName, registerTermsConditions, registerWrongValues, isTeamRegistered,
+  } = useSelector(({ registerReducer }) => registerReducer);
 
   const [participantsCounter, setParticipantsCounter] = useState(1);
   const [warningMessage, setWarningMessage] = useState('');
+  // eslint-disable-next-line no-unused-vars
   const [renderedParticipants, setRenderedParticipants] = useState([]);
 
   function handleTextInputChange({ target: { value } }) {
@@ -132,6 +130,7 @@ function Register() {
               value={teamName}
               onChange={handleTextInputChange}
               isIncorrect={registerWrongValues.teamName}
+              maxLength={18}
             />
           </div>
           {/* <div className="form__entry-photo">

@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import './AdminProfile.scss';
 
@@ -13,14 +14,18 @@ import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
 import viewIcon from '../../../../assets/images/view-icon.svg';
 
+// Action Creators
+import { updateAdminProfile } from '../../../../redux/actions/profileActions';
+
 // components
 import Input from '../../../../components/Input/Input';
 import MainButton from '../../../../components/MainButton/MainButton';
 
 function AdminProfile() {
+  const dispatch = useDispatch();
   const {
-    name, email, phone,
-  } = useSelector(({ authReducer }) => authReducer.user);
+    name, email, phone, _id,
+  } = useSelector(({ authReducer }) => authReducer.user.userLogged);
 
   const initialState = {
     adminName: name,
@@ -31,7 +36,6 @@ function AdminProfile() {
     isIncorrectValues: {
       adminName: false,
       password: false,
-      newPassword: false,
       email: false,
       phone: false,
     },
@@ -41,23 +45,32 @@ function AdminProfile() {
   const [warningMessage, setWarningMessage] = useState('');
 
   function handleInputChange({ target }) {
-    setEditAdminProfile({
-      ...editAdminProfile,
-      [target.name]: target.value,
-      isIncorrectValues: {
-        ...editAdminProfile.isIncorrectValues,
-        [target.name]: false,
-      },
-    });
-    setWarningMessage('');
+    if (target.name !== 'newPassword') {
+      setEditAdminProfile({
+        ...editAdminProfile,
+        [target.name]: target.value,
+        isIncorrectValues: {
+          ...editAdminProfile.isIncorrectValues,
+          [target.name]: false,
+        },
+      });
+      setWarningMessage('');
+    } else {
+      setEditAdminProfile({
+        ...editAdminProfile,
+        [target.name]: target.value,
+        isIncorrectValues: {
+          ...editAdminProfile.isIncorrectValues,
+        },
+      });
+    }
   }
 
   function handleSaveChangesClick() {
     let isFormValid = true;
     const inputsToValidate = (({ isIncorrectValues, ...rest }) => rest)(editAdminProfile);
-
     Object.entries(inputsToValidate).forEach(([key, value]) => {
-      if (!value) {
+      if (!value && key !== 'newPassword') {
         setEditAdminProfile({
           ...editAdminProfile,
           isIncorrectValues: {
@@ -68,12 +81,19 @@ function AdminProfile() {
         setWarningMessage(warningMessages.login.LOGIN_REQUIRED_ENTRY);
         isFormValid = false;
       }
-
-      if (isFormValid) {
-        // dispatch update admin action in profileController
-        setWarningMessage('');
-      }
     });
+    if (isFormValid) {
+      const credentials = { userId: _id, password: editAdminProfile.password };
+      const body = {
+        participantId: _id,
+        phone: editAdminProfile.phone,
+        newPassword: editAdminProfile.newPassword ? editAdminProfile.newPassword : null,
+        name: editAdminProfile.adminName,
+      };
+      dispatch(updateAdminProfile(credentials, body));
+      setEditAdminProfile({ ...editAdminProfile, password: '', newPassword: '' });
+      setWarningMessage('');
+    }
   }
 
   return (
@@ -95,7 +115,7 @@ function AdminProfile() {
           <div className="login-separator" />
           <div className="login-info__data">
             <div className="data__teamname profile-input-container">
-              <Input type="text" name="adminName" placeholder="Nombre del Administrador" value={editAdminProfile.adminName} blueText onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.adminName} />
+              <Input type="text" name="adminName" placeholder="Nombre del Administrador" value={editAdminProfile.adminName} blueText onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.adminName} maxLength={18} />
             </div>
             <div className="data__password">
               <div className="password-input profile-input-container profile-input-container--small ">

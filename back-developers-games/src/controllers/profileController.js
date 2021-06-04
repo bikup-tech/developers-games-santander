@@ -1,6 +1,7 @@
 const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
 const {
   UPDATE_PROFILE_SUCCESS, EMPTY_BODY, NO_TEAM_FOUND, WRONG_PROPERTIES, NO_USER_ID_FOUND,
+  MISSING_PROPERTIES,
 } = require('../constants/responseMessages');
 
 // Services
@@ -12,14 +13,21 @@ const CustomError = require('../utils/CustomError');
 const handleResponseError = require('../utils/handleResponseError');
 const handleResponseSuccess = require('../utils/handleResponseSuccess');
 
-const validProps = {
+const teamValidProps = {
   teamName: 'teamName',
   teamId: 'teamId',
   newPassword: 'newPassword',
   participantId: 'participantId',
 };
 
-function bodyHasWrongProps([...props]) {
+const adminValidProps = {
+  name: 'name',
+  newPassword: 'newPassword',
+  phone: 'phone',
+  participantId: 'participantId',
+};
+
+function bodyHasWrongProps([...props], validProps) {
   let hasWrongProperties = false;
 
   props.forEach((prop) => {
@@ -38,7 +46,7 @@ function profileController() {
         throw new CustomError(BAD_REQUEST, EMPTY_BODY);
       }
 
-      if (bodyHasWrongProps(Object.keys(body))) {
+      if (bodyHasWrongProps(Object.keys(body), teamValidProps)) {
         throw new CustomError(BAD_REQUEST, WRONG_PROPERTIES);
       }
 
@@ -66,7 +74,53 @@ function profileController() {
     }
   }
 
-  return { modifyTeamProfile };
+  async function modifyAdminProfile({ body }, res) {
+    try {
+      if (!Object.keys(body).length) {
+        throw new CustomError(BAD_REQUEST, EMPTY_BODY);
+      }
+
+      if (bodyHasWrongProps(Object.keys(body), adminValidProps)) {
+        throw new CustomError(BAD_REQUEST, WRONG_PROPERTIES);
+      }
+
+      const { newPassword, participantId, ...bodyProps } = body;
+
+      if (newPassword) {
+        bodyProps.password = newPassword;
+      }
+      const updatedAdmin = await participantService.updateParticipant(participantId, bodyProps);
+
+      if (!updatedAdmin.n) {
+        throw new CustomError(CONFLICT, NO_USER_ID_FOUND(body.participantId));
+      }
+
+      const data = await participantService.findParticipantById(body.participantId);
+      const { password, ...foundAdmin } = data._doc;
+
+      return handleResponseSuccess(res, foundAdmin);
+    } catch (modifyAdminError) {
+      return handleResponseError(res, modifyAdminError);
+    }
+  }
+
+  async function getParticipantById({ params: { participantId } }, res) {
+    try {
+      if (!participantId) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('participantId'));
+      }
+
+      const data = await participantService.findParticipantById(participantId);
+
+      const { password, ...foundParticipant } = data._doc;
+
+      return handleResponseSuccess(res, foundParticipant);
+    } catch (getParticipantError) {
+      return handleResponseError(res, getParticipantError);
+    }
+  }
+
+  return { modifyTeamProfile, modifyAdminProfile, getParticipantById };
 }
 
 module.exports = profileController();
