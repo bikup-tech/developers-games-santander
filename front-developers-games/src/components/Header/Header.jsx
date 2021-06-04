@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -17,41 +18,70 @@ const unloggedNavigation = [
   { name: 'Bases y condiciones', route: '/terms' },
   { name: 'Entrar', route: '/login' },
 ];
-const loggedNavigation = [
-  { name: 'Premios', route: '/awards' },
-  { name: 'Bases y condiciones', route: '/terms' },
-  { name: 'Desafíos', route: '/challenges' },
-  { name: 'TeamName', route: '/profile' },
-];
 
 function Header() {
+  const { isLogged, userLogged } = useSelector(({ authReducer }) => authReducer.user);
+  const { name: userName } = useSelector(({ authReducer }) => authReducer.user.userLogged);
+
+  const participantNavigation = [
+    { name: 'Desafios', route: '/challenges' },
+    { name: 'Pide tu welcome kit', route: '/' },
+    { name: userName, route: '/profile' },
+  ];
+  const adminNavigation = [
+    { name: 'Ver equipos', route: '/teams' },
+    { name: 'Añadir administradores', route: '/profile' },
+    { name: userName, route: '/profile' },
+  ];
+  const mentorNavigation = [
+    { name: 'Ver equipos', route: '/teams' },
+    { name: userName, route: '/profile' },
+  ];
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [renderedNavigation, setRenderedNavigation] = useState(unloggedNavigation);
 
-  const { user } = useSelector(({ authReducer }) => authReducer);
-
   useEffect(() => {
-    user?.isLogged
-      ? setRenderedNavigation(loggedNavigation)
-      : setRenderedNavigation(unloggedNavigation);
-  }, [user?.isLogged]);
+    if (isLogged) {
+      if (userLogged?.isCaptain) {
+        setRenderedNavigation(participantNavigation);
+      } else {
+        setRenderedNavigation(adminNavigation);
+      }
+    } else {
+      setRenderedNavigation(unloggedNavigation);
+    }
+  }, [userLogged?.isCaptain, isLogged]);
 
   function handleHamburgerClick() {
     setIsMenuOpen(!isMenuOpen);
   }
 
-  const renderMenu = renderedNavigation.map((element) => (
-    <NavLink
-      to={element.route}
-      key={element.name}
-      className="navigation__item"
-      activeClassName="navigation__item--active"
-      onClick={handleHamburgerClick}
-      exact
-    >
-      {element.name}
-    </NavLink>
-  ));
+  const renderMenu = renderedNavigation.map((element) => (element.name !== 'Pide tu welcome kit'
+    ? (
+      <NavLink
+        to={element.route}
+        key={element.name}
+        className="navigation__item"
+        activeClassName="navigation__item--active"
+        onClick={handleHamburgerClick}
+        exact
+      >
+        {element.name}
+
+      </NavLink>
+    )
+    : (
+      <a
+        href="http://www.google.com"
+        target="_blank"
+        rel="noreferrer"
+        className="navigation__item"
+        onClick={handleHamburgerClick}
+      >
+        {element.name}
+      </a>
+    )));
 
   return (
     <header className="header">
@@ -77,7 +107,7 @@ function Header() {
         <img src={closeMenuIcon} alt="Close menu icon" className="mobile-menu__close" onClick={handleHamburgerClick} />
         <nav className="menu__navigation">{renderMenu}</nav>
       </div>
-      <div className={user.isLogged ? 'header__banner--small' : 'header__banner--big'} />
+      <div className={isLogged ? 'header__banner--small' : 'header__banner--big'} />
     </header>
   );
 }

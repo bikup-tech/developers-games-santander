@@ -89,7 +89,6 @@ function profileController() {
       if (newPassword) {
         bodyProps.password = newPassword;
       }
-      console.log(bodyProps);
       const updatedAdmin = await participantService.updateParticipant(participantId, bodyProps);
 
       if (!updatedAdmin.n) {
@@ -101,7 +100,6 @@ function profileController() {
 
       return handleResponseSuccess(res, foundAdmin);
     } catch (modifyAdminError) {
-      console.log(modifyAdminError);
       return handleResponseError(res, modifyAdminError);
     }
   }
