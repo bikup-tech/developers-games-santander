@@ -10,4 +10,7 @@ router.route('/team')
 router.route('/admin')
   .patch(profileController.modifyAdminProfile);
 
+router.route('/:participantId')
+  .get(profileController.getParticipantById);
+
 module.exports = router;

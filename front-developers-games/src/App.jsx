@@ -15,7 +15,6 @@ import EditProfile from './views/EditProfile/EditProfile';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import SuperProtectedRoute from './components/SuperProtectedRoute/SuperProtectedRoute';
 import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -30,7 +29,6 @@ function App() {
         <ProtectedRoute path="/profile" component={EditProfile} />
         <SuperProtectedRoute path="/teams" component={Teams} />
       </Switch>
-      <Footer />
     </div>
   );
 }

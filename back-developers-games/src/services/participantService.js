@@ -47,7 +47,11 @@ function participantService() {
     return participantModel.updateOne(findQuery, updateQuery, updateOptions);
   }
 
-  return { createParticipant, updateParticipant };
+  async function findParticipantById(participantId) {
+    return participantModel.findById(participantId);
+  }
+
+  return { createParticipant, updateParticipant, findParticipantById };
 }
 
 module.exports = participantService();

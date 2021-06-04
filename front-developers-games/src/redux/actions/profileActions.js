@@ -6,7 +6,7 @@ import actionTypes from './actionTypes';
 
 // Action Creators
 import { setAlert } from './alertActions';
-import { loadTeam } from './loginActions';
+import { loadTeam, loginSuccess } from './loginActions';
 
 export function setProfileInputValue(name, value) {
   return {
@@ -34,6 +34,30 @@ export function updateTeamProfile(credentials, body) {
         if (body.teamName) {
           dispatch(loadTeam(credentials.userId));
         }
+      } else {
+        dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.WRONG_PASSWORD));
+      }
+    } catch (error) {
+      dispatch(setAlert(alertConstants.types.ERROR, alertConstants
+        .messages.MODIFY_PROFILE_ERROR));
+    }
+  };
+}
+
+export function updateAdminProfile(credentials, body) {
+  return async (dispatch) => {
+    try {
+      const checkEndpoint = `${APIConstants.HOSTNAME}${APIConstants.CHECK_PASSWORD}`;
+      const editProfileEndpoint = `${APIConstants.HOSTNAME}${APIConstants.EDIT_ADMIN_PROFILE}`;
+
+      const { data: isAllowed } = await axios.post(checkEndpoint, credentials);
+
+      if (isAllowed) {
+        const updatedAdmin = await axios.patch(editProfileEndpoint, body);
+        dispatch(
+          setAlert(alertConstants.types.SUCCESS, alertConstants.messages.MODIFY_PROFILE_SUCCESS),
+        );
+        dispatch(loginSuccess(updatedAdmin));
       } else {
         dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.WRONG_PASSWORD));
       }
