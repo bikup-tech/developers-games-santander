@@ -30,6 +30,8 @@ function TeamProfile() {
 
   const [isNameModified, setIsNameModified] = useState(false);
 
+  console.log('newPassword: ', newPassword);
+
   useEffect(() => {
     if (team) {
       dispatch(setProfileInputValue('teamName', team.name));
@@ -64,6 +66,8 @@ function TeamProfile() {
       };
 
       dispatch(updateTeamProfile(credentials, updateProfile));
+      dispatch(setProfileInputValue('newPassword', ''));
+      dispatch(setProfileInputValue('password', ''));
     }
   }
 
@@ -90,11 +94,11 @@ function TeamProfile() {
           <div className="data__password">
             <div className="password-input profile-input-container profile-input-container--small ">
               <label className="profile-input__label" htmlFor="password">Contraseña</label>
-              <Input type="password" name="password" placeholder="Entra tu contraseña" autocomplete onChange={handleInputChange} isIncorrect={!password} />
+              <Input type="password" name="password" placeholder="Entra tu contraseña" autocomplete value={password} onChange={handleInputChange} isIncorrect={!password} />
             </div>
             <div className="password__repeat-input profile-input-container profile-input-container--small">
               <label className="profile-input__label" htmlFor="repeat-password">Nueva contraseña</label>
-              <Input type="password" name="newPassword" placeholder="Nueva contraseña" autocomplete onChange={handleInputChange} />
+              <Input type="password" name="newPassword" placeholder="Nueva contraseña" autocomplete value={newPassword} onChange={handleInputChange} />
             </div>
           </div>
         </div>
