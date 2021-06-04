@@ -51,7 +51,7 @@ function Header() {
     } else {
       setRenderedNavigation(unloggedNavigation);
     }
-  }, [userLogged, userLogged]);
+  }, [userLogged?.isCaptain, isLogged]);
 
   function handleHamburgerClick() {
     setIsMenuOpen(!isMenuOpen);
