@@ -90,7 +90,8 @@ function AdminProfile() {
         newPassword: editAdminProfile.newPassword ? editAdminProfile.newPassword : null,
         name: editAdminProfile.adminName,
       };
-      dispatch(updateAdminProfile(credentials));
+      dispatch(updateAdminProfile(credentials, body));
+      setEditAdminProfile({ ...editAdminProfile, password: '', newPassword: '' });
       setWarningMessage('');
     }
   }

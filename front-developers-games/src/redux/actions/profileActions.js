@@ -53,7 +53,7 @@ export function updateAdminProfile(credentials, body) {
       const { data: isAllowed } = await axios.post(checkEndpoint, credentials);
 
       if (isAllowed) {
-        const updatedAdmin = await axios.patch(editProfileEndpoint, body);
+        const { data: updatedAdmin } = await axios.patch(editProfileEndpoint, body);
         dispatch(
           setAlert(alertConstants.types.SUCCESS, alertConstants.messages.MODIFY_PROFILE_SUCCESS),
         );
