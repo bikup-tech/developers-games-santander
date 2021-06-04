@@ -121,6 +121,7 @@
     height: 100%;
     color: white;
     font-size: $text-16;
+    text-align: center;
     @media only screen and (min-width: $query-1280) {
       color: $semiBlue;
       &:hover {
