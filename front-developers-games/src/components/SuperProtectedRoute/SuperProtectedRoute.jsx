@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 function SuperProtectedRoute({
   path, component: Compo, exact, ...rest
 }) {
-  const access = useSelector(({ authReducer }) => authReducer?.user?.isAdmin);
+  const access = useSelector(({ authReducer }) => authReducer?.user?.userLogged?.isAdmin);
   return (
     <Route
       to={path}
