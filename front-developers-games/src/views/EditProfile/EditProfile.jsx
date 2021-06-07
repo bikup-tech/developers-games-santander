@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -22,7 +23,8 @@ function EditProfile() {
         </AppWrapper>
       )
       : (
-        <AppWrapper title={`Hola ${team.name}`}>
+        <AppWrapper title={`Hola ${user.userLogged.name}`}>
+          {/* <AppWrapper title={`Hola ${team.name}`}> */}
           {/* <TeamProfile /> */}
           <ParticipantProfile />
         </AppWrapper>
