@@ -40,7 +40,14 @@ function ParticipantProfile() {
   const [isInputIncorrect, setIsInputIncorrect] = useState(isIncorrectValues);
 
   function handleInputChange({ target }) {
+    setEditParticipantProfile({ ...editParticipantProfile, [target.name]: target.value });
+    setIsInputIncorrect({ ...setIsInputIncorrect, [target.name]: false });
+  }
 
+  function handleSaveChangesClick() {
+    const isFormValid = true;
+    // object entries de editParticipantProfile
+    // en funcion de sus valores cambiar isInputIncorrect
   }
 
   return (
@@ -49,7 +56,7 @@ function ParticipantProfile() {
         <span className="top__text">Edita tu perfil</span>
         <div className="profile-button-container">
           {/* hacer el onClick */}
-          <MainButton>Guardar Cambios</MainButton>
+          <MainButton onClick={handleSaveChangesClick}>Guardar Cambios</MainButton>
         </div>
       </div>
       <form className="team-profile__login-info--admin">
