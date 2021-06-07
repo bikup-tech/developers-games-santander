@@ -5,7 +5,8 @@ import './EditProfile.scss';
 
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
-import TeamProfile from './components/TeamProfile/TeamProfile';
+// import TeamProfile from './components/TeamProfile/TeamProfile';
+import ParticipantProfile from './components/ParticipantProfile/ParticipantProfile';
 import AdminProfile from './components/AdminProfile/AdminProfile';
 
 function EditProfile() {
@@ -22,7 +23,8 @@ function EditProfile() {
       )
       : (
         <AppWrapper title={`Hola ${team.name}`}>
-          <TeamProfile />
+          {/* <TeamProfile /> */}
+          <ParticipantProfile />
         </AppWrapper>
       )
 
