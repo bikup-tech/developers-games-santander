@@ -1,6 +1,6 @@
 export default {
   mainReducer: {
-    tournamentId: '60a909ec62f534c96ab339d7',
+    tournamentId: '60be036d5695a3805e903f91',
     participants: ['gerard'],
     team: {
       name: 'bikUP',
