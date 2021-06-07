@@ -29,6 +29,7 @@ function EditProfile() {
           <ParticipantProfile />
         </AppWrapper>
       )
+      // TODO: crear un altre appWrapper con el ParticipantProfile
 
   );
 }

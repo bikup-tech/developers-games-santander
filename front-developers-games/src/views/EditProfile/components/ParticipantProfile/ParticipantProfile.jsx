@@ -38,16 +38,31 @@ function ParticipantProfile() {
 
   const [editParticipantProfile, setEditParticipantProfile] = useState(initialStateValues);
   const [isInputIncorrect, setIsInputIncorrect] = useState(isIncorrectValues);
+  const [warningMessage, setWarningMessage] = useState('');
 
   function handleInputChange({ target }) {
     setEditParticipantProfile({ ...editParticipantProfile, [target.name]: target.value });
     setIsInputIncorrect({ ...setIsInputIncorrect, [target.name]: false });
+
+    setWarningMessage('');
   }
 
   function handleSaveChangesClick() {
-    const isFormValid = true;
-    // object entries de editParticipantProfile
-    // en funcion de sus valores cambiar isInputIncorrect
+    let isFormValid = true;
+    Object.entries(editParticipantProfile).forEach(([key, value]) => {
+      if (!value && key !== 'newPassword') {
+        setIsInputIncorrect({ ...isInputIncorrect, [key]: true });
+      }
+      setWarningMessage(warningMessages.login.LOGIN_REQUIRED_ENTRY);
+      isFormValid = false;
+    });
+
+    if (isFormValid) {
+      // TODO: fer dispatch action (y crearla) updateParticipantProfile.
+      // Podriem reciclar updateAdminProfile?
+      setEditParticipantProfile({ ...editParticipantProfile, password: '', newPassword: '' });
+      setWarningMessage('');
+    }
   }
 
   return (
