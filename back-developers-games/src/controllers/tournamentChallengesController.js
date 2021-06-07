@@ -30,6 +30,7 @@ function challengesController() {
 
       return handleResponseSuccess(res, tournamentChallenges);
     } catch (getChallengesError) {
+      res.json(req);
       return handleResponseError(res, getChallengesError);
     }
   }
