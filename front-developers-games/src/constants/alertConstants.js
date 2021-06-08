@@ -10,6 +10,7 @@ export default {
   },
   messages: {
     CREATE_TEAM_ERROR: 'Ha habido un error al crear tu equipo. Vuelve a intentarlo.',
+    ALREADY_EXISTING_TEAM: (teamName) => `There is already a team with the name ${teamName}`,
     CREATE_TEAM_SUCCESS: 'Equipo creado correctemente!',
     UPLOAD_FILE_SUCCESS: 'Se ha subido tu entregable con éxito',
     UPLOAD_FILE_ERROR: 'Ha habido un error al subir tu entregable.',
