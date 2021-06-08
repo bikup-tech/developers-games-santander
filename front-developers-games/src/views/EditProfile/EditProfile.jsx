@@ -6,8 +6,8 @@ import './EditProfile.scss';
 
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
-// import TeamProfile from './components/TeamProfile/TeamProfile';
-import ParticipantProfile from './components/ParticipantProfile/ParticipantProfile';
+import TeamProfile from './components/TeamProfile/TeamProfile';
+// import ParticipantProfile from './components/ParticipantProfile/ParticipantProfile';
 import AdminProfile from './components/AdminProfile/AdminProfile';
 
 function EditProfile() {
@@ -23,10 +23,10 @@ function EditProfile() {
         </AppWrapper>
       )
       : (
-        <AppWrapper title={`Hola ${user.userLogged.name}`}>
-          {/* <AppWrapper title={`Hola ${team.name}`}> */}
-          {/* <TeamProfile /> */}
-          <ParticipantProfile />
+    // <AppWrapper title={`Hola ${user.userLogged.name}`}>
+        <AppWrapper title={`Hola ${team.name}`}>
+          <TeamProfile />
+          {/* <ParticipantProfile /> */}
         </AppWrapper>
       )
       // TODO: crear un altre appWrapper con el ParticipantProfile
