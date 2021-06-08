@@ -8,6 +8,7 @@ import './AdminProfile.scss';
 
 // constants
 import warningMessages from '../../../../constants/warningMessages';
+import alertConstants from '../../../../constants/alertConstants';
 
 // Images
 import avatarIcon from '../../../../assets/images/avatar-icon.svg';
@@ -16,6 +17,7 @@ import viewIcon from '../../../../assets/images/view-icon.svg';
 
 // Action Creators
 import { updateAdminProfile } from '../../../../redux/actions/profileActions';
+import { setAlert } from '../../../../redux/actions/alertActions';
 
 // components
 import Input from '../../../../components/Input/Input';
@@ -54,7 +56,6 @@ function AdminProfile() {
           [target.name]: false,
         },
       });
-      setWarningMessage('');
     } else {
       setEditAdminProfile({
         ...editAdminProfile,
@@ -64,11 +65,13 @@ function AdminProfile() {
         },
       });
     }
+    setWarningMessage('');
   }
 
   function handleSaveChangesClick() {
     let isFormValid = true;
     const inputsToValidate = (({ isIncorrectValues, ...rest }) => rest)(editAdminProfile);
+
     Object.entries(inputsToValidate).forEach(([key, value]) => {
       if (!value && key !== 'newPassword') {
         setEditAdminProfile({
@@ -82,7 +85,7 @@ function AdminProfile() {
         isFormValid = false;
       }
     });
-    if (isFormValid) {
+    if (isFormValid && editAdminProfile.newPassword && editAdminProfile.newPassword.length >= 6) {
       const credentials = { userId: _id, password: editAdminProfile.password };
       const body = {
         participantId: _id,
@@ -93,6 +96,9 @@ function AdminProfile() {
       dispatch(updateAdminProfile(credentials, body));
       setEditAdminProfile({ ...editAdminProfile, password: '', newPassword: '' });
       setWarningMessage('');
+    } else {
+      editAdminProfile.newPassword.length < 6
+        && setWarningMessage(warningMessages.inputs.TOO_SHORT_PASSWORD);
     }
   }
 
