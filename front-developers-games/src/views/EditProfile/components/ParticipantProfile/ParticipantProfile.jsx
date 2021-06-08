@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import './ParticipantProfile.scss';
 
@@ -12,11 +12,15 @@ import warningMessages from '../../../../constants/warningMessages';
 import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
 
+// action-creators
+import { updateTeamProfile } from '../../../../redux/actions/profileActions';
+
 // components
 import Input from '../../../../components/Input/Input';
 import MainButton from '../../../../components/MainButton/MainButton';
 
 function ParticipantProfile() {
+  const dispatch = useDispatch();
   const {
     name, email, phone, _id,
   } = useSelector(({ authReducer }) => authReducer.user.userLogged);
@@ -39,8 +43,6 @@ function ParticipantProfile() {
   const [isInputIncorrect, setIsInputIncorrect] = useState(isIncorrectValues);
   const [warningMessage, setWarningMessage] = useState('');
 
-  console.log(isInputIncorrect);
-
   function handleInputChange({ target }) {
     setEditParticipantProfile({ ...editParticipantProfile, [target.name]: target.value });
     setIsInputIncorrect({ ...isInputIncorrect, [target.name]: false });
@@ -53,7 +55,6 @@ function ParticipantProfile() {
     const wrongValues = {};
     Object.entries(editParticipantProfile).forEach(([key, value]) => {
       if (!value && key !== 'newPassword') {
-        console.log(key, value);
         wrongValues[key] = true;
       }
       setWarningMessage(warningMessages.login.LOGIN_REQUIRED_ENTRY);
@@ -62,8 +63,11 @@ function ParticipantProfile() {
     setIsInputIncorrect(wrongValues);
 
     if (isFormValid) {
-      // TODO: fer dispatch action (y crearla) updateParticipantProfile.
-      // Podriem reciclar updateAdminProfile?
+      const credentials = {
+        userId: _id,
+        password: editParticipantProfile.password,
+      };
+      dispatch(updateTeamProfile(credentials, editParticipantProfile));
       setEditParticipantProfile({ ...editParticipantProfile, password: '', newPassword: '' });
       setWarningMessage('');
     }
@@ -126,6 +130,7 @@ function ParticipantProfile() {
           </div>
         </div>
       </form>
+      <small className="form__warningMessage">{warningMessage}</small>
     </div>
   );
 }
