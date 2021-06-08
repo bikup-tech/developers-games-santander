@@ -134,12 +134,21 @@ export function registerTeam(tournamentId, name, participants) {
       dispatch(cleanRegisterForm());
       dispatch(registerTeamSuccess());
     } catch (registerError) {
-      dispatch(
-        setAlert(
-          alertConstants.types.ERROR,
-          alertConstants.messages.CREATE_TEAM_ERROR,
-        ),
-      );
+      if (registerError?.response?.status === 409) {
+        dispatch(
+          setAlert(
+            alertConstants.types.ERROR,
+            alertConstants.messages.ALREADY_EXISTING_TEAM(name),
+          ),
+        );
+      } else {
+        dispatch(
+          setAlert(
+            alertConstants.types.ERROR,
+            alertConstants.messages.CREATE_TEAM_ERROR,
+          ),
+        );
+      }
       dispatch(registerTeamError(registerError));
     }
   };
