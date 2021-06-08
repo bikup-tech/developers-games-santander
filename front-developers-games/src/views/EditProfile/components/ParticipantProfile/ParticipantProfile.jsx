@@ -11,7 +11,6 @@ import warningMessages from '../../../../constants/warningMessages';
 // Images
 import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
-import viewIcon from '../../../../assets/images/view-icon.svg';
 
 // components
 import Input from '../../../../components/Input/Input';
@@ -40,22 +39,27 @@ function ParticipantProfile() {
   const [isInputIncorrect, setIsInputIncorrect] = useState(isIncorrectValues);
   const [warningMessage, setWarningMessage] = useState('');
 
+  console.log(isInputIncorrect);
+
   function handleInputChange({ target }) {
     setEditParticipantProfile({ ...editParticipantProfile, [target.name]: target.value });
-    setIsInputIncorrect({ ...setIsInputIncorrect, [target.name]: false });
+    setIsInputIncorrect({ ...isInputIncorrect, [target.name]: false });
 
     setWarningMessage('');
   }
 
   function handleSaveChangesClick() {
     let isFormValid = true;
+    const wrongValues = {};
     Object.entries(editParticipantProfile).forEach(([key, value]) => {
       if (!value && key !== 'newPassword') {
-        setIsInputIncorrect({ ...isInputIncorrect, [key]: true });
+        console.log(key, value);
+        wrongValues[key] = true;
       }
       setWarningMessage(warningMessages.login.LOGIN_REQUIRED_ENTRY);
       isFormValid = false;
     });
+    setIsInputIncorrect(wrongValues);
 
     if (isFormValid) {
       // TODO: fer dispatch action (y crearla) updateParticipantProfile.
@@ -70,7 +74,6 @@ function ParticipantProfile() {
       <div className="view-profile__top">
         <span className="top__text">Edita tu perfil</span>
         <div className="profile-button-container">
-          {/* hacer el onClick */}
           <MainButton onClick={handleSaveChangesClick}>Guardar Cambios</MainButton>
         </div>
       </div>
@@ -85,7 +88,7 @@ function ParticipantProfile() {
           <div className="login-separator" />
           <div className="login-info__data">
             <div className="data__teamname profile-input-container">
-              <Input type="text" name="participantName" placeholder="Nombre" value={editParticipantProfile.participantName} blueText onChange={handleInputChange} isIncorrect={isInputIncorrect.participantName} maxLength={18} />
+              <Input type="text" name="participantName" placeholder="Nombre" autocomplete value={editParticipantProfile.participantName} blueText onChange={handleInputChange} isIncorrect={isInputIncorrect.participantName} maxLength={18} />
             </div>
             <div className="data__password">
               <div className="password-input profile-input-container profile-input-container--small ">

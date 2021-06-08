@@ -37,7 +37,12 @@ export default {
     user: {
       isLogged: true,
       userLogged: {
-        name: 'gerard', _id: '60b4f66b4562c2e7a047f928', isCaptain: true, isAdmin: false,
+        name: 'gerard',
+        _id: '60b4f66b4562c2e7a047f928',
+        email: 'gerardramonlol@gmail.com',
+        phone: 99999,
+        isCaptain: true,
+        isAdmin: false,
       },
     },
   },
