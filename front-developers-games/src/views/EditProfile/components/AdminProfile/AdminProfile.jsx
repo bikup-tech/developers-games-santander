@@ -74,7 +74,6 @@ function AdminProfile() {
 
     Object.entries(inputsToValidate).forEach(([key, value]) => {
       if (!value && key !== 'newPassword') {
-        console.log(key);
         setEditAdminProfile({
           ...editAdminProfile,
           isIncorrectValues: {
