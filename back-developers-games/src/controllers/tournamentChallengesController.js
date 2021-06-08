@@ -14,8 +14,7 @@ const handleResponseSuccess = require('../utils/handleResponseSuccess');
 
 function challengesController() {
   async function getAllTournamentChallenges(req, res) {
-    const { tournamentId } = req.params;
-
+    const { tournamentId } = req.query;
     try {
       if (!tournamentId) {
         throw new CustomError(BAD_REQUEST, MISSING_QUERY_PROPERTIES('tournamentId'));

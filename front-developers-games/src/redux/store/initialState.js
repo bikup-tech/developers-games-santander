@@ -1,9 +1,9 @@
 export default {
   mainReducer: {
-    tournamentId: '60a909ec62f534c96ab339d7',
-    participants: ['gerard'],
+    tournamentId: '60be036d5695a3805e903f91',
+    participants: [],
     team: {
-      name: 'bikUP',
+      name: '',
     },
     alert: { type: '', message: '' },
     toLoadChallengeDetail: localStorage.getItem('toLoadChallengeDetail') || '',

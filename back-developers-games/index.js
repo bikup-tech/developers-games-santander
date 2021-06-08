@@ -17,7 +17,11 @@ const teamChallengesRouter = require('./src/routes/teamChallengesRouter');
 const app = express();
 const PORT = process.env.PORT || 4200;
 
-mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(
+  'mongodb+srv://developer-games:developer-games@developer-games-cluster.f0myq.mongodb.net/developer-games?retryWrites=true&w=majority',
+  { useNewUrlParser: true, useUnifiedTopology: true },
+);
 
 app.use(cors());
 

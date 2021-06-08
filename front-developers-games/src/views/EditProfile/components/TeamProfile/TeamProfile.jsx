@@ -5,12 +5,16 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './TeamProfile.scss';
 
+// Constants
+import alertConstants from '../../../../constants/alertConstants';
+
 // Images
 import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
 
 // Action-creators
 import { setProfileInputValue, updateTeamProfile } from '../../../../redux/actions/profileActions';
+import { setAlert } from '../../../../redux/actions/alertActions';
 
 // Components
 import Input from '../../../../components/Input/Input';
@@ -29,6 +33,7 @@ function TeamProfile() {
   const { password, newPassword, teamName } = useSelector(({ profileReducer }) => profileReducer);
 
   const [isNameModified, setIsNameModified] = useState(false);
+  const [isNewPasswordLengthInvalid, setIsNewPasswordLengthInvalid] = useState(false);
 
   useEffect(() => {
     if (team) {
@@ -40,10 +45,15 @@ function TeamProfile() {
     dispatch(setProfileInputValue(name, value));
 
     name === 'teamName' && setIsNameModified(true);
+    name === 'newPassword' && value.length >= 6 && setIsNewPasswordLengthInvalid(false);
   }
 
   function handleSaveClick() {
-    const isFormValid = !!(password && teamName);
+    let isFormValid = password && teamName;
+
+    if (newPassword && newPassword.length < 6) {
+      isFormValid = false;
+    }
 
     if (isFormValid) {
       const updateProfile = {};
@@ -66,6 +76,9 @@ function TeamProfile() {
       dispatch(updateTeamProfile(credentials, updateProfile, updateProfile.teamName));
       dispatch(setProfileInputValue('newPassword', ''));
       dispatch(setProfileInputValue('password', ''));
+    } else if (newPassword && newPassword.length < 6) {
+      setIsNewPasswordLengthInvalid(true);
+      dispatch(setAlert(alertConstants.types.WARNING, alertConstants.messages.TOO_SHORT_PASSWORD));
     }
   }
 
@@ -96,7 +109,7 @@ function TeamProfile() {
             </div>
             <div className="password__repeat-input profile-input-container profile-input-container--small">
               <label className="profile-input__label" htmlFor="repeat-password">Nueva contraseña</label>
-              <Input type="password" name="newPassword" placeholder="Nueva contraseña" autocomplete value={newPassword} onChange={handleInputChange} />
+              <Input type="password" name="newPassword" placeholder="Nueva contraseña" autocomplete value={newPassword} onChange={handleInputChange} isIncorrect={isNewPasswordLengthInvalid} />
             </div>
           </div>
         </div>
