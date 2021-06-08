@@ -35,7 +35,7 @@ export default {
 
   authReducer: {
     user: {
-      isLogged: true,
+      isLogged: false,
       userLogged: {
         name: '', _id: '', isCaptain: false, isAdmin: false,
       },
