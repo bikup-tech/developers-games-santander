@@ -16,7 +16,7 @@ export function setProfileInputValue(name, value) {
   };
 }
 
-export function updateTeamProfile(credentials, body) {
+export function updateTeamProfile(credentials, body, profileName) {
   return async (dispatch) => {
     try {
       const checkEndpoint = `${APIConstants.HOSTNAME}${APIConstants.CHECK_PASSWORD}`;
@@ -31,7 +31,7 @@ export function updateTeamProfile(credentials, body) {
         );
 
         // If team name is modified, reload team info
-        if (body.teamName) {
+        if (profileName) {
           dispatch(loadTeam(credentials.userId));
         }
       } else {

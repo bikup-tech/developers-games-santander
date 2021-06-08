@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -23,7 +22,9 @@ function ParticipantProfile() {
   const dispatch = useDispatch();
   const {
     name, email, phone, _id,
-  } = useSelector(({ authReducer }) => authReducer.user.userLogged);
+  } = useSelector(
+    ({ authReducer }) => authReducer.user.userLogged,
+  );
 
   const initialStateValues = {
     participantName: name,
@@ -44,7 +45,10 @@ function ParticipantProfile() {
   const [warningMessage, setWarningMessage] = useState('');
 
   function handleInputChange({ target }) {
-    setEditParticipantProfile({ ...editParticipantProfile, [target.name]: target.value });
+    setEditParticipantProfile({
+      ...editParticipantProfile,
+      [target.name]: target.value,
+    });
     setIsInputIncorrect({ ...isInputIncorrect, [target.name]: false });
 
     setWarningMessage('');
@@ -67,8 +71,18 @@ function ParticipantProfile() {
         userId: _id,
         password: editParticipantProfile.password,
       };
-      dispatch(updateTeamProfile(credentials, editParticipantProfile));
-      setEditParticipantProfile({ ...editParticipantProfile, password: '', newPassword: '' });
+      dispatch(
+        updateTeamProfile(
+          credentials,
+          editParticipantProfile,
+          editParticipantProfile.participantName,
+        ),
+      );
+      setEditParticipantProfile({
+        ...editParticipantProfile,
+        password: '',
+        newPassword: '',
+      });
       setWarningMessage('');
     }
   }
@@ -78,7 +92,9 @@ function ParticipantProfile() {
       <div className="view-profile__top">
         <span className="top__text">Edita tu perfil</span>
         <div className="profile-button-container">
-          <MainButton onClick={handleSaveChangesClick}>Guardar Cambios</MainButton>
+          <MainButton onClick={handleSaveChangesClick}>
+            Guardar Cambios
+          </MainButton>
         </div>
       </div>
       <form className="team-profile__login-info--admin">
@@ -86,22 +102,58 @@ function ParticipantProfile() {
           <div className="login-info__avatar">
             <img src={avatarIcon} alt="team avatar" className="avatar__image" />
             <div className="avatar__photo-container">
-              <img src={cameraIcon} alt="change avatar" className="photo-container__img" />
+              <img
+                src={cameraIcon}
+                alt="change avatar"
+                className="photo-container__img"
+              />
             </div>
           </div>
           <div className="login-separator" />
           <div className="login-info__data">
             <div className="data__teamname profile-input-container">
-              <Input type="text" name="participantName" placeholder="Nombre" autocomplete value={editParticipantProfile.participantName} blueText onChange={handleInputChange} isIncorrect={isInputIncorrect.participantName} maxLength={18} />
+              <Input
+                type="text"
+                name="participantName"
+                placeholder="Nombre"
+                autocomplete
+                value={editParticipantProfile.participantName}
+                blueText
+                onChange={handleInputChange}
+                isIncorrect={isInputIncorrect.participantName}
+                maxLength={18}
+              />
             </div>
             <div className="data__password">
               <div className="password-input profile-input-container profile-input-container--small ">
-                <label className="profile-input__label" htmlFor="password">Contraseña</label>
-                <Input type="password" name="password" placeholder="Entra tu contraseña" autocomplete value={editParticipantProfile.password} onChange={handleInputChange} isIncorrect={isInputIncorrect.password} />
+                <label className="profile-input__label" htmlFor="password">
+                  Contraseña
+                </label>
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="Entra tu contraseña"
+                  autocomplete
+                  value={editParticipantProfile.password}
+                  onChange={handleInputChange}
+                  isIncorrect={isInputIncorrect.password}
+                />
               </div>
               <div className="password__repeat-input profile-input-container profile-input-container--small">
-                <label className="profile-input__label" htmlFor="repeat-password">Nueva contraseña</label>
-                <Input type="password" name="newPassword" placeholder="Nueva contraseña" autocomplete value={editParticipantProfile.newPassword} onChange={handleInputChange} />
+                <label
+                  className="profile-input__label"
+                  htmlFor="repeat-password"
+                >
+                  Nueva contraseña
+                </label>
+                <Input
+                  type="password"
+                  name="newPassword"
+                  placeholder="Nueva contraseña"
+                  autocomplete
+                  value={editParticipantProfile.newPassword}
+                  onChange={handleInputChange}
+                />
               </div>
             </div>
           </div>
