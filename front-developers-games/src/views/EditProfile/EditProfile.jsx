@@ -23,13 +23,11 @@ function EditProfile() {
         </AppWrapper>
       )
       : (
-    // <AppWrapper title={`Hola ${user.userLogged.name}`}>
         <AppWrapper title={`Hola ${team.name}`}>
           <TeamProfile />
-          {/* <ParticipantProfile /> */}
         </AppWrapper>
       )
-      // TODO: crear un altre appWrapper con el ParticipantProfile
+      // TODO: crear un altre appWrapper amb el ParticipantProfile
 
   );
 }
