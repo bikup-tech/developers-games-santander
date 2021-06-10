@@ -72,7 +72,7 @@ function ChallengeDetail() {
 
   function handleSubmitClick() {
     if (!challengeDetail.isCompleted) {
-      if (window.confirm('Estas seguro que quieres marcar el challenge como finalizado?')) {
+      if (window.confirm('Are your sure you want to mark the challenge as completed?')) {
         dispatch(sendChallenge(challengeDetail._id));
         dispatch(incrementTeamSolvedChallenges(team._id));
       }
@@ -83,7 +83,7 @@ function ChallengeDetail() {
     challengeDetailLoading
       ? (
         <AppWrapper title="Challenge">
-          <Loading text="Cargando datos del desafío..." />
+          <Loading text="Loading challenge information..." />
         </AppWrapper>
       )
       : (
