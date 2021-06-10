@@ -105,9 +105,9 @@ function AdminProfile() {
   return (
     <section className="view-profile">
       <div className="view-profile__top">
-        <span className="top__text">Edita tu perfil</span>
+        <span className="top__text">Edit your profile</span>
         <div className="profile-button-container">
-          <MainButton onClick={handleSaveChangesClick}>Guardar Cambios</MainButton>
+          <MainButton onClick={handleSaveChangesClick}>Save Changes</MainButton>
         </div>
       </div>
       <form className="team-profile__login-info--admin">
@@ -121,21 +121,20 @@ function AdminProfile() {
           <div className="login-separator" />
           <div className="login-info__data">
             <div className="data__teamname profile-input-container">
-              <Input type="text" name="adminName" placeholder="Nombre del Administrador" value={editAdminProfile.adminName} blueText onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.adminName} maxLength={18} />
+              <Input type="text" name="adminName" placeholder="Admin Name" value={editAdminProfile.adminName} blueText onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.adminName} maxLength={18} />
             </div>
             <div className="data__password">
               <div className="password-input profile-input-container profile-input-container--small ">
-                <label className="profile-input__label" htmlFor="password">Contraseña</label>
-                <Input type="password" name="password" placeholder="Entra tu contraseña" value={editAdminProfile.password} autocomplete onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.password} />
+                <label className="profile-input__label" htmlFor="password">Password</label>
+                <Input type="password" name="password" placeholder="Enter your password" value={editAdminProfile.password} autocomplete onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.password} />
               </div>
               <div className="password__repeat-input profile-input-container profile-input-container--small">
-                <label className="profile-input__label" htmlFor="repeat-password">Nueva contraseña</label>
-                <Input type="password" name="newPassword" placeholder="Nueva contraseña" value={editAdminProfile.newPassword} autocomplete onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.newPassword} />
+                <label className="profile-input__label" htmlFor="repeat-password">New Password</label>
+                <Input type="password" name="newPassword" placeholder="New password" value={editAdminProfile.newPassword} autocomplete onChange={handleInputChange} isIncorrect={editAdminProfile.isIncorrectValues.newPassword} />
               </div>
             </div>
           </div>
         </div>
-        {/* TODO: Añadir inputs email que no es editable y mobil */}
         <div className="login-info__general profile">
           <div className="entries__mail m-12--mobile">
             <Input
@@ -152,7 +151,7 @@ function AdminProfile() {
             <Input
               type="number"
               name="phone"
-              placeholder="Teléfono*"
+              placeholder="Phone*"
               value={editAdminProfile.phone}
               onChange={handleInputChange}
               isIncorrect={editAdminProfile.isIncorrectValues.phone}
@@ -166,12 +165,12 @@ function AdminProfile() {
           <Link to="/teams" className="button-children">
             <MainButton isSecondary>
               <img className="button-children__image" src={viewIcon} alt="See Developers Games teams" />
-              <p className="button-children__text">Ver equipos</p>
+              <p className="button-children__text">See teams</p>
             </MainButton>
           </Link>
         </div>
         <div className="profile-button-container">
-          <MainButton onClick={handleSaveChangesClick}>Guardar Cambios</MainButton>
+          <MainButton onClick={handleSaveChangesClick}>Save Changes</MainButton>
         </div>
       </div>
     </section>
