@@ -44,8 +44,8 @@ function ChallengeCard({ challenge }) {
               <Link to={`/challenges/${challenge._id}`}>
                 {
                   challenge.isCompleted
-                    ? 'Desafío completado'
-                    : 'Acceder al desafío'
+                    ? 'Completed challenge'
+                    : 'Access challenge'
                   }
               </Link>
             </MainButton>

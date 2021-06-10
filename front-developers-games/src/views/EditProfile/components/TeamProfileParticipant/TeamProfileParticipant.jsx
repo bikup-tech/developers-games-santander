@@ -12,7 +12,7 @@ function TeamProfileParticipant({ participantNumber, participant }) {
         {' - '}
         {participant.name}
         {' '}
-        {participant.isCaptain ? '(Capitán)' : ''}
+        {participant.isCaptain ? '(Captain)' : ''}
 
       </h3>
       <div className="participant__inputs">
@@ -21,7 +21,7 @@ function TeamProfileParticipant({ participantNumber, participant }) {
             <Input
               type="text"
               name="name"
-              placeholder="Nombre del participante*"
+              placeholder="Participant name*"
               value={participant.name}
               disabled
             />
@@ -30,7 +30,7 @@ function TeamProfileParticipant({ participantNumber, participant }) {
             <Input
               type="text"
               name="surname"
-              placeholder="Apellido del participante*"
+              placeholder="Participant surname*"
               value={participant.surname}
               disabled
             />
@@ -51,7 +51,7 @@ function TeamProfileParticipant({ participantNumber, participant }) {
             <Input
               type="number"
               name="phone"
-              placeholder="Teléfono*"
+              placeholder="Phone*"
               value={participant.phone}
               disabled
             />

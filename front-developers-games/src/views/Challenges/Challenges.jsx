@@ -67,15 +67,15 @@ function Challenges() {
             <MainButton isSecondary>
               <a href="http://www.google.com" target="_blank" className="welcome-kit__link" rel="noreferrer">
                 <img src={kitIcon} alt="welcome kit" className="link__image" />
-                <span className="link__text">Pide tu welcome kit</span>
+                <span className="link__text">Request your welcome kit</span>
               </a>
             </MainButton>
           </div>
           <div className="actions__edit-team">
             <MainButton isSecondary>
-              <Link to="/team" className="edit-team__link">
+              <Link to="/profile" className="edit-team__link">
                 <img src={teamIcon} alt="edit team" className="link__image" />
-                <span className="link__text">Edita el perfil de tu equipo</span>
+                <span className="link__text">Edit your team profile</span>
               </Link>
             </MainButton>
           </div>
@@ -84,18 +84,18 @@ function Challenges() {
     );
 
   return (
-    <AppWrapper title={`Hola ${team?.name} Team`}>
+    <AppWrapper title={`Hi ${team?.name} Team`}>
       <div className="challenges">
         <p className="challenges__text">
-          Entra en cada una de las disciplinas,
-          completa todos los retos y asegúrate un lugar en el podio
+          Enter each of the categories and complete the
+          challenges proposed to ensure a place on the pole!
         </p>
 
         {
           teamChallengesLoading
             ? (
               <div className="challenges__loading">
-                <Loading text="Cargando desafíos..." />
+                <Loading text="Loading challenges..." />
               </div>
             )
             : (challengesRender)

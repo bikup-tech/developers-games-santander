@@ -16,12 +16,12 @@ function EditProfile() {
   return (
     user?.userLogged?.isAdmin
       ? (
-        <AppWrapper title={`Hola ${user.userLogged.name}`}>
+        <AppWrapper title={`Hi ${user.userLogged.name}`}>
           <AdminProfile />
         </AppWrapper>
       )
       : (
-        <AppWrapper title={`Hola ${team.name}`}>
+        <AppWrapper title={`Hi ${team.name}`}>
           <TeamProfile />
         </AppWrapper>
       )
