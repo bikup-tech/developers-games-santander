@@ -72,18 +72,17 @@ function Login() {
   }
 
   return (
-    <AppWrapper title="Bienvenid@">
+    <AppWrapper title="Welcome!">
       <section className="login-container">
         <h3 className="app__title">
-          Identifícate para acceder a los Developer Games con el usuario y
-          contraseña que te enviamos!
+          Login to access the arena with your credentials (we sent you an email!)
         </h3>
         <form className="login__form">
           <div className="form__input form__login">
             <Input
               type="text"
               name="captainEmail"
-              placeholder="e-mail(Capitán)"
+              placeholder="e-mail"
               value={loginForm.captainEmail}
               onChange={handleTextInputChange}
               isIncorrect={loginForm.captainEmailIsWrong}
@@ -93,7 +92,7 @@ function Login() {
             <Input
               type="password"
               name="captainPassword"
-              placeholder="Contraseña"
+              placeholder="Password"
               value={loginForm.captainPassword}
               onChange={handleTextInputChange}
               isIncorrect={loginForm.captainPasswordIsWrong}
@@ -101,15 +100,18 @@ function Login() {
           </div>
           <small className="form__warningMessage">{warningMessage}</small>
           <div className="form__button">
-            <MainButton onClick={handleLoginClick}>Acceder</MainButton>
+            <MainButton onClick={handleLoginClick}>Login</MainButton>
           </div>
         </form>
         <div className="login__info">
           <h3 className="app__title">
-            Recuerda que tienes hasta el XX/XX/2021 para subir los proyectos.
+            Remember the deadline to submit all the challenges is xxxx
+            {' '}
+            <br />
+            If you have any questions  please contact DevelopergamesEMEA@redhat.com
           </h3>
           <h3 className="app__title">
-            Mucha suerte
+            Good Luck!
           </h3>
         </div>
       </section>
