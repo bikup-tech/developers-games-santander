@@ -46,12 +46,12 @@ function TeamCard({ team, number }) {
           </div>
           <div className="data__completed">
             <div className="completed__item completed__item--success">
-              <span className="completed__text">Retos Completados:</span>
+              <span className="completed__text">Completed challenges:</span>
               <span className="completed__number">{team.solvedChallenges}</span>
             </div>
             <div className="completed__separator desktop" />
             <div className="completed__item completed__item--pending">
-              <span className="completed__text">Retos Pendientes:</span>
+              <span className="completed__text">Pending challenges:</span>
               <span className="completed__number">{renderPendingChallenges(team.solvedChallenges)}</span>
             </div>
           </div>
@@ -59,7 +59,7 @@ function TeamCard({ team, number }) {
       </div>
       <div className={`team-card__extra ${isExtraVisible && 'team-card__extra--visible'} `}>
         <div className={`extra__members members-${team._id} display-none`}>
-          <h3 className="members__title">Miembros del equipo</h3>
+          <h3 className="members__title">Team members</h3>
           <div className="members__member-list">
             {team.participants.map((participant, index) => (
               <div className={`member-list__member ${index % 2 === 0 && 'dark-background'}`} key={`member-${participant._id}`}>
@@ -74,7 +74,7 @@ function TeamCard({ team, number }) {
           </div>
         </div>
         <div className={`extra__challenges challenges-${team._id} display-none`}>
-          <h3 className="members__title">Desafíos completados</h3>
+          <h3 className="members__title">Completed challenges</h3>
           <div className="members__member-list">
             {team.teamChallenges.map((challenge) => {
               if (challenge.isCompleted) {
