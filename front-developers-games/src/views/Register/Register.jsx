@@ -118,7 +118,7 @@ function Register() {
   }
 
   return (
-    <AppWrapper title="Register your  team">
+    <AppWrapper title="Register your team">
       <section className="register-container">
         <h3 className="app__title">Teams must have a minimum of 3 and a maximum of 4 participants.</h3>
         <form className="register__form">

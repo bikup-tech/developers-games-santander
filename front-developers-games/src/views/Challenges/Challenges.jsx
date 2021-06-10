@@ -73,7 +73,7 @@ function Challenges() {
           </div>
           <div className="actions__edit-team">
             <MainButton isSecondary>
-              <Link to="/team" className="edit-team__link">
+              <Link to="/profile" className="edit-team__link">
                 <img src={teamIcon} alt="edit team" className="link__image" />
                 <span className="link__text">Edit your team profile</span>
               </Link>
@@ -84,7 +84,7 @@ function Challenges() {
     );
 
   return (
-    <AppWrapper title={`Hola ${team?.name} Team`}>
+    <AppWrapper title={`Hi ${team?.name} Team`}>
       <div className="challenges">
         <p className="challenges__text">
           Enter each of the categories and complete the

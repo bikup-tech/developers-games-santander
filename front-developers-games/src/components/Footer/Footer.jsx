@@ -5,13 +5,13 @@ import { useSelector } from 'react-redux';
 import './Footer.scss';
 
 const participantFooter = [
-  { name: 'Declaración de privacidad', route: '/' },
-  { name: 'Bases y condiciones del juego', route: '/terms' },
-  { name: 'Premios', route: '/terms' },
+  { name: 'Data privacy declaration', route: '/' },
+  { name: 'Terms & conditions', route: '/terms' },
+  { name: 'Prizes', route: '/terms' },
 ];
 const adminFooter = [
-  { name: 'Declaración de privacidad', route: '/awards' },
-  { name: 'Bases y condiciones del juego', route: '/terms' },
+  { name: 'Data privacy declaration', route: '/awards' },
+  { name: 'Terms & conditions', route: '/terms' },
 ];
 
 function Footer() {
