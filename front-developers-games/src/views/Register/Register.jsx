@@ -118,15 +118,15 @@ function Register() {
   }
 
   return (
-    <AppWrapper title="Inscribe a tu equipo">
+    <AppWrapper title="Register your  team">
       <section className="register-container">
-        <h3 className="app__title">Tu equipo debe estar compuesto de un mínimo de 3 y un máximo de 4 participantes.</h3>
+        <h3 className="app__title">Teams must have a minimum of 3 and a maximum of 4 participants.</h3>
         <form className="register__form">
           <div className="form__input">
             <Input
               type="text"
               name="teamName"
-              placeholder="Nombre del equipo*"
+              placeholder="Team's name*"
               value={teamName}
               onChange={handleTextInputChange}
               isIncorrect={registerWrongValues.teamName}
@@ -160,19 +160,19 @@ function Register() {
                 <MainButton isSecondary color="blue" onClick={handleAddParticipantClick}>
                   <div className="button-children">
                     <img className="button-children__image" src={plusIcon} alt="Add member icon" />
-                    <p className="button-children__text">Añadir otro miembro del equipo</p>
+                    <p className="button-children__text">Add another member to your team!</p>
                   </div>
                 </MainButton>
               </div>
             )
           }
           <h3 className="app__title form__info">
-            Te enviaremos tu usuario y clave de acceso al estadio olímpico para que
-            podáis comenzar los desafios
+            You will receive an email with login details to access
+            the arena to start the challenges!
           </h3>
           <div className="form__checkbox">
             <Checkbox
-              text="He leído, acepto y entiendo el tratamiento de mis datos y bases del juego*"
+              text="I read and understood the terms and conditions and accept the the data management of my information*"
               name="registerTermsConditions"
               isChecked={registerTermsConditions}
               onChange={handleCheckboxChange}
@@ -180,7 +180,7 @@ function Register() {
           </div>
           <small className="form__warningMessage">{warningMessage}</small>
           <div className="form__button">
-            <MainButton onClick={handleSendTeamClick}>Enviar Equipo</MainButton>
+            <MainButton onClick={handleSendTeamClick}>Submit team application</MainButton>
           </div>
         </form>
       </section>

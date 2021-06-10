@@ -25,11 +25,11 @@ function Participant({ participantNumber, isCaptain }) {
   return (
     <div className="register__participant">
       <h3 className="participant__title app__title">
-        Participante
+        Participant
         {' '}
         {participantNumber}
         {' '}
-        {isCaptain ? '- Capitán' : ''}
+        {isCaptain ? '- Captain' : ''}
       </h3>
       <div className="participant__inputs">
         <div className="inputs__entries">
@@ -37,7 +37,7 @@ function Participant({ participantNumber, isCaptain }) {
             <Input
               type="text"
               name="name"
-              placeholder="Nombre del participante*"
+              placeholder="Participant name*"
               value={name}
               onChange={handleTextInputChange}
               isIncorrect={wrongname}
@@ -48,7 +48,7 @@ function Participant({ participantNumber, isCaptain }) {
             <Input
               type="text"
               name="surname"
-              placeholder="Apellido del participante*"
+              placeholder="Participant surname*"
               value={surname}
               onChange={handleTextInputChange}
               isIncorrect={wrongsurname}
@@ -71,7 +71,7 @@ function Participant({ participantNumber, isCaptain }) {
             <Input
               type="number"
               name="phone"
-              placeholder="Teléfono*"
+              placeholder="Phone*"
               value={phone}
               onChange={handleTextInputChange}
               isIncorrect={wrongphone}
