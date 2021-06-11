@@ -73,7 +73,7 @@ function TeamProfile() {
         password,
       };
 
-      dispatch(updateTeamProfile(credentials, updateProfile));
+      dispatch(updateTeamProfile(credentials, updateProfile, updateProfile.teamName));
       dispatch(setProfileInputValue('newPassword', ''));
       dispatch(setProfileInputValue('password', ''));
     } else if (newPassword && newPassword.length < 6) {
