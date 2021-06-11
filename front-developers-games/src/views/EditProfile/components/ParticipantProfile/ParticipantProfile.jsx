@@ -174,7 +174,7 @@ function ParticipantProfile() {
             <Input
               type="number"
               name="phone"
-              placeholder="Teléfono*"
+              placeholder="Phone*"
               value={editParticipantProfile.phone}
               onChange={handleInputChange}
               isIncorrect={isInputIncorrect.phone}
