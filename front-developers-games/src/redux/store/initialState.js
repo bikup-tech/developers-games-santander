@@ -37,12 +37,11 @@ export default {
 
   authReducer: {
     user: {
-      isLogged: true,
+      isLogged: false,
       userLogged: {
-        name: 'gerard',
-        _id: '60b4f66b4562c2e7a047f928',
-        email: 'gerardramonlol@gmail.com',
-        phone: 99999,
+        name: '',
+        _id: '',
+        email: '',
         role: userRoles.PARTICIPANT,
       },
     },

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -17,7 +16,6 @@ import AdminProfile from './components/AdminProfile/AdminProfile';
 
 function EditProfile() {
   const { role, name } = useSelector(({ authReducer }) => authReducer.user.userLogged);
-  const { team } = useSelector(({ mainReducer }) => mainReducer);
   return (
     <AppWrapper title={`Hi ${name}`}>
       {role === userRoles.SUPER_ADMIN && (
