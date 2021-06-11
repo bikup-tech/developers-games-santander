@@ -1,13 +1,13 @@
 export default {
   inputs: {
-    TEAM_NAME: 'Falta ponerle un nombre al equipo.',
-    TERMS_AND_CONDITIONS_NO_CHECKED: 'Por favor, lee y acepta el tratamiento y bases del juego.',
-    MIN_TEAM_PARTICIPANTS: 'Los equipos deben de ser de entre 3 y 4 jugadores.',
-    PARTICIPANT_REQUIRED_ENTRY: 'Faltan campos de participantes por rellenar.',
+    TEAM_NAME: 'You must give a name to your team.',
+    TERMS_AND_CONDITIONS_NO_CHECKED: 'Please read and accept the Terms & conditions.',
+    MIN_TEAM_PARTICIPANTS: 'Teams must be from 3 to 4 players.',
+    PARTICIPANT_REQUIRED_ENTRY: 'There are empty participant fields left to fill.',
     TOO_SHORT_PASSWORD: 'The password must have at least 6 characters.',
   },
   login: {
-    LOGIN_ERROR: 'Inicio de sesión inválido.',
+    LOGIN_ERROR: 'Invalid login credentials.',
     LOGIN_REQUIRED_ENTRY: 'There are empty requiered fields.',
   },
 };

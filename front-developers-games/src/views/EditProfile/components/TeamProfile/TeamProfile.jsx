@@ -85,9 +85,9 @@ function TeamProfile() {
   return (
     <div className="view-profile">
       <div className="view-profile__top">
-        <span className="top__text">Edita tu perfil</span>
+        <span className="top__text">Edit your profile</span>
         <div className="profile-button-container">
-          <MainButton onClick={handleSaveClick}>Guardar Cambios</MainButton>
+          <MainButton onClick={handleSaveClick}>Save Changes</MainButton>
         </div>
       </div>
       <form className="team-profile__login-info">
@@ -100,16 +100,16 @@ function TeamProfile() {
         <div className="login-separator" />
         <div className="login-info__data">
           <div className="data__teamname profile-input-container">
-            <Input type="text" name="teamName" placeholder="Nombre del equipo" value={teamName} blueText onChange={handleInputChange} isIncorrect={!teamName} maxLength={18} />
+            <Input type="text" name="teamName" placeholder="Team Name" value={teamName} blueText onChange={handleInputChange} isIncorrect={!teamName} maxLength={18} />
           </div>
           <div className="data__password">
             <div className="password-input profile-input-container profile-input-container--small ">
-              <label className="profile-input__label" htmlFor="password">Contraseña</label>
-              <Input type="password" name="password" placeholder="Entra tu contraseña" autocomplete value={password} onChange={handleInputChange} isIncorrect={!password} />
+              <label className="profile-input__label" htmlFor="password">Password</label>
+              <Input type="password" name="password" placeholder="Enter your password" autocomplete value={password} onChange={handleInputChange} isIncorrect={!password} />
             </div>
             <div className="password__repeat-input profile-input-container profile-input-container--small">
-              <label className="profile-input__label" htmlFor="repeat-password">Nueva contraseña</label>
-              <Input type="password" name="newPassword" placeholder="Nueva contraseña" autocomplete value={newPassword} onChange={handleInputChange} isIncorrect={isNewPasswordLengthInvalid} />
+              <label className="profile-input__label" htmlFor="repeat-password">New Password</label>
+              <Input type="password" name="newPassword" placeholder="New password" autocomplete value={newPassword} onChange={handleInputChange} isIncorrect={isNewPasswordLengthInvalid} />
             </div>
           </div>
         </div>

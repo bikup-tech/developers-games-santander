@@ -8,15 +8,19 @@ import { useSelector } from 'react-redux';
 
 import './Header.scss';
 
+// Constants
+import userRoles from '../../constants/userRoles';
+
+// Assets
 import headerLogos from '../../assets/images/header-logos.svg';
 import openMenuIcon from '../../assets/images/menu-icon.svg';
 import closeMenuIcon from '../../assets/images/close-icon.svg';
 
 const unloggedNavigation = [
-  { name: 'Participar', route: '/' },
-  { name: 'Premios', route: '/awards' },
-  { name: 'Bases y condiciones', route: '/terms' },
-  { name: 'Entrar', route: '/login' },
+  { name: 'Register', route: '/' },
+  { name: 'Prizes', route: '/awards' },
+  { name: 'Terms & conditions', route: '/terms' },
+  { name: 'Login', route: '/login' },
 ];
 
 function Header() {
@@ -24,17 +28,17 @@ function Header() {
   const { name: userName } = useSelector(({ authReducer }) => authReducer.user.userLogged);
 
   const participantNavigation = [
-    { name: 'Desafios', route: '/challenges' },
-    { name: 'Pide tu welcome kit', route: '/' },
+    { name: 'Challenges', route: '/challenges' },
+    { name: 'Request your welcome kit', route: '/' },
     { name: userName, route: '/profile' },
   ];
   const adminNavigation = [
-    { name: 'Ver equipos', route: '/teams' },
-    { name: 'Añadir administradores', route: '/profile' },
+    { name: 'See teams', route: '/teams' },
+    { name: 'Add mentors', route: '/profile' },
     { name: userName, route: '/profile' },
   ];
   const mentorNavigation = [
-    { name: 'Ver equipos', route: '/teams' },
+    { name: 'See teams', route: '/teams' },
     { name: userName, route: '/profile' },
   ];
 
@@ -43,7 +47,7 @@ function Header() {
 
   useEffect(() => {
     if (isLogged) {
-      if (userLogged?.isCaptain) {
+      if (userLogged?.role <= userRoles.CAPTAIN) {
         setRenderedNavigation(participantNavigation);
       } else {
         setRenderedNavigation(adminNavigation);
@@ -51,13 +55,13 @@ function Header() {
     } else {
       setRenderedNavigation(unloggedNavigation);
     }
-  }, [userLogged?.isCaptain, isLogged]);
+  }, [userLogged?.role, isLogged]);
 
   function handleHamburgerClick() {
     setIsMenuOpen(!isMenuOpen);
   }
 
-  const renderMenu = renderedNavigation.map((element) => (element.name !== 'Pide tu welcome kit'
+  const renderMenu = renderedNavigation.map((element) => (element.name !== 'Request your welcome kit'
     ? (
       <NavLink
         to={element.route}

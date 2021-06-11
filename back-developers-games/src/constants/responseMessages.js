@@ -1,7 +1,7 @@
 module.exports = {
   MISSING_PROPERTIES: (properties) => `${properties} are missing`,
   MISSING_QUERY_PROPERTIES: (properties) => `${properties} missing in req.query`,
-  NO_USER_FOUND: 'No hay ningún usuario con estas credenciales.',
+  NO_USER_FOUND: 'There is no user with the given credentials.',
   NO_CHALLENGE_FOUND: (challengeId) => `There is not a challenge with the id ${challengeId}`,
   NO_TOURNAMENT_CHALLENGES_FOUND: (tournamentId) => `There are no active challenges for this tournament with id: ${tournamentId}.`,
   NO_TOURNAMENT_FOUND: (tournamentId) => `There is no active tournament with the id: ${tournamentId}.`,
@@ -13,7 +13,7 @@ module.exports = {
   EMPTY_BODY: 'The request body is empty.',
   WRONG_PROPERTIES: 'Some of the request body properties are not valid.',
   UPDATE_PROFILE_SUCCESS: 'Tu perfil ha sido actualizado correctamente.',
-  NO_TEAM_FOUND: (teamId) => `No se ha encontrado un equipo con el ID ${teamId}.`,
-  NO_USER_ID_FOUND: (userId) => `No se ha encontrado un usuario con el ID ${userId}.`,
-  WRONG_PASSWORD: 'La contraseña no es correcta',
+  NO_TEAM_FOUND: (teamId) => `There is no team with the ID ${teamId}.`,
+  NO_USER_ID_FOUND: (userId) => `There is no user with the ID ${userId}.`,
+  WRONG_PASSWORD: 'The password is not correct.',
 };

@@ -72,7 +72,7 @@ function ChallengeDetail() {
 
   function handleSubmitClick() {
     if (!challengeDetail.isCompleted) {
-      if (window.confirm('Estas seguro que quieres marcar el challenge como finalizado?')) {
+      if (window.confirm('Are your sure you want to mark the challenge as completed?')) {
         dispatch(sendChallenge(challengeDetail._id));
         dispatch(incrementTeamSolvedChallenges(team._id));
       }
@@ -83,7 +83,7 @@ function ChallengeDetail() {
     challengeDetailLoading
       ? (
         <AppWrapper title="Challenge">
-          <Loading text="Cargando datos del desafío..." />
+          <Loading text="Loading challenge information..." />
         </AppWrapper>
       )
       : (
@@ -98,7 +98,7 @@ function ChallengeDetail() {
                 <p className="info-group__description info-group__description--underlined">{challengeDetail.tournamentChallenge.mentor}</p>
               </div>
               <div className="challenge__info-group">
-                <p className="info-group__title">Mentor</p>
+                <p className="info-group__title">Description</p>
                 <p className="info-group__description">{challengeDetail.tournamentChallenge.description}</p>
               </div>
               <div className="challenge__video">
@@ -167,18 +167,17 @@ function ChallengeDetail() {
                 <div className="actions__upload-button">
                   <MainButton isSecondary onClick={handleUploadClick}>
                     <img src={testUploadIcon} alt="upload" className="upload-button__icon" />
-                    <span>Subir entregable</span>
+                    <span>Upload Deliverable</span>
                     <input type="file" id="deliverable__input" name="deliverable__input" onChange={handleFileOnChange} />
                   </MainButton>
                 </div>
                 <div className="actions__submit-button">
                   <MainButton onClick={handleSubmitClick} color={challengeDetail.isCompleted ? 'blue' : 'red'}>
                     <p className="submit-button__text">
-                      {challengeDetail.isCompleted ? 'Completado' : 'Enviar'}
+                      {challengeDetail.isCompleted ? 'Completed' : 'Send'}
                     </p>
                   </MainButton>
                 </div>
-
               </div>
             </div>
           )}

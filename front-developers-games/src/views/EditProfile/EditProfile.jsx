@@ -1,8 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import './EditProfile.scss';
+
+// Constants
+import userRoles from '../../constants/userRoles';
 
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
@@ -11,19 +14,17 @@ import TeamProfile from './components/TeamProfile/TeamProfile';
 import AdminProfile from './components/AdminProfile/AdminProfile';
 
 function EditProfile() {
-  // eslint-disable-next-line no-unused-vars
-  const dispatch = useDispatch();
   const { user } = useSelector(({ authReducer }) => authReducer);
   const { team } = useSelector(({ mainReducer }) => mainReducer);
   return (
-    user?.userLogged?.isAdmin
+    user?.userLogged?.role >= userRoles.MENTOR
       ? (
-        <AppWrapper title={`Hola ${user.userLogged.name}`}>
+        <AppWrapper title={`Hi ${user.userLogged.name}`}>
           <AdminProfile />
         </AppWrapper>
       )
       : (
-        <AppWrapper title={`Hola ${team.name}`}>
+        <AppWrapper title={`Hi ${team.name}`}>
           <TeamProfile />
         </AppWrapper>
       )

@@ -1,3 +1,5 @@
+import userRoles from '../../constants/userRoles';
+
 export default {
   mainReducer: {
     tournamentId: '60be036d5695a3805e903f91',
@@ -13,7 +15,7 @@ export default {
     participants: [],
     teamName: '',
     participant1: {
-      isCaptain: true,
+      role: userRoles.CAPTAIN,
       name: '',
       surname: '',
       email: '',
@@ -41,8 +43,7 @@ export default {
         _id: '60b4f66b4562c2e7a047f928',
         email: 'gerardramonlol@gmail.com',
         phone: 99999,
-        isCaptain: true,
-        isAdmin: false,
+        role: userRoles.PARTICIPANT,
       },
     },
   },

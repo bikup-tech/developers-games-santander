@@ -26,10 +26,10 @@ function Teams() {
 
   return (
 
-    <AppWrapper title="Equipos participantes">
+    <AppWrapper title="Tournament Teams">
       {
         teamsLoading
-          ? (<Loading text="Cargando equipos del torneo..." />)
+          ? (<Loading text="Loading tournament teams..." />)
           : (
             <div className="teams">
               {loadTeamsError && (<LoadingError />) }
