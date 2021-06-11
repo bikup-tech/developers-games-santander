@@ -14,6 +14,7 @@ import { login, clearLoginError } from '../../redux/actions/loginActions';
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import Input from '../../components/Input/Input';
 import MainButton from '../../components/MainButton/MainButton';
+import userRoles from '../../constants/userRoles';
 
 const initialLoginState = {
   captainEmail: '',
@@ -39,7 +40,7 @@ function Login() {
 
   useEffect(() => {
     if (user.isLogged) {
-      if (user.userLogged.isAdmin) {
+      if (user.userLogged.roles >= userRoles.MENTOR) {
         history.replace('/profile');
       } else {
         history.replace('/challenges');

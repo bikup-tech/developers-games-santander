@@ -3,18 +3,19 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './EditProfile.scss';
 
+// Constants
+import userRoles from '../../constants/userRoles';
+
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import TeamProfile from './components/TeamProfile/TeamProfile';
 import AdminProfile from './components/AdminProfile/AdminProfile';
 
 function EditProfile() {
-  // eslint-disable-next-line no-unused-vars
-  const dispatch = useDispatch();
   const { user } = useSelector(({ authReducer }) => authReducer);
   const { team } = useSelector(({ mainReducer }) => mainReducer);
   return (
-    user?.userLogged?.isAdmin
+    user?.userLogged?.role >= userRoles.MENTOR
       ? (
         <AppWrapper title={`Hi ${user.userLogged.name}`}>
           <AdminProfile />
