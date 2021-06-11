@@ -90,10 +90,10 @@ function ParticipantProfile() {
   return (
     <div className="view-profile">
       <div className="view-profile__top">
-        <span className="top__text">Edita tu perfil</span>
+        <span className="top__text">Edit your profile</span>
         <div className="profile-button-container">
           <MainButton onClick={handleSaveChangesClick}>
-            Guardar Cambios
+            Save Changes
           </MainButton>
         </div>
       </div>
@@ -115,7 +115,7 @@ function ParticipantProfile() {
               <Input
                 type="text"
                 name="participantName"
-                placeholder="Nombre"
+                placeholder="Name"
                 autocomplete
                 value={editParticipantProfile.participantName}
                 blueText
@@ -127,12 +127,12 @@ function ParticipantProfile() {
             <div className="data__password">
               <div className="password-input profile-input-container profile-input-container--small ">
                 <label className="profile-input__label" htmlFor="password">
-                  Contraseña
+                  Password
                 </label>
                 <Input
                   type="password"
                   name="password"
-                  placeholder="Entra tu contraseña"
+                  placeholder="Enter your password"
                   autocomplete
                   value={editParticipantProfile.password}
                   onChange={handleInputChange}
@@ -144,12 +144,12 @@ function ParticipantProfile() {
                   className="profile-input__label"
                   htmlFor="repeat-password"
                 >
-                  Nueva contraseña
+                  New password
                 </label>
                 <Input
                   type="password"
                   name="newPassword"
-                  placeholder="Nueva contraseña"
+                  placeholder="New password"
                   autocomplete
                   value={editParticipantProfile.newPassword}
                   onChange={handleInputChange}
