@@ -25,12 +25,10 @@ function participantService() {
       throw new CustomError(BAD_REQUEST, MISSING_USER_PROPERTIES);
     }
 
-    if (participant.isCaptain) {
-      const generatedPassword = generator.generate({
-        numbers: true,
-      });
-      participant.password = generatedPassword;
-    }
+    const generatedPassword = generator.generate({
+      numbers: true,
+    });
+    participant.password = generatedPassword;
 
     return participantModel.create(participant);
   }

@@ -1,8 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const participantModel = new Schema({
-  isCaptain: { type: Boolean, default: false },
-  isAdmin: { type: Boolean, default: false },
+  role: {type: Number, default: 0},
   email: { type: String },
   password: { type: String },
   name: { type: String },

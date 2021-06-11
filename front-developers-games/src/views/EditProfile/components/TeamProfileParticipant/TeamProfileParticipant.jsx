@@ -2,6 +2,10 @@ import React from 'react';
 
 import './TeamProfileParticipant.scss';
 
+// Constants
+import userRoles from '../../../../constants/userRoles';
+
+// Components
 import Input from '../../../../components/Input/Input';
 
 function TeamProfileParticipant({ participantNumber, participant }) {
@@ -12,7 +16,7 @@ function TeamProfileParticipant({ participantNumber, participant }) {
         {' - '}
         {participant.name}
         {' '}
-        {participant.isCaptain ? '(Captain)' : ''}
+        {participant.role === userRoles.CAPTAIN ? '(Captain)' : ''}
 
       </h3>
       <div className="participant__inputs">

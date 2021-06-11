@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -14,6 +15,7 @@ import { login, clearLoginError } from '../../redux/actions/loginActions';
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import Input from '../../components/Input/Input';
 import MainButton from '../../components/MainButton/MainButton';
+import userRoles from '../../constants/userRoles';
 
 const initialLoginState = {
   captainEmail: '',
@@ -39,7 +41,7 @@ function Login() {
 
   useEffect(() => {
     if (user.isLogged) {
-      if (user.userLogged.isAdmin) {
+      if (user.userLogged.role >= userRoles.MENTOR) {
         history.replace('/profile');
       } else {
         history.replace('/challenges');

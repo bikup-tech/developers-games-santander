@@ -8,6 +8,10 @@ import { useSelector } from 'react-redux';
 
 import './Header.scss';
 
+// Constants
+import userRoles from '../../constants/userRoles';
+
+// Assets
 import headerLogos from '../../assets/images/header-logos.svg';
 import openMenuIcon from '../../assets/images/menu-icon.svg';
 import closeMenuIcon from '../../assets/images/close-icon.svg';
@@ -43,7 +47,7 @@ function Header() {
 
   useEffect(() => {
     if (isLogged) {
-      if (userLogged?.isCaptain) {
+      if (userLogged?.role <= userRoles.CAPTAIN) {
         setRenderedNavigation(participantNavigation);
       } else {
         setRenderedNavigation(adminNavigation);
@@ -51,7 +55,7 @@ function Header() {
     } else {
       setRenderedNavigation(unloggedNavigation);
     }
-  }, [userLogged?.isCaptain, isLogged]);
+  }, [userLogged?.role, isLogged]);
 
   function handleHamburgerClick() {
     setIsMenuOpen(!isMenuOpen);
