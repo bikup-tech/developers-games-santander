@@ -10,26 +10,28 @@ import userRoles from '../../constants/userRoles';
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import TeamProfile from './components/TeamProfile/TeamProfile';
-// import ParticipantProfile from './components/ParticipantProfile/ParticipantProfile';
+import ParticipantProfile from './components/ParticipantProfile/ParticipantProfile';
 import AdminProfile from './components/AdminProfile/AdminProfile';
 
+// TODO: Perfil mentor
+
 function EditProfile() {
-  const { user } = useSelector(({ authReducer }) => authReducer);
+  const { role, name } = useSelector(({ authReducer }) => authReducer.userLogged);
   const { team } = useSelector(({ mainReducer }) => mainReducer);
   return (
-    user?.userLogged?.role >= userRoles.MENTOR
-      ? (
-        <AppWrapper title={`Hi ${user.userLogged.name}`}>
-          <AdminProfile />
-        </AppWrapper>
-      )
-      : (
-        <AppWrapper title={`Hi ${team.name}`}>
-          <TeamProfile />
-        </AppWrapper>
-      )
-      // TODO: crear un altre appWrapper amb el ParticipantProfile
+    <AppWrapper title={`Hi ${name}`}>
+      {role === userRoles.SUPER_ADMIN && (
+        <AdminProfile />
+      )}
 
+      {role === userRoles.CAPTAIN && (
+        <TeamProfile />
+      )}
+
+      {role === userRoles.PARTICIPANT && (
+        <ParticipantProfile />
+      )}
+    </AppWrapper>
   );
 }
 
