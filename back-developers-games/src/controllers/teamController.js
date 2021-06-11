@@ -39,7 +39,22 @@ function teamController() {
     }
   }
 
-  return { getTeamByCaptainId, updateTeam };
+  async function deleteTeam({ params: { teamId } }, res) {
+    try {
+      if (!teamId) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('teamId'));
+      }
+
+      // TODO: delete that team users
+      const deletedTeam = await teamService.deleteTeam(teamId);
+
+      return handleResponseSuccess(res, true);
+    } catch (updateTeamError) {
+      return handleResponseError(res, updateTeamError);
+    }
+  }
+
+  return { getTeamByCaptainId, updateTeam, deleteTeam };
 }
 
 module.exports = teamController();

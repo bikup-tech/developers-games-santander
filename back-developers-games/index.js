@@ -13,6 +13,7 @@ const profileRouter = require('./src/routes/profileRouter');
 const teamsRouter = require('./src/routes/teamsRouter');
 const tournamentChallengesRouter = require('./src/routes/tournamentChallengesRouter');
 const teamChallengesRouter = require('./src/routes/teamChallengesRouter');
+const participantsRouter = require('./src/routes/participantsRouter');
 
 const app = express();
 const PORT = process.env.PORT || 4200;
@@ -35,6 +36,7 @@ app.use('/api/profile', profileRouter);
 app.use('/api/teams', teamsRouter);
 app.use('/api/tournamentChallenges', tournamentChallengesRouter);
 app.use('/api/teamChallenges', teamChallengesRouter);
+app.use('/api/participants', participantsRouter);
 
 // !! IMPORTANT DELETE THIS METHOD !!
 app.delete('/api/reset', (req, res) => {

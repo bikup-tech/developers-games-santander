@@ -8,6 +8,9 @@ const participantModel = require('../models/participantModel');
 const { BAD_REQUEST } = require('../constants/statusCodes');
 const { MISSING_USER_PROPERTIES, MISSING_PROPERTIES } = require('../constants/responseMessages');
 
+// Services
+const teamService = require('./teamService');
+
 // Utils
 const CustomError = require('../utils/CustomError');
 
@@ -45,11 +48,29 @@ function participantService() {
     return participantModel.updateOne(findQuery, updateQuery, updateOptions);
   }
 
+  async function updateManyParticipants(participantIds, updateQuery) {
+    const findQuery = { _id: { $in: participantIds } };
+    const updateOptions = {
+      new: true, useFindAndModify: false,
+    };
+    return participantModel.updateMany(findQuery, updateQuery, updateOptions);
+  }
+
   async function findParticipantById(participantId) {
     return participantModel.findById(participantId);
   }
 
-  return { createParticipant, updateParticipant, findParticipantById };
+  async function deleteParticipant(participantId) {
+    return participantModel.findOneAndDelete({ _id: participantId });
+  }
+
+  return {
+    createParticipant,
+    updateParticipant,
+    findParticipantById,
+    deleteParticipant,
+    updateManyParticipants,
+  };
 }
 
 module.exports = participantService();
