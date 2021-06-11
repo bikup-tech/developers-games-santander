@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import './Header.scss';
 
 // Constants
-import userRoles from '../../constants/userRoles'
+import userRoles from '../../constants/userRoles';
 
 // Assets
 import headerLogos from '../../assets/images/header-logos.svg';

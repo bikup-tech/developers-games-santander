@@ -3,7 +3,7 @@ import React from 'react';
 import './TeamProfileParticipant.scss';
 
 // Constants
-import userRoles from '../../../../constants/userRoles'
+import userRoles from '../../../../constants/userRoles';
 
 // Components
 import Input from '../../../../components/Input/Input';

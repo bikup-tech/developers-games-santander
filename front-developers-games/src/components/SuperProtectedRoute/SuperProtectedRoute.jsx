@@ -5,12 +5,14 @@ import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // Constants
-import userRoles from '../../constants/userRoles'
+import userRoles from '../../constants/userRoles';
 
 function SuperProtectedRoute({
   path, component: Compo, exact, ...rest
 }) {
-  const access = useSelector(({ authReducer }) => authReducer?.user?.userLogged?.role >= userRoles.MENTOR);
+  const access = useSelector(({ authReducer }) => (
+    authReducer?.user?.userLogged?.role >= userRoles.MENTOR
+  ));
   return (
     <Route
       to={path}

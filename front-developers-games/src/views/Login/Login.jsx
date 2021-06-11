@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -40,7 +41,7 @@ function Login() {
 
   useEffect(() => {
     if (user.isLogged) {
-      if (user.userLogged.roles >= userRoles.MENTOR) {
+      if (user.userLogged.role >= userRoles.MENTOR) {
         history.replace('/profile');
       } else {
         history.replace('/challenges');

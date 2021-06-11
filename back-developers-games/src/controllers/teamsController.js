@@ -6,7 +6,7 @@ const {
   MISSING_PROPERTIES, ALREADY_EXISTING_TEAM, REGISTER_TEAM_SUCCESS, NO_TOURNAMENT_FOUND,
   MISSING_QUERY_PROPERTIES,
 } = require('../constants/responseMessages');
-const userRoles = require('../constants/userRoles')
+const userRoles = require('../constants/userRoles');
 
 // Services
 const teamService = require('../services/teamService');
@@ -48,11 +48,11 @@ function teamsController() {
       const createdParticipants = await Promise.all(pendingParticipants);
 
       // Send e-mails
-      createdParticipants.forEach((participant) =>{
+      createdParticipants.forEach((participant) => {
         mailService.sendRegisteredUser(
           participant.email, participant.password,
         );
-      })
+      });
 
       // Find that tournament challenges
       const tournamentChallenges = await tournamentChallengeService
@@ -78,7 +78,7 @@ function teamsController() {
         (teamChallenge) => teamChallenge._id,
       );
       const teamCaptain = createdParticipants.find(
-        (participant) => participant.role===userRoles.CAPTAIN,
+        (participant) => participant.role === userRoles.CAPTAIN,
       );
       const createdTeam = await teamService.createTeam(
         name, createdParticipantsIds, createdTeamChallengesIds, teamCaptain._id, tournamentId,

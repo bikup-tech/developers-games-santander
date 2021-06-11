@@ -1,4 +1,4 @@
-import userRoles from '../../constants/userRoles'
+import userRoles from '../../constants/userRoles';
 
 export default {
   mainReducer: {
