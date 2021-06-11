@@ -16,7 +16,7 @@ import AdminProfile from './components/AdminProfile/AdminProfile';
 // TODO: Perfil mentor
 
 function EditProfile() {
-  const { role, name } = useSelector(({ authReducer }) => authReducer.userLogged);
+  const { role, name } = useSelector(({ authReducer }) => authReducer.user.userLogged);
   const { team } = useSelector(({ mainReducer }) => mainReducer);
   return (
     <AppWrapper title={`Hi ${name}`}>
