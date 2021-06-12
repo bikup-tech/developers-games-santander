@@ -1,13 +1,15 @@
-const { BAD_REQUEST } = require('../constants/statusCodes');
-const { MISSING_PROPERTIES } = require('../constants/responseMessages');
+const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
+const { MISSING_PROPERTIES, NO_TEAM_FOUND } = require('../constants/responseMessages');
 
 // Services
 const teamService = require('../services/teamService');
+const teamChallengeService = require('../services/teamChallengeService');
 
 // Utils
 const CustomError = require('../utils/CustomError');
 const handleResponseError = require('../utils/handleResponseError');
 const handleResponseSuccess = require('../utils/handleResponseSuccess');
+const participantService = require('../services/participantService');
 
 function teamController() {
   async function getTeamByCaptainId({ params: { captainId } }, res) {
@@ -45,8 +47,13 @@ function teamController() {
         throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('teamId'));
       }
 
-      // TODO: delete that team users
       const deletedTeam = await teamService.deleteTeam(teamId);
+      if (!deletedTeam) {
+        throw new CustomError(CONFLICT, NO_TEAM_FOUND(teamId));
+      }
+
+      await participantService.deleteManyParticipants(deletedTeam.participants);
+      await teamChallengeService.deleteManyTeamChallenges(deletedTeam.teamChallenges);
 
       return handleResponseSuccess(res, true);
     } catch (updateTeamError) {

@@ -8,9 +8,6 @@ const participantModel = require('../models/participantModel');
 const { BAD_REQUEST } = require('../constants/statusCodes');
 const { MISSING_USER_PROPERTIES, MISSING_PROPERTIES } = require('../constants/responseMessages');
 
-// Services
-const teamService = require('./teamService');
-
 // Utils
 const CustomError = require('../utils/CustomError');
 
@@ -64,12 +61,17 @@ function participantService() {
     return participantModel.findOneAndDelete({ _id: participantId });
   }
 
+  async function deleteManyParticipants(participants) {
+    return participantModel.deleteMany({ _id: { $in: participants } });
+  }
+
   return {
     createParticipant,
     updateParticipant,
     findParticipantById,
     deleteParticipant,
     updateManyParticipants,
+    deleteManyParticipants,
   };
 }
 

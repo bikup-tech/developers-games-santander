@@ -41,7 +41,8 @@ function teamService() {
   }
 
   async function deleteTeam(teamId) {
-    return teamModel.deleteOne({ _id: teamId });
+    // return teamModel.deleteOne({ _id: teamId });
+    return teamModel.findOneAndDelete({ _id: teamId });
   }
 
   async function removeParticipantFromTeam(teamId, participantId) {

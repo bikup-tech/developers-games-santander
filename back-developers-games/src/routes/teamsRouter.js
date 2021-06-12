@@ -9,7 +9,8 @@ router.route('/')
   .post(teamsController.createTeam);
 
 router.route('/:teamId')
-  .patch(teamController.updateTeam);
+  .patch(teamController.updateTeam)
+  .delete(teamController.deleteTeam);
 
 router.route('/captain/:captainId')
   .get(teamController.getTeamByCaptainId);

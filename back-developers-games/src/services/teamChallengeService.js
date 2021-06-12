@@ -57,12 +57,17 @@ function teamChallengeService() {
     return teamChallengeModel.updateMany(filter, updateQuery, options);
   }
 
+  function deleteManyTeamChallenges(teamChallenges) {
+    return teamChallengeModel.deleteMany({ _id: { $in: teamChallenges } });
+  }
+
   return {
     findTeamChallengeById,
     createTeamChallenge,
     updateTeamChallenge,
     findTeamChallenges,
     updateManyTeamChallenges,
+    deleteManyTeamChallenges,
   };
 }
 
