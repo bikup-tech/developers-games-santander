@@ -45,11 +45,34 @@ function participantService() {
     return participantModel.updateOne(findQuery, updateQuery, updateOptions);
   }
 
+  async function updateManyParticipants(participantIds, updateQuery) {
+    const findQuery = { _id: { $in: participantIds } };
+    const updateOptions = {
+      new: true, useFindAndModify: false,
+    };
+    return participantModel.updateMany(findQuery, updateQuery, updateOptions);
+  }
+
   async function findParticipantById(participantId) {
     return participantModel.findById(participantId);
   }
 
-  return { createParticipant, updateParticipant, findParticipantById };
+  async function deleteParticipant(participantId) {
+    return participantModel.findOneAndDelete({ _id: participantId });
+  }
+
+  async function deleteManyParticipants(participants) {
+    return participantModel.deleteMany({ _id: { $in: participants } });
+  }
+
+  return {
+    createParticipant,
+    updateParticipant,
+    findParticipantById,
+    deleteParticipant,
+    updateManyParticipants,
+    deleteManyParticipants,
+  };
 }
 
 module.exports = participantService();

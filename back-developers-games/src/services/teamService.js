@@ -40,8 +40,21 @@ function teamService() {
     return teamModel.find({ tournamentId }).populate('participants').populate('teamChallenges').populate('tournamentChallenge');
   }
 
+  async function deleteTeam(teamId) {
+    // return teamModel.deleteOne({ _id: teamId });
+    return teamModel.findOneAndDelete({ _id: teamId });
+  }
+
+  async function removeParticipantFromTeam(teamId, participantId) {
+    const updateQuery = {
+      $pull: { participants: participantId },
+    };
+
+    return teamModel.updateOne({ _id: teamId }, updateQuery);
+  }
+
   return {
-    findTeam, createTeam, updateTeam, findTournamentTeams,
+    findTeam, createTeam, updateTeam, findTournamentTeams, deleteTeam, removeParticipantFromTeam,
   };
 }
 
