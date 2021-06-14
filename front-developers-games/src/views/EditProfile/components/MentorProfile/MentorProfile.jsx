@@ -1,19 +1,21 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import './MentorProfile.scss';
 
 // constants
-// import warningMessages from '../../../../constants/warningMessages';
-// import alertConstants from '../../../../constants/alertConstants';
+import warningMessages from '../../../../constants/warningMessages';
 
 // Images
 import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
 import viewIcon from '../../../../assets/images/view-icon.svg';
+
+// action-creators
+import { updateTeamProfile } from '../../../../redux/actions/profileActions';
 
 // components
 import Input from '../../../../components/Input/Input';
@@ -21,8 +23,9 @@ import MainButton from '../../../../components/MainButton/MainButton';
 
 function MentorProfile() {
   const {
-    name, email, surname, phone,
+    name, email, surname, phone, _id,
   } = useSelector(({ authReducer }) => authReducer.user.userLogged);
+  const dispatch = useDispatch();
 
   const initialStateValues = {
     mentorName: name,
@@ -56,7 +59,36 @@ function MentorProfile() {
   }
 
   function handleSaveChangesClick() {
+    let isFormValid = true;
+    const wrongValues = {};
 
+    Object.entries(editMentorProfile).forEach(([key, value]) => {
+      if (!value && key !== 'newPassword') {
+        wrongValues[key] = true;
+      }
+      setWarningMessage(warningMessages.login.LOGIN_REQUIRED_ENTRY);
+      isFormValid = false;
+    });
+    setIsInputIncorrect(wrongValues);
+
+    if (isFormValid) {
+      const credentials = {
+        userId: _id,
+        password: editMentorProfile.password,
+      };
+      dispatch(updateTeamProfile(
+        credentials,
+        editMentorProfile,
+        editMentorProfile.mentorName,
+      ));
+      setEditMentorProfile({
+        ...editMentorProfile,
+        password: '',
+        newPassword: '',
+      });
+
+      setWarningMessage('');
+    }
   }
 
   return (
