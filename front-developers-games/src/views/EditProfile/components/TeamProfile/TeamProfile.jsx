@@ -13,7 +13,7 @@ import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
 
 // Action-creators
-import { setProfileInputValue, updateTeamProfile } from '../../../../redux/actions/profileActions';
+import { setProfileInputValue, updateTeamProfile, deleteTeam } from '../../../../redux/actions/profileActions';
 import { setAlert } from '../../../../redux/actions/alertActions';
 
 // Components
@@ -82,12 +82,24 @@ function TeamProfile() {
     }
   }
 
+  function handleDeleteTeam() {
+    if (window.confirm("Are your sure you want to delete your team and all it's participants?")) {
+      dispatch(deleteTeam(team._id));
+    }
+  }
+
   return (
     <div className="view-profile">
       <div className="view-profile__top">
         <span className="top__text">Edit your profile</span>
-        <div className="profile-button-container">
-          <MainButton onClick={handleSaveClick}>Save Changes</MainButton>
+        <div className="top__actions">
+
+          <div className="profile-button-container profile-button-container--margin">
+            <MainButton onClick={handleDeleteTeam} isSecondary>Delete team</MainButton>
+          </div>
+          <div className="profile-button-container">
+            <MainButton onClick={handleSaveClick}>Save Changes</MainButton>
+          </div>
         </div>
       </div>
       <form className="team-profile__login-info">

@@ -135,6 +135,18 @@ export default function mainReducer(state = {}, action) {
       };
       break;
 
+    case actionTypes.DELETE_PARTICIPANT:
+      newState = {
+        ...state,
+        team: {
+          ...state.team,
+          participants: state.team.participants.filter(
+            (participant) => participant._id !== action.participantId,
+          ),
+        },
+      };
+      break;
+
     // TEAMS
     case actionTypes.TEAMS_LOADING:
       newState = {

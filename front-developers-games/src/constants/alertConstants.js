@@ -23,6 +23,9 @@ export default {
     MODIFY_PROFILE_SUCCESS: 'Profile modified!',
     WRONG_PASSWORD: 'The password is not correct.',
     TOO_SHORT_PASSWORD: 'The password must have at least 6 characters.',
+    DELETE_PARTICIPANT_ERROR: 'There has been an error deleting this participant. Please try again.',
+    DELETE_PARTICIPANT_SUCCESS: 'Participant deleted!',
+    DELETE_TEAM_ERROR: 'There has been an error deleting your team. Please try again.',
   },
   icons: {
     SUCCESS: alertSuccessIcon,

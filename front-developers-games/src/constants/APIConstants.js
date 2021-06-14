@@ -12,4 +12,6 @@ export default {
   EDIT_ADMIN_PROFILE: '/api/profile/admin',
   CHECK_PASSWORD: '/api/auth/check',
   LOAD_TEAM: (teamId) => `/api/teams/${teamId}`,
+  DELETE_PARTICIPANT: (participantId) => `/api/participants/${participantId}`,
+  DELETE_TEAM: (teamId) => `/api/teams/${teamId}`,
 };

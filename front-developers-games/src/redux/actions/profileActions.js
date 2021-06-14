@@ -67,3 +67,41 @@ export function updateAdminProfile(credentials, body) {
     }
   };
 }
+
+function deleteParticipantSuccess(participantId) {
+  return {
+    type: actionTypes.DELETE_PARTICIPANT,
+    participantId,
+  };
+}
+
+export function deleteParticipant(participantId) {
+  return async (dispatch) => {
+    try {
+      const deleteParticipantEndpoint = `${APIConstants.HOSTNAME}${APIConstants.DELETE_PARTICIPANT(participantId)}`;
+      await axios.delete(deleteParticipantEndpoint);
+      dispatch(setAlert(
+        alertConstants.types.SUCCESS, alertConstants.messages.DELETE_PARTICIPANT_SUCCESS,
+      ));
+      dispatch(deleteParticipantSuccess(participantId));
+    } catch (error) {
+      dispatch(setAlert(
+        alertConstants.types.ERROR, alertConstants.messages.DELETE_PARTICIPANT_ERROR,
+      ));
+    }
+  };
+}
+
+export function deleteTeam(teamId) {
+  return async (dispatch) => {
+    try {
+      const deleteTeamEndpoint = `${APIConstants.HOSTNAME}${APIConstants.DELETE_TEAM(teamId)}`;
+      await axios.delete(deleteTeamEndpoint);
+      window.location.replace('/');
+    } catch (error) {
+      dispatch(setAlert(
+        alertConstants.types.ERROR, alertConstants.messages.DELETE_TEAM_ERROR,
+      ));
+    }
+  };
+}
