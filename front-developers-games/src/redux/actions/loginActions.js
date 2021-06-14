@@ -68,10 +68,10 @@ export function loadTeamSuccess(team) {
   };
 }
 
-export function loadTeam(captainId) {
+export function loadTeam(teamId) {
   return async (dispatch) => {
     try {
-      const endpoint = `${APIConstants.HOSTNAME}${APIConstants.LOAD_TEAM(captainId)}`;
+      const endpoint = `${APIConstants.HOSTNAME}${APIConstants.LOAD_TEAM(teamId)}`;
 
       dispatch(setLoadTeamLoading());
       const { data } = await axios.get(endpoint);

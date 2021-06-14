@@ -86,9 +86,9 @@ function teamsController() {
 
       // Update team challenges & participants (insert teamId property)
       const updateQuery = { $set: { teamId: createdTeam._id } };
-      teamChallengeService.updateManyTeamChallenges(createdTeamChallengesIds, updateQuery);
+      await teamChallengeService.updateManyTeamChallenges(createdTeamChallengesIds, updateQuery);
 
-      participantService.updateManyParticipants(createdParticipantsIds, updateQuery);
+      await participantService.updateManyParticipants(createdParticipantsIds, updateQuery);
 
       return handleResponseSuccess(res, REGISTER_TEAM_SUCCESS, CREATED);
     } catch (error) {

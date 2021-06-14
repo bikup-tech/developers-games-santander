@@ -9,10 +9,8 @@ router.route('/')
   .post(teamsController.createTeam);
 
 router.route('/:teamId')
+  .get(teamController.getTeamById)
   .patch(teamController.updateTeam)
   .delete(teamController.deleteTeam);
-
-router.route('/captain/:captainId')
-  .get(teamController.getTeamByCaptainId);
 
 module.exports = router;
