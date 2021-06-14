@@ -94,10 +94,11 @@ function TeamCard({ team, number }) {
             {team.participants.map((participant, index) => (
               <div className={`member-list__member ${index % 2 === 0 && 'dark-background'}`} key={`member-${participant._id}`}>
                 <div className="member__info">
-                  <span className="member__name">{participant.name}</span>
+                  <span className="member__name">{`${participant.name} ${participant.role === userRoles.CAPTAIN ? '(captain)' : ''}`}</span>
                   <span className="member__email desktop">{participant.email}</span>
                   <span className="member__phone">{participant.phone}</span>
                 </div>
+                <div className="flex-separator" />
                 <div className="member__actions">
                   <img src={deleteIcon} alt="delete team" className="title__delete" onClick={() => { handleDeleteParticipant(participant._id); }} />
 

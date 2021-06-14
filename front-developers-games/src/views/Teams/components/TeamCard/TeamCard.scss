@@ -216,6 +216,8 @@
 }
 
 .member__name {
+    width: 60%;
+    text-align: left;
     @media only screen and(min-width: $query-1280){
         width: 30%;
     } 
@@ -228,6 +230,8 @@
 }
 
 .member__phone {
+    width: 40%;
+
     @media only screen and(min-width: $query-1280){
         width: 30%;
     } 
@@ -235,7 +239,7 @@
 
 .member__actions {
     @include flex($justify-content: flex-end);
-    width: 15%;
+    width: 10%;
 }
 
 .extra__challenges {
