@@ -46,7 +46,13 @@ function MentorProfile() {
   const [warningMessage, setWarningMessage] = useState('');
 
   function handleInputChange({ target }) {
-    console.log(target);
+    setEditMentorProfile({
+      ...editMentorProfile,
+      [target.name]: target.value,
+    });
+    setIsInputIncorrect({ ...isInputIncorrect, [target.name]: false });
+
+    setWarningMessage('');
   }
 
   function handleSaveChangesClick() {
