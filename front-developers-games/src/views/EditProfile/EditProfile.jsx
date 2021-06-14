@@ -9,7 +9,6 @@ import userRoles from '../../constants/userRoles';
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import ParticipantProfile from './components/ParticipantProfile/ParticipantProfile';
-// eslint-disable-next-line no-unused-vars
 import TeamProfile from './components/TeamProfile/TeamProfile';
 import MentorProfile from './components/MentorProfile/MentorProfile';
 import AdminProfile from './components/AdminProfile/AdminProfile';

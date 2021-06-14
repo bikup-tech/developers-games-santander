@@ -136,7 +136,7 @@ function AdminProfile() {
           </div>
         </div>
         <div className="login-info__general profile">
-          <div className="entries__mail m-12--mobile">
+          <div className="entries__mail mb-12--mobile">
             <Input
               type="email"
               name="email"
@@ -161,7 +161,7 @@ function AdminProfile() {
       </form>
       <small className="form__warningMessage">{warningMessage}</small>
       <div className="view-profile__bottom">
-        <div className="profile-button-container m-12--mobile">
+        <div className="profile-button-container mb-12--mobile">
           <Link to="/teams" className="button-children">
             <MainButton isSecondary>
               <img className="button-children__image" src={viewIcon} alt="See Developers Games teams" />

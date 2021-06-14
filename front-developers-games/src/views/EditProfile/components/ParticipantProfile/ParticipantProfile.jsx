@@ -159,7 +159,7 @@ function ParticipantProfile() {
           </div>
         </div>
         <div className="login-info__general profile">
-          <div className="entries__mail m-12--mobile">
+          <div className="entries__mail mb-12--mobile">
             <Input
               type="email"
               name="email"

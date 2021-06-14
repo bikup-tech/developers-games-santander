@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import './MentorProfile.scss';
@@ -19,15 +20,22 @@ import Input from '../../../../components/Input/Input';
 import MainButton from '../../../../components/MainButton/MainButton';
 
 function MentorProfile() {
+  const {
+    name, email, surname, phone,
+  } = useSelector(({ authReducer }) => authReducer.user.userLogged);
+
   const initialStateValues = {
-    mentorName: '',
+    mentorName: name,
+    surname,
     password: '',
     newPassword: '',
-    email: '',
-    phone: '',
+    email,
+    phone,
   };
+
   const isIncorrectValues = {
     mentorName: false,
+    surname: false,
     password: false,
     email: false,
     phone: false,
@@ -102,8 +110,18 @@ function MentorProfile() {
             </div>
           </div>
         </div>
+        <div className="login-info__general profile flex-column">
+          <Input
+            type="text"
+            name="surname"
+            placeholder="Surname"
+            value={editMentorProfile.surname}
+            onChange={handleInputChange}
+            isIncorrect={isInputIncorrect.surname}
+          />
+        </div>
         <div className="login-info__general profile">
-          <div className="entries__mail m-12--mobile">
+          <div className="entries__mail mb-12--mobile mt-12--mobile">
             <Input
               type="email"
               name="email"
@@ -128,7 +146,7 @@ function MentorProfile() {
       </form>
       <small className="form__warningMessage">{warningMessage}</small>
       <div className="view-profile__bottom">
-        <div className="profile-button-container m-12--mobile">
+        <div className="profile-button-container mb-12--mobile">
           <Link to="/teams" className="button-children">
             <MainButton isSecondary>
               <img className="button-children__image" src={viewIcon} alt="See Developers Games teams" />
