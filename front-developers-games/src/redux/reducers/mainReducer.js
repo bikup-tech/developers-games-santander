@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import actionTypes from '../actions/actionTypes';
 
 export default function mainReducer(state = {}, action) {
@@ -167,6 +168,29 @@ export default function mainReducer(state = {}, action) {
         teamsLoading: false,
         loadTeamsError: null,
         tournamentTeams: action.teams,
+      };
+      break;
+
+    case actionTypes.DELETE_TEAM:
+      newState = {
+        ...state,
+        tournamentTeams: state.tournamentTeams.filter(
+          (team) => team._id !== action.teamId,
+        ),
+      };
+      break;
+
+    case actionTypes.ADMIN_DELETE_PARTICIPANT:
+      newState = {
+        ...state,
+        tournamentTeams: state.tournamentTeams.map((team) => {
+          if (team._id === action.payload.teamId) {
+            team.participants = team.participants.filter((participant) => (
+              participant._id !== action.payload.participantId
+            ));
+          }
+          return team;
+        }),
       };
       break;
 
