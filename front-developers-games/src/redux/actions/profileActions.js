@@ -105,3 +105,27 @@ export function deleteTeam(teamId) {
     }
   };
 }
+
+export function adminDeleteTeamSuccess(teamId) {
+  return {
+    type: actionTypes.DELETE_TEAM,
+    teamId,
+  };
+}
+
+export function adminDeleteTeam(teamId) {
+  return async (dispatch) => {
+    try {
+      const deleteTeamEndpoint = `${APIConstants.HOSTNAME}${APIConstants.DELETE_TEAM(teamId)}`;
+      await axios.delete(deleteTeamEndpoint);
+      dispatch(setAlert(
+        alertConstants.types.SUCCESS, alertConstants.messages.DELETE_TEAM_SUCCESS,
+      ));
+      dispatch(adminDeleteTeamSuccess(teamId));
+    } catch (error) {
+      dispatch(setAlert(
+        alertConstants.types.ERROR, alertConstants.messages.DELETE_TEAM_ERROR,
+      ));
+    }
+  };
+}

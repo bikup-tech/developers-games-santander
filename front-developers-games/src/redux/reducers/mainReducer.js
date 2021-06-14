@@ -170,6 +170,15 @@ export default function mainReducer(state = {}, action) {
       };
       break;
 
+    case actionTypes.DELETE_TEAM:
+      newState = {
+        ...state,
+        tournamentTeams: state.tournamentTeams.filter(
+          (team) => team._id !== action.teamId,
+        ),
+      };
+      break;
+
     default:
       newState = state;
       break;

@@ -1,11 +1,20 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './TeamCard.scss';
+
+// Constants
+import userRoles from '../../../../constants/userRoles';
+
+// Action Creators
+import { adminDeleteTeam } from '../../../../redux/actions/profileActions';
 
 // Images
 import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import viewIcon from '../../../../assets/images/view-icon.svg';
+import deleteIcon from '../../../../assets/images/delete-icon.svg';
 import linkIcon from '../../../../assets/images/link-icon.svg';
 
 function renderPendingChallenges(completedChallenges) {
@@ -13,6 +22,10 @@ function renderPendingChallenges(completedChallenges) {
 }
 
 function TeamCard({ team, number }) {
+  const dispatch = useDispatch();
+
+  const { userLogged } = useSelector(({ authReducer }) => authReducer.user);
+
   const [isExtraVisible, setIsExtraVisible] = useState(false);
 
   function handleShowExtraClick() {
@@ -31,6 +44,12 @@ function TeamCard({ team, number }) {
     }
   }
 
+  function handleDeleteTeam() {
+    if (window.confirm("Are you sure you want to delete this team and all it's members?")) {
+      dispatch(adminDeleteTeam(team._id));
+    }
+  }
+
   let printedChallenges = 0;
 
   return (
@@ -42,7 +61,12 @@ function TeamCard({ team, number }) {
         <div className="info__data">
           <div className="data__title">
             <h3 className="title__text">{`${number}. ${team.name}`}</h3>
-            <img src={viewIcon} alt="view team" className="title__view" onClick={handleShowExtraClick} />
+            <div className="title__actions">
+              <img src={viewIcon} alt="view team" className="title__view" onClick={handleShowExtraClick} />
+              {userLogged.role === userRoles.SUPER_ADMIN && (
+                <img src={deleteIcon} alt="delete team" className="title__delete" onClick={handleDeleteTeam} />
+              )}
+            </div>
           </div>
           <div className="data__completed">
             <div className="completed__item completed__item--success">

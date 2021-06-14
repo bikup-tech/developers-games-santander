@@ -25,7 +25,8 @@ export default {
     TOO_SHORT_PASSWORD: 'The password must have at least 6 characters.',
     DELETE_PARTICIPANT_ERROR: 'There has been an error deleting this participant. Please try again.',
     DELETE_PARTICIPANT_SUCCESS: 'Participant deleted!',
-    DELETE_TEAM_ERROR: 'There has been an error deleting your team. Please try again.',
+    DELETE_TEAM_ERROR: 'There has been an error deleting the team. Please try again.',
+    DELETE_TEAM_SUCCESS: 'Team deleted!',
   },
   icons: {
     SUCCESS: alertSuccessIcon,

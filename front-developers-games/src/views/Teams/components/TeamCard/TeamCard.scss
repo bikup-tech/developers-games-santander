@@ -42,6 +42,7 @@
     @include flex($flex-direction: column, $align-items: flex-start);
     flex: 1;
     padding-left: $p-12;
+    width: 100%;
 
     @media only screen and(min-width: $query-1280){
         padding-left: $p-24
@@ -50,11 +51,12 @@
 
 .data__title {
     @include flex($justify-content: space-between);
-    width: 100%;
     font-size: 18px;
     padding-bottom: $p-2;
     border-bottom: 0.5px solid $lighterBlue;
     margin-bottom: $m-4;
+    width: 100%;
+
 
     @media only screen and(min-width: $query-1280){
         font-size: 22px;
@@ -67,10 +69,27 @@
     color: $darkBlue;
 }
 
+.title__actions {
+    @include flex($justify-content: flex-end);
+    flex: 1;
+
+}
+
 .title__view {
     width: 25px;
     cursor: pointer;
     transition: all 0.5s ease;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}
+
+.title__delete {
+    width: 20px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    margin-left: $m-12;
 
     &:hover {
         transform: scale(1.2);
