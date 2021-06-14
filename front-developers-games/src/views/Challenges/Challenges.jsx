@@ -31,7 +31,7 @@ function Challenges() {
 
   useEffect(() => {
     if (!team || !team?._id) {
-      dispatch(loadTeam(user?.userLogged?._id));
+      dispatch(loadTeam(user?.userLogged?.teamId));
     }
   }, [team, team?._id]);
 

@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "set PORT=4200& set DEBUG=app,app:* & nodemon index.js",
-    "startmac": "PORT=4200 DEBUG=app,app:* nodemon index.js",
+    "start": "DEBUG=app,app:* nodemon index.js",
     "test": "jest --testEnvironment=node --collect-coverage --watchAll",
     "test-debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand"
   },

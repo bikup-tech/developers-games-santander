@@ -1,5 +1,5 @@
 export default {
-  HOSTNAME: 'https://developer-games-316116.ew.r.appspot.com',
+  HOSTNAME: 'http://localhost:4200',
   LOAD_TEAM_CHALLENGES_ENDPOINT: (teamId) => `/api/teamChallenges?teamId=${teamId}`,
   REGISTER_TEAM: '/api/teams',
   LOGIN: '/api/auth',
@@ -11,5 +11,7 @@ export default {
   EDIT_TEAM_PROFILE: '/api/profile/team',
   EDIT_ADMIN_PROFILE: '/api/profile/admin',
   CHECK_PASSWORD: '/api/auth/check',
-  LOAD_TEAM: (captainId) => `/api/teams/captain/${captainId}`,
+  LOAD_TEAM: (teamId) => `/api/teams/${teamId}`,
+  DELETE_PARTICIPANT: (participantId) => `/api/participants/${participantId}`,
+  DELETE_TEAM: (teamId) => `/api/teams/${teamId}`,
 };

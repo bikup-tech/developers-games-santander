@@ -16,7 +16,6 @@ function participantController() {
       if (!participantId) {
         throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('participantId'));
       }
-
       // Delete participant
       const deletedParticipant = await participantService.deleteParticipant(participantId);
 

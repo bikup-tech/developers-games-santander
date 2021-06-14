@@ -12,17 +12,17 @@ const handleResponseSuccess = require('../utils/handleResponseSuccess');
 const participantService = require('../services/participantService');
 
 function teamController() {
-  async function getTeamByCaptainId({ params: { captainId } }, res) {
+  async function getTeamById({ params: { teamId } }, res) {
     try {
-      if (!captainId) {
-        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('captainId'));
+      if (!teamId) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('teamId'));
       }
 
-      const foundTeam = await teamService.findTeam({ captainId });
+      const foundTeam = await teamService.findTeam({ _id: teamId });
 
       return handleResponseSuccess(res, foundTeam);
-    } catch (getTeamByCaptainIdError) {
-      return handleResponseError(res, getTeamByCaptainIdError);
+    } catch (getTeamByIdError) {
+      return handleResponseError(res, getTeamByIdError);
     }
   }
 
@@ -61,7 +61,7 @@ function teamController() {
     }
   }
 
-  return { getTeamByCaptainId, updateTeam, deleteTeam };
+  return { getTeamById, updateTeam, deleteTeam };
 }
 
 module.exports = teamController();

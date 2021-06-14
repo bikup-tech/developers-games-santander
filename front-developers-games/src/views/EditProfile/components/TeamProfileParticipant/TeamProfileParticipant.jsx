@@ -1,24 +1,53 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import './TeamProfileParticipant.scss';
 
+// Icons
+import deleteIcon from '../../../../assets/images/delete-icon.svg';
+
 // Constants
 import userRoles from '../../../../constants/userRoles';
+
+// Action Creators
+import { deleteParticipant } from '../../../../redux/actions/profileActions';
 
 // Components
 import Input from '../../../../components/Input/Input';
 
 function TeamProfileParticipant({ participantNumber, participant }) {
+  const dispatch = useDispatch();
+
+  function handleDelete() {
+    if (window.confirm('Are your sure you want to delete this participant?')) {
+      dispatch(deleteParticipant(participant._id));
+    }
+  }
+
   return (
     <div className="register__participant register__participant-border">
-      <h3 className="participant__title app__title app__title--noPadding">
-        {participantNumber}
-        {' - '}
-        {participant.name}
-        {' '}
-        {participant.role === userRoles.CAPTAIN ? '(Captain)' : ''}
-
-      </h3>
+      <div className="participant__title-container">
+        <div className="flex-separator" />
+        <h3 className="participant__title app__title app__title--noPadding">
+          {participantNumber}
+          {' - '}
+          {participant.name}
+          {' '}
+          {participant.role === userRoles.CAPTAIN ? '(Captain)' : ''}
+        </h3>
+        <div className="flex-separator title__delete-participant">
+          {participant.role === userRoles.PARTICIPANT && (
+            <img
+              src={deleteIcon}
+              alt="delete participant"
+              className="delete-participant__icon"
+              onClick={handleDelete}
+            />
+          )}
+        </div>
+      </div>
       <div className="participant__inputs">
         <div className="inputs__entries">
           <div className="entries__name">

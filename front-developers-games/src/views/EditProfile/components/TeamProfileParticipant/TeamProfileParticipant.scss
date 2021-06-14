@@ -17,6 +17,29 @@
     }
 }
 
+.participant__title-container {
+    @include flex($justify-content: space-between);
+    width: 100%;
+}
+
 .app__title--noPadding {
     padding: $p-6 !important;
+}
+
+.title__delete-participant {
+    @include flex( $justify-content: flex-end);
+    flex: 1;
+    padding-bottom: $p-6;
+    padding-right: $p-4;
+}
+
+.delete-participant__icon {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s;
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+    }
 }
