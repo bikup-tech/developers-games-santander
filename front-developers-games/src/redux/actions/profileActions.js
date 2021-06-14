@@ -129,3 +129,29 @@ export function adminDeleteTeam(teamId) {
     }
   };
 }
+
+function adminDeleteParticipantSuccess(participantId, teamId) {
+  return {
+    type: actionTypes.ADMIN_DELETE_PARTICIPANT,
+    payload: {
+      participantId, teamId,
+    },
+  };
+}
+
+export function adminDeleteParticipant(participantId, teamId) {
+  return async (dispatch) => {
+    try {
+      const deleteParticipantEndpoint = `${APIConstants.HOSTNAME}${APIConstants.DELETE_PARTICIPANT(participantId)}`;
+      await axios.delete(deleteParticipantEndpoint);
+      dispatch(setAlert(
+        alertConstants.types.SUCCESS, alertConstants.messages.DELETE_PARTICIPANT_SUCCESS,
+      ));
+      dispatch(adminDeleteParticipantSuccess(participantId, teamId));
+    } catch (error) {
+      dispatch(setAlert(
+        alertConstants.types.ERROR, alertConstants.messages.DELETE_TEAM_ERROR,
+      ));
+    }
+  };
+}

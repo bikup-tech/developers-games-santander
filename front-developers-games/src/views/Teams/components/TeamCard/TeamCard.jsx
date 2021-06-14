@@ -9,7 +9,7 @@ import './TeamCard.scss';
 import userRoles from '../../../../constants/userRoles';
 
 // Action Creators
-import { adminDeleteTeam } from '../../../../redux/actions/profileActions';
+import { adminDeleteTeam, adminDeleteParticipant } from '../../../../redux/actions/profileActions';
 
 // Images
 import avatarIcon from '../../../../assets/images/avatar-icon.svg';
@@ -47,6 +47,12 @@ function TeamCard({ team, number }) {
   function handleDeleteTeam() {
     if (window.confirm("Are you sure you want to delete this team and all it's members?")) {
       dispatch(adminDeleteTeam(team._id));
+    }
+  }
+
+  function handleDeleteParticipant(participantId) {
+    if (window.confirm('Are you sure you want to delete this participant?')) {
+      dispatch(adminDeleteParticipant(participantId, team._id));
     }
   }
 
@@ -92,7 +98,10 @@ function TeamCard({ team, number }) {
                   <span className="member__email desktop">{participant.email}</span>
                   <span className="member__phone">{participant.phone}</span>
                 </div>
-                <div className="member__actions" />
+                <div className="member__actions">
+                  <img src={deleteIcon} alt="delete team" className="title__delete" onClick={() => { handleDeleteParticipant(participant._id); }} />
+
+                </div>
               </div>
             ))}
           </div>
