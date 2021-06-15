@@ -124,13 +124,12 @@ export function loadChallengeDetail(challengeId) {
   };
 }
 
-function uploadChallengeDeliverableSuccess(buffer, fileType, filename) {
+function uploadChallengeDeliverableSuccess(filename, gcloudName) {
   return {
     type: actionTypes.UPLOAD_DELIVERABLE_SUCCESS,
     payload: {
-      buffer,
-      fileType,
       filename,
+      gcloudName,
     },
   };
 }
@@ -144,16 +143,16 @@ export function uploadChallengeDeliverable(challengeId, file) {
       formData.append('deliverable', file);
 
       const { data } = await axios({
-        method: 'post',
+        method: 'patch',
         url: loadChallengeDetailEndpoint,
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      dispatch(uploadChallengeDeliverableSuccess(
-        data.deliverable, data.mimeType, data.filename,
-      ));
+
+      dispatch(uploadChallengeDeliverableSuccess(data.filename, data.gcloudName));
       dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.UPLOAD_FILE_SUCCESS));
     } catch (error) {
+      console.log(error);
       dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.UPLOAD_FILE_ERROR));
     }
   };

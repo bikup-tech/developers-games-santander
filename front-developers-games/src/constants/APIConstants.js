@@ -4,7 +4,6 @@ export default {
   REGISTER_TEAM: '/api/teams',
   LOGIN: '/api/auth',
   LOAD_CHALLENGE_DETAIL: (challengeId) => `/api/teamChallenges/${challengeId}`,
-  UPLOAD_CHALLENGE_DELIVERABLE: (challengeId) => `/api/teamChallenges/deliverable/${challengeId}`,
   UPDATE_CHALLENGE: (challengeId) => `/api/teamChallenges/${challengeId}`,
   UPDATE_TEAM: (teamId) => `/api/teams/${teamId}`,
   LOAD_TOURNAMENT_TEAMS: (tournamentId) => `/api/teams?tournamentId=${tournamentId}`,
@@ -15,4 +14,5 @@ export default {
   DELETE_PARTICIPANT: (participantId) => `/api/participants/${participantId}`,
   DELETE_TEAM: (teamId) => `/api/teams/${teamId}`,
   UPLOAD_AVATAR: (participantId) => `/api/upload/avatar/${participantId}`,
+  UPLOAD_CHALLENGE_DELIVERABLE: (challengeId) => `/api/upload/deliverable/${challengeId}`,
 };

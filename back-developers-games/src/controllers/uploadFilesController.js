@@ -1,11 +1,10 @@
-const fs = require('fs');
-
 // Constants
-const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
-const { MISSING_AVATAR_FILE } = require('../constants/responseMessages');
+const { BAD_REQUEST } = require('../constants/statusCodes');
+const { MISSING_AVATAR_FILE, MISSING_DELIVERABLE_FILE } = require('../constants/responseMessages');
 
 // Services
 const participantService = require('../services/participantService');
+const teamChallengeService = require('../services/teamChallengeService');
 
 // Utils
 const CustomError = require('../utils/CustomError');
@@ -44,7 +43,36 @@ function uploadFilesController(gcBucket) {
     }
   }
 
-  return { uploadAvatar };
+  async function uploadDeliverable({ files, params: { teamChallengeId } }, res) {
+    if (!files || !files.deliverable) {
+      throw new CustomError(BAD_REQUEST, MISSING_DELIVERABLE_FILE);
+    }
+
+    const file = files.deliverable;
+    const filePath = files.deliverable.tempFilePath;
+    let filename = filePath.split('/');
+    filename = filename[filename.length - 1];
+
+    await gcBucket.upload(filePath, {
+      metadata: {
+        contentType: file.mimetype,
+      },
+    });
+
+    const updateQuery = { $set: { filename, gcloudName: file.name } };
+    const updatedTeamChallenge = teamChallengeService
+      .findAndUpdateTeamChallenge(teamChallengeId, updateQuery);
+
+    if (updatedTeamChallenge.filename) {
+      await gcBucket.file(updatedTeamChallenge.filename).delete();
+    }
+
+    const response = { filename, gcloudName: file.name };
+
+    return handleResponseSuccess(res, response);
+  }
+
+  return { uploadAvatar, uploadDeliverable };
 }
 
 module.exports = uploadFilesController;

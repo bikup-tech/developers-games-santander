@@ -103,8 +103,7 @@ export default function mainReducer(state = {}, action) {
         challengeDetail: {
           ...state.challengeDetail,
           filename: action.payload.filename,
-          deliverable: action.payload.buffer,
-          mimetype: action.payload.fileType,
+          gcloudName: action.payload.gcloudName,
         },
       };
       break;
