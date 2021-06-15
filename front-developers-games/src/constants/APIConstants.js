@@ -14,4 +14,5 @@ export default {
   LOAD_TEAM: (teamId) => `/api/teams/${teamId}`,
   DELETE_PARTICIPANT: (participantId) => `/api/participants/${participantId}`,
   DELETE_TEAM: (teamId) => `/api/teams/${teamId}`,
+  UPLOAD_AVATAR: (participantId) => `/api/upload/avatar/${participantId}`,
 };

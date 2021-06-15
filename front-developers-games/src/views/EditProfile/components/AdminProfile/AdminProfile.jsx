@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -8,16 +6,16 @@ import './AdminProfile.scss';
 
 // constants
 import warningMessages from '../../../../constants/warningMessages';
-import alertConstants from '../../../../constants/alertConstants';
 
 // Images
-import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
 import viewIcon from '../../../../assets/images/view-icon.svg';
 
 // Action Creators
-import { updateAdminProfile } from '../../../../redux/actions/profileActions';
-import { setAlert } from '../../../../redux/actions/alertActions';
+import { updateAdminProfile, uploadAvatar } from '../../../../redux/actions/profileActions';
+
+// Utils
+import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 
 // components
 import Input from '../../../../components/Input/Input';
@@ -26,7 +24,7 @@ import MainButton from '../../../../components/MainButton/MainButton';
 function AdminProfile() {
   const dispatch = useDispatch();
   const {
-    name, email, phone, _id,
+    name, email, phone, _id, avatar,
   } = useSelector(({ authReducer }) => authReducer.user.userLogged);
 
   const initialState = {
@@ -45,6 +43,8 @@ function AdminProfile() {
 
   const [editAdminProfile, setEditAdminProfile] = useState(initialState);
   const [warningMessage, setWarningMessage] = useState('');
+
+  const avatarInput = useRef(null);
 
   function handleInputChange({ target }) {
     if (target.name !== 'newPassword') {
@@ -66,6 +66,16 @@ function AdminProfile() {
       });
     }
     setWarningMessage('');
+  }
+
+  function handleCameraClick() {
+    avatarInput.current.click();
+  }
+
+  function handleFileChange(event) {
+    const selectedFile = event.target.files[0];
+
+    dispatch(uploadAvatar(selectedFile, _id));
   }
 
   function handleSaveChangesClick() {
@@ -113,10 +123,11 @@ function AdminProfile() {
       <form className="team-profile__login-info--admin">
         <div className="login-info__general">
           <div className="login-info__avatar">
-            <img src={avatarIcon} alt="team avatar" className="avatar__image" />
+            <img src={getGcloudBucketFileUrl(avatar)} alt="team avatar" className="avatar__image" />
             <div className="avatar__photo-container">
-              <img src={cameraIcon} alt="change avatar" className="photo-container__img" />
+              <img src={cameraIcon} alt="change avatar" className="photo-container__img" onClick={handleCameraClick} />
             </div>
+            <input type="file" className="info__avatar-file" ref={avatarInput} onChange={handleFileChange} accept="image/png, image/gif, image/jpeg" />
           </div>
           <div className="login-separator" />
           <div className="login-info__data">

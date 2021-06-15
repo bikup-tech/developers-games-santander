@@ -5,7 +5,6 @@ module.exports = {
   NO_CHALLENGE_FOUND: (challengeId) => `There is not a challenge with the id ${challengeId}`,
   NO_TOURNAMENT_CHALLENGES_FOUND: (tournamentId) => `There are no active challenges for this tournament with id: ${tournamentId}.`,
   NO_TOURNAMENT_FOUND: (tournamentId) => `There is no active tournament with the id: ${tournamentId}.`,
-  NO_TEAM_FOUND: (teamId) => `There is no team with the id: ${teamId}.`,
   MISSING_QUERY: 'The query param is missing',
   ALREADY_EXISTING_TEAM: (teamName) => `A team called ${teamName} already exist.`,
   MISSING_PARTICIPANT_PROPERTIES: 'Some participant is missing required fields. Be sure to include the name, surname, email and phone for each participant.',
@@ -17,4 +16,5 @@ module.exports = {
   NO_TEAM_FOUND: (teamId) => `There is no team with the ID ${teamId}.`,
   NO_USER_ID_FOUND: (userId) => `There is no user with the ID ${userId}.`,
   WRONG_PASSWORD: 'The password is not correct.',
+  MISSING_AVATAR_FILE: 'Please provide an avatar file.',
 };

@@ -5,6 +5,10 @@
 @import '../../../Register/Register.scss';
 
 
+.info__avatar-file {
+    display: none;
+}
+
 .button-children__image {
     height: 20px;
     margin-right: $m-6;
