@@ -50,6 +50,7 @@ function uploadFilesController(gcBucket) {
 
     const file = files.deliverable;
     const filePath = files.deliverable.tempFilePath;
+    console.log(file);
     let filename = filePath.split('/');
     filename = filename[filename.length - 1];
 
@@ -60,7 +61,7 @@ function uploadFilesController(gcBucket) {
     });
 
     const updateQuery = { $set: { filename, gcloudName: file.name } };
-    const updatedTeamChallenge = teamChallengeService
+    const updatedTeamChallenge = await teamChallengeService
       .findAndUpdateTeamChallenge(teamChallengeId, updateQuery);
 
     if (updatedTeamChallenge.filename) {
