@@ -15,7 +15,7 @@ import cameraIcon from '../../../../assets/images/camera-icon.svg';
 import viewIcon from '../../../../assets/images/view-icon.svg';
 
 // action-creators
-import { updateTeamProfile } from '../../../../redux/actions/profileActions';
+import { updateAdminProfile } from '../../../../redux/actions/profileActions';
 
 // components
 import Input from '../../../../components/Input/Input';
@@ -40,6 +40,7 @@ function MentorProfile() {
     mentorName: false,
     surname: false,
     password: false,
+    newPassword: false,
     email: false,
     phone: false,
   };
@@ -65,28 +66,30 @@ function MentorProfile() {
     Object.entries(editMentorProfile).forEach(([key, value]) => {
       if (!value && key !== 'newPassword') {
         wrongValues[key] = true;
+
+        setWarningMessage(warningMessages.login.LOGIN_REQUIRED_ENTRY);
+        isFormValid = false;
       }
-      setWarningMessage(warningMessages.login.LOGIN_REQUIRED_ENTRY);
-      isFormValid = false;
     });
+
+    if (editMentorProfile.newPassword && editMentorProfile.newPassword.length < 6) {
+      isFormValid = false;
+      wrongValues.newPassword = true;
+      setWarningMessage(warningMessages.inputs.TOO_SHORT_PASSWORD);
+    }
     setIsInputIncorrect(wrongValues);
 
     if (isFormValid) {
-      const credentials = {
-        userId: _id,
-        password: editMentorProfile.password,
+      // pasarle tambien el surname, se puede?
+      const credentials = { userId: _id, password: editMentorProfile.password };
+      const body = {
+        participantId: _id,
+        phone: editMentorProfile.phone,
+        newPassword: editMentorProfile.newPassword ? editMentorProfile.newPassword : null,
+        name: editMentorProfile.mentorName,
       };
-      dispatch(updateTeamProfile(
-        credentials,
-        editMentorProfile,
-        editMentorProfile.mentorName,
-      ));
-      setEditMentorProfile({
-        ...editMentorProfile,
-        password: '',
-        newPassword: '',
-      });
-
+      dispatch(updateAdminProfile(credentials, body));
+      setEditMentorProfile({ ...setEditMentorProfile, password: '', newPassword: '' });
       setWarningMessage('');
     }
   }
