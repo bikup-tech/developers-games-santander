@@ -2,7 +2,7 @@ const fs = require('fs');
 
 // Constants
 const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
-const { MISSING_PROPERTIES, NO_CHALLENGE_FOUND } = require('../constants/responseMessages');
+const { MISSING_AVATAR_FILE } = require('../constants/responseMessages');
 
 // Services
 const participantService = require('../services/participantService');
@@ -15,12 +15,14 @@ const handleResponseSuccess = require('../utils/handleResponseSuccess');
 function uploadFilesController(gcBucket) {
   async function uploadAvatar({ files, params: { participantId } }, res) {
     try {
-      // TODO: Comprovacions que arriben files i partId
+      if (!files || !files.avatar) {
+        throw new CustomError(BAD_REQUEST, MISSING_AVATAR_FILE);
+      }
 
-      const file = files[Object.keys(files)[0]];
-      const filename = files[Object.keys(files)[0]].tempFilePath;
-      // const file = files.avatar;
-      // const filename = files.avatar.tempFilePath;
+      const file = files.avatar;
+      const filename = files.avatar.tempFilePath;
+
+      console.log(file);
 
       const uploadedFile = await gcBucket.upload(filename, {
         metadata: {

@@ -155,3 +155,36 @@ export function adminDeleteParticipant(participantId, teamId) {
     }
   };
 }
+
+function uploadAvatarSuccess(avatarUrl) {
+  return {
+    type: actionTypes.UPLOAD_AVATAR,
+    avatarUrl,
+  };
+}
+
+export function uploadAvatar(file, participantId) {
+  return async (dispatch) => {
+    try {
+      const uploadAvatarEndpoint = `${APIConstants.HOSTNAME}${APIConstants.UPLOAD_AVATAR(participantId)}`;
+
+      const formData = new FormData();
+      formData.append('avatar', file);
+
+      const { data } = await axios({
+        method: 'patch',
+        url: uploadAvatarEndpoint,
+        data: formData,
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      console.log(data);
+
+      dispatch(uploadAvatarSuccess(data));
+    } catch (uploadError) {
+      dispatch(setAlert(
+        alertConstants.types.ERROR, alertConstants.messages.UPLOAD_AVATAR_ERROR,
+      ));
+    }
+  };
+}
