@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import './TeamProfile.scss';
@@ -9,22 +7,21 @@ import './TeamProfile.scss';
 import alertConstants from '../../../../constants/alertConstants';
 
 // Images
-import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
 
 // Action-creators
-import { setProfileInputValue, updateTeamProfile, deleteTeam } from '../../../../redux/actions/profileActions';
+import {
+  setProfileInputValue, updateTeamProfile, deleteTeam, uploadAvatar,
+} from '../../../../redux/actions/profileActions';
 import { setAlert } from '../../../../redux/actions/alertActions';
+
+// Utils
+import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 
 // Components
 import Input from '../../../../components/Input/Input';
 import MainButton from '../../../../components/MainButton/MainButton';
 import TeamProfileParticipant from '../TeamProfileParticipant/TeamProfileParticipant';
-
-const initialWrongValues = {
-  password: false,
-  teamName: false,
-};
 
 function TeamProfile() {
   const dispatch = useDispatch();
@@ -35,11 +32,23 @@ function TeamProfile() {
   const [isNameModified, setIsNameModified] = useState(false);
   const [isNewPasswordLengthInvalid, setIsNewPasswordLengthInvalid] = useState(false);
 
+  const avatarInput = useRef(null);
+
   useEffect(() => {
     if (team) {
       dispatch(setProfileInputValue('teamName', team.name));
     }
   }, [team.name]);
+
+  function handleCameraClick() {
+    avatarInput.current.click();
+  }
+
+  function handleFileChange(event) {
+    const selectedFile = event.target.files[0];
+
+    dispatch(uploadAvatar(selectedFile, user.userLogged._id));
+  }
 
   function handleInputChange({ target: { name, value } }) {
     dispatch(setProfileInputValue(name, value));
@@ -104,10 +113,12 @@ function TeamProfile() {
       </div>
       <form className="team-profile__login-info">
         <div className="login-info__avatar">
-          <img src={avatarIcon} alt="team avatar" className="avatar__image" />
+          <img src={getGcloudBucketFileUrl(user.userLogged.avatar)} alt="team avatar" className="avatar__image" />
           <div className="avatar__photo-container">
-            <img src={cameraIcon} alt="change avatar" className="photo-container__img" />
+            <img src={cameraIcon} alt="change avatar" className="photo-container__img" onClick={handleCameraClick} />
           </div>
+          <input type="file" className="info__avatar-file" ref={avatarInput} onChange={handleFileChange} accept="image/png, image/gif, image/jpeg" />
+
         </div>
         <div className="login-separator" />
         <div className="login-info__data">

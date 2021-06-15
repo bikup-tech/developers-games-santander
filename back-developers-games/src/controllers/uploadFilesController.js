@@ -20,22 +20,20 @@ function uploadFilesController(gcBucket) {
       }
 
       const file = files.avatar;
-      const filename = files.avatar.tempFilePath;
+      const filePath = files.avatar.tempFilePath;
+      let filename = filePath.split('/');
+      filename = filename[filename.length - 1];
 
-      console.log(file);
-
-      const uploadedFile = await gcBucket.upload(filename, {
+      await gcBucket.upload(filePath, {
         metadata: {
           contentType: file.mimetype,
         },
       });
 
-      const gcloudStorageUrl = uploadedFile[0].metadata.mediaLink;
-
-      const updateQuery = { $set: { avatar: gcloudStorageUrl } };
+      const updateQuery = { $set: { avatar: filename } };
       await participantService.updateParticipant(participantId, updateQuery);
 
-      return handleResponseSuccess(res, gcloudStorageUrl);
+      return handleResponseSuccess(res, filename);
     } catch (uploadAvatarError) {
       return handleResponseError(res, uploadAvatarError);
     }

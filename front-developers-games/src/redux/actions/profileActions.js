@@ -177,9 +177,7 @@ export function uploadAvatar(file, participantId) {
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-
       console.log(data);
-
       dispatch(uploadAvatarSuccess(data));
     } catch (uploadError) {
       dispatch(setAlert(
