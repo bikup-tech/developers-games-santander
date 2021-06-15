@@ -31,7 +31,12 @@ function uploadFilesController(gcBucket) {
       });
 
       const updateQuery = { $set: { avatar: filename } };
-      await participantService.updateParticipant(participantId, updateQuery);
+      const updatedParticipant = await participantService
+        .findAndUpdateParticipant(participantId, updateQuery);
+
+      if (updatedParticipant.avatar !== 'avatar-icon.svg') {
+        await gcBucket.file(updatedParticipant.avatar).delete();
+      }
 
       return handleResponseSuccess(res, filename);
     } catch (uploadAvatarError) {
