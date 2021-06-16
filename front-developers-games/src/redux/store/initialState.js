@@ -39,10 +39,12 @@ export default {
     user: {
       isLogged: false,
       userLogged: {
-        name: 'userName',
+        name: '',
+        surname: '',
         _id: '',
         email: '',
-        role: userRoles.CAPTAIN,
+        phone: '',
+        role: '',
       },
     },
   },

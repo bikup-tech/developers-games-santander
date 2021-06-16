@@ -8,11 +8,10 @@ import userRoles from '../../constants/userRoles';
 
 // Components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
-import TeamProfile from './components/TeamProfile/TeamProfile';
 import ParticipantProfile from './components/ParticipantProfile/ParticipantProfile';
+import TeamProfile from './components/TeamProfile/TeamProfile';
+import MentorProfile from './components/MentorProfile/MentorProfile';
 import AdminProfile from './components/AdminProfile/AdminProfile';
-
-// TODO: Perfil mentor
 
 function EditProfile() {
   const { role, name } = useSelector(({ authReducer }) => authReducer.user.userLogged);
@@ -24,6 +23,10 @@ function EditProfile() {
 
       {role === userRoles.CAPTAIN && (
         <TeamProfile />
+      )}
+
+      {role === userRoles.MENTOR && (
+        <MentorProfile />
       )}
 
       {role === userRoles.PARTICIPANT && (
