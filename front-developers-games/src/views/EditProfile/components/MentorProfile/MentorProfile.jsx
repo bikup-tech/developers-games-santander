@@ -89,7 +89,6 @@ function MentorProfile() {
         name: editMentorProfile.mentorName,
         surname: editMentorProfile.surname,
       };
-      console.log(body);
       dispatch(updateAdminProfile(credentials, body));
       setEditMentorProfile({ ...setEditMentorProfile, password: '', newPassword: '' });
       setWarningMessage('');

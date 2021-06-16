@@ -17,7 +17,6 @@ export function setProfileInputValue(name, value) {
 }
 
 export function updateTeamProfile(credentials, body, profileName) {
-  console.log(credentials);
   return async (dispatch) => {
     try {
       const checkEndpoint = `${APIConstants.HOSTNAME}${APIConstants.CHECK_PASSWORD}`;
