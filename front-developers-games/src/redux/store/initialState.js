@@ -37,14 +37,14 @@ export default {
 
   authReducer: {
     user: {
-      isLogged: false,
+      isLogged: true,
       userLogged: {
-        name: '',
+        name: 'superadmin',
         surname: '',
-        _id: '',
-        email: '',
-        phone: '',
-        role: '',
+        _id: '60c7220085cd6017500fb9a8',
+        email: 'admin',
+        phone: '1213123',
+        role: userRoles.SUPER_ADMIN,
       },
     },
   },

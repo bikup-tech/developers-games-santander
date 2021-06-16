@@ -10,6 +10,7 @@ import warningMessages from '../../../../constants/warningMessages';
 // Images
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
 import viewIcon from '../../../../assets/images/view-icon.svg';
+import plusIcon from '../../../../assets/images/plus-icon.svg';
 
 // Action Creators
 import { updateAdminProfile, uploadAvatar } from '../../../../redux/actions/profileActions';
@@ -172,13 +173,23 @@ function AdminProfile() {
       </form>
       <small className="form__warningMessage">{warningMessage}</small>
       <div className="view-profile__bottom">
-        <div className="profile-button-container mb-12--mobile">
-          <Link to="/teams" className="button-children">
-            <MainButton isSecondary>
-              <img className="button-children__image" src={viewIcon} alt="See Developers Games teams" />
-              <p className="button-children__text">See teams</p>
-            </MainButton>
-          </Link>
+        <div className="bottom__secondary--buttons">
+          <div className="profile-button-container mb-12">
+            <Link to="/teams" className="button-children">
+              <MainButton isSecondary>
+                <img className="button-children__image" src={plusIcon} alt="See Developers Games teams" />
+                <p className="button-children__text">Add administrator</p>
+              </MainButton>
+            </Link>
+          </div>
+          <div className="profile-button-container mb-12--mobile">
+            <Link to="/teams" className="button-children">
+              <MainButton isSecondary>
+                <img className="button-children__image" src={viewIcon} alt="See Developers Games teams" />
+                <p className="button-children__text">See teams</p>
+              </MainButton>
+            </Link>
+          </div>
         </div>
         <div className="profile-button-container">
           <MainButton onClick={handleSaveChangesClick}>Save Changes</MainButton>

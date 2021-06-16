@@ -65,4 +65,8 @@
     text-decoration: none;
 }
 
+.bottom__secondary--buttons {
+    @include flex($flex-direction:column, $align-items:flex-start);
+}
+
 
