@@ -13,8 +13,6 @@ import TeamProfile from './components/TeamProfile/TeamProfile';
 import MentorProfile from './components/MentorProfile/MentorProfile';
 import AdminProfile from './components/AdminProfile/AdminProfile';
 
-// TODO: Perfil mentor
-
 function EditProfile() {
   const { role, name } = useSelector(({ authReducer }) => authReducer.user.userLogged);
   return (

@@ -78,7 +78,6 @@ function MentorProfile() {
     setIsInputIncorrect(wrongValues);
 
     if (isFormValid) {
-      // pasarle tambien el surname, se puede?
       const credentials = { userId: _id, password: editMentorProfile.password };
       const body = {
         participantId: _id,
