@@ -87,7 +87,9 @@ function MentorProfile() {
         phone: editMentorProfile.phone,
         newPassword: editMentorProfile.newPassword ? editMentorProfile.newPassword : null,
         name: editMentorProfile.mentorName,
+        surname: editMentorProfile.surname,
       };
+      console.log(body);
       dispatch(updateAdminProfile(credentials, body));
       setEditMentorProfile({ ...setEditMentorProfile, password: '', newPassword: '' });
       setWarningMessage('');

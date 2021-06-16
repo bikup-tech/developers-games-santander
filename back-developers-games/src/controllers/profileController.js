@@ -25,6 +25,7 @@ const adminValidProps = {
   newPassword: 'newPassword',
   phone: 'phone',
   participantId: 'participantId',
+  surname: 'surname',
 };
 
 function bodyHasWrongProps([...props], validProps) {
