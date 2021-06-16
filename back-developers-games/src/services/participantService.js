@@ -65,6 +65,11 @@ function participantService() {
     return participantModel.deleteMany({ _id: { $in: participants } });
   }
 
+  async function findAndUpdateParticipant(_id, updateQuery) {
+    const options = { useFindAndModify: false };
+    return participantModel.findOneAndUpdate(_id, updateQuery, options);
+  }
+
   return {
     createParticipant,
     updateParticipant,
@@ -72,6 +77,7 @@ function participantService() {
     deleteParticipant,
     updateManyParticipants,
     deleteManyParticipants,
+    findAndUpdateParticipant,
   };
 }
 

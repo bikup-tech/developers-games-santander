@@ -14,6 +14,21 @@ export default function authReducer(state = {}, action) {
     case actionTypes.CLEAR_LOGIN_ERROR:
       newState = { ...state, loginError: null };
       break;
+
+    // Avatar upload
+    case actionTypes.UPLOAD_AVATAR:
+      newState = {
+        ...state,
+        user: {
+          ...state.user,
+          userLogged: {
+            ...state.user.userLogged,
+            avatar: action.avatarUrl,
+          },
+        },
+      };
+      break;
+
     default:
       newState = state;
       break;

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import './ParticipantProfile.scss';
@@ -8,11 +8,13 @@ import './ParticipantProfile.scss';
 import warningMessages from '../../../../constants/warningMessages';
 
 // Images
-import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
 
 // action-creators
-import { updateTeamProfile } from '../../../../redux/actions/profileActions';
+import { updateTeamProfile, uploadAvatar } from '../../../../redux/actions/profileActions';
+
+// Utils
+import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 
 // components
 import Input from '../../../../components/Input/Input';
@@ -21,10 +23,8 @@ import MainButton from '../../../../components/MainButton/MainButton';
 function ParticipantProfile() {
   const dispatch = useDispatch();
   const {
-    name, email, phone, _id,
-  } = useSelector(
-    ({ authReducer }) => authReducer.user.userLogged,
-  );
+    name, email, phone, _id, avatar,
+  } = useSelector(({ authReducer }) => authReducer.user.userLogged);
 
   const initialStateValues = {
     participantName: name,
@@ -44,6 +44,8 @@ function ParticipantProfile() {
   const [isInputIncorrect, setIsInputIncorrect] = useState(isIncorrectValues);
   const [warningMessage, setWarningMessage] = useState('');
 
+  const avatarInput = useRef(null);
+
   function handleInputChange({ target }) {
     setEditParticipantProfile({
       ...editParticipantProfile,
@@ -52,6 +54,16 @@ function ParticipantProfile() {
     setIsInputIncorrect({ ...isInputIncorrect, [target.name]: false });
 
     setWarningMessage('');
+  }
+
+  function handleCameraClick() {
+    avatarInput.current.click();
+  }
+
+  function handleFileChange(event) {
+    const selectedFile = event.target.files[0];
+
+    dispatch(uploadAvatar(selectedFile, _id));
   }
 
   function handleSaveChangesClick() {
@@ -100,14 +112,16 @@ function ParticipantProfile() {
       <form className="team-profile__login-info--admin">
         <div className="login-info__general">
           <div className="login-info__avatar">
-            <img src={avatarIcon} alt="team avatar" className="avatar__image" />
+            <img src={getGcloudBucketFileUrl(avatar)} alt="team avatar" className="avatar__image" />
             <div className="avatar__photo-container">
               <img
                 src={cameraIcon}
                 alt="change avatar"
                 className="photo-container__img"
+                onClick={handleCameraClick}
               />
             </div>
+            <input type="file" className="info__avatar-file" ref={avatarInput} onChange={handleFileChange} accept="image/png, image/gif, image/jpeg" />
           </div>
           <div className="login-separator" />
           <div className="login-info__data">

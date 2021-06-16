@@ -27,6 +27,8 @@ export default {
     DELETE_PARTICIPANT_SUCCESS: 'Participant deleted!',
     DELETE_TEAM_ERROR: 'There has been an error deleting the team. Please try again.',
     DELETE_TEAM_SUCCESS: 'Team deleted!',
+    UPLOAD_AVATAR_ERROR: 'There has been an error uploading your avatar. Please try again.',
+    UPLOAD_AVATAR_SUCCESS: 'Avatar uploaded successfully.',
   },
   icons: {
     SUCCESS: alertSuccessIcon,
