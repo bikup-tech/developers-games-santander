@@ -50,9 +50,9 @@ function uploadFilesController(gcBucket) {
 
     const file = files.deliverable;
     const filePath = files.deliverable.tempFilePath;
-    console.log(file);
-    let filename = filePath.split('/');
-    filename = filename[filename.length - 1];
+
+    let uploadedFilename = filePath.split('/');
+    uploadedFilename = uploadedFilename[uploadedFilename.length - 1];
 
     await gcBucket.upload(filePath, {
       metadata: {
@@ -60,15 +60,15 @@ function uploadFilesController(gcBucket) {
       },
     });
 
-    const updateQuery = { $set: { filename, gcloudName: file.name } };
+    const updateQuery = { $set: { filename: file.name, gcloudName: uploadedFilename } };
     const updatedTeamChallenge = await teamChallengeService
       .findAndUpdateTeamChallenge(teamChallengeId, updateQuery);
 
-    if (updatedTeamChallenge.filename) {
-      await gcBucket.file(updatedTeamChallenge.filename).delete();
+    if (updatedTeamChallenge.gcloudName) {
+      await gcBucket.file(updatedTeamChallenge.gcloudName).delete();
     }
 
-    const response = { filename, gcloudName: file.name };
+    const response = { filename: file.name, gcloudName: uploadedFilename };
 
     return handleResponseSuccess(res, response);
   }
