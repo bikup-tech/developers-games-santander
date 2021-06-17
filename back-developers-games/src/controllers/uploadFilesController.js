@@ -57,6 +57,7 @@ function uploadFilesController(gcBucket) {
     await gcBucket.upload(filePath, {
       metadata: {
         contentType: file.mimetype,
+        contentDisposition: `inline; filename="${file.name}"`,
       },
     });
 
