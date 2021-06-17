@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import axios from 'axios';
 
 import APIConstants from '../../constants/APIConstants';
@@ -184,5 +185,16 @@ export function uploadAvatar(file, participantId) {
         alertConstants.types.ERROR, alertConstants.messages.UPLOAD_AVATAR_ERROR,
       ));
     }
+  };
+}
+
+export function createParticipant(userType, participant) {
+  console.log(participant);
+  return {
+    type: actionTypes.CREATE_PARTICIPANT,
+    payload: {
+      userType,
+      participant,
+    },
   };
 }

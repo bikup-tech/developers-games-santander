@@ -54,4 +54,7 @@ export default {
 
   // Uploads
   UPLOAD_AVATAR: 'UPLOAD_AVATAR',
+
+  // Create new Participants
+  CREATE_PARTICIPANT: 'CREATE_PARTICIPANT',
 };

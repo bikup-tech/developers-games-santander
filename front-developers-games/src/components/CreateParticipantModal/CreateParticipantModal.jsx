@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-// TODO: crear el modal con el FORMIK
+import { useDispatch } from 'react-redux';
 
 import './CreateParticipantModal.scss';
 
 // constants
 import warningMessages from '../../constants/warningMessages';
+
+// action creators
+import { createParticipant } from '../../redux/actions/profileActions';
 
 // components
 import TextInput from '../Input/Input';
@@ -29,6 +31,8 @@ const isIncorrectValues = {
 function CreateParticipantModal({
   userRol, userNumber, isFormVisible, setIsFormVisible,
 }) {
+  const dispatch = useDispatch();
+
   const [editParticipant, setParticipant] = useState(initialStateValues);
   const [isInputIncorrect, setIsInputIncorrect] = useState(isIncorrectValues);
   const [warningMessage, setWarningMessage] = useState('');
@@ -56,10 +60,10 @@ function CreateParticipantModal({
     setIsInputIncorrect(wrongValues);
 
     if (isFormValid) {
-      // dispatch action que guarda el user
-      console.log('dispatch de la action');
+      dispatch(createParticipant(userRol, editParticipant));
       setParticipant(initialStateValues);
       setWarningMessage('');
+      setIsFormVisible(false);
     }
   }
 
@@ -81,7 +85,6 @@ function CreateParticipantModal({
             name="name"
             placeholder={`${userRol} name*`}
             value={editParticipant.name}
-            blueText
             onChange={handleInputChange}
             isIncorrect={isInputIncorrect.name}
             maxLength={18}
@@ -93,7 +96,6 @@ function CreateParticipantModal({
             name="surname"
             placeholder={`${userRol} surname*`}
             value={editParticipant.surname}
-            blueText
             onChange={handleInputChange}
             isIncorrect={isInputIncorrect.surname}
           />
