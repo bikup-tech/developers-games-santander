@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './TeamCard.scss';
@@ -10,6 +7,9 @@ import userRoles from '../../../../constants/userRoles';
 
 // Action Creators
 import { adminDeleteTeam, adminDeleteParticipant } from '../../../../redux/actions/profileActions';
+
+// Utils
+import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 
 // Images
 import avatarIcon from '../../../../assets/images/avatar-icon.svg';
@@ -101,7 +101,6 @@ function TeamCard({ team, number }) {
                 <div className="flex-separator" />
                 <div className="member__actions">
                   <img src={deleteIcon} alt="delete team" className="title__delete" onClick={() => { handleDeleteParticipant(participant._id); }} />
-
                 </div>
               </div>
             ))}
@@ -114,7 +113,7 @@ function TeamCard({ team, number }) {
               if (challenge.isCompleted) {
                 printedChallenges += 1;
                 return (
-                  <div className={`member-list__member ${printedChallenges % 2 !== 0 && 'dark-background'}`} key={`challenge-${challenge._id}`}>
+                  <div className={`member-list__member--challenge ${printedChallenges % 2 !== 0 && 'dark-background'}`} key={`challenge-${challenge._id}`}>
                     <div className="member__info">
                       <span className="completed-challenge__name">
                         #
@@ -125,7 +124,7 @@ function TeamCard({ team, number }) {
                       </span>
                     </div>
                     <div className="member__actions">
-                      <a href={challenge.deliverable} className="actions__link" target="_blank" rel="noreferrer">
+                      <a href={getGcloudBucketFileUrl(challenge.gcloudName)} className="actions__link" target="_blank" rel="noreferrer">
                         <img src={linkIcon} alt="link" className="link__img" title="Go to Github" />
                       </a>
                     </div>

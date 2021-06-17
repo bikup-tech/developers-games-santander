@@ -1,5 +1,5 @@
 const { BAD_REQUEST } = require('../constants/statusCodes');
-const { MISSING_QUERY_PROPERTIES } = require('../constants/responseMessages');
+const { MISSING_QUERY_PROPERTIES, MISSING_PROPERTIES } = require('../constants/responseMessages');
 
 const teamChallengeService = require('../services/teamChallengeService');
 
@@ -22,7 +22,24 @@ function teamChallengesController() {
       return handleResponseError(res, getTeamChallengesError);
     }
   }
-  return { getTeamChallenges };
+
+  async function getCompletedChallengesByChallengeId(
+    { params: { tournamentChallengeId } }, res,
+  ) {
+    try {
+      if (!tournamentChallengeId) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('tournamentChallengeId'));
+      }
+
+      const completedChallenges = await teamChallengeService
+        .findCompletedTeamChallengesByChallengeId(tournamentChallengeId);
+
+      return handleResponseSuccess(res, completedChallenges);
+    } catch (error) {
+      return handleResponseError(res, error);
+    }
+  }
+  return { getTeamChallenges, getCompletedChallengesByChallengeId };
 }
 
 module.exports = teamChallengesController();
