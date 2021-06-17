@@ -73,7 +73,7 @@ function teamChallengeService() {
       tournamentChallenge: tournamentChallengeId,
       isCompleted: true,
     };
-    return teamChallengeModel.find(query);
+    return teamChallengeModel.find(query).populate('teamId');
   }
 
   return {
