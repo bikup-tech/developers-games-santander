@@ -75,7 +75,7 @@ function Challenges() {
             <MainButton isSecondary>
               <Link to="/profile" className="edit-team__link">
                 <img src={teamIcon} alt="edit team" className="link__image" />
-                <span className="link__text">Edit your team profile</span>
+                <span className="link__text">Edit your profile</span>
               </Link>
             </MainButton>
           </div>
