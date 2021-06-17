@@ -29,6 +29,8 @@ export default {
     DELETE_TEAM_SUCCESS: 'Team deleted!',
     UPLOAD_AVATAR_ERROR: 'There has been an error uploading your avatar. Please try again.',
     UPLOAD_AVATAR_SUCCESS: 'Avatar uploaded successfully.',
+    DOWNLOAD_COMPLETED_CHALLENGES_ERROR: 'There has been an error downloading the challenges. Please try again.',
+    NO_COMPLETED_CHALLENGES: 'There are not any deliverables for this challenge yet.',
   },
   icons: {
     SUCCESS: alertSuccessIcon,

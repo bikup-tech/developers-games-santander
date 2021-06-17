@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const teamChallengeModel = new Schema({
   tournamentChallenge: { type: String, ref: 'Tournament_challenges' },
-  teamId: { type: String },
+  teamId: { type: String, ref: 'Teams' },
   isCompleted: { type: Boolean, default: false },
   filename: { type: String },
   gcloudName: { type: String },

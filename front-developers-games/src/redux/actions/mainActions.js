@@ -1,4 +1,6 @@
 import axios from 'axios';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 // Constants
 import actionTypes from './actionTypes';
@@ -7,6 +9,9 @@ import alertConstants from '../../constants/alertConstants';
 
 // Action-Creators
 import { setAlert } from './alertActions';
+
+// Utils
+import getGcloudBucketFileUrl from '../../utils/getGcloudBucketFileUrl';
 
 export function addParticipant(participant) {
   return {
@@ -250,6 +255,63 @@ export function loadTournamentTeams(tournamentId) {
     } catch (error) {
       dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.LOAD_TEAMS_ERROR));
       dispatch(loadTournamentTeamsError(error.message));
+    }
+  };
+}
+
+export function getCompletedChallengeByChallengeId(tournamentChallengeId, challengeNumber) {
+  return async (dispatch) => {
+    try {
+      const endpoint = `${APIConstants.HOSTNAME}${APIConstants.GET_COMPLETED_CHALLENGES(tournamentChallengeId)}`;
+      const { data } = await axios.get(endpoint);
+
+      if (data.length) {
+        const zip = new JSZip();
+        data.forEach((deliverable) => {
+          const teamFolder = zip.folder(deliverable.teamId.name);
+          teamFolder.file(deliverable.filename, getGcloudBucketFileUrl(deliverable.gcloudName));
+        });
+
+        const content = await zip.generateAsync({ type: 'blob' });
+        saveAs(content, `Challenge-${challengeNumber}.zip`);
+      } else {
+        dispatch(setAlert(
+          alertConstants.types.WARNING,
+          alertConstants.messages.NO_COMPLETED_CHALLENGES,
+        ));
+      }
+    } catch (error) {
+      dispatch(setAlert(
+        alertConstants.types.ERROR,
+        alertConstants.messages.DOWNLOAD_COMPLETED_CHALLENGES_ERROR,
+      ));
+      dispatch(loadTournamentTeamsError(error.message));
+    }
+  };
+}
+
+function loadTournamentChallengesSuccess(tournamentChallenges) {
+  return {
+    type: actionTypes.LOAD_TOURNAMENT_CHALLENGES,
+    tournamentChallenges,
+  };
+}
+
+function loadTournamentChallengesERROR(error) {
+  return {
+    type: actionTypes.LOAD_TOURNAMENT_CHALLENGES_ERROR,
+    error,
+  };
+}
+
+export function loadTournamentChallenges(tournamentId) {
+  return async (dispatch) => {
+    try {
+      const endpoint = `${APIConstants.HOSTNAME}${APIConstants.LOAD_TOURNAMENT_CHALLENGES(tournamentId)}`;
+      const { data } = await axios.get(endpoint);
+      dispatch(loadTournamentChallengesSuccess(data));
+    } catch (error) {
+      dispatch(loadTournamentChallengesERROR(error.message));
     }
   };
 }

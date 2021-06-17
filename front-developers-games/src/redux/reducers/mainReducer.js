@@ -193,6 +193,23 @@ export default function mainReducer(state = {}, action) {
       };
       break;
 
+      // TOURNAMENT CHALLENGES
+    case actionTypes.LOAD_TOURNAMENT_CHALLENGES_ERROR:
+      newState = {
+        ...state,
+        tournamentChallengesError: action.error,
+
+      };
+      break;
+
+    case actionTypes.LOAD_TOURNAMENT_CHALLENGES:
+      newState = {
+        ...state,
+        tournamentChallengesError: null,
+        tournamentChallenges: action.tournamentChallenges,
+      };
+      break;
+
     default:
       newState = state;
       break;
