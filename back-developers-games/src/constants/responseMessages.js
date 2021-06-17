@@ -17,4 +17,5 @@ module.exports = {
   NO_USER_ID_FOUND: (userId) => `There is no user with the ID ${userId}.`,
   WRONG_PASSWORD: 'The password is not correct.',
   MISSING_AVATAR_FILE: 'Please provide an avatar file.',
+  MISSING_DELIVERABLE_FILE: 'Please provide a deliverable file.',
 };

@@ -10,6 +10,7 @@ import testUploadIcon from '../../assets/images/challenge-5-done-icon.svg';
 
 // Utils
 import renderChallengeNumber from '../../utils/renderChallengeNumber';
+import getGcloudBucketFileUrl from '../../utils/getGcloudBucketFileUrl';
 
 // Action-Creators
 import {
@@ -58,17 +59,10 @@ function ChallengeDetail() {
   }
 
   function handleFileOnChange({ target: { files } }) {
-    dispatch(uploadChallengeDeliverable(challengeDetail._id, files[0]));
+    if (files.length) {
+      dispatch(uploadChallengeDeliverable(challengeDetail._id, files[0]));
+    }
   }
-
-  // function handleDownloadClick() {
-  //   const buffer = challengeDetail.deliverable.data;
-  //   const type = challengeDetail.mimetype;
-
-  //   const blob = new Blob(buffer, { type });
-  //   const url = URL.createObjectURL(blob);
-  //   window.open(url);
-  // }
 
   function handleSubmitClick() {
     if (!challengeDetail.isCompleted) {
@@ -151,7 +145,16 @@ function ChallengeDetail() {
                 <div className="specific-info__column specific-info__column--spaced">
                   <div className="challenge__info-group--leftalign">
                     <p className="info-group__title">Deliverable</p>
-                    <p className="info-group__description info-group__description--leftalign">{challengeDetail.filename}</p>
+                    <p className="info-group__description info-group__description--leftalign">
+                      <a
+                        href={getGcloudBucketFileUrl(challengeDetail.gcloudName)}
+                        target="_blank"
+                        rel="noreferrer"
+                        download
+                      >
+                        {challengeDetail.filename}
+                      </a>
+                    </p>
                   </div>
                   <div className="challenge__info-group--leftalign">
                     <p className="info-group__title">Hints</p>

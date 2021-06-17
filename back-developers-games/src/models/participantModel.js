@@ -9,7 +9,7 @@ const participantModel = new Schema({
   phone: { type: String },
   teamNumber: { type: Number },
   teamId: { type: String },
-  avatar: { type: String },
+  avatar: { type: String, default: 'avatar-icon.svg' },
 });
 
 module.exports = model('Participants', participantModel);

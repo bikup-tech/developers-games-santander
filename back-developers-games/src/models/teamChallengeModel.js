@@ -5,6 +5,7 @@ const teamChallengeModel = new Schema({
   teamId: { type: String },
   isCompleted: { type: Boolean, default: false },
   filename: { type: String },
+  gcloudName: { type: String },
   challengeName: { type: String },
   challengeNumber: { type: Number },
 });

@@ -61,6 +61,13 @@ function teamChallengeService() {
     return teamChallengeModel.deleteMany({ _id: { $in: teamChallenges } });
   }
 
+  function findAndUpdateTeamChallenge(teamChallengeId, updateQuery) {
+    const filter = { _id: teamChallengeId };
+    const updateOptions = { useFindAndModify: false };
+
+    return teamChallengeModel.findOneAndUpdate(filter, updateQuery, updateOptions);
+  }
+
   return {
     findTeamChallengeById,
     createTeamChallenge,
@@ -68,6 +75,7 @@ function teamChallengeService() {
     findTeamChallenges,
     updateManyTeamChallenges,
     deleteManyTeamChallenges,
+    findAndUpdateTeamChallenge,
   };
 }
 
