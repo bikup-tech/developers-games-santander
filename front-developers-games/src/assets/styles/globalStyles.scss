@@ -57,6 +57,7 @@
 
 // profile styles
 .view-profile {
+    position: relative;
     @include flex($flex-direction: column);
     width: 100%;
     max-width: 1024px;

@@ -1,0 +1,39 @@
+@import '../../assets/styles/globalStyles.scss';
+@import '../../assets/styles/mixins.scss';
+@import '../../assets/styles/styleConstants.scss';
+
+.add-participant__opacity{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: $gray;
+    opacity: 0.7;
+    z-index: 2;
+}
+
+.add-participant__form{
+    transform: translate3d(0, -43%, 0);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 85%;
+    background: white;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    margin: auto;
+    max-width: 420px;
+    transition: all .4s ease-in-out;
+}
+
+.form__input--modal {
+    width: 80%;
+    margin-bottom: 12px;
+}

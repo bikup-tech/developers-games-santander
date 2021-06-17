@@ -69,7 +69,7 @@ function Participant({ participantNumber, isCaptain }) {
           </div>
           <div className="entries__number">
             <Input
-              type="number"
+              type="tel"
               name="phone"
               placeholder="Phone*"
               value={phone}

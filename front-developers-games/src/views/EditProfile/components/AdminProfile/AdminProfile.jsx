@@ -21,6 +21,7 @@ import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 // components
 import Input from '../../../../components/Input/Input';
 import MainButton from '../../../../components/MainButton/MainButton';
+import CreateParticipantModal from '../../../../components/CreateParticipantModal/CreateParticipantModal';
 
 function AdminProfile() {
   const dispatch = useDispatch();
@@ -195,6 +196,7 @@ function AdminProfile() {
           <MainButton onClick={handleSaveChangesClick}>Save Changes</MainButton>
         </div>
       </div>
+      <CreateParticipantModal userRol="Mentor" userNumber={1} isFormVisible={1} />
     </section>
   );
 }
