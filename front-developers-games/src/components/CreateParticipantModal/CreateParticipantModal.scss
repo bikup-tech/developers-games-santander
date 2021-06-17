@@ -37,3 +37,12 @@
     width: 80%;
     margin-bottom: 12px;
 }
+
+.form__buttons {
+    margin-bottom: 12px;
+    width: 80%;
+    @include flex($flex-direction:column, $justify-content:space-between);
+    @media only screen and (min-width:$query-1280){
+        @include flex($flex-direction:row, $justify-content:space-between);
+    }
+}
