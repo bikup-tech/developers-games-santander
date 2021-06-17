@@ -44,34 +44,38 @@ function uploadFilesController(gcBucket) {
   }
 
   async function uploadDeliverable({ files, params: { teamChallengeId } }, res) {
-    if (!files || !files.deliverable) {
-      throw new CustomError(BAD_REQUEST, MISSING_DELIVERABLE_FILE);
+    try {
+      if (!files || !files.deliverable) {
+        throw new CustomError(BAD_REQUEST, MISSING_DELIVERABLE_FILE);
+      }
+
+      const file = files.deliverable;
+      const filePath = files.deliverable.tempFilePath;
+
+      let uploadedFilename = filePath.split('/');
+      uploadedFilename = uploadedFilename[uploadedFilename.length - 1];
+
+      await gcBucket.upload(filePath, {
+        metadata: {
+          contentType: file.mimetype,
+          contentDisposition: `inline; filename="${file.name}"`,
+        },
+      });
+
+      const updateQuery = { $set: { filename: file.name, gcloudName: uploadedFilename } };
+      const updatedTeamChallenge = await teamChallengeService
+        .findAndUpdateTeamChallenge(teamChallengeId, updateQuery);
+
+      if (updatedTeamChallenge.gcloudName) {
+        await gcBucket.file(updatedTeamChallenge.gcloudName).delete();
+      }
+
+      const response = { filename: file.name, gcloudName: uploadedFilename };
+
+      return handleResponseSuccess(res, response);
+    } catch (uploadDeliverableError) {
+      return handleResponseError(res, uploadDeliverableError);
     }
-
-    const file = files.deliverable;
-    const filePath = files.deliverable.tempFilePath;
-
-    let uploadedFilename = filePath.split('/');
-    uploadedFilename = uploadedFilename[uploadedFilename.length - 1];
-
-    await gcBucket.upload(filePath, {
-      metadata: {
-        contentType: file.mimetype,
-        contentDisposition: `inline; filename="${file.name}"`,
-      },
-    });
-
-    const updateQuery = { $set: { filename: file.name, gcloudName: uploadedFilename } };
-    const updatedTeamChallenge = await teamChallengeService
-      .findAndUpdateTeamChallenge(teamChallengeId, updateQuery);
-
-    if (updatedTeamChallenge.gcloudName) {
-      await gcBucket.file(updatedTeamChallenge.gcloudName).delete();
-    }
-
-    const response = { filename: file.name, gcloudName: uploadedFilename };
-
-    return handleResponseSuccess(res, response);
   }
 
   return { uploadAvatar, uploadDeliverable };

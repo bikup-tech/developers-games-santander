@@ -59,7 +59,9 @@ function ChallengeDetail() {
   }
 
   function handleFileOnChange({ target: { files } }) {
-    dispatch(uploadChallengeDeliverable(challengeDetail._id, files[0]));
+    if (files.length) {
+      dispatch(uploadChallengeDeliverable(challengeDetail._id, files[0]));
+    }
   }
 
   function handleSubmitClick() {
@@ -148,8 +150,6 @@ function ChallengeDetail() {
                         href={getGcloudBucketFileUrl(challengeDetail.gcloudName)}
                         download
                         className="asd"
-                        target="_blank"
-                        rel="noreferrer"
                       >
                         {challengeDetail.filename}
                       </a>
