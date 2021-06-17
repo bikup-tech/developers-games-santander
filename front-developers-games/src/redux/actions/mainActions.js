@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import axios from 'axios';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
@@ -268,7 +267,7 @@ export function getCompletedChallengeByChallengeId(tournamentChallengeId, challe
 
       if (data.length) {
         const zip = new JSZip();
-        data.forEach((deliverable, index) => {
+        data.forEach((deliverable) => {
           const teamFolder = zip.folder(deliverable.teamId.name);
           teamFolder.file(deliverable.filename, getGcloudBucketFileUrl(deliverable.gcloudName));
         });

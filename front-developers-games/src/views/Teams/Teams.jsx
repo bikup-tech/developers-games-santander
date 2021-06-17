@@ -61,8 +61,7 @@ function Teams() {
                               isSecondary
                               onClick={() => { handleDownload(challenge._id, challenge.number); }}
                             >
-                              Challenge-
-                              {challenge.number}
+                              {`Challenge ${challenge.number}`}
                             </MainButton>
                           </div>
                         ))
