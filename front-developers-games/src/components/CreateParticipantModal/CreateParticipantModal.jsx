@@ -26,7 +26,9 @@ const isIncorrectValues = {
   phone: false,
 };
 
-function CreateParticipantModal({ userRol, userNumber, isFormVisible }) {
+function CreateParticipantModal({
+  userRol, userNumber, isFormVisible, setIsFormVisible,
+}) {
   const [editParticipant, setParticipant] = useState(initialStateValues);
   const [isInputIncorrect, setIsInputIncorrect] = useState(isIncorrectValues);
   const [warningMessage, setWarningMessage] = useState('');
@@ -56,7 +58,6 @@ function CreateParticipantModal({ userRol, userNumber, isFormVisible }) {
     if (isFormValid) {
       // dispatch action que guarda el user
       console.log('dispatch de la action');
-      console.log(editParticipant);
       setParticipant(initialStateValues);
       setWarningMessage('');
     }
@@ -64,8 +65,11 @@ function CreateParticipantModal({ userRol, userNumber, isFormVisible }) {
 
   return (
     <section className="modal__add-participant">
-      <div className="add-participant__opacity" onClick={() => { console.log('Cierrate modal'); }} />
-      <form className="add-participant__form">
+      <div
+        className={`${isFormVisible === true ? 'add-participant__opacity' : 'hidden'}`}
+        onClick={() => { setIsFormVisible(false); }}
+      />
+      <form className={`${isFormVisible === true ? 'add-participant__form' : 'hide-bottom'}`}>
         <h3 className="participant__title app__title">
           {userRol}
           {' '}
@@ -124,7 +128,7 @@ function CreateParticipantModal({ userRol, userNumber, isFormVisible }) {
             </MainButton>
           </div>
           <div className="profile-button-container">
-            <MainButton isSecondary onClick={() => { console.log('Cierrate modal'); }}>
+            <MainButton isSecondary onClick={() => { setIsFormVisible(false); }}>
               Cancel
             </MainButton>
           </div>

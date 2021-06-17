@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -45,6 +47,7 @@ function AdminProfile() {
 
   const [editAdminProfile, setEditAdminProfile] = useState(initialState);
   const [warningMessage, setWarningMessage] = useState('');
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   const avatarInput = useRef(null);
 
@@ -176,12 +179,10 @@ function AdminProfile() {
       <div className="view-profile__bottom">
         <div className="bottom__secondary--buttons">
           <div className="profile-button-container mb-12">
-            <Link to="/teams" className="button-children">
-              <MainButton isSecondary onClick={() => { console.log('Abrete modal'); }}>
-                <img className="button-children__image" src={plusIcon} alt="See Developers Games teams" />
-                <p className="button-children__text">Add administrator</p>
-              </MainButton>
-            </Link>
+            <MainButton isSecondary onClick={() => { setIsFormVisible(true); }}>
+              <img className="button-children__image" src={plusIcon} alt="See Developers Games teams" />
+              <p className="button-children__text">Add administrator</p>
+            </MainButton>
           </div>
           <div className="profile-button-container mb-12--mobile">
             <Link to="/teams" className="button-children">
@@ -196,7 +197,7 @@ function AdminProfile() {
           <MainButton onClick={handleSaveChangesClick}>Save Changes</MainButton>
         </div>
       </div>
-      <CreateParticipantModal userRol="Mentor" userNumber={1} isFormVisible={1} />
+      <CreateParticipantModal userRol="Mentor" userNumber={1} isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible} />
     </section>
   );
 }
