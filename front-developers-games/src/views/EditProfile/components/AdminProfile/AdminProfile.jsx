@@ -177,7 +177,7 @@ function AdminProfile() {
         <div className="bottom__secondary--buttons">
           <div className="profile-button-container mb-12">
             <Link to="/teams" className="button-children">
-              <MainButton isSecondary>
+              <MainButton isSecondary onClick={() => { console.log('Abrete modal'); }}>
                 <img className="button-children__image" src={plusIcon} alt="See Developers Games teams" />
                 <p className="button-children__text">Add administrator</p>
               </MainButton>
