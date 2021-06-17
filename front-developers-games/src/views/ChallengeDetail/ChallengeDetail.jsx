@@ -148,8 +148,9 @@ function ChallengeDetail() {
                     <p className="info-group__description info-group__description--leftalign">
                       <a
                         href={getGcloudBucketFileUrl(challengeDetail.gcloudName)}
+                        target="_blank"
+                        rel="noreferrer"
                         download
-                        className="asd"
                       >
                         {challengeDetail.filename}
                       </a>
