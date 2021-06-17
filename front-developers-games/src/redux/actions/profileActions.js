@@ -189,7 +189,12 @@ export function uploadAvatar(file, participantId) {
 }
 
 export function createParticipant(userType, participant) {
-  console.log(participant);
+  /* TODO:
+  Hacer comporbacion de que tipo de userType llega para darle un ROL
+  Guarda el user a la base de datos (no hace falta guarlarlo en redux -->
+    dentro del return hacer el axios)
+  Enviarle el mail a éste usuario
+  */
   return {
     type: actionTypes.CREATE_PARTICIPANT,
     payload: {
