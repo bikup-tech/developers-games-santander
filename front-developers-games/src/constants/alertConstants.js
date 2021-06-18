@@ -33,6 +33,7 @@ export default {
     CREATE_PARTICIPANT_ERROR: 'There has been an error.',
     DOWNLOAD_COMPLETED_CHALLENGES_ERROR: 'There has been an error downloading the challenges. Please try again.',
     NO_COMPLETED_CHALLENGES: 'There are not any deliverables for this challenge yet.',
+    GET_PARTICIPANTS: (role) => `There has been an error loading the ${role}.`,
   },
   icons: {
     SUCCESS: alertSuccessIcon,

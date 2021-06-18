@@ -238,7 +238,6 @@ export function getMentorsSuccess(mentors) {
 }
 
 export function getMentors() {
-  console.log('entro aqui');
   return async (dispatch) => {
     try {
       const getMentorsEndpoint = `${APIConstants.HOSTNAME}${APIConstants.CREATE_PARTICIPANT}`;
@@ -246,7 +245,9 @@ export function getMentors() {
 
       dispatch(getMentorsSuccess(mentors));
     } catch (error) {
-      console.log(error);
+      dispatch(
+        setAlert(alertConstants.types.ERROR, alertConstants.messages.GET_PARTICIPANTS('mentors')),
+      );
     }
   };
 }
