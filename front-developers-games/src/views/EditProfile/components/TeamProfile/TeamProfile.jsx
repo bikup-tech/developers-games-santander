@@ -8,12 +8,14 @@ import alertConstants from '../../../../constants/alertConstants';
 
 // Images
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
+import addIcon from '../../../../assets/images/add-icon.svg';
 
 // Action-creators
 import {
   setProfileInputValue, updateTeamProfile, deleteTeam, uploadAvatar,
 } from '../../../../redux/actions/profileActions';
 import { setAlert } from '../../../../redux/actions/alertActions';
+import { loadTeam } from '../../../../redux/actions/loginActions';
 
 // Utils
 import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
@@ -22,15 +24,18 @@ import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 import Input from '../../../../components/Input/Input';
 import MainButton from '../../../../components/MainButton/MainButton';
 import TeamProfileParticipant from '../TeamProfileParticipant/TeamProfileParticipant';
+import CreateParticipantModal from '../../../../components/CreateParticipantModal/CreateParticipantModal';
+import userRoles from '../../../../constants/userRoles';
 
 function TeamProfile() {
   const dispatch = useDispatch();
   const { user } = useSelector(({ authReducer }) => authReducer);
-  const { team } = useSelector(({ mainReducer }) => mainReducer);
+  const { team, toLoadTeamDetail } = useSelector(({ mainReducer }) => mainReducer);
   const { password, newPassword, teamName } = useSelector(({ profileReducer }) => profileReducer);
 
   const [isNameModified, setIsNameModified] = useState(false);
   const [isNewPasswordLengthInvalid, setIsNewPasswordLengthInvalid] = useState(false);
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   const avatarInput = useRef(null);
 
@@ -39,6 +44,12 @@ function TeamProfile() {
       dispatch(setProfileInputValue('teamName', team.name));
     }
   }, [team.name]);
+
+  useEffect(() => {
+    if (!team?._id) {
+      dispatch(loadTeam(toLoadTeamDetail));
+    }
+  }, [team]);
 
   function handleCameraClick() {
     avatarInput.current.click();
@@ -142,6 +153,22 @@ function TeamProfile() {
           <TeamProfileParticipant participantNumber={index + 1} participant={participant} />
         ))}
       </div>
+      <div className="team-profile__actions">
+        {team?.participants?.length < 4 && (
+        <div className="actions__add-participant">
+          <MainButton isSecondary onClick={() => { setIsFormVisible(!isFormVisible); }}>
+            <img src={addIcon} alt="add icon" className="add-participant__icon" />
+            Add another member
+          </MainButton>
+        </div>
+        )}
+      </div>
+      <CreateParticipantModal
+        userRole={userRoles.PARTICIPANT}
+        isFormVisible={isFormVisible}
+        setIsFormVisible={setIsFormVisible}
+        teamId={team?._id}
+      />
     </div>
   );
 }

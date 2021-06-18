@@ -140,3 +140,22 @@
 
     }
 }
+
+.team-profile__actions {
+    @include flex($flex-direction: column);
+    width: 100%;
+
+    @media only screen and(min-width: $query-1280){
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+}
+
+.actions__add-participant {
+    width: 190px;
+}
+
+.add-participant__icon {
+    height: 20px;
+    margin-right: $m-6;
+}

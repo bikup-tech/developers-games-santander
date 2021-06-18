@@ -197,27 +197,30 @@ export function createMentor(participant) {
   };
 }
 
+export function createParticipantSuccess(participant) {
+  return {
+    type: actionTypes.CREATE_PARTICIPANT,
+    participant,
+  };
+}
+
 export function createParticipant(participant) {
   return async (dispatch) => {
     try {
-      const endpoint = 'asdasd';
-      // const createdParticipant = await axios.post(endpoint, participant)
-      const createdParticipant = {
-        name: 'asd',
-        email: 'asd',
-      };
+      const createParticipantEndpoint = `${APIConstants.HOSTNAME}${APIConstants.CREATE_PARTICIPANT}`;
+      const { data: createdParticipant } = await axios.post(createParticipantEndpoint, participant);
 
       if (createdParticipant.role === userRoles.MENTOR) {
         dispatch(createMentor(createdParticipant));
         dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.CREATE_PARTICIPANT_SUCCESS('Mentor')));
       } else {
-        // dispatch(createParticipant(createdParticipant));
-        // dispatch(
-        //   setAlert(
-        //     alertConstants.types.SUCCESS,
-        //     alertConstants.messages.CREATE_PARTICIPANT_SUCCESS('Participant'),
-        //   ),
-        // );
+        dispatch(createParticipantSuccess(createdParticipant));
+        dispatch(
+          setAlert(
+            alertConstants.types.SUCCESS,
+            alertConstants.messages.CREATE_PARTICIPANT_SUCCESS('Participant'),
+          ),
+        );
       }
     } catch (error) {
       dispatch(

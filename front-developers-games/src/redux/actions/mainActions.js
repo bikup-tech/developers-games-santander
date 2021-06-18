@@ -157,7 +157,6 @@ export function uploadChallengeDeliverable(challengeId, file) {
       dispatch(uploadChallengeDeliverableSuccess(data.filename, data.gcloudName));
       dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.UPLOAD_FILE_SUCCESS));
     } catch (error) {
-      console.log(error);
       dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.UPLOAD_FILE_ERROR));
     }
   };

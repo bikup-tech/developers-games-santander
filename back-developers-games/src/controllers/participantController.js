@@ -1,9 +1,11 @@
-const { BAD_REQUEST } = require('../constants/statusCodes');
-const { MISSING_PROPERTIES } = require('../constants/responseMessages');
+const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
+const { MISSING_PROPERTIES, EMPTY_BODY, ALREADY_EXISTING_PARTICIPANT } = require('../constants/responseMessages');
+const userRoles = require('../constants/userRoles');
 
 // Services
 const participantService = require('../services/participantService');
 const teamService = require('../services/teamService');
+const mailService = require('../services/mailService');
 
 // Utils
 const CustomError = require('../utils/CustomError');
@@ -30,7 +32,39 @@ function participantController() {
     }
   }
 
-  return { deleteParticipant };
+  async function createParticipant({ body }, res) {
+    try {
+      if (!Object.keys(body)) {
+        throw new CustomError(BAD_REQUEST, EMPTY_BODY);
+      }
+
+      const alreadyExists = await participantService.findParticipantByEmail(body.email);
+      if (alreadyExists) {
+        throw new CustomError(CONFLICT, ALREADY_EXISTING_PARTICIPANT);
+      }
+
+      // Check requiered camps
+      if (body.role === userRoles.PARTICIPANT && !body.teamId) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('teamId'));
+      }
+
+      // Create participant
+      const createdParticipant = await participantService.createParticipant(body);
+
+      // Update team participants array
+      await teamService.addParticipantToTeam(body.teamId, createdParticipant._id);
+
+      // Send email
+      mailService.sendRegisteredUser(createdParticipant.email, createdParticipant.password);
+
+      const { password, ...restParticipant } = createdParticipant._doc;
+      return handleResponseSuccess(res, restParticipant);
+    } catch (createParticipantError) {
+      return handleResponseError(res, createParticipantError);
+    }
+  }
+
+  return { deleteParticipant, createParticipant };
 }
 
 module.exports = participantController();

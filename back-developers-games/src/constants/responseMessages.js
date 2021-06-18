@@ -7,6 +7,7 @@ module.exports = {
   NO_TOURNAMENT_FOUND: (tournamentId) => `There is no active tournament with the id: ${tournamentId}.`,
   MISSING_QUERY: 'The query param is missing',
   ALREADY_EXISTING_TEAM: (teamName) => `A team called ${teamName} already exist.`,
+  ALREADY_EXISTING_PARTICIPANT: 'A participant with that email already exist.',
   MISSING_PARTICIPANT_PROPERTIES: 'Some participant is missing required fields. Be sure to include the name, surname, email and phone for each participant.',
   REGISTER_TEAM_SUCCESS: 'Team registered successfully.',
   MISSING_USER_PROPERTIES: 'Some user is missing a required camp. Be sure to include: name, surname, email, phone and teamNumber',

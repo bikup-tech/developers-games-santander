@@ -53,8 +53,22 @@ function teamService() {
     return teamModel.updateOne({ _id: teamId }, updateQuery);
   }
 
+  async function addParticipantToTeam(teamId, participantId) {
+    const updateQuery = {
+      $push: { participants: participantId },
+    };
+
+    return teamModel.updateOne({ _id: teamId }, updateQuery);
+  }
+
   return {
-    findTeam, createTeam, updateTeam, findTournamentTeams, deleteTeam, removeParticipantFromTeam,
+    findTeam,
+    createTeam,
+    updateTeam,
+    findTournamentTeams,
+    deleteTeam,
+    removeParticipantFromTeam,
+    addParticipantToTeam,
   };
 }
 
