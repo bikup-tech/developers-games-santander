@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 import axios from 'axios';
 
+// Constants
 import APIConstants from '../../constants/APIConstants';
 import alertConstants from '../../constants/alertConstants';
 import actionTypes from './actionTypes';
+import userRoles from '../../constants/userRoles';
 
 // Action Creators
 import { setAlert } from './alertActions';
@@ -188,18 +190,39 @@ export function uploadAvatar(file, participantId) {
   };
 }
 
-export function createParticipant(userType, participant) {
-  /* TODO:
-  Hacer comporbacion de que tipo de userType llega para darle un ROL
-  Guarda el user a la base de datos (no hace falta guarlarlo en redux -->
-    dentro del return hacer el axios)
-  Enviarle el mail a éste usuario
-  */
+export function createMentor(participant) {
   return {
-    type: actionTypes.CREATE_PARTICIPANT,
-    payload: {
-      userType,
-      participant,
-    },
+    type: actionTypes.CREATE_MENTOR,
+    participant,
+  };
+}
+
+export function createParticipant(participant) {
+  return async (dispatch) => {
+    try {
+      const endpoint = 'asdasd';
+      // const createdParticipant = await axios.post(endpoint, participant)
+      const createdParticipant = {
+        name: 'asd',
+        email: 'asd',
+      };
+
+      if (createdParticipant.role === userRoles.MENTOR) {
+        dispatch(createMentor(createdParticipant));
+        dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.CREATE_PARTICIPANT_SUCCESS('Mentor')));
+      } else {
+        // dispatch(createParticipant(createdParticipant));
+        // dispatch(
+        //   setAlert(
+        //     alertConstants.types.SUCCESS,
+        //     alertConstants.messages.CREATE_PARTICIPANT_SUCCESS('Participant'),
+        //   ),
+        // );
+      }
+    } catch (error) {
+      dispatch(
+        setAlert(alertConstants.types.ERROR, alertConstants.messages.CREATE_PARTICIPANT_ERROR),
+      );
+    }
   };
 }

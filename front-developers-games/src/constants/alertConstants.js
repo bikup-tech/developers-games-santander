@@ -29,6 +29,8 @@ export default {
     DELETE_TEAM_SUCCESS: 'Team deleted!',
     UPLOAD_AVATAR_ERROR: 'There has been an error uploading your avatar. Please try again.',
     UPLOAD_AVATAR_SUCCESS: 'Avatar uploaded successfully.',
+    CREATE_PARTICIPANT_SUCCESS: (role) => `${role} has been created successfully.`,
+    CREATE_PARTICIPANT_ERROR: 'There has been an error.',
   },
   icons: {
     SUCCESS: alertSuccessIcon,

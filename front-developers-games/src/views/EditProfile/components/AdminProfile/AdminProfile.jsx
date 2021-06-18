@@ -8,6 +8,7 @@ import './AdminProfile.scss';
 
 // constants
 import warningMessages from '../../../../constants/warningMessages';
+import userRoles from '../../../../constants/userRoles';
 
 // Images
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
@@ -197,7 +198,7 @@ function AdminProfile() {
           <MainButton onClick={handleSaveChangesClick}>Save Changes</MainButton>
         </div>
       </div>
-      <CreateParticipantModal userRol="Mentor" userNumber={1} isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible} />
+      <CreateParticipantModal userRole={userRoles.MENTOR} userNumber={1} isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible} />
     </section>
   );
 }

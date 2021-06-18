@@ -194,6 +194,13 @@ export default function mainReducer(state = {}, action) {
       };
       break;
 
+    case actionTypes.CREATE_MENTOR:
+      newState = {
+        ...state,
+        mentors: [...state.mentors, action.participant],
+      };
+      break;
+
     default:
       newState = state;
       break;

@@ -56,5 +56,6 @@ export default {
   UPLOAD_AVATAR: 'UPLOAD_AVATAR',
 
   // Create new Participants
+  CREATE_MENTOR: 'CREATE_MENTOR',
   CREATE_PARTICIPANT: 'CREATE_PARTICIPANT',
 };

@@ -6,6 +6,7 @@ import './CreateParticipantModal.scss';
 
 // constants
 import warningMessages from '../../constants/warningMessages';
+import userRoles from '../../constants/userRoles';
 
 // action creators
 import { createParticipant } from '../../redux/actions/profileActions';
@@ -29,16 +30,18 @@ const isIncorrectValues = {
 };
 
 function CreateParticipantModal({
-  userRol, userNumber, isFormVisible, setIsFormVisible,
+  userRole, isFormVisible, setIsFormVisible,
 }) {
   const dispatch = useDispatch();
 
-  const [editParticipant, setParticipant] = useState(initialStateValues);
+  const printedRol = userRole === userRoles.PARTICIPANT ? 'Participant' : 'Mentor';
+
+  const [participant, setParticipant] = useState(initialStateValues);
   const [isInputIncorrect, setIsInputIncorrect] = useState(isIncorrectValues);
   const [warningMessage, setWarningMessage] = useState('');
 
   function handleInputChange({ target }) {
-    setParticipant({ ...editParticipant, [target.name]: target.value });
+    setParticipant({ ...participant, [target.name]: target.value });
     setIsInputIncorrect({ ...isInputIncorrect, [target.name]: false });
 
     setWarningMessage('');
@@ -48,7 +51,7 @@ function CreateParticipantModal({
     let isFormValid = true;
     const wrongValues = {};
 
-    Object.entries(editParticipant).forEach(([key, value]) => {
+    Object.entries(participant).forEach(([key, value]) => {
       if (!value) {
         wrongValues[key] = true;
 
@@ -60,7 +63,7 @@ function CreateParticipantModal({
     setIsInputIncorrect(wrongValues);
 
     if (isFormValid) {
-      dispatch(createParticipant(userRol, editParticipant));
+      dispatch(createParticipant(participant));
       setParticipant(initialStateValues);
       setWarningMessage('');
       setIsFormVisible(false);
@@ -68,23 +71,21 @@ function CreateParticipantModal({
   }
 
   return (
-    <section className="modal__add-participant">
+    <div className="modal__add-participant">
       <div
-        className={`${isFormVisible === true ? 'add-participant__opacity' : 'hidden'}`}
+        className={`'hidden' ${isFormVisible === true && 'add-participant__opacity'}`}
         onClick={() => { setIsFormVisible(false); }}
       />
-      <form className={`${isFormVisible === true ? 'add-participant__form' : 'hide-bottom'}`}>
+      <form className={`add-participant__form ${isFormVisible === false && 'hide-bottom'}`}>
         <h3 className="participant__title app__title">
-          {userRol}
-          {' '}
-          {userNumber}
+          {`Crate new ${printedRol}`}
         </h3>
         <div className="form__input--modal">
           <TextInput
             type="text"
             name="name"
-            placeholder={`${userRol} name*`}
-            value={editParticipant.name}
+            placeholder={`${printedRol} name*`}
+            value={participant.name}
             onChange={handleInputChange}
             isIncorrect={isInputIncorrect.name}
             maxLength={18}
@@ -94,8 +95,8 @@ function CreateParticipantModal({
           <TextInput
             type="text"
             name="surname"
-            placeholder={`${userRol} surname*`}
-            value={editParticipant.surname}
+            placeholder={`${printedRol} surname*`}
+            value={participant.surname}
             onChange={handleInputChange}
             isIncorrect={isInputIncorrect.surname}
           />
@@ -104,8 +105,8 @@ function CreateParticipantModal({
           <TextInput
             type="email"
             name="email"
-            placeholder={`${userRol} email*`}
-            value={editParticipant.email}
+            placeholder={`${printedRol} email*`}
+            value={participant.email}
             onChange={handleInputChange}
             isIncorrect={isInputIncorrect.email}
           />
@@ -114,8 +115,8 @@ function CreateParticipantModal({
           <TextInput
             type="tel"
             name="phone"
-            placeholder={`${userRol} phone*`}
-            value={editParticipant.phone}
+            placeholder={`${printedRol} phone*`}
+            value={participant.phone}
             onChange={handleInputChange}
             isIncorrect={isInputIncorrect.phone}
           />
@@ -123,20 +124,18 @@ function CreateParticipantModal({
         <small className="form__warningMessage">{warningMessage}</small>
         <div className="form__buttons">
           <div className="profile-button-container mb-12--mobile">
-            <MainButton onClick={handleAddParticipantClick}>
-              Save
-              {' '}
-              {userRol}
-            </MainButton>
-          </div>
-          <div className="profile-button-container">
             <MainButton isSecondary onClick={() => { setIsFormVisible(false); }}>
               Cancel
             </MainButton>
           </div>
+          <div className="profile-button-container">
+            <MainButton onClick={handleAddParticipantClick}>
+              {`Save ${printedRol}`}
+            </MainButton>
+          </div>
         </div>
       </form>
-    </section>
+    </div>
   );
 }
 
