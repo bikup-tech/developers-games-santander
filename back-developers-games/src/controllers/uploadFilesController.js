@@ -30,6 +30,7 @@ function uploadFilesController(gcBucket) {
       });
 
       const updateQuery = { $set: { avatar: filename } };
+
       const updatedParticipant = await participantService
         .findAndUpdateParticipant(participantId, updateQuery);
 
