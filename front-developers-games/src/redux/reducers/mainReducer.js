@@ -193,7 +193,14 @@ export default function mainReducer(state = {}, action) {
       };
       break;
 
-      // TOURNAMENT CHALLENGES
+    case actionTypes.CREATE_MENTOR:
+      newState = {
+        ...state,
+        mentors: [...state.mentors, action.participant],
+      };
+      break;
+
+    // TOURNAMENT CHALLENGES
     case actionTypes.LOAD_TOURNAMENT_CHALLENGES_ERROR:
       newState = {
         ...state,

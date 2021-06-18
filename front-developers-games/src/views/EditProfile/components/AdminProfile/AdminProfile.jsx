@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,10 +8,12 @@ import './AdminProfile.scss';
 
 // constants
 import warningMessages from '../../../../constants/warningMessages';
+import userRoles from '../../../../constants/userRoles';
 
 // Images
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
 import viewIcon from '../../../../assets/images/view-icon.svg';
+import plusIcon from '../../../../assets/images/plus-icon.svg';
 
 // Action Creators
 import { updateAdminProfile, uploadAvatar } from '../../../../redux/actions/profileActions';
@@ -20,6 +24,7 @@ import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 // components
 import Input from '../../../../components/Input/Input';
 import MainButton from '../../../../components/MainButton/MainButton';
+import CreateParticipantModal from '../../../../components/CreateParticipantModal/CreateParticipantModal';
 
 function AdminProfile() {
   const dispatch = useDispatch();
@@ -43,6 +48,7 @@ function AdminProfile() {
 
   const [editAdminProfile, setEditAdminProfile] = useState(initialState);
   const [warningMessage, setWarningMessage] = useState('');
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   const avatarInput = useRef(null);
 
@@ -172,18 +178,27 @@ function AdminProfile() {
       </form>
       <small className="form__warningMessage">{warningMessage}</small>
       <div className="view-profile__bottom">
-        <div className="profile-button-container mb-12--mobile">
-          <Link to="/teams" className="button-children">
-            <MainButton isSecondary>
-              <img className="button-children__image" src={viewIcon} alt="See Developers Games teams" />
-              <p className="button-children__text">See teams</p>
+        <div className="bottom__secondary--buttons">
+          <div className="profile-button-container mb-12">
+            <MainButton isSecondary onClick={() => { setIsFormVisible(true); }}>
+              <img className="button-children__image" src={plusIcon} alt="See Developers Games teams" />
+              <p className="button-children__text">Add administrator</p>
             </MainButton>
-          </Link>
+          </div>
+          <div className="profile-button-container mb-12--mobile">
+            <Link to="/teams" className="button-children">
+              <MainButton isSecondary>
+                <img className="button-children__image" src={viewIcon} alt="See Developers Games teams" />
+                <p className="button-children__text">See teams</p>
+              </MainButton>
+            </Link>
+          </div>
         </div>
         <div className="profile-button-container">
           <MainButton onClick={handleSaveChangesClick}>Save Changes</MainButton>
         </div>
       </div>
+      <CreateParticipantModal userRole={userRoles.MENTOR} userNumber={1} isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible} />
     </section>
   );
 }

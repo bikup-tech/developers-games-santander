@@ -1,3 +1,6 @@
 export default function getGcloudBucketFileUrl(filename) {
+  if (!filename) {
+    return 'https://storage.googleapis.com/developer-games-uploads/avatar-icon.svg';
+  }
   return `https://storage.googleapis.com/developer-games-uploads/${filename}`;
 }

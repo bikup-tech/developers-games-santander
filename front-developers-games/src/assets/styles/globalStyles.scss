@@ -28,6 +28,11 @@
     }
 }
 
+.mb-12{
+    margin-bottom: $m-12;
+}
+
+
 // form styles
 .form__warningMessage {
     color: $red;
@@ -52,6 +57,7 @@
 
 // profile styles
 .view-profile {
+    position: relative;
     @include flex($flex-direction: column);
     width: 100%;
     max-width: 1024px;
@@ -75,7 +81,8 @@
 }
 
 .profile-button-container {
-    width: 135px;
+    width: auto;
+    min-width: 135px;
 }
 
 
