@@ -12,7 +12,6 @@ import { adminDeleteTeam, adminDeleteParticipant } from '../../../../redux/actio
 import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 
 // Images
-import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import viewIcon from '../../../../assets/images/view-icon.svg';
 import deleteIcon from '../../../../assets/images/delete-icon.svg';
 import linkIcon from '../../../../assets/images/link-icon.svg';
@@ -62,7 +61,7 @@ function TeamCard({ team, number }) {
     <div className="team-card">
       <div className="team-card__info">
         <div className="info__avatar">
-          <img src={avatarIcon} alt="team avatar" className="avatar__image" />
+          <img src={getGcloudBucketFileUrl(team.captainId.avatar)} alt="team avatar" className="avatar__image" />
         </div>
         <div className="info__data">
           <div className="data__title">

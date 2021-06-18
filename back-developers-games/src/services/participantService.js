@@ -66,7 +66,7 @@ function participantService() {
 
   async function findAndUpdateParticipant(_id, updateQuery) {
     const options = { useFindAndModify: false };
-    return participantModel.findOneAndUpdate(_id, updateQuery, options);
+    return participantModel.findOneAndUpdate({ _id }, updateQuery, options);
   }
 
   async function findParticipantByEmail(email) {

@@ -169,19 +169,21 @@ function uploadAvatarSuccess(avatarUrl) {
 export function uploadAvatar(file, participantId) {
   return async (dispatch) => {
     try {
-      const uploadAvatarEndpoint = `${APIConstants.HOSTNAME}${APIConstants.UPLOAD_AVATAR(participantId)}`;
+      if (file) {
+        const uploadAvatarEndpoint = `${APIConstants.HOSTNAME}${APIConstants.UPLOAD_AVATAR(participantId)}`;
 
-      const formData = new FormData();
-      formData.append('avatar', file);
+        const formData = new FormData();
+        formData.append('avatar', file);
 
-      const { data } = await axios({
-        method: 'patch',
-        url: uploadAvatarEndpoint,
-        data: formData,
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+        const { data } = await axios({
+          method: 'patch',
+          url: uploadAvatarEndpoint,
+          data: formData,
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
 
-      dispatch(uploadAvatarSuccess(data));
+        dispatch(uploadAvatarSuccess(data));
+      }
     } catch (uploadError) {
       dispatch(setAlert(
         alertConstants.types.ERROR, alertConstants.messages.UPLOAD_AVATAR_ERROR,

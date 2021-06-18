@@ -38,14 +38,8 @@ export default {
 
   authReducer: {
     user: {
-      isLogged: true,
+      isLogged: false,
       userLogged: {
-        name: 'capi',
-        surname: '',
-        _id: '60c72d11ffd18e2169221cd8',
-        email: 'gerardramonp@gmail.com',
-        phone: '1213123',
-        role: userRoles.CAPTAIN,
       },
     },
   },
