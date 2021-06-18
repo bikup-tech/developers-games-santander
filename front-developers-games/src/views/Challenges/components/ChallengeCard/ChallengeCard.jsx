@@ -41,7 +41,7 @@ function ChallengeCard({ challenge }) {
           <img className="challenge__img" src={renderChallengeImg()} alt="" />
           <div className="challenge__button">
             <MainButton color={challenge.isCompleted ? 'blue' : 'red'} onClick={handleButtonClick}>
-              <Link to={`/challenges/${challenge._id}`}>
+              <Link to={`/santander/challenges/${challenge._id}`}>
                 {
                   challenge.isCompleted
                     ? 'Completed challenge'
