@@ -8,6 +8,7 @@ export default {
       name: '',
     },
     alert: { type: '', message: '' },
+    toLoadUserDetail: localStorage.getItem('toLoadUserDetail') || '',
     toLoadChallengeDetail: localStorage.getItem('toLoadChallengeDetail') || '',
     toLoadTeamDetail: localStorage.getItem('toLoadTeamDetail') || '',
   },
@@ -38,9 +39,8 @@ export default {
 
   authReducer: {
     user: {
-      isLogged: false,
-      userLogged: {
-      },
+      isLogged: localStorage.getItem('isLogged') === 'true',
+      userLogged: JSON.parse(localStorage.getItem('user')) || {},
     },
   },
 
