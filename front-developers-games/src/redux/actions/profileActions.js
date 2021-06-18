@@ -223,6 +223,8 @@ export function createParticipant(participant) {
         );
       }
     } catch (error) {
+      console.log(error);
+
       dispatch(
         setAlert(alertConstants.types.ERROR, alertConstants.messages.CREATE_PARTICIPANT_ERROR),
       );

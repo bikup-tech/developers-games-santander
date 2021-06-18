@@ -7,6 +7,7 @@ const participantModel = require('../models/participantModel');
 // Constants
 const { BAD_REQUEST } = require('../constants/statusCodes');
 const { MISSING_USER_PROPERTIES, MISSING_PROPERTIES } = require('../constants/responseMessages');
+const userRoles = require('../constants/userRoles');
 
 // Utils
 const CustomError = require('../utils/CustomError');
@@ -73,6 +74,10 @@ function participantService() {
     return participantModel.findOne({ email });
   }
 
+  async function findMentors() {
+    return participantModel.find({ role: userRoles.MENTOR });
+  }
+
   return {
     createParticipant,
     updateParticipant,
@@ -82,6 +87,7 @@ function participantService() {
     deleteManyParticipants,
     findAndUpdateParticipant,
     findParticipantByEmail,
+    findMentors,
   };
 }
 
