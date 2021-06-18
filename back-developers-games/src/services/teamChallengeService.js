@@ -61,6 +61,21 @@ function teamChallengeService() {
     return teamChallengeModel.deleteMany({ _id: { $in: teamChallenges } });
   }
 
+  function findAndUpdateTeamChallenge(teamChallengeId, updateQuery) {
+    const filter = { _id: teamChallengeId };
+    const updateOptions = { useFindAndModify: false };
+
+    return teamChallengeModel.findOneAndUpdate(filter, updateQuery, updateOptions);
+  }
+
+  function findCompletedTeamChallengesByChallengeId(tournamentChallengeId) {
+    const query = {
+      tournamentChallenge: tournamentChallengeId,
+      isCompleted: true,
+    };
+    return teamChallengeModel.find(query).populate('teamId');
+  }
+
   return {
     findTeamChallengeById,
     createTeamChallenge,
@@ -68,6 +83,8 @@ function teamChallengeService() {
     findTeamChallenges,
     updateManyTeamChallenges,
     deleteManyTeamChallenges,
+    findAndUpdateTeamChallenge,
+    findCompletedTeamChallengesByChallengeId,
   };
 }
 

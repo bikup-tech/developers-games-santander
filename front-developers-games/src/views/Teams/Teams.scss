@@ -3,7 +3,7 @@
 @import '../../assets/styles/styleConstants.scss';
 
 .teams {
-    @include flex();
+    @include flex($flex-direction:column);
     width: 100%;
 }
 
@@ -11,4 +11,31 @@
     @include flex($flex-direction:column);
 
     width: 100%;
+}
+
+.downloads-container {
+    @include flex($flex-direction:column);
+
+    width: 100%;
+    margin-bottom: $m-16;
+}
+
+.downloads__title {
+    color: $darkBlue;
+    font-weight: $text-semibold
+}
+
+.downloads__buttons {
+    @include flex();
+    flex-wrap: wrap;
+    padding: $p-6;
+}
+
+.downloads__button {
+    margin: $m-4;
+    width: 100px;
+
+    @media only screen and (min-width: $query-1280) {
+        margin: $m-8;
+    }
 }

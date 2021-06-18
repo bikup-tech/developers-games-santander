@@ -7,11 +7,11 @@ const router = Router();
 router.route('/')
   .get(teamChallengesController.getTeamChallenges);
 
+router.route('/completed/:tournamentChallengeId')
+  .get(teamChallengesController.getCompletedChallengesByChallengeId);
+
 router.route('/:teamChallengeId')
   .get(teamChallengeController.getTeamChallengeById)
   .patch(teamChallengeController.updateTeamChallenge);
-
-router.route('/deliverable/:teamChallengeId')
-  .post(teamChallengeController.uploadDeliverable);
 
 module.exports = router;

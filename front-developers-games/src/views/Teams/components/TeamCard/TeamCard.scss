@@ -205,6 +205,18 @@
     }
 }
 
+.member-list__member--challenge {
+    @include flex($justify-content: space-around);
+
+    width: 100%;
+    padding: $p-6 $p-16;
+
+    @media only screen and(min-width: $query-1280){
+        justify-content: space-between;
+        padding: $p-8 $p-16;
+    }
+}
+
 .member__info {
     @include flex($justify-content: space-around);
     width: 100%;

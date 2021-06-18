@@ -1,4 +1,6 @@
 import axios from 'axios';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 // Constants
 import actionTypes from './actionTypes';
@@ -7,6 +9,9 @@ import alertConstants from '../../constants/alertConstants';
 
 // Action-Creators
 import { setAlert } from './alertActions';
+
+// Utils
+import getGcloudBucketFileUrl from '../../utils/getGcloudBucketFileUrl';
 
 export function addParticipant(participant) {
   return {
@@ -124,13 +129,12 @@ export function loadChallengeDetail(challengeId) {
   };
 }
 
-function uploadChallengeDeliverableSuccess(buffer, fileType, filename) {
+function uploadChallengeDeliverableSuccess(filename, gcloudName) {
   return {
     type: actionTypes.UPLOAD_DELIVERABLE_SUCCESS,
     payload: {
-      buffer,
-      fileType,
       filename,
+      gcloudName,
     },
   };
 }
@@ -144,16 +148,16 @@ export function uploadChallengeDeliverable(challengeId, file) {
       formData.append('deliverable', file);
 
       const { data } = await axios({
-        method: 'post',
+        method: 'patch',
         url: loadChallengeDetailEndpoint,
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      dispatch(uploadChallengeDeliverableSuccess(
-        data.deliverable, data.mimeType, data.filename,
-      ));
+
+      dispatch(uploadChallengeDeliverableSuccess(data.filename, data.gcloudName));
       dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.UPLOAD_FILE_SUCCESS));
     } catch (error) {
+      console.log(error);
       dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.UPLOAD_FILE_ERROR));
     }
   };
@@ -251,6 +255,63 @@ export function loadTournamentTeams(tournamentId) {
     } catch (error) {
       dispatch(setAlert(alertConstants.types.ERROR, alertConstants.messages.LOAD_TEAMS_ERROR));
       dispatch(loadTournamentTeamsError(error.message));
+    }
+  };
+}
+
+export function getCompletedChallengeByChallengeId(tournamentChallengeId, challengeNumber) {
+  return async (dispatch) => {
+    try {
+      const endpoint = `${APIConstants.HOSTNAME}${APIConstants.GET_COMPLETED_CHALLENGES(tournamentChallengeId)}`;
+      const { data } = await axios.get(endpoint);
+
+      if (data.length) {
+        const zip = new JSZip();
+        data.forEach((deliverable) => {
+          const teamFolder = zip.folder(deliverable.teamId.name);
+          teamFolder.file(deliverable.filename, getGcloudBucketFileUrl(deliverable.gcloudName));
+        });
+
+        const content = await zip.generateAsync({ type: 'blob' });
+        saveAs(content, `Challenge-${challengeNumber}.zip`);
+      } else {
+        dispatch(setAlert(
+          alertConstants.types.WARNING,
+          alertConstants.messages.NO_COMPLETED_CHALLENGES,
+        ));
+      }
+    } catch (error) {
+      dispatch(setAlert(
+        alertConstants.types.ERROR,
+        alertConstants.messages.DOWNLOAD_COMPLETED_CHALLENGES_ERROR,
+      ));
+      dispatch(loadTournamentTeamsError(error.message));
+    }
+  };
+}
+
+function loadTournamentChallengesSuccess(tournamentChallenges) {
+  return {
+    type: actionTypes.LOAD_TOURNAMENT_CHALLENGES,
+    tournamentChallenges,
+  };
+}
+
+function loadTournamentChallengesERROR(error) {
+  return {
+    type: actionTypes.LOAD_TOURNAMENT_CHALLENGES_ERROR,
+    error,
+  };
+}
+
+export function loadTournamentChallenges(tournamentId) {
+  return async (dispatch) => {
+    try {
+      const endpoint = `${APIConstants.HOSTNAME}${APIConstants.LOAD_TOURNAMENT_CHALLENGES(tournamentId)}`;
+      const { data } = await axios.get(endpoint);
+      dispatch(loadTournamentChallengesSuccess(data));
+    } catch (error) {
+      dispatch(loadTournamentChallengesERROR(error.message));
     }
   };
 }
