@@ -60,4 +60,8 @@ export default {
   // Create new Participants
   CREATE_MENTOR: 'CREATE_MENTOR',
   CREATE_PARTICIPANT: 'CREATE_PARTICIPANT',
+
+  // get participant
+  GET_MENTORS: 'GET_MENTORS',
+
 };

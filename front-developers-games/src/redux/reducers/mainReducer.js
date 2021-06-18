@@ -227,6 +227,13 @@ export default function mainReducer(state = {}, action) {
       };
       break;
 
+    case actionTypes.GET_MENTORS:
+      newState = {
+        ...state,
+        mentors: action.mentors,
+      };
+      break;
+
     default:
       newState = state;
       break;

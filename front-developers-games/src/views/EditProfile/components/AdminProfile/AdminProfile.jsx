@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -16,7 +16,7 @@ import viewIcon from '../../../../assets/images/view-icon.svg';
 import plusIcon from '../../../../assets/images/plus-icon.svg';
 
 // Action Creators
-import { updateAdminProfile, uploadAvatar } from '../../../../redux/actions/profileActions';
+import { updateAdminProfile, uploadAvatar, getMentors } from '../../../../redux/actions/profileActions';
 
 // Utils
 import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
@@ -31,6 +31,7 @@ function AdminProfile() {
   const {
     name, email, phone, _id, avatar,
   } = useSelector(({ authReducer }) => authReducer.user.userLogged);
+  const { mentors } = useSelector(({ mainReducer }) => mainReducer);
 
   const initialState = {
     adminName: name,
@@ -45,6 +46,13 @@ function AdminProfile() {
       phone: false,
     },
   };
+
+  useEffect(() => {
+    if (!mentors || mentors?.length === 0) {
+      console.log('entro al useEffect');
+      dispatch(getMentors());
+    }
+  }, [mentors]);
 
   const [editAdminProfile, setEditAdminProfile] = useState(initialState);
   const [warningMessage, setWarningMessage] = useState('');

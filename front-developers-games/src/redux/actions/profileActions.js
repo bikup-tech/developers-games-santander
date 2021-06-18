@@ -223,11 +223,30 @@ export function createParticipant(participant) {
         );
       }
     } catch (error) {
-      console.log(error);
-
       dispatch(
         setAlert(alertConstants.types.ERROR, alertConstants.messages.CREATE_PARTICIPANT_ERROR),
       );
+    }
+  };
+}
+
+export function getMentorsSuccess(mentors) {
+  return {
+    type: actionTypes.GET_MENTORS,
+    mentors,
+  };
+}
+
+export function getMentors() {
+  console.log('entro aqui');
+  return async (dispatch) => {
+    try {
+      const getMentorsEndpoint = `${APIConstants.HOSTNAME}${APIConstants.CREATE_PARTICIPANT}`;
+      const { data: mentors } = await axios.get(getMentorsEndpoint);
+
+      dispatch(getMentorsSuccess(mentors));
+    } catch (error) {
+      console.log(error);
     }
   };
 }
