@@ -9,6 +9,7 @@ export default {
     },
     alert: { type: '', message: '' },
     toLoadChallengeDetail: localStorage.getItem('toLoadChallengeDetail') || '',
+    toLoadTeamDetail: localStorage.getItem('toLoadTeamDetail') || '',
   },
 
   registerReducer: {
@@ -39,12 +40,12 @@ export default {
     user: {
       isLogged: true,
       userLogged: {
-        name: 'superadmin',
+        name: 'capi',
         surname: '',
-        _id: '60c7220085cd6017500fb9a8',
-        email: 'admin',
+        _id: '60c72d11ffd18e2169221cd8',
+        email: 'gerardramonp@gmail.com',
         phone: '1213123',
-        role: userRoles.SUPER_ADMIN,
+        role: userRoles.CAPTAIN,
       },
     },
   },

@@ -197,6 +197,13 @@ export function createMentor(participant) {
   };
 }
 
+export function createParticipantSuccess(participant) {
+  return {
+    type: actionTypes.CREATE_PARTICIPANT,
+    participant,
+  };
+}
+
 export function createParticipant(participant) {
   return async (dispatch) => {
     try {
@@ -211,13 +218,13 @@ export function createParticipant(participant) {
         dispatch(createMentor(createdParticipant));
         dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.CREATE_PARTICIPANT_SUCCESS('Mentor')));
       } else {
-        // dispatch(createParticipant(createdParticipant));
-        // dispatch(
-        //   setAlert(
-        //     alertConstants.types.SUCCESS,
-        //     alertConstants.messages.CREATE_PARTICIPANT_SUCCESS('Participant'),
-        //   ),
-        // );
+        dispatch(createParticipantSuccess(createdParticipant));
+        dispatch(
+          setAlert(
+            alertConstants.types.SUCCESS,
+            alertConstants.messages.CREATE_PARTICIPANT_SUCCESS('Participant'),
+          ),
+        );
       }
     } catch (error) {
       dispatch(

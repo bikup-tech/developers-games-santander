@@ -15,8 +15,7 @@ function participantHasRequiredProps(participant) {
   return participant.email
     && participant.name
     && participant.surname
-    && participant.phone
-    && participant.teamNumber;
+    && participant.phone;
 }
 
 function participantService() {
@@ -70,6 +69,10 @@ function participantService() {
     return participantModel.findOneAndUpdate(_id, updateQuery, options);
   }
 
+  async function findParticipantByEmail(email) {
+    return participantModel.findOne({ email });
+  }
+
   return {
     createParticipant,
     updateParticipant,
@@ -78,6 +81,7 @@ function participantService() {
     updateManyParticipants,
     deleteManyParticipants,
     findAndUpdateParticipant,
+    findParticipantByEmail,
   };
 }
 

@@ -15,13 +15,6 @@ import { createParticipant } from '../../redux/actions/profileActions';
 import TextInput from '../Input/Input';
 import MainButton from '../MainButton/MainButton';
 
-const initialStateValues = {
-  name: '',
-  surname: '',
-  email: '',
-  phone: '',
-};
-
 const isIncorrectValues = {
   name: false,
   surname: false,
@@ -34,7 +27,15 @@ function CreateParticipantModal({
 }) {
   const dispatch = useDispatch();
 
-  const printedRol = userRole === userRoles.PARTICIPANT ? 'Participant' : 'Mentor';
+  const initialStateValues = {
+    name: '',
+    surname: '',
+    email: '',
+    phone: '',
+    role: userRole,
+  };
+
+  const printedRol = userRole === userRoles.PARTICIPANT ? 'participant' : 'mentor';
 
   const [participant, setParticipant] = useState(initialStateValues);
   const [isInputIncorrect, setIsInputIncorrect] = useState(isIncorrectValues);
