@@ -210,7 +210,6 @@ export function createParticipant(participant) {
       const createParticipantEndpoint = `${APIConstants.HOSTNAME}${APIConstants.CREATE_PARTICIPANT}`;
       const { data: createdParticipant } = await axios.post(createParticipantEndpoint, participant);
 
-      console.log(createdParticipant);
       if (createdParticipant.role === userRoles.MENTOR) {
         dispatch(createMentor(createdParticipant));
         dispatch(setAlert(alertConstants.types.SUCCESS, alertConstants.messages.CREATE_PARTICIPANT_SUCCESS('Mentor')));
