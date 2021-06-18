@@ -16,19 +16,21 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import SuperProtectedRoute from './components/SuperProtectedRoute/SuperProtectedRoute';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import RedirectComponent from './components/RedirectComponent/RedirectComponent';
 
 function App() {
   return (
     <div className="App">
       <Header />
       <Switch>
-        <Route path="/" exact component={Register} />
+        <Route path="/santander" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <Route path="/terms" component={TermsAndConditions} />
-        <ProtectedRoute path="/challenges" exact component={Challenges} />
-        <ProtectedRoute path="/challenges/:challengeId" component={ChallengeDetail} />
+        <ProtectedRoute path="/santander/challenges" exact component={Challenges} />
+        <ProtectedRoute path="/santander/challenges/:challengeId" component={ChallengeDetail} />
         <ProtectedRoute path="/profile" component={EditProfile} />
-        <SuperProtectedRoute path="/teams" component={Teams} />
+        <SuperProtectedRoute path="/santander/teams" component={Teams} />
+        <Route component={RedirectComponent} />
       </Switch>
       <Footer />
     </div>

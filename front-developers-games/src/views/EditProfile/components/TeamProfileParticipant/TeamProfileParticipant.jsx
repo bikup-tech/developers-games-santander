@@ -29,7 +29,6 @@ function TeamProfileParticipant({ participantNumber, participant }) {
   return (
     <div className="register__participant register__participant-border">
       <div className="participant__title-container">
-        <div className="flex-separator" />
         <h3 className="participant__title app__title app__title--noPadding">
           {participantNumber}
           {' - '}

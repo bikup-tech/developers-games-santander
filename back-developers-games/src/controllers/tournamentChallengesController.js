@@ -20,12 +20,14 @@ function challengesController() {
         throw new CustomError(BAD_REQUEST, MISSING_QUERY_PROPERTIES('tournamentId'));
       }
 
-      const tournamentChallenges = await tournamentChallengeService
+      let tournamentChallenges = await tournamentChallengeService
         .findTournamentChallengesByTournamentId(tournamentId);
 
       if (!tournamentChallenges || !tournamentChallenges.length) {
         throw new CustomError(CONFLICT, NO_TOURNAMENT_CHALLENGES_FOUND(tournamentId));
       }
+
+      tournamentChallenges = tournamentChallenges.sort((a, b) => a.number - b.number);
 
       return handleResponseSuccess(res, tournamentChallenges);
     } catch (getChallengesError) {

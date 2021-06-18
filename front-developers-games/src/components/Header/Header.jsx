@@ -17,7 +17,7 @@ import openMenuIcon from '../../assets/images/menu-icon.svg';
 import closeMenuIcon from '../../assets/images/close-icon.svg';
 
 const unloggedNavigation = [
-  { name: 'Register', route: '/' },
+  { name: 'Register', route: '/santander' },
   { name: 'Prizes', route: '/awards' },
   { name: 'Terms & conditions', route: '/terms' },
   { name: 'Login', route: '/login' },
@@ -28,17 +28,17 @@ function Header() {
   const { name: userName } = useSelector(({ authReducer }) => authReducer.user.userLogged);
 
   const participantNavigation = [
-    { name: 'Challenges', route: '/challenges' },
+    { name: 'Challenges', route: '/santander/challenges' },
     { name: 'Request your welcome kit', route: '/' },
     { name: userName, route: '/profile' },
   ];
   const adminNavigation = [
-    { name: 'See teams', route: '/teams' },
+    { name: 'See teams', route: '/santander/teams' },
     { name: 'Add mentors', route: '/profile' },
     { name: userName, route: '/profile' },
   ];
   const mentorNavigation = [
-    { name: 'See teams', route: '/teams' },
+    { name: 'See teams', route: '/santander/teams' },
     { name: userName, route: '/profile' },
   ];
 

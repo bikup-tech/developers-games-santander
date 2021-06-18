@@ -11,7 +11,7 @@ function SuperProtectedRoute({
   path, component: Compo, exact, ...rest
 }) {
   const access = useSelector(({ authReducer }) => (
-    authReducer?.user?.userLogged?.role >= userRoles.MENTOR
+    authReducer?.user?.userLogged?.role >= userRoles.MENTOR && authReducer?.user?.isLogged
   ));
   return (
     <Route
