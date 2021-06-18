@@ -78,16 +78,29 @@ function deleteParticipantSuccess(participantId) {
   };
 }
 
-export function deleteParticipant(participantId) {
+function deleteMentorSuccess(participantId) {
+  return {
+    type: actionTypes.DELETE_MENTOR,
+    participantId,
+  };
+}
+
+export function deleteParticipant(participant) {
   return async (dispatch) => {
     try {
-      const deleteParticipantEndpoint = `${APIConstants.HOSTNAME}${APIConstants.DELETE_PARTICIPANT(participantId)}`;
+      const deleteParticipantEndpoint = `${APIConstants.HOSTNAME}${APIConstants.DELETE_PARTICIPANT(participant._id)}`;
       await axios.delete(deleteParticipantEndpoint);
       dispatch(setAlert(
         alertConstants.types.SUCCESS, alertConstants.messages.DELETE_PARTICIPANT_SUCCESS,
       ));
-      dispatch(deleteParticipantSuccess(participantId));
+
+      if (participant.role === userRoles.PARTICIPANT) {
+        dispatch(deleteParticipantSuccess(participant._id));
+      } else {
+        dispatch(deleteMentorSuccess(participant._id));
+      }
     } catch (error) {
+      console.log(error);
       dispatch(setAlert(
         alertConstants.types.ERROR, alertConstants.messages.DELETE_PARTICIPANT_ERROR,
       ));

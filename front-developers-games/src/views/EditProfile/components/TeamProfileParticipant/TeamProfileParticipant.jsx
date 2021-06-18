@@ -22,7 +22,7 @@ function TeamProfileParticipant({ participantNumber, participant }) {
 
   function handleDelete() {
     if (window.confirm('Are your sure you want to delete this participant?')) {
-      dispatch(deleteParticipant(participant._id));
+      dispatch(deleteParticipant(participant));
     }
   }
 
@@ -38,7 +38,7 @@ function TeamProfileParticipant({ participantNumber, participant }) {
           {participant.role === userRoles.CAPTAIN ? '(Captain)' : ''}
         </h3>
         <div className="flex-separator title__delete-participant">
-          {participant.role === userRoles.PARTICIPANT && (
+          {participant.role !== userRoles.CAPTAIN && (
             <img
               src={deleteIcon}
               alt="delete participant"

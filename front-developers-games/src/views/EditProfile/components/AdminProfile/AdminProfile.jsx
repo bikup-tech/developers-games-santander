@@ -49,10 +49,8 @@ function AdminProfile() {
   };
 
   useEffect(() => {
-    if (!mentors || mentors?.length === 0) {
-      dispatch(getMentors());
-    }
-  }, [mentors]);
+    dispatch(getMentors());
+  }, [mentors?.length]);
 
   const [editAdminProfile, setEditAdminProfile] = useState(initialState);
   const [warningMessage, setWarningMessage] = useState('');
