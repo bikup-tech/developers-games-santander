@@ -200,6 +200,16 @@ export default function mainReducer(state = {}, action) {
       };
       break;
 
+    case actionTypes.CREATE_PARTICIPANT:
+      newState = {
+        ...state,
+        team: {
+          ...state.team,
+          participants: [...state.team.participants, action.participant],
+        },
+      };
+      break;
+
     // TOURNAMENT CHALLENGES
     case actionTypes.LOAD_TOURNAMENT_CHALLENGES_ERROR:
       newState = {

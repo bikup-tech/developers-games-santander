@@ -167,6 +167,7 @@ function TeamProfile() {
         userRole={userRoles.PARTICIPANT}
         isFormVisible={isFormVisible}
         setIsFormVisible={setIsFormVisible}
+        teamId={team?._id}
       />
     </div>
   );

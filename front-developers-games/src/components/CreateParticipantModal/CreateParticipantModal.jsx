@@ -23,7 +23,7 @@ const isIncorrectValues = {
 };
 
 function CreateParticipantModal({
-  userRole, isFormVisible, setIsFormVisible,
+  userRole, isFormVisible, setIsFormVisible, teamId,
 }) {
   const dispatch = useDispatch();
 
@@ -53,7 +53,7 @@ function CreateParticipantModal({
     const wrongValues = {};
 
     Object.entries(participant).forEach(([key, value]) => {
-      if (!value) {
+      if (!value && key !== 'role') {
         wrongValues[key] = true;
 
         setWarningMessage(warningMessages.login.LOGIN_REQUIRED_ENTRY);
@@ -64,7 +64,12 @@ function CreateParticipantModal({
     setIsInputIncorrect(wrongValues);
 
     if (isFormValid) {
-      dispatch(createParticipant(participant));
+      if (userRole === userRoles.MENTOR) {
+        dispatch(createParticipant(participant));
+      } else {
+        const body = { ...participant, teamId };
+        dispatch(createParticipant(body));
+      }
       setParticipant(initialStateValues);
       setWarningMessage('');
       setIsFormVisible(false);
