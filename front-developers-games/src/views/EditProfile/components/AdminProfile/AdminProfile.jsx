@@ -25,6 +25,7 @@ import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 import Input from '../../../../components/Input/Input';
 import MainButton from '../../../../components/MainButton/MainButton';
 import CreateParticipantModal from '../../../../components/CreateParticipantModal/CreateParticipantModal';
+import TeamProfileParticipant from '../TeamProfileParticipant/TeamProfileParticipant';
 
 function AdminProfile() {
   const dispatch = useDispatch();
@@ -49,7 +50,6 @@ function AdminProfile() {
 
   useEffect(() => {
     if (!mentors || mentors?.length === 0) {
-      console.log('entro al useEffect');
       dispatch(getMentors());
     }
   }, [mentors]);
@@ -185,6 +185,11 @@ function AdminProfile() {
         </div>
       </form>
       <small className="form__warningMessage">{warningMessage}</small>
+      <div className="team-profile__members">
+        {mentors?.map((participant, index) => (
+          <TeamProfileParticipant participantNumber={index + 1} participant={participant} />
+        ))}
+      </div>
       <div className="view-profile__bottom">
         <div className="bottom__secondary--buttons">
           <div className="profile-button-container mb-12">
