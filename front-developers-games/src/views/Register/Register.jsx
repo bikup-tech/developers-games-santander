@@ -5,7 +5,9 @@ import { useHistory } from 'react-router-dom';
 
 import './Register.scss';
 
+// Constants
 import warningMessages from '../../constants/warningMessages';
+import userRoles from '../../constants/userRoles';
 
 import {
   addTeamName, addParticipant, isCheckedRegisterTherms,
@@ -15,6 +17,7 @@ import {
 // import CameraIcon from '../../assets/images/camara-icon.svg';
 import plusIcon from '../../assets/images/plus-icon.svg';
 
+// Components
 import Participant from './Participant/Participant';
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import Input from '../../components/Input/Input';
@@ -30,11 +33,10 @@ function Register() {
   const {
     teamName, registerTermsConditions, registerWrongValues, isTeamRegistered,
   } = useSelector(({ registerReducer }) => registerReducer);
+  const { user } = useSelector(({ authReducer }) => authReducer);
 
   const [participantsCounter, setParticipantsCounter] = useState(1);
   const [warningMessage, setWarningMessage] = useState('');
-  // eslint-disable-next-line no-unused-vars
-  const [renderedParticipants, setRenderedParticipants] = useState([]);
 
   function handleTextInputChange({ target: { value } }) {
     dispatch(addTeamName(value));
@@ -56,6 +58,17 @@ function Register() {
     }
   }, [isTeamRegistered]);
 
+  useEffect(() => {
+    // Check if user is logged and redirect
+    if (user?.isLogged) {
+      if (user?.userLogged?.role >= userRoles.MENTOR) {
+        history.replace('/profile');
+      } else {
+        history.replace('/santander/challenges');
+      }
+    }
+  });
+
   function handleAddParticipantClick(e) {
     e.preventDefault();
     setParticipantsCounter(participantsCounter + 1);
@@ -67,8 +80,6 @@ function Register() {
         <Participant participantNumber={participantsCounter} isCaptain={false} />,
       );
     }
-
-    setRenderedParticipants(toRenderParticipants);
   }
 
   function handleSendTeamClick(e) {

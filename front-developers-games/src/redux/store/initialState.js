@@ -8,6 +8,7 @@ export default {
       name: '',
     },
     alert: { type: '', message: '' },
+    toLoadUserDetail: localStorage.getItem('toLoadUserDetail') || '',
     toLoadChallengeDetail: localStorage.getItem('toLoadChallengeDetail') || '',
     toLoadTeamDetail: localStorage.getItem('toLoadTeamDetail') || '',
   },
@@ -38,15 +39,8 @@ export default {
 
   authReducer: {
     user: {
-      isLogged: true,
-      userLogged: {
-        name: 'capi',
-        surname: '',
-        _id: '60c72d11ffd18e2169221cd8',
-        email: 'gerardramonp@gmail.com',
-        phone: '1213123',
-        role: userRoles.CAPTAIN,
-      },
+      isLogged: localStorage.getItem('isLogged') === 'true',
+      userLogged: JSON.parse(localStorage.getItem('user')) || {},
     },
   },
 

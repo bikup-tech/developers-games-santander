@@ -29,6 +29,11 @@ export function login(email, password) {
       const loginEndpoint = `${APIConstants.HOSTNAME}${APIConstants.LOGIN}`;
       const { data } = await axios.post(loginEndpoint, body);
 
+      localStorage.setItem('isLogged', true);
+      localStorage.setItem('user', JSON.stringify(data));
+      localStorage.setItem('toLoadUserDetail', data._id);
+      data.teamId && localStorage.setItem('toLoadTeamDetail', data.teamId);
+
       dispatch(loginSuccess(data));
     } catch (logError) {
       dispatch(

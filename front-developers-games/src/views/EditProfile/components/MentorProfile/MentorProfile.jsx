@@ -186,7 +186,7 @@ function MentorProfile() {
       <small className="form__warningMessage">{warningMessage}</small>
       <div className="view-profile__bottom">
         <div className="profile-button-container mb-12--mobile">
-          <Link to="/teams" className="button-children">
+          <Link to="/santander/teams" className="button-children">
             <MainButton isSecondary>
               <img className="button-children__image" src={viewIcon} alt="See Developers Games teams" />
               <p className="button-children__text">See teams</p>

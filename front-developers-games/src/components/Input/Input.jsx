@@ -3,7 +3,7 @@ import './Input.scss';
 
 function Input({
   type, name, placeholder, value, isIncorrect, onChange,
-  autocomplete, blueText, disabled, maxLength,
+  autocomplete, blueText, disabled, maxLength, onKeyUp,
 }) {
   return (
     <input
@@ -17,6 +17,7 @@ function Input({
       autoComplete={autocomplete ? 'on' : 'off'}
       disabled={disabled}
       maxLength={maxLength}
+      onKeyUp={onKeyUp}
     />
   );
 }

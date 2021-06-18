@@ -32,12 +32,6 @@ function Login() {
   const [warningMessage, setWarningMessage] = useState('');
   const [loginForm, setLoginForm] = useState(initialLoginState);
 
-  function handleTextInputChange({ target: { name, value } }) {
-    dispatch(clearLoginError());
-    setLoginForm({ ...loginForm, [name]: value, [`${name}IsWrong`]: false });
-    setWarningMessage('');
-  }
-
   useEffect(() => {
     if (user.isLogged) {
       if (user.userLogged.role >= userRoles.MENTOR) {
@@ -50,6 +44,12 @@ function Login() {
       setWarningMessage(warningMessages.login.LOGIN_ERROR);
     }
   }, [user?.isLogged, loginError]);
+
+  function handleTextInputChange({ target: { name, value } }) {
+    dispatch(clearLoginError());
+    setLoginForm({ ...loginForm, [name]: value, [`${name}IsWrong`]: false });
+    setWarningMessage('');
+  }
 
   function handleLoginClick() {
     let isFormValid = true;
@@ -69,6 +69,12 @@ function Login() {
     if (isFormValid) {
       dispatch(login(loginForm.captainEmail, loginForm.captainPassword));
       setWarningMessage('');
+    }
+  }
+
+  function handleKeyUp({ keyCode }) {
+    if (keyCode === 13) {
+      handleLoginClick();
     }
   }
 
@@ -97,6 +103,7 @@ function Login() {
               value={loginForm.captainPassword}
               onChange={handleTextInputChange}
               isIncorrect={loginForm.captainPasswordIsWrong}
+              onKeyUp={handleKeyUp}
             />
           </div>
           <small className="form__warningMessage">{warningMessage}</small>
