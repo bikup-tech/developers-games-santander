@@ -1,5 +1,8 @@
 const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
-const { MISSING_PROPERTIES, EMPTY_BODY, ALREADY_EXISTING_PARTICIPANT } = require('../constants/responseMessages');
+const {
+  MISSING_PROPERTIES, EMPTY_BODY, ALREADY_EXISTING_PARTICIPANT,
+  MISSING_PARTICIPANT_PROPERTIES, NOT_AN_EMAIL,
+} = require('../constants/responseMessages');
 const userRoles = require('../constants/userRoles');
 
 // Services
@@ -11,6 +14,10 @@ const mailService = require('../services/mailService');
 const CustomError = require('../utils/CustomError');
 const handleResponseError = require('../utils/handleResponseError');
 const handleResponseSuccess = require('../utils/handleResponseSuccess');
+
+function bodyHasRequiredProps(body) {
+  return body.email && body.name && body.surname && body.phone;
+}
 
 function participantController() {
   async function deleteParticipant({ params: { participantId } }, res) {
@@ -38,6 +45,10 @@ function participantController() {
         throw new CustomError(BAD_REQUEST, EMPTY_BODY);
       }
 
+      if (!bodyHasRequiredProps(body)) {
+        throw new CustomError(BAD_REQUEST, MISSING_PARTICIPANT_PROPERTIES);
+      }
+
       const alreadyExists = await participantService.findParticipantByEmail(body.email);
       if (alreadyExists) {
         throw new CustomError(CONFLICT, ALREADY_EXISTING_PARTICIPANT);
@@ -48,6 +59,10 @@ function participantController() {
         throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('teamId'));
       }
 
+      if (!body.email.includes('@') || !body.email.includes('.')) {
+        throw new CustomError(BAD_REQUEST, NOT_AN_EMAIL);
+      }
+
       // Create participant
       const createdParticipant = await participantService.createParticipant(body);
 
@@ -55,7 +70,7 @@ function participantController() {
       await teamService.addParticipantToTeam(body.teamId, createdParticipant._id);
 
       // Send email
-      mailService.sendRegisteredUser(createdParticipant.email, createdParticipant.password);
+      await mailService.sendRegisteredUser(createdParticipant.email, createdParticipant.password);
 
       const { password, ...restParticipant } = createdParticipant._doc;
       return handleResponseSuccess(res, restParticipant);
