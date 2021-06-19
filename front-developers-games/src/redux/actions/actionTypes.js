@@ -51,6 +51,7 @@ export default {
 
   // Delete participants & teams
   DELETE_PARTICIPANT: 'DELETE_PARTICIPANT',
+  DELETE_MENTOR: 'DELETE_MENTOR',
   DELETE_TEAM: 'DELETE_TEAM',
   ADMIN_DELETE_PARTICIPANT: 'ADMIN_DELETE_PARTICIPANT',
 
@@ -60,4 +61,8 @@ export default {
   // Create new Participants
   CREATE_MENTOR: 'CREATE_MENTOR',
   CREATE_PARTICIPANT: 'CREATE_PARTICIPANT',
+
+  // get participant
+  GET_MENTORS: 'GET_MENTORS',
+
 };

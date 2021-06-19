@@ -79,7 +79,16 @@ function participantController() {
     }
   }
 
-  return { deleteParticipant, createParticipant };
+  async function getMentors(req, res) {
+    try {
+      const mentors = await participantService.findMentors();
+      return handleResponseSuccess(res, mentors);
+    } catch (error) {
+      return handleResponseError(res, error);
+    }
+  }
+
+  return { deleteParticipant, createParticipant, getMentors };
 }
 
 module.exports = participantController();

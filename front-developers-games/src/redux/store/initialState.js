@@ -4,6 +4,7 @@ export default {
   mainReducer: {
     tournamentId: '60be036d5695a3805e903f91',
     participants: [],
+    mentors: [],
     team: {
       name: '',
     },

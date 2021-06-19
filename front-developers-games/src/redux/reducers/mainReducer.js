@@ -147,6 +147,15 @@ export default function mainReducer(state = {}, action) {
       };
       break;
 
+    case actionTypes.DELETE_MENTOR:
+      newState = {
+        ...state,
+        mentors: state.mentors.filter(
+          (participant) => participant._id !== action.participantId,
+        ),
+      };
+      break;
+
     // TEAMS
     case actionTypes.TEAMS_LOADING:
       newState = {
@@ -224,6 +233,13 @@ export default function mainReducer(state = {}, action) {
         ...state,
         tournamentChallengesError: null,
         tournamentChallenges: action.tournamentChallenges,
+      };
+      break;
+
+    case actionTypes.GET_MENTORS:
+      newState = {
+        ...state,
+        mentors: action.mentors,
       };
       break;
 

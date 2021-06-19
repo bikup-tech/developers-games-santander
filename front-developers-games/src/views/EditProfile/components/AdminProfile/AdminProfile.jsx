@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -16,7 +16,7 @@ import viewIcon from '../../../../assets/images/view-icon.svg';
 import plusIcon from '../../../../assets/images/plus-icon.svg';
 
 // Action Creators
-import { updateAdminProfile, uploadAvatar } from '../../../../redux/actions/profileActions';
+import { updateAdminProfile, uploadAvatar, getMentors } from '../../../../redux/actions/profileActions';
 
 // Utils
 import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
@@ -25,12 +25,14 @@ import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 import Input from '../../../../components/Input/Input';
 import MainButton from '../../../../components/MainButton/MainButton';
 import CreateParticipantModal from '../../../../components/CreateParticipantModal/CreateParticipantModal';
+import TeamProfileParticipant from '../TeamProfileParticipant/TeamProfileParticipant';
 
 function AdminProfile() {
   const dispatch = useDispatch();
   const {
     name, email, phone, _id, avatar,
   } = useSelector(({ authReducer }) => authReducer.user.userLogged);
+  const { mentors } = useSelector(({ mainReducer }) => mainReducer);
 
   const initialState = {
     adminName: name,
@@ -45,6 +47,10 @@ function AdminProfile() {
       phone: false,
     },
   };
+
+  useEffect(() => {
+    dispatch(getMentors());
+  }, [mentors?.length]);
 
   const [editAdminProfile, setEditAdminProfile] = useState(initialState);
   const [warningMessage, setWarningMessage] = useState('');
@@ -177,6 +183,11 @@ function AdminProfile() {
         </div>
       </form>
       <small className="form__warningMessage">{warningMessage}</small>
+      <div className="team-profile__members">
+        {mentors?.map((participant, index) => (
+          <TeamProfileParticipant participantNumber={index + 1} participant={participant} />
+        ))}
+      </div>
       <div className="view-profile__bottom">
         <div className="bottom__secondary--buttons">
           <div className="profile-button-container mb-12">

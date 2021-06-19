@@ -78,15 +78,27 @@ function deleteParticipantSuccess(participantId) {
   };
 }
 
-export function deleteParticipant(participantId) {
+function deleteMentorSuccess(participantId) {
+  return {
+    type: actionTypes.DELETE_MENTOR,
+    participantId,
+  };
+}
+
+export function deleteParticipant(participant) {
   return async (dispatch) => {
     try {
-      const deleteParticipantEndpoint = `${APIConstants.HOSTNAME}${APIConstants.DELETE_PARTICIPANT(participantId)}`;
+      const deleteParticipantEndpoint = `${APIConstants.HOSTNAME}${APIConstants.DELETE_PARTICIPANT(participant._id)}`;
       await axios.delete(deleteParticipantEndpoint);
       dispatch(setAlert(
         alertConstants.types.SUCCESS, alertConstants.messages.DELETE_PARTICIPANT_SUCCESS,
       ));
-      dispatch(deleteParticipantSuccess(participantId));
+
+      if (participant.role === userRoles.PARTICIPANT) {
+        dispatch(deleteParticipantSuccess(participant._id));
+      } else {
+        dispatch(deleteMentorSuccess(participant._id));
+      }
     } catch (error) {
       dispatch(setAlert(
         alertConstants.types.ERROR, alertConstants.messages.DELETE_PARTICIPANT_ERROR,
@@ -227,6 +239,28 @@ export function createParticipant(participant) {
     } catch (error) {
       dispatch(
         setAlert(alertConstants.types.ERROR, alertConstants.messages.CREATE_PARTICIPANT_ERROR),
+      );
+    }
+  };
+}
+
+export function getMentorsSuccess(mentors) {
+  return {
+    type: actionTypes.GET_MENTORS,
+    mentors,
+  };
+}
+
+export function getMentors() {
+  return async (dispatch) => {
+    try {
+      const getMentorsEndpoint = `${APIConstants.HOSTNAME}${APIConstants.CREATE_PARTICIPANT}`;
+      const { data: mentors } = await axios.get(getMentorsEndpoint);
+
+      dispatch(getMentorsSuccess(mentors));
+    } catch (error) {
+      dispatch(
+        setAlert(alertConstants.types.ERROR, alertConstants.messages.GET_PARTICIPANTS('mentors')),
       );
     }
   };
