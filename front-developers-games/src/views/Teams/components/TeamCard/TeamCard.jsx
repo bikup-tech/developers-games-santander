@@ -61,7 +61,7 @@ function TeamCard({ team, number }) {
     <div className="team-card">
       <div className="team-card__info">
         <div className="info__avatar">
-          <img src={getGcloudBucketFileUrl(team.captainId.avatar)} alt="team avatar" className="avatar__image" />
+          <img src={getGcloudBucketFileUrl(team?.captainId?.avatar)} alt="team avatar" className="avatar__image" />
         </div>
         <div className="info__data">
           <div className="data__title">
