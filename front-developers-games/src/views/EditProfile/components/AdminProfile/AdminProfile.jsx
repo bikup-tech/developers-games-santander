@@ -193,7 +193,7 @@ function AdminProfile() {
           <div className="profile-button-container mb-12">
             <MainButton isSecondary onClick={() => { setIsFormVisible(true); }}>
               <img className="button-children__image" src={plusIcon} alt="See Developers Games teams" />
-              <p className="button-children__text">Add administrator</p>
+              <p className="button-children__text">Add mentor</p>
             </MainButton>
           </div>
           <div className="profile-button-container mb-12--mobile">
