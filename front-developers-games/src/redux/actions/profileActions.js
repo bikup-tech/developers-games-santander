@@ -100,7 +100,6 @@ export function deleteParticipant(participant) {
         dispatch(deleteMentorSuccess(participant._id));
       }
     } catch (error) {
-      console.log(error);
       dispatch(setAlert(
         alertConstants.types.ERROR, alertConstants.messages.DELETE_PARTICIPANT_ERROR,
       ));
