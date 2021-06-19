@@ -26,12 +26,12 @@ function mailService() {
       to: email,
       subject: '<DevGames>Registered Team</DevGames>',
       html: `<p style="color:black;">Your team has been successfully registered</p>
-      <p>You can log into the platform (www.google.com) with the following credentials:</p>
-        <ul>
-          <li><b>Email:</b> ${email}</li>
-          <li><b>Password:</b> ${password}</li>
-        </ul>
-      `,
+        <p>You can log into the platform (www.google.com) with the following credentials:</p>
+          <ul>
+            <li><b>Email:</b> ${email}</li>
+            <li><b>Password:</b> ${password}</li>
+          </ul>
+        `,
     };
 
     return transporter.sendMail(mailOptions);

@@ -19,4 +19,5 @@ module.exports = {
   WRONG_PASSWORD: 'The password is not correct.',
   MISSING_AVATAR_FILE: 'Please provide an avatar file.',
   MISSING_DELIVERABLE_FILE: 'Please provide a deliverable file.',
+  NOT_AN_EMAIL: 'Please provide a valid email.',
 };
