@@ -11,6 +11,8 @@ import './Header.scss';
 // Constants
 import userRoles from '../../constants/userRoles';
 
+import getGcloudBucketFileUrl from '../../utils/getGcloudBucketFileUrl';
+
 // Assets
 import headerLogos from '../../assets/images/header-logos.svg';
 import openMenuIcon from '../../assets/images/menu-icon.svg';
@@ -25,7 +27,7 @@ const unloggedNavigation = [
 
 function Header() {
   const { isLogged, userLogged } = useSelector(({ authReducer }) => authReducer.user);
-  const { name: userName } = useSelector(({ authReducer }) => authReducer.user.userLogged);
+  const { name: userName, avatar } = useSelector(({ authReducer }) => authReducer.user.userLogged);
 
   const participantNavigation = [
     { name: 'Challenges', route: '/santander/challenges' },
@@ -49,6 +51,8 @@ function Header() {
     if (isLogged) {
       if (userLogged?.role <= userRoles.CAPTAIN) {
         setRenderedNavigation(participantNavigation);
+      } else if (userLogged?.role <= userRoles.MENTOR) {
+        setRenderedNavigation(mentorNavigation);
       } else {
         setRenderedNavigation(adminNavigation);
       }
@@ -74,6 +78,7 @@ function Header() {
         {element.name}
 
       </NavLink>
+      // Si element.route = perfil pinti la imatge
     )
     : (
       <a
@@ -110,6 +115,7 @@ function Header() {
       <div className={`header__mobile-menu mobile ${isMenuOpen && 'header__mobile-menu--visible '}`}>
         <img src={closeMenuIcon} alt="Close menu icon" className="mobile-menu__close" onClick={handleHamburgerClick} />
         <nav className="menu__navigation">{renderMenu}</nav>
+        <img src={getGcloudBucketFileUrl(avatar)} alt="team avatar" className="avatar__image" />
       </div>
       <div className={isLogged ? 'header__banner--small' : 'header__banner--big'} />
     </header>
