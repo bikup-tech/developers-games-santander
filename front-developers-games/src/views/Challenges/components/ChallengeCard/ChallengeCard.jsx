@@ -39,6 +39,7 @@ function ChallengeCard({ challenge }) {
           <h4 className={`challenge__title ${challenge.isCompleted && 'isCompleted'}`}>{challenge.tournamentChallenge.title}</h4>
           <p className={`challenge__subtitle ${challenge.isCompleted && 'isCompleted'}`}>{challenge.tournamentChallenge.subtitle}</p>
           <img className="challenge__img" src={renderChallengeImg()} alt="" />
+          <div className="flex-separator" />
           <div className="challenge__button">
             <MainButton color={challenge.isCompleted ? 'blue' : 'red'} onClick={handleButtonClick}>
               <Link to={`/santander/challenges/${challenge._id}`}>

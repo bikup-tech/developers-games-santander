@@ -9,7 +9,7 @@
     border-radius: $border-radius;
     width: 100%;
     max-width: 300px;
-    min-height: 225px;
+    height: 230px;
     margin: $m-8;
     text-align: center;
     &:hover {
@@ -35,12 +35,12 @@
 .challenge__subtitle {
     color: $darkBlue;
     font-size: $text-14;
+    padding-bottom: $p-12;
 }
 
 .challenge__img {
-    height: 24px;
-    width: 24px;
-    margin: 12px 0;
+    height: 36px;
+    margin-bottom: 12px;
 }
 
 .challenge__button {
