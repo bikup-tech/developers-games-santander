@@ -78,7 +78,6 @@ function Header() {
         {element.name}
 
       </NavLink>
-      // Si element.route = perfil pinti la imatge
     )
     : (
       <a
@@ -115,7 +114,6 @@ function Header() {
       <div className={`header__mobile-menu mobile ${isMenuOpen && 'header__mobile-menu--visible '}`}>
         <img src={closeMenuIcon} alt="Close menu icon" className="mobile-menu__close" onClick={handleHamburgerClick} />
         <nav className="menu__navigation">{renderMenu}</nav>
-        <img src={getGcloudBucketFileUrl(avatar)} alt="team avatar" className="avatar__image" />
       </div>
       <div className={isLogged ? 'header__banner--small' : 'header__banner--big'} />
     </header>

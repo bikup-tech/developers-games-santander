@@ -179,6 +179,7 @@ function uploadAvatarSuccess(avatarUrl) {
 }
 
 export function uploadAvatar(file, participantId) {
+  console.log(participantId);
   return async (dispatch) => {
     try {
       if (file) {
