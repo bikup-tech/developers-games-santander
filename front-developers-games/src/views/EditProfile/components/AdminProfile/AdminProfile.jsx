@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';

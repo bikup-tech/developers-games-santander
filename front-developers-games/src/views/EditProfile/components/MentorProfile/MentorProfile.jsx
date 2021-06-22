@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -8,12 +8,14 @@ import './MentorProfile.scss';
 import warningMessages from '../../../../constants/warningMessages';
 
 // Images
-import avatarIcon from '../../../../assets/images/avatar-icon.svg';
 import cameraIcon from '../../../../assets/images/camera-icon.svg';
 import viewIcon from '../../../../assets/images/view-icon.svg';
 
 // action-creators
-import { updateAdminProfile } from '../../../../redux/actions/profileActions';
+import { updateAdminProfile, uploadAvatar } from '../../../../redux/actions/profileActions';
+
+// Utils
+import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 
 // components
 import Input from '../../../../components/Input/Input';
@@ -21,7 +23,7 @@ import MainButton from '../../../../components/MainButton/MainButton';
 
 function MentorProfile() {
   const {
-    name, email, surname, phone, _id,
+    name, email, surname, phone, _id, avatar,
   } = useSelector(({ authReducer }) => authReducer.user.userLogged);
   const dispatch = useDispatch();
 
@@ -47,6 +49,8 @@ function MentorProfile() {
   const [isInputIncorrect, setIsInputIncorrect] = useState(isIncorrectValues);
   const [warningMessage, setWarningMessage] = useState('');
 
+  const avatarInput = useRef(null);
+
   function handleInputChange({ target }) {
     setEditMentorProfile({
       ...editMentorProfile,
@@ -55,6 +59,16 @@ function MentorProfile() {
     setIsInputIncorrect({ ...isInputIncorrect, [target.name]: false });
 
     setWarningMessage('');
+  }
+
+  function handleCameraClick() {
+    avatarInput.current.click();
+  }
+
+  function handleFileChange(event) {
+    const selectedFile = event.target.files[0];
+
+    dispatch(uploadAvatar(selectedFile, _id));
   }
 
   function handleSaveChangesClick() {
@@ -103,10 +117,12 @@ function MentorProfile() {
       <form className="team-profile__login-info--admin">
         <div className="login-info__general">
           <div className="login-info__avatar">
-            <img src={avatarIcon} alt="team avatar" className="avatar__image" />
+            <img src={getGcloudBucketFileUrl(avatar)} alt="team avatar" className="avatar__image" />
             <div className="avatar__photo-container">
-              <img src={cameraIcon} alt="change avatar" className="photo-container__img" />
+              <img src={cameraIcon} alt="change avatar" className="photo-container__img" onClick={handleCameraClick} />
             </div>
+            <input type="file" className="info__avatar-file" ref={avatarInput} onChange={handleFileChange} accept="image/png, image/gif, image/jpeg" />
+
           </div>
           <div className="login-separator" />
           <div className="login-info__data">
