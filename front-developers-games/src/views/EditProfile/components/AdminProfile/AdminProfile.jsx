@@ -110,8 +110,21 @@ function AdminProfile() {
         setWarningMessage(warningMessages.login.LOGIN_REQUIRED_ENTRY);
         isFormValid = false;
       }
+
+      if (editAdminProfile.newPassword && editAdminProfile.newPassword.length < 6 && key === 'newPassword') {
+        setEditAdminProfile({
+          ...editAdminProfile,
+          isIncorrectValues: {
+            ...editAdminProfile.isIncorrectValues,
+            [key]: true,
+          },
+        });
+
+        setWarningMessage(warningMessages.inputs.TOO_SHORT_PASSWORD);
+        isFormValid = false;
+      }
     });
-    if (isFormValid && editAdminProfile.newPassword && editAdminProfile.newPassword.length >= 6) {
+    if (isFormValid) {
       const credentials = { userId: _id, password: editAdminProfile.password };
       const body = {
         participantId: _id,
@@ -122,9 +135,6 @@ function AdminProfile() {
       dispatch(updateAdminProfile(credentials, body));
       setEditAdminProfile({ ...editAdminProfile, password: '', newPassword: '' });
       setWarningMessage('');
-    } else {
-      editAdminProfile.newPassword.length < 6
-        && setWarningMessage(warningMessages.inputs.TOO_SHORT_PASSWORD);
     }
   }
 
