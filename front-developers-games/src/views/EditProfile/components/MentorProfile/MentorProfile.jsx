@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -25,6 +25,7 @@ function MentorProfile() {
   const {
     name, email, surname, phone, _id, avatar,
   } = useSelector(({ authReducer }) => authReducer.user.userLogged);
+  const { userLogged } = useSelector(({ authReducer }) => authReducer.user);
   const dispatch = useDispatch();
 
   const initialStateValues = {
@@ -50,6 +51,10 @@ function MentorProfile() {
   const [warningMessage, setWarningMessage] = useState('');
 
   const avatarInput = useRef(null);
+
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(userLogged));
+  }, [userLogged]);
 
   function handleInputChange({ target }) {
     setEditMentorProfile({
