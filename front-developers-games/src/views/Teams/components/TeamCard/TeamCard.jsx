@@ -14,7 +14,7 @@ import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 // Images
 import viewIcon from '../../../../assets/images/view-icon.svg';
 import deleteIcon from '../../../../assets/images/delete-icon.svg';
-import linkIcon from '../../../../assets/images/link-icon.svg';
+import linkIcon from '../../../../assets/images/download-icon.svg';
 
 function renderPendingChallenges(completedChallenges) {
   return 6 - completedChallenges;
