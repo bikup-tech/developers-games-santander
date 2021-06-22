@@ -84,7 +84,7 @@ function CreateParticipantModal({
       />
       <form className={`add-participant__form ${isFormVisible === false && 'hide-bottom'}`}>
         <h3 className="participant__title app__title">
-          {`Crate new ${printedRol}`}
+          {`Create new ${printedRol}`}
         </h3>
         <div className="form__input--modal">
           <TextInput
