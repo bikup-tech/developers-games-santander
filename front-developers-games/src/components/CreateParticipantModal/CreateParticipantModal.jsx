@@ -59,6 +59,14 @@ function CreateParticipantModal({
         setWarningMessage(warningMessages.login.LOGIN_REQUIRED_ENTRY);
         isFormValid = false;
       }
+      if (key === 'email') {
+        if (!value.includes('@') || !value.includes('.')) {
+          wrongValues[key] = true;
+
+          setWarningMessage('Invalid email.');
+          isFormValid = false;
+        }
+      }
     });
 
     setIsInputIncorrect(wrongValues);

@@ -28,6 +28,7 @@ import TeamProfileParticipant from '../TeamProfileParticipant/TeamProfilePartici
 
 function AdminProfile() {
   const dispatch = useDispatch();
+  const { userLogged } = useSelector(({ authReducer }) => authReducer.user);
   const {
     name, email, phone, _id, avatar,
   } = useSelector(({ authReducer }) => authReducer.user.userLogged);
@@ -50,6 +51,10 @@ function AdminProfile() {
   useEffect(() => {
     dispatch(getMentors());
   }, [mentors?.length]);
+
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(userLogged));
+  }, [userLogged]);
 
   const [editAdminProfile, setEditAdminProfile] = useState(initialState);
   const [warningMessage, setWarningMessage] = useState('');
