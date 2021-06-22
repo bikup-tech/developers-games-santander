@@ -1,6 +1,9 @@
 // Constants
+const JSZip = require('jszip');
+const { saveAs } = require('file-saver');
+
 const { BAD_REQUEST } = require('../constants/statusCodes');
-const { MISSING_AVATAR_FILE, MISSING_DELIVERABLE_FILE } = require('../constants/responseMessages');
+const { MISSING_AVATAR_FILE, MISSING_DELIVERABLE_FILE, MISSING_PROPERTIES } = require('../constants/responseMessages');
 
 // Services
 const participantService = require('../services/participantService');
@@ -63,7 +66,10 @@ function uploadFilesController(gcBucket) {
         },
       });
 
-      const updateQuery = { $set: { filename: file.name, gcloudName: uploadedFilename } };
+      const updateQuery = {
+        $set:
+        { filename: file.name, gcloudName: uploadedFilename, mimeType: file.mimetype },
+      };
       const updatedTeamChallenge = await teamChallengeService
         .findAndUpdateTeamChallenge(teamChallengeId, updateQuery);
 
@@ -79,7 +85,55 @@ function uploadFilesController(gcBucket) {
     }
   }
 
-  return { uploadAvatar, uploadDeliverable };
+  async function downloadCompletedChallengesByChallengeId(
+    { params: { tournamentChallengeId } }, res,
+  ) {
+    try {
+      if (!tournamentChallengeId) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('tournamentChallengeId'));
+      }
+
+      const completedChallenges = await teamChallengeService
+        .findCompletedTeamChallengesByChallengeId(tournamentChallengeId);
+
+      const filesData = completedChallenges.map((challenge) => (
+        {
+          filename: challenge.filename,
+          gcloudName: challenge.gcloudName,
+          teamName: challenge.teamId.name,
+        }
+      ));
+
+      const zipped = new JSZip();
+      for (let index = 0; index < filesData.length; index += 1) {
+        const currentFile = filesData[index];
+        // eslint-disable-next-line no-await-in-loop
+        // const tempFile = await gcBucket.file(currentFile.gcloudName).download();
+        const gcFile = await gcBucket
+          .file(currentFile.gcloudName)
+          .get();
+        zipped.file('my-image.jpg', gcFile[0].createReadStream(), { binary: true });
+
+        // const { data: tempFile } = await axios.get(`https://storage.googleapis.com/developer-games-uploads/${currentFile.gcloudName}`);
+      }
+
+      const content = await zipped.generateAsync({ type: 'nodebuffer' });
+      saveAs(content, './tempZip.zip');
+
+      // await gcBucket.upload(, {
+      //   metadata: {
+      //     contentType: 'application/zip',
+      //   },
+      // });
+
+      return handleResponseSuccess(res, content);
+    } catch (error) {
+      console.log(error);
+      return handleResponseError(res, error);
+    }
+  }
+
+  return { uploadAvatar, uploadDeliverable, downloadCompletedChallengesByChallengeId };
 }
 
 module.exports = uploadFilesController;

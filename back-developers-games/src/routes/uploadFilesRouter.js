@@ -12,6 +12,9 @@ function uploadFilesRouter(gcBucket) {
   router.route('/deliverable/:teamChallengeId')
     .patch(uploadFilesController.uploadDeliverable);
 
+  router.route('/download/:tournamentChallengeId')
+    .get(uploadFilesController.downloadCompletedChallengesByChallengeId);
+
   return router;
 }
 
