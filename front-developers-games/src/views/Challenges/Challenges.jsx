@@ -65,7 +65,7 @@ function Challenges() {
         <div className="challenges__actions">
           <div className="actions__welcome-kit">
             <MainButton isSecondary>
-              <a href="http://www.google.com" target="_blank" className="welcome-kit__link" rel="noreferrer">
+              <a href="https://events.redhat.com/profile/395144" target="_blank" className="welcome-kit__link" rel="noreferrer">
                 <img src={kitIcon} alt="welcome kit" className="link__image" />
                 <span className="link__text">Request your welcome kit</span>
               </a>

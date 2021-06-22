@@ -77,7 +77,7 @@ function Header() {
     )
     : (
       <a
-        href="http://www.google.com"
+        href="https://events.redhat.com/profile/395144"
         target="_blank"
         rel="noreferrer"
         className="navigation__item"
