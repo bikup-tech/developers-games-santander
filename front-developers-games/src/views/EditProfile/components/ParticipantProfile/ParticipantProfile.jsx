@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -72,9 +73,9 @@ function ParticipantProfile() {
     Object.entries(editParticipantProfile).forEach(([key, value]) => {
       if (!value && key !== 'newPassword') {
         wrongValues[key] = true;
+        setWarningMessage(warningMessages.login.LOGIN_REQUIRED_ENTRY);
+        isFormValid = false;
       }
-      setWarningMessage(warningMessages.login.LOGIN_REQUIRED_ENTRY);
-      isFormValid = false;
     });
     setIsInputIncorrect(wrongValues);
 
@@ -83,10 +84,17 @@ function ParticipantProfile() {
         userId: _id,
         password: editParticipantProfile.password,
       };
+
+      const body = {
+        name: editParticipantProfile.participantName,
+        newPassword: editParticipantProfile.newPassword || null,
+        phone: editParticipantProfile.phone,
+      };
+
       dispatch(
         updateTeamProfile(
           credentials,
-          editParticipantProfile,
+          body,
           editParticipantProfile.participantName,
         ),
       );

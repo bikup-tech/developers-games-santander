@@ -41,9 +41,9 @@ function TeamProfile() {
 
   useEffect(() => {
     if (team) {
-      dispatch(setProfileInputValue('teamName', team.name));
+      dispatch(setProfileInputValue('teamName', team?.name));
     }
-  }, [team.name]);
+  }, [team?.name]);
 
   useEffect(() => {
     if (!team?._id) {

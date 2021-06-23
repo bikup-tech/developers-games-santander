@@ -14,10 +14,12 @@ const handleResponseError = require('../utils/handleResponseError');
 const handleResponseSuccess = require('../utils/handleResponseSuccess');
 
 const teamValidProps = {
+  name: 'name',
   teamName: 'teamName',
   teamId: 'teamId',
   newPassword: 'newPassword',
   participantId: 'participantId',
+  phone: 'phone',
 };
 
 const adminValidProps = {
@@ -33,6 +35,7 @@ function bodyHasWrongProps([...props], validProps) {
 
   props.forEach((prop) => {
     if (!validProps[prop]) {
+      console.log(prop);
       hasWrongProperties = true;
     }
   });
