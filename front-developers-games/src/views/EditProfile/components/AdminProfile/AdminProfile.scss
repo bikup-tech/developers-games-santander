@@ -32,7 +32,8 @@
     @include flex($flex-direction: column);
     width: 80%;
     @media only screen and(min-width: $query-1280){
-        @include flex($flex-direction: row);
+        flex-direction: row;
+        justify-content: space-between;
         width: 100%;
     }
 }

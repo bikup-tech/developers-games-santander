@@ -29,6 +29,8 @@
     @media only screen and(min-width: $query-1280){
         width: 100px;
         height: 100px;
+        margin-bottom: 0;
+
     }
 }
 
@@ -81,7 +83,7 @@
     @media only screen and(min-width: $query-1280){
         height: 100%;
         width: 1px;
-        margin: 0 $m-16;
+        margin: 0 $m-8;
 
     }
 }
@@ -89,6 +91,10 @@
 .login-info__data {
     @include flex($flex-direction: column);
     width: 100%;
+
+    @media only screen and(min-width: $query-1280){
+        width: 85%;
+    }
 }
 
 .profile-input-container {

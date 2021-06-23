@@ -14,7 +14,7 @@ import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 // Images
 import viewIcon from '../../../../assets/images/view-icon.svg';
 import deleteIcon from '../../../../assets/images/delete-icon.svg';
-import linkIcon from '../../../../assets/images/link-icon.svg';
+import linkIcon from '../../../../assets/images/download-icon.svg';
 
 function renderPendingChallenges(completedChallenges) {
   return 6 - completedChallenges;
@@ -99,7 +99,9 @@ function TeamCard({ team, number }) {
                 </div>
                 <div className="flex-separator" />
                 <div className="member__actions">
-                  <img src={deleteIcon} alt="delete team" className="title__delete" onClick={() => { handleDeleteParticipant(participant._id); }} />
+                  { userLogged.role === userRoles.SUPER_ADMIN && (
+                    <img src={deleteIcon} alt="delete team" className="title__delete" onClick={() => { handleDeleteParticipant(participant._id); }} />
+                  )}
                 </div>
               </div>
             ))}

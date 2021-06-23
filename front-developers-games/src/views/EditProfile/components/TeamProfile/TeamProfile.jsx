@@ -12,7 +12,7 @@ import addIcon from '../../../../assets/images/add-icon.svg';
 
 // Action-creators
 import {
-  setProfileInputValue, updateTeamProfile, deleteTeam, uploadAvatar,
+  setProfileInputValue, updateTeamProfile, uploadAvatar,
 } from '../../../../redux/actions/profileActions';
 import { setAlert } from '../../../../redux/actions/alertActions';
 import { loadTeam } from '../../../../redux/actions/loginActions';
@@ -102,11 +102,13 @@ function TeamProfile() {
     }
   }
 
-  function handleDeleteTeam() {
-    if (window.confirm("Are your sure you want to delete your team and all it's participants?")) {
-      dispatch(deleteTeam(team._id));
-    }
-  }
+  // FUNCIO QUE ELIMINA EL TEAM
+  // function handleDeleteTeam() {
+  // eslint-disable-next-line max-len
+  //   if (window.confirm("Are your sure you want to delete your team and all it's participants?")) {
+  //     dispatch(deleteTeam(team._id));
+  //   }
+  // }
 
   return (
     <div className="view-profile">
@@ -114,9 +116,9 @@ function TeamProfile() {
         <span className="top__text">Edit your profile</span>
         <div className="top__actions">
 
-          <div className="profile-button-container profile-button-container--margin">
+          {/* <div className="profile-button-container profile-button-container--margin">
             <MainButton onClick={handleDeleteTeam} isSecondary>Delete team</MainButton>
-          </div>
+          </div> */}
           <div className="profile-button-container">
             <MainButton onClick={handleSaveClick}>Save Changes</MainButton>
           </div>

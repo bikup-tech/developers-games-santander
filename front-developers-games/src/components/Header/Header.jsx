@@ -11,6 +11,8 @@ import './Header.scss';
 // Constants
 import userRoles from '../../constants/userRoles';
 
+import getGcloudBucketFileUrl from '../../utils/getGcloudBucketFileUrl';
+
 // Assets
 import headerLogos from '../../assets/images/header-logos.svg';
 import openMenuIcon from '../../assets/images/menu-icon.svg';
@@ -25,7 +27,7 @@ const unloggedNavigation = [
 
 function Header() {
   const { isLogged, userLogged } = useSelector(({ authReducer }) => authReducer.user);
-  const { name: userName } = useSelector(({ authReducer }) => authReducer.user.userLogged);
+  const { name: userName, avatar } = useSelector(({ authReducer }) => authReducer.user.userLogged);
 
   const participantNavigation = [
     { name: 'Challenges', route: '/santander/challenges' },
@@ -49,6 +51,8 @@ function Header() {
     if (isLogged) {
       if (userLogged?.role <= userRoles.CAPTAIN) {
         setRenderedNavigation(participantNavigation);
+      } else if (userLogged?.role <= userRoles.MENTOR) {
+        setRenderedNavigation(mentorNavigation);
       } else {
         setRenderedNavigation(adminNavigation);
       }
@@ -77,7 +81,7 @@ function Header() {
     )
     : (
       <a
-        href="http://www.google.com"
+        href="https://events.redhat.com/profile/395144"
         target="_blank"
         rel="noreferrer"
         className="navigation__item"

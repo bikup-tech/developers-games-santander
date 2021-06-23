@@ -22,7 +22,7 @@
     z-index: 9;
     border-bottom: 0.5px solid $lightBlue;
     @media only screen and (min-width: $query-1280) {
-      padding: $p-16 $p-48;
+      padding: $p-12 $p-48;
 
     }
 }
@@ -115,6 +115,7 @@
   .navigation__item {
     @include flex($flex-direction: column);
     position: relative;
+    font-weight: bold;
     list-style: none;
     text-decoration: none;
     cursor: pointer;
@@ -156,4 +157,8 @@
     @media only screen and (min-width: $query-1280) {
       height: 200px;
     }
+}
+
+.navigation__avatar {
+  height: 35px;
 }

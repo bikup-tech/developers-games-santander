@@ -5,34 +5,45 @@ import { useSelector } from 'react-redux';
 import './Footer.scss';
 
 const participantFooter = [
-  { name: 'Data privacy declaration', route: '/' },
+  { name: 'Privacy statement', route: '/' },
   { name: 'Terms & conditions', route: '/terms' },
   { name: 'Prizes', route: '/terms' },
 ];
 const adminFooter = [
-  { name: 'Data privacy declaration', route: '/awards' },
+  { name: 'Privacy statement', route: '/awards' },
   { name: 'Terms & conditions', route: '/terms' },
 ];
 
 function Footer() {
   const [footerNavigation, setFooterNavigation] = useState(participantFooter);
-  const { isAdmin } = useSelector(({ authReducer }) => authReducer.user.userLogged);
+  const { role } = useSelector(({ authReducer }) => authReducer.user.userLogged);
 
   useEffect(() => {
-    isAdmin
+    role >= 2
       ? setFooterNavigation(adminFooter)
       : setFooterNavigation(participantFooter);
-  }, [isAdmin]);
+  }, [role]);
 
-  const renderedFooter = footerNavigation.map((element) => (
-    <Link
-      to={element.route}
-      key={element.name}
-      className="items__item"
-    >
-      {element.name}
-    </Link>
-  ));
+  const renderedFooter = footerNavigation.map((element) => (element.name !== 'Privacy statement'
+    ? (
+      <Link
+        to={element.route}
+        key={element.name}
+        className="items__item"
+      >
+        {element.name}
+      </Link>
+    )
+    : (
+      <a
+        href="https://www.redhat.com/en/about/privacy-policy"
+        target="_blank"
+        rel="noreferrer"
+        className="items__item"
+      >
+        {element.name}
+      </a>
+    )));
   return (
     <footer className="footer-container">
       <div className="footer__items">
