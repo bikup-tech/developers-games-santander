@@ -264,15 +264,23 @@ export function getCompletedChallengeByChallengeId(tournamentChallengeId, challe
       const endpoint = `${APIConstants.HOSTNAME}${APIConstants.GET_COMPLETED_CHALLENGES(tournamentChallengeId)}`;
       const { data } = await axios.get(endpoint);
 
+      const blob = new Blob([data], { type: 'application/zip' });
+
+      saveAs(blob, `Challenge-${challengeNumber}.zip`);
+
+      console.log('saveado');
       if (data.length) {
         const zip = new JSZip();
         data.forEach((deliverable) => {
-          const teamFolder = zip.folder(deliverable.teamId.name);
+          console.log(getGcloudBucketFileUrl(deliverable.gcloudName)); // <<<< aixo obre el arxiu OK
+          // TODO: pillar la data del arxiu des de la url de gcloud, i despres posar-ho dins del zip
+          const teamFolder = zip.folder(deliverable.teamName);
           teamFolder.file(deliverable.filename, getGcloudBucketFileUrl(deliverable.gcloudName));
         });
 
+        // eslint-disable-next-line no-unused-vars
         const content = await zip.generateAsync({ type: 'blob' });
-        saveAs(content, `Challenge-${challengeNumber}.zip`);
+        // saveAs(content, `Challenge-${challengeNumber}.zip`);
       } else {
         dispatch(setAlert(
           alertConstants.types.WARNING,
@@ -280,6 +288,7 @@ export function getCompletedChallengeByChallengeId(tournamentChallengeId, challe
         ));
       }
     } catch (error) {
+      console.log(error);
       dispatch(setAlert(
         alertConstants.types.ERROR,
         alertConstants.messages.DOWNLOAD_COMPLETED_CHALLENGES_ERROR,

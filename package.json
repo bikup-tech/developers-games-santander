@@ -1,1 +1,5 @@
-{}
+{
+  "dependencies": {
+    "jszip-utils": "^0.1.0"
+  }
+}
