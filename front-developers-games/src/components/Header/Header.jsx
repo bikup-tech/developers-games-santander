@@ -2,15 +2,22 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect, useRef } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import './Header.scss';
 
 // Constants
 import userRoles from '../../constants/userRoles';
 
+// images
+import cameraIcon from '../../assets/images/camera-icon.svg';
+
+// action creators
+import { uploadAvatar } from '../../redux/actions/profileActions';
+
+// utils
 import getGcloudBucketFileUrl from '../../utils/getGcloudBucketFileUrl';
 
 // Assets
@@ -26,8 +33,28 @@ const unloggedNavigation = [
 ];
 
 function Header() {
-  const { isLogged, userLogged } = useSelector(({ authReducer }) => authReducer.user);
-  const { name: userName, avatar } = useSelector(({ authReducer }) => authReducer.user.userLogged);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { isLogged, userLogged } = useSelector(
+    ({ authReducer }) => authReducer.user,
+  );
+  const {
+    name: userName,
+    avatar,
+    _id,
+  } = useSelector(({ authReducer }) => authReducer.user.userLogged);
+
+  const avatarInput = useRef(null);
+
+  function handleCameraClick() {
+    avatarInput.current.click();
+  }
+
+  function handleFileChange(event) {
+    const selectedFile = event.target.files[0];
+
+    dispatch(uploadAvatar(selectedFile, _id));
+  }
 
   const participantNavigation = [
     { name: 'Challenges', route: '/santander/challenges' },
@@ -64,37 +91,73 @@ function Header() {
     setIsMenuOpen(!isMenuOpen);
   }
 
-  const renderMenu = renderedNavigation.map((element) => (element.name !== 'Request your welcome kit'
-    ? (
-      <NavLink
-        to={element.route}
-        key={element.name}
-        className="navigation__item"
-        activeClassName="navigation__item--active"
-        onClick={handleHamburgerClick}
-        exact
-      >
-        {element.name}
+  const renderMenu = renderedNavigation.map((element) => (
+    // eslint-disable-next-line no-nested-ternary
+    (element.name === userName ? (
+      <div className="navigation__profile" key={element.name}>
+        <NavLink
+          to={element.route}
+          key={element.name}
+          className="navigation__item"
+          activeClassName="navigation__item--active"
+          onClick={handleHamburgerClick}
+          exact
+        >
+          {element.name}
+        </NavLink>
+        <div className="login-info__avatar--small">
+          <img
+            src={getGcloudBucketFileUrl(avatar)}
+            alt="team avatar"
+            className="avatar__image"
+            onClick={() => history.replace('/profile')}
+          />
+          <input
+            type="file"
+            className="info__avatar-file"
+            ref={avatarInput}
+            onChange={handleFileChange}
+            accept="image/png, image/gif, image/jpeg"
+          />
+        </div>
+      </div>
 
-      </NavLink>
-    )
-    : (
-      <a
-        href="https://events.redhat.com/profile/395144"
-        target="_blank"
-        rel="noreferrer"
-        className="navigation__item"
-        onClick={handleHamburgerClick}
-      >
-        {element.name}
-      </a>
-    )));
+    ) : (
+      (element.name === 'Request your welcome kit' ? (
+        <a
+          href="https://events.redhat.com/profile/395144"
+          target="_blank"
+          rel="noreferrer"
+          className="navigation__item"
+          onClick={handleHamburgerClick}
+          key={element.name}
+        >
+          {element.name}
+        </a>
+      ) : (
+        <NavLink
+          to={element.route}
+          key={element.name}
+          className="navigation__item"
+          activeClassName="navigation__item--active"
+          onClick={handleHamburgerClick}
+          exact
+        >
+          {element.name}
+        </NavLink>
+      ))
+    ))
+  ));
 
   return (
     <header className="header">
       <div className="header__menu">
         <NavLink to="/" className="menu__logo">
-          <img className="logo__image" src={headerLogos} alt="Developers games Redhat and Santander logos" />
+          <img
+            className="logo__image"
+            src={headerLogos}
+            alt="Developers games Redhat and Santander logos"
+          />
         </NavLink>
         <img
           src={openMenuIcon}
@@ -103,18 +166,30 @@ function Header() {
           className="menu__hamburger mobile"
         />
         <nav className="menu__navigation desktop">{renderMenu}</nav>
-
       </div>
       {/* Menu behind opacity */}
       <div
         onClick={handleHamburgerClick}
-        className={`mobile-menu__behind mobile ${isMenuOpen && 'mobile-menu__behind--visible'}`}
+        className={`mobile-menu__behind mobile ${
+          isMenuOpen && 'mobile-menu__behind--visible'
+        }`}
       />
-      <div className={`header__mobile-menu mobile ${isMenuOpen && 'header__mobile-menu--visible '}`}>
-        <img src={closeMenuIcon} alt="Close menu icon" className="mobile-menu__close" onClick={handleHamburgerClick} />
+      <div
+        className={`header__mobile-menu mobile ${
+          isMenuOpen && 'header__mobile-menu--visible '
+        }`}
+      >
+        <img
+          src={closeMenuIcon}
+          alt="Close menu icon"
+          className="mobile-menu__close"
+          onClick={handleHamburgerClick}
+        />
         <nav className="menu__navigation">{renderMenu}</nav>
       </div>
-      <div className={isLogged ? 'header__banner--small' : 'header__banner--big'} />
+      <div
+        className={isLogged ? 'header__banner--small' : 'header__banner--big'}
+      />
     </header>
   );
 }
