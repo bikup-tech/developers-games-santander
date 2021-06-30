@@ -36,7 +36,6 @@ function Header() {
   ];
   const adminNavigation = [
     { name: 'See teams', route: '/santander/teams' },
-    { name: 'Add mentors', route: '/profile' },
     { name: userName, route: '/profile' },
   ];
   const mentorNavigation = [
