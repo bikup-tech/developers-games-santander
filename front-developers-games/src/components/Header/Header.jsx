@@ -1,7 +1,4 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,9 +7,6 @@ import './Header.scss';
 
 // Constants
 import userRoles from '../../constants/userRoles';
-
-// images
-import cameraIcon from '../../assets/images/camera-icon.svg';
 
 // action creators
 import { uploadAvatar } from '../../redux/actions/profileActions';
@@ -45,10 +39,6 @@ function Header() {
   } = useSelector(({ authReducer }) => authReducer.user.userLogged);
 
   const avatarInput = useRef(null);
-
-  function handleCameraClick() {
-    avatarInput.current.click();
-  }
 
   function handleFileChange(event) {
     const selectedFile = event.target.files[0];
