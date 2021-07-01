@@ -70,7 +70,7 @@ function participantController() {
       await teamService.addParticipantToTeam(body.teamId, createdParticipant._id);
 
       // Send email
-      await mailService.sendRegisteredUser(createdParticipant.email, createdParticipant.password);
+      await mailService.sendRegisteredMentor(createdParticipant.email, createdParticipant.password);
 
       const { password, ...restParticipant } = createdParticipant._doc;
       return handleResponseSuccess(res, restParticipant);

@@ -72,7 +72,7 @@ const mailService = require('./src/services/mailService');
 
 app.post('/api/mail', (req, res) => {
   const { email, password } = req.body;
-  mailService.sendRegisteredUser(email, password);
+  mailService.sendRegisteredMentor(email, password);
   res.send('ok');
 });
 
