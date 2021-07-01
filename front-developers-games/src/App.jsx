@@ -12,6 +12,7 @@ import Login from './views/Login/Login';
 import EditProfile from './views/EditProfile/EditProfile';
 
 // Components
+import Home from './views/Home/Home';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import SuperProtectedRoute from './components/SuperProtectedRoute/SuperProtectedRoute';
 import Header from './components/Header/Header';
@@ -23,6 +24,7 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
+        <Route path="/" exact component={Home} />
         <Route path="/santander" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <Route path="/terms" component={TermsAndConditions} />
