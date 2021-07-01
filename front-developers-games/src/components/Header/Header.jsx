@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
@@ -48,6 +49,7 @@ function Header() {
 
   const participantNavigation = [
     { name: 'Challenges', route: '/santander/challenges' },
+    { name: 'Participant Guide', route: '/' },
     { name: 'Request your welcome kit', route: '/' },
     { name: userName, route: '/profile' },
   ];
@@ -82,7 +84,6 @@ function Header() {
   }
 
   const renderMenu = renderedNavigation.map((element) => (
-    // eslint-disable-next-line no-nested-ternary
     (element.name === userName ? (
       <div className="navigation__profile" key={element.name}>
         <NavLink
@@ -125,16 +126,30 @@ function Header() {
           {element.name}
         </a>
       ) : (
-        <NavLink
-          to={element.route}
-          key={element.name}
-          className="navigation__item"
-          activeClassName="navigation__item--active"
-          onClick={handleHamburgerClick}
-          exact
-        >
-          {element.name}
-        </NavLink>
+        (element.name === 'Participant Guide' ? (
+          <a
+            href="https://docs.google.com/document/d/1YQ7BL2Li2Bedrz1yJmNAuz_ofaoui__eT392T5WsT0U/edit"
+            target="_blank"
+            rel="noreferrer"
+            className="navigation__item"
+            onClick={handleHamburgerClick}
+            key={element.name}
+          >
+            {element.name}
+          </a>
+        ) : (
+          <NavLink
+            to={element.route}
+            key={element.name}
+            className="navigation__item"
+            activeClassName="navigation__item--active"
+            onClick={handleHamburgerClick}
+            exact
+          >
+            {element.name}
+          </NavLink>
+        ))
+
       ))
     ))
   ));
