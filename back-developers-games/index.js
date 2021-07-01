@@ -68,12 +68,4 @@ app.delete('/api/reset', (req, res) => {
   res.send('done');
 });
 
-const mailService = require('./src/services/mailService');
-
-app.post('/api/mail', (req, res) => {
-  const { email, password } = req.body;
-  mailService.sendRegisteredMentor(email, password);
-  res.send('ok');
-});
-
 app.listen(PORT, () => debug(`Server running in port: ${PORT}`));
