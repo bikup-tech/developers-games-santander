@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const nodemailer = require('nodemailer');
 
 // Utils
@@ -21,20 +22,46 @@ function mailService() {
       throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('email or password'));
     }
 
+    if (!email.includes('@') || !email.includes('.')) {
+      email += '@safemail.com';
+    }
+
     const mailOptions = {
       from: process.env.MAIL_USER,
       to: email,
-      subject: '<DevGames>Registered Team</DevGames>',
-      html: `<p style="color:black;">Your team has been successfully registered</p>
-        <p>You can log into the platform (https://www.developergames.io/login) with the following credentials:</p>
-          <ul>
-            <li><b>Email:</b> ${email}</li>
-            <li><b>Password:</b> ${password}</li>
-          </ul>
+      subject: 'Thank you for registering your team to the Developer Games',
+      html: `<span style="opacity: 0"> ${Date.now()} </span>
+      <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto; overflow-y: auto; overflow-x: hidden;">
+        <img
+          src="https://trello-attachments.s3.amazonaws.com/60de0186c5328f72ba13b842/600x250/151d9f7cec1d11c36452db6d25be38df/mail-header.jpg"
+          alt="redhat logo"
+          style="margin-bottom: 16px"
+        />
+
+        <div style="padding: 0 24px;">
+            <p style="line-height: 1.45rem; text-align: justify; font-size: 1.1rem; margin-bottom: 24px; color: black;">
+                Hello Team!<br><br>
+                Game is on! Thanks for registering to the Developer Games.
+                Please find below your login details. You will not be able to see the
+                challenges until the start date.<br><br>
+                <b>User:</b> ${email}<br>
+                <b>Password:</b> ${password}<br><br>
+                Don't forget to request your participant's welcome kit!
+            </p>
+            <button style="background-color: #FF0000; color: white; font-weight: bold; padding: 6px 24px; border-radius: 6px; border: none; font-size: 1.3rem; margin-bottom: 24px;">
+               <a href="https://events.redhat.com/profile/395144" style="text-decoration: none; color: white;">Request here your welcome kit</a>   
+            </button>
+            <p style="line-height: 1.45rem; text-align: justify; font-size: 1.1rem; margin: 0; color: black;">
+                If you have any problems with login details please contact:<br>
+                <a href="mailto:games@developergames.io?Subject=Login%20issue" style="color: #00ADAF">games@developergames.io</a>
+            </p>
+        </div>
+    </div>
+      <span style="opacity: 0"> ${Date.now()} </span>
         `,
     };
 
-    return transporter.sendMail(mailOptions);
+    transporter.sendMail(mailOptions);
   }
 
   return { sendRegisteredUser };
