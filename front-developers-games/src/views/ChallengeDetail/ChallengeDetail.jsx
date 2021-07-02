@@ -6,7 +6,7 @@ import './ChallengeDetail.scss';
 
 // Assets
 import testVideo from '../../assets/videos/test-video.mp4';
-import testUploadIcon from '../../assets/images/challenge-5-done-icon.svg';
+import uploadIcon from '../../assets/images/upload-icon.svg';
 
 // Utils
 import renderChallengeNumber from '../../utils/renderChallengeNumber';
@@ -169,7 +169,7 @@ function ChallengeDetail() {
               <div className="challenge__actions">
                 <div className="actions__upload-button">
                   <MainButton isSecondary onClick={handleUploadClick}>
-                    <img src={testUploadIcon} alt="upload" className="upload-button__icon" />
+                    <img src={uploadIcon} alt="upload" className="upload-button__icon" />
                     <span>Upload Deliverable</span>
                     <input type="file" id="deliverable__input" name="deliverable__input" onChange={handleFileOnChange} />
                   </MainButton>
