@@ -91,7 +91,7 @@ function Challenges() {
               </Link>
             </MainButton>
           </div>
-          {(user.userLogged.role === 1 || user.userLogged.role === 0) && (
+          {user.userLogged.role < userRoles.MENTOR && (
           <div className="actions__edit-team">
             <MainButton isSecondary>
               <a href="https://docs.google.com/document/d/1YQ7BL2Li2Bedrz1yJmNAuz_ofaoui__eT392T5WsT0U/edit" target="_blank" className="welcome-kit__link" rel="noreferrer">
