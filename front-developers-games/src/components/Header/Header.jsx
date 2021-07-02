@@ -1,16 +1,13 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import './Header.scss';
 
 // Constants
 import userRoles from '../../constants/userRoles';
-
-// action creators
-import { uploadAvatar } from '../../redux/actions/profileActions';
 
 // utils
 import getGcloudBucketFileUrl from '../../utils/getGcloudBucketFileUrl';
@@ -28,7 +25,6 @@ const unloggedNavigation = [
 ];
 
 function Header() {
-  const dispatch = useDispatch();
   const history = useHistory();
   const { isLogged, userLogged } = useSelector(
     ({ authReducer }) => authReducer.user,
@@ -36,16 +32,7 @@ function Header() {
   const {
     name: userName,
     avatar,
-    _id,
   } = useSelector(({ authReducer }) => authReducer.user.userLogged);
-
-  const avatarInput = useRef(null);
-
-  function handleFileChange(event) {
-    const selectedFile = event.target.files[0];
-
-    dispatch(uploadAvatar(selectedFile, _id));
-  }
 
   const participantNavigation = [
     { name: 'Challenges', route: '/santander/challenges' },
@@ -102,13 +89,6 @@ function Header() {
             alt="team avatar"
             className="avatar__image"
             onClick={() => history.replace('/profile')}
-          />
-          <input
-            type="file"
-            className="info__avatar-file"
-            ref={avatarInput}
-            onChange={handleFileChange}
-            accept="image/png, image/gif, image/jpeg"
           />
         </div>
       </div>
