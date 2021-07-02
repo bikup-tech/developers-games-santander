@@ -7,6 +7,9 @@ const router = Router();
 router.route('/')
   .get(teamChallengesController.getTeamChallenges);
 
+router.route('/adminTemplates/:tournamentId')
+  .get(teamChallengesController.getAdminTemplateChallenges);
+
 router.route('/completed/:tournamentChallengeId')
   .get(teamChallengesController.getCompletedChallengesByChallengeId);
 

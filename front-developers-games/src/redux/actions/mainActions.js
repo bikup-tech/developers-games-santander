@@ -82,6 +82,21 @@ export function loadTeamChallenges(teamId) {
   };
 }
 
+export function loadAdminTemplateChallenges(tournamentId) {
+  return async (dispatch) => {
+    try {
+      dispatch(setTeamChallengesLoading());
+
+      const loadAdminTemplateChallengesEndpoint = `${APIConstants.HOSTNAME}${APIConstants.LOAD_ADMIN_TEMPLATE_CHALLENGES(tournamentId)}`;
+      const { data } = await axios.get(loadAdminTemplateChallengesEndpoint);
+
+      dispatch(loadTeamChallengesSuccess(data));
+    } catch (teamChallengesError) {
+      dispatch(loadTeamChallengesError(teamChallengesError));
+    }
+  };
+}
+
 export function setToLoadChallengeDetail(challengeId) {
   localStorage.setItem('toLoadChallengeDetail', challengeId);
   return {

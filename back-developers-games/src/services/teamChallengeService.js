@@ -76,6 +76,15 @@ function teamChallengeService() {
     return teamChallengeModel.find(query).populate('teamId');
   }
 
+  function findAdminTemplateChallengesByTournamentId(tournamentId) {
+    const query = {
+      tournamentId,
+      isAdminTemplate: true,
+    };
+
+    return teamChallengeModel.find(query).populate('tournamentChallenge');
+  }
+
   return {
     findTeamChallengeById,
     createTeamChallenge,
@@ -85,6 +94,7 @@ function teamChallengeService() {
     deleteManyTeamChallenges,
     findAndUpdateTeamChallenge,
     findCompletedTeamChallengesByChallengeId,
+    findAdminTemplateChallengesByTournamentId,
   };
 }
 

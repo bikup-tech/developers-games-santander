@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom';
 
 import './Challenges.scss';
 
+// Constants
+import userRoles from '../../constants/userRoles';
+
 // Images
 import teamIcon from '../../assets/images/team-icon.svg';
 import kitIcon from '../../assets/images/kit-icon.svg';
 
 // Action-Creators
-import { loadTeamChallenges } from '../../redux/actions/mainActions';
+import { loadAdminTemplateChallenges, loadTeamChallenges } from '../../redux/actions/mainActions';
 import { loadTeam } from '../../redux/actions/loginActions';
 
 // Components
@@ -26,6 +29,7 @@ function Challenges() {
     teamChallengesError,
     teamChallenges,
     team,
+    tournamentId,
   } = useSelector(({ mainReducer }) => mainReducer);
   const { user } = useSelector(({ authReducer }) => authReducer);
 
@@ -37,7 +41,11 @@ function Challenges() {
 
   useEffect(() => {
     if (!teamChallenges || !teamChallenges?.length) {
-      dispatch(loadTeamChallenges(team?._id));
+      if (user.userLogged.role < userRoles.MENTOR) {
+        dispatch(loadTeamChallenges(team?._id));
+      } else {
+        dispatch(loadAdminTemplateChallenges(tournamentId));
+      }
     }
   }, [teamChallenges, team?._id]);
 
@@ -64,12 +72,14 @@ function Challenges() {
         </div>
         <div className="challenges__actions">
           <div className="actions__welcome-kit">
+            { user.userLogged.role < userRoles.MENTOR && (
             <MainButton isSecondary>
               <a href="https://events.redhat.com/profile/395144" target="_blank" className="welcome-kit__link" rel="noreferrer">
                 <img src={kitIcon} alt="welcome kit" className="link__image" />
                 <span className="link__text">Request your welcome kit</span>
               </a>
             </MainButton>
+            )}
           </div>
           <div className="actions__edit-team">
             <MainButton isSecondary>
@@ -83,8 +93,12 @@ function Challenges() {
       </div>
     );
 
+  const renderName = user?.userLogged?.role < userRoles.MENTOR
+    ? `${team?.name} Team`
+    : user?.userLogged?.name;
+
   return (
-    <AppWrapper title={`Hi ${team?.name} Team`}>
+    <AppWrapper title={`Hi ${renderName}`}>
       <div className="challenges">
         <p className="challenges__text">
           Enter each of the categories and complete the

@@ -8,6 +8,9 @@ import './ChallengeDetail.scss';
 import testVideo from '../../assets/videos/test-video.mp4';
 import uploadIcon from '../../assets/images/upload-icon.svg';
 
+// Constants
+import userRoles from '../../constants/userRoles';
+
 // Utils
 import renderChallengeNumber from '../../utils/renderChallengeNumber';
 import getGcloudBucketFileUrl from '../../utils/getGcloudBucketFileUrl';
@@ -41,6 +44,8 @@ function ChallengeDetail() {
   const {
     challengeDetail, toLoadChallengeDetail, teamChallengesError, challengeDetailLoading, team,
   } = useSelector(({ mainReducer }) => mainReducer);
+
+  const { userLogged } = useSelector(({ authReducer }) => authReducer.user);
 
   useEffect(() => {
     dispatch(loadChallengeDetail(toLoadChallengeDetail));
@@ -166,6 +171,7 @@ function ChallengeDetail() {
                   </div>
                 </div>
               </div>
+              {userLogged.role < userRoles.MENTOR && (
               <div className="challenge__actions">
                 <div className="actions__upload-button">
                   <MainButton isSecondary onClick={handleUploadClick}>
@@ -182,6 +188,7 @@ function ChallengeDetail() {
                   </MainButton>
                 </div>
               </div>
+              )}
             </div>
           )}
 

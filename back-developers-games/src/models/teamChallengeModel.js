@@ -8,6 +8,8 @@ const teamChallengeModel = new Schema({
   gcloudName: { type: String },
   challengeName: { type: String },
   challengeNumber: { type: Number },
+  isAdminTemplate: { type: Boolean },
+  tournamentId: { type: String },
 });
 
 module.exports = model('Team_challenges', teamChallengeModel);
