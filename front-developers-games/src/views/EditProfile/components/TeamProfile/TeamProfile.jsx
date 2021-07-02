@@ -26,6 +26,7 @@ import MainButton from '../../../../components/MainButton/MainButton';
 import TeamProfileParticipant from '../TeamProfileParticipant/TeamProfileParticipant';
 import CreateParticipantModal from '../../../../components/CreateParticipantModal/CreateParticipantModal';
 import userRoles from '../../../../constants/userRoles';
+import LogoutButton from '../LogoutButton/LogoutButton';
 
 function TeamProfile() {
   const dispatch = useDispatch();
@@ -119,8 +120,13 @@ function TeamProfile() {
           {/* <div className="profile-button-container profile-button-container--margin">
             <MainButton onClick={handleDeleteTeam} isSecondary>Delete team</MainButton>
           </div> */}
-          <div className="profile-button-container">
-            <MainButton onClick={handleSaveClick}>Save Changes</MainButton>
+          <div className="button-actions-profile__container">
+            <div className="profile-button-container profile-button-container--logout">
+              <LogoutButton>Log Out</LogoutButton>
+            </div>
+            <div className="profile-button-container">
+              <MainButton onClick={handleSaveClick}>Save Changes</MainButton>
+            </div>
           </div>
         </div>
       </div>

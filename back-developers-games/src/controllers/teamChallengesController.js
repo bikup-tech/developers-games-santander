@@ -23,6 +23,21 @@ function teamChallengesController() {
     }
   }
 
+  async function getAdminTemplateChallenges({ params: { tournamentId } }, res) {
+    try {
+      if (!tournamentId) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('tournamentId'));
+      }
+
+      const foundTeamChallenges = await teamChallengeService
+        .findAdminTemplateChallengesByTournamentId(tournamentId);
+
+      return handleResponseSuccess(res, foundTeamChallenges);
+    } catch (getTeamChallengesError) {
+      return handleResponseError(res, getTeamChallengesError);
+    }
+  }
+
   async function getCompletedChallengesByChallengeId(
     { params: { tournamentChallengeId } }, res,
   ) {
@@ -39,7 +54,7 @@ function teamChallengesController() {
       return handleResponseError(res, error);
     }
   }
-  return { getTeamChallenges, getCompletedChallengesByChallengeId };
+  return { getTeamChallenges, getCompletedChallengesByChallengeId, getAdminTemplateChallenges };
 }
 
 module.exports = teamChallengesController();

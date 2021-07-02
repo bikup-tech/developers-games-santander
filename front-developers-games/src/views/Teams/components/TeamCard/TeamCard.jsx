@@ -110,30 +110,31 @@ function TeamCard({ team, number }) {
         <div className={`extra__challenges challenges-${team._id} display-none`}>
           <h3 className="members__title">Completed challenges</h3>
           <div className="members__member-list">
-            {team.teamChallenges.map((challenge) => {
-              if (challenge.isCompleted) {
-                printedChallenges += 1;
-                return (
-                  <div className={`member-list__member--challenge ${printedChallenges % 2 !== 0 && 'dark-background'}`} key={`challenge-${challenge._id}`}>
-                    <div className="member__info">
-                      <span className="completed-challenge__name">
-                        #
-                        {challenge.challengeNumber}
-                        {' '}
-                        {' '}
-                        {challenge.challengeName}
-                      </span>
+            {team.teamChallenges.sort((a, b) => a.challengeNumber - b.challengeNumber)
+              .map((challenge) => {
+                if (challenge.isCompleted) {
+                  printedChallenges += 1;
+                  return (
+                    <div className={`member-list__member--challenge ${printedChallenges % 2 !== 0 && 'dark-background'}`} key={`challenge-${challenge._id}`}>
+                      <div className="member__info">
+                        <span className="completed-challenge__name">
+                          #
+                          {challenge.challengeNumber}
+                          {' '}
+                          {' '}
+                          {challenge.challengeName}
+                        </span>
+                      </div>
+                      <div className="member__actions">
+                        <a href={getGcloudBucketFileUrl(challenge.gcloudName)} className="actions__link" target="_blank" rel="noreferrer">
+                          <img src={linkIcon} alt="link" className="link__img" title="Go to Github" />
+                        </a>
+                      </div>
                     </div>
-                    <div className="member__actions">
-                      <a href={getGcloudBucketFileUrl(challenge.gcloudName)} className="actions__link" target="_blank" rel="noreferrer">
-                        <img src={linkIcon} alt="link" className="link__img" title="Go to Github" />
-                      </a>
-                    </div>
-                  </div>
-                );
-              }
-              return null;
-            })}
+                  );
+                }
+                return null;
+              })}
           </div>
         </div>
       </div>

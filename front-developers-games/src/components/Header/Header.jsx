@@ -42,10 +42,12 @@ function Header() {
   ];
   const adminNavigation = [
     { name: 'See teams', route: '/santander/teams' },
+    { name: 'Challenges', route: '/santander/challenges' },
     { name: userName, route: '/profile' },
   ];
   const mentorNavigation = [
     { name: 'See teams', route: '/santander/teams' },
+    { name: 'Challenges', route: '/santander/challenges' },
     { name: userName, route: '/profile' },
   ];
 
