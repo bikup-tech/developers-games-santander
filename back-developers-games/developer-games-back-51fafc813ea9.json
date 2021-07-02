@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "developer-games-back",
+  "private_key_id": "51fafc813ea950c156fb5168f8ca1bdc1a7571ca",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDCoRG2VUQqkpel\nhCZEoIs97OvxMNqtxlMp8wblTn0SFV3VqdgIFJQ3K7wEJE149kftl1k0J+UKXRMJ\nu+jtixak/Luu1IKiynpfO4Y8TDiNyvjiJ5OFbZ2mnr2cu2/eEqD92KQOf7M+OPLt\nov3vo7p1AAfcA67B2m2LdqE6YPu6xVY66av9oCe0EZJ3tRI6dxxiWkOwGI9VGcuP\nk39jwhBvgYXdnOJdOCxwKC1XjR+/9iUBrtZ3wYcdpVkHfBkCftqi+Eg+wV+GfnpH\nAuAK2C6v2ezQYGM7soy2TSuEFpKeSf2Bcaz/E0kmGwoggskGurH6am7/X77NBti0\nJAcza0uBAgMBAAECggEAFXCv5lGbSkNO0E1v98RlwmMclLvIgzcjRy499rnAPmM7\nLIPix/UYZMF9G0myfR5ISyyOh5fTe+JH7B0WqkBVtMQgmsBPScabV21TusW8vyX6\nZ9NrRVoPcWDwS1k8mA6eTIh2fiBkKvkUDciUR7dWHXhs5ThEopdA1Qmy9h7j7C2K\nxUDBcZW98/i4z6il8IM9zuM0zD14yXdNgIt2YyLS9E8l0cROxydEHvz1EHcYDb2q\nNr36IdsizhDPPaPGcRLTl7qtAYit5GGe0y9rCpMmVBuwZBGaWhy8YACzwqQz/H9i\n7tkDDBzl+IMX9xsfA/VZsLjbb2+tC0v2VgC+cb8B5wKBgQDhdX8ws/vKXoamLqHX\nzDcki1zBHZvnJNBm+ea6CDN3MkJ2jJGfHW1b43H1aHYuOfzJ5xD1V1AXEo9T9/Kp\nKxXdqC/k3cEEVzudpzfV2qYRSsiT8vIJc8kv3aEtM95XCIrD6eJAvIyUNYiGUdhe\nWaQxek5/DzSjlR/knUdK1hrEgwKBgQDc/nOfiG8siMaFOgGZ8/GORbHDDqgYDEGz\nBsrBHeKrfwUmXkibJ5t3acN/CHSOUD7Ac1juzWMtX0xeS97kNQyXsAHA3EmeQQ+4\nzJr3ZRzA/vGX2YNT7CXpBvGb3ZSQl49W35AQnD2fK7dt1UISoJfaXrjpNUrzHVe+\n2RtOVX9YqwKBgADl2+TQwq7yo2ykAOcAHDQcDfmC6a0I+399fUq+X54Y6CTauHW+\nw0G7bSfCC75xYq1XKz0e5OXCoCmAckn0LvkcA1zQ+UTQKB+fm9xRK5okBxp3vDkH\nagSzyEGK1FbaZNsU4l7JoXGxqOKIDumJR9selpNw9w+zt1XMvozwv1iLAoGBAMTE\n50xn3Z1Il4JuWJispSrpkVK9TRxEZYczB/sVUgsjCQHVt0424O1dRY1piOZiOs1+\npvPR+nmevc/EPEzzkyfItnbzbbUz9vyzaVPYOtb46UIskQt7W3H2FdCTZcGswRs3\n6f1wMEn2UdfAp5kQVsU/y+MR6Y84VDWA+BgydjYLAoGARIXjrLfC1bgwtI0F/UFV\n8ZXyvOviRH7Heorsw4giRTr0FiZKG51nkZJEIK9EklzkmEc5SaUUBVUtouo50CIE\n2QsakQNA6ytqme3GOmHMmsATy2hi/S8tYAL0Fk8nkNjY2HkC5PMqHlS7j6Ht4CIk\nU9gj6MNivTIGpJ8WWEUirhA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "developer-games-uploads@developer-games-back.iam.gserviceaccount.com",
+  "client_id": "114919097518731493206",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/developer-games-uploads%40developer-games-back.iam.gserviceaccount.com"
+}
