@@ -1,5 +1,5 @@
 export default {
-  HOSTNAME: 'http://localhost:4200',
+  HOSTNAME: 'https://developer-games-back-318613.ew.r.appspot.com',
   LOAD_TEAM_CHALLENGES_ENDPOINT: (teamId) => `/api/teamChallenges?teamId=${teamId}`,
   REGISTER_TEAM: '/api/teams',
   LOGIN: '/api/auth',
