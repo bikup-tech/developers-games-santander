@@ -86,3 +86,8 @@ export function loadTeam(teamId) {
     }
   };
 }
+
+export function logOut() {
+  localStorage.removeItem('isLogged');
+  window.location.replace('/login');
+}

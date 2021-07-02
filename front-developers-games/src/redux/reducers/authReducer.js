@@ -15,6 +15,10 @@ export default function authReducer(state = {}, action) {
       newState = { ...state, loginError: null };
       break;
 
+    case actionTypes.LOGOUT:
+      newState = { ...state, user: { isLogged: false, userLogged: {} } };
+      break;
+
     // Avatar upload
     case actionTypes.UPLOAD_AVATAR:
       newState = {

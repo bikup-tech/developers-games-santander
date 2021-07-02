@@ -20,6 +20,7 @@ import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 // components
 import Input from '../../../../components/Input/Input';
 import MainButton from '../../../../components/MainButton/MainButton';
+import LogoutButton from '../LogoutButton/LogoutButton';
 
 function MentorProfile() {
   const {
@@ -115,8 +116,13 @@ function MentorProfile() {
     <section className="view-profile">
       <div className="view-profile__top">
         <span className="top__text">Edit your profile</span>
-        <div className="profile-button-container">
-          <MainButton onClick={handleSaveChangesClick}>Save Changes</MainButton>
+        <div className="button-actions-profile__container">
+          <div className="profile-button-container profile-button-container--logout">
+            <LogoutButton>Log Out</LogoutButton>
+          </div>
+          <div className="profile-button-container">
+            <MainButton onClick={handleSaveChangesClick}>Save Changes</MainButton>
+          </div>
         </div>
       </div>
       <form className="team-profile__login-info--admin">

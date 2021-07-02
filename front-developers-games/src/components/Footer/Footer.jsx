@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import './Footer.scss';
 
 const participantFooter = [
-  { name: 'Privacy statement', route: '/' },
+  { name: 'Privacy statement', route: '/terms' },
   { name: 'Terms & conditions', route: '/terms' },
   { name: 'Prizes', route: '/terms' },
 ];
@@ -40,6 +40,7 @@ function Footer() {
         target="_blank"
         rel="noreferrer"
         className="items__item"
+        key={element.name}
       >
         {element.name}
       </a>

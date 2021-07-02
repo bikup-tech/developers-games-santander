@@ -35,7 +35,6 @@ function bodyHasWrongProps([...props], validProps) {
 
   props.forEach((prop) => {
     if (!validProps[prop]) {
-      console.log(prop);
       hasWrongProperties = true;
     }
   });
