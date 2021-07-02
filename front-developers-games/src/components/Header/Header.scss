@@ -162,3 +162,18 @@
 .navigation__avatar {
   height: 35px;
 }
+
+.navigation__profile {
+  @include flex();
+}
+
+.login-info__avatar--small {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #008A8C;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: $m-8;
+  position: relative;
+  cursor: pointer;
+}

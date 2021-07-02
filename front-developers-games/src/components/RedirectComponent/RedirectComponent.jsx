@@ -18,7 +18,7 @@ function RedirectComponent() {
         history.replace('/santander/challenges');
       }
     } else {
-      history.replace('/santander');
+      history.replace('/');
     }
   });
   return (<></>);
