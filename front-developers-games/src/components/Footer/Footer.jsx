@@ -7,7 +7,7 @@ import './Footer.scss';
 const participantFooter = [
   { name: 'Privacy statement', route: '/terms' },
   { name: 'Terms & conditions', route: '/terms' },
-  { name: 'Prizes', route: '/terms' },
+  { name: 'Prizes', route: '/prizes' },
 ];
 const adminFooter = [
   { name: 'Privacy statement', route: '/awards' },

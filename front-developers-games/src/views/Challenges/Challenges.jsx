@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -10,6 +11,7 @@ import userRoles from '../../constants/userRoles';
 // Images
 import teamIcon from '../../assets/images/team-icon.svg';
 import kitIcon from '../../assets/images/kit-icon.svg';
+import guidesIcon from '../../assets/images/guides-icon.svg';
 
 // Action-Creators
 import { loadAdminTemplateChallenges, loadTeamChallenges } from '../../redux/actions/mainActions';
@@ -81,7 +83,7 @@ function Challenges() {
             </MainButton>
             )}
           </div>
-          <div className="actions__edit-team">
+          <div className="actions__welcome-kit">
             <MainButton isSecondary>
               <Link to="/profile" className="edit-team__link">
                 <img src={teamIcon} alt="edit team" className="link__image" />
@@ -89,6 +91,16 @@ function Challenges() {
               </Link>
             </MainButton>
           </div>
+          {(user.userLogged.role === 1 || user.userLogged.role === 0) && (
+          <div className="actions__edit-team">
+            <MainButton isSecondary>
+              <a href="https://docs.google.com/document/d/1YQ7BL2Li2Bedrz1yJmNAuz_ofaoui__eT392T5WsT0U/edit" target="_blank" className="welcome-kit__link" rel="noreferrer">
+                <img src={guidesIcon} alt="edit team" className="link__image" />
+                <span className="link__text">Participant guide</span>
+              </a>
+            </MainButton>
+          </div>
+          )}
         </div>
       </div>
     );
