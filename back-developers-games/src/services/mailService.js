@@ -33,7 +33,7 @@ function mailService() {
       html: `<span style="opacity: 0"> ${Date.now()} </span>
       <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto; overflow-y: auto; overflow-x: hidden;">
         <img
-          src="https://trello-attachments.s3.amazonaws.com/60de0186c5328f72ba13b842/600x250/151d9f7cec1d11c36452db6d25be38df/mail-header.jpg"
+          src="https://storage.googleapis.com/developer-games-bucket/mail-header.jpg"
           alt="redhat logo"
           style="margin-bottom: 16px"
         />
@@ -84,7 +84,7 @@ function mailService() {
       <span style="opacity: 0"> ${Date.now()} </span>
         <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto; overflow-y: auto; overflow-x: hidden;">
           <img
-            src="https://trello-attachments.s3.amazonaws.com/60de0186c5328f72ba13b842/600x250/151d9f7cec1d11c36452db6d25be38df/mail-header.jpg"
+            src="https://storage.googleapis.com/developer-games-bucket/mail-header.jpg"
             alt="redhat logo"
             style="margin-bottom: 16px"
           />
