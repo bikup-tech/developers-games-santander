@@ -137,7 +137,7 @@ function Header() {
   return (
     <header className="header">
       <div className="header__menu">
-        <NavLink to="/" className="menu__logo">
+        <NavLink to="/santander" className="menu__logo">
           <img
             className="logo__image"
             src={headerLogos}
