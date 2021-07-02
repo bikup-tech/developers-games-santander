@@ -90,9 +90,7 @@ function Challenges() {
               </a>
             </MainButton>
           </div>
-
           )}
-
         </div>
       </div>
     );

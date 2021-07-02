@@ -18,6 +18,7 @@ import SuperProtectedRoute from './components/SuperProtectedRoute/SuperProtected
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import RedirectComponent from './components/RedirectComponent/RedirectComponent';
+import Prizes from './views/Prizes/Prizes';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/santander" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <Route path="/terms" component={TermsAndConditions} />
+        <Route path="/prizes" component={Prizes} />
         <ProtectedRoute path="/santander/challenges" exact component={Challenges} />
         <ProtectedRoute path="/santander/challenges/:challengeId" component={ChallengeDetail} />
         <ProtectedRoute path="/profile" component={EditProfile} />
