@@ -10,8 +10,8 @@ const fileupload = require('express-fileupload');
 const { Storage } = require('@google-cloud/storage');
 
 const gcloud = new Storage({
-  keyFilename: path.join(__dirname, 'developer-games-back-51fafc813ea9.json'),
-  projectId: process.env.GCLOUD_PROJECT_NAME || 'developer-games-back',
+  keyFilename: path.join(__dirname, 'silent-elevator-318614-4faa68606693.json'),
+  projectId: process.env.GCLOUD_PROJECT_NAME || 'silent-elevator-318614',
 });
 
 const devGamesBucket = gcloud.bucket(process.env.GCLOUD_BUCKET_NAME);
@@ -51,21 +51,5 @@ app.use('/api/tournamentChallenges', tournamentChallengesRouter);
 app.use('/api/teamChallenges', teamChallengesRouter);
 app.use('/api/participants', participantsRouter);
 app.use('/api/upload', uploadFilesRouter);
-
-// !! IMPORTANT DELETE THIS METHOD !!
-app.delete('/api/reset', (req, res) => {
-  // eslint-disable-next-line global-require
-  const teamChallengeModel = require('./src/models/teamChallengeModel');
-  // eslint-disable-next-line global-require
-  const teamModel = require('./src/models/teamModel');
-  // eslint-disable-next-line global-require
-  const participantModel = require('./src/models/participantModel');
-
-  teamChallengeModel.collection.drop();
-  teamModel.collection.drop();
-  participantModel.collection.drop();
-
-  res.send('done');
-});
 
 app.listen(PORT, () => debug(`Server running in port: ${PORT}`));
