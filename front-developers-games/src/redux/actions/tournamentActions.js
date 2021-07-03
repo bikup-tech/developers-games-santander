@@ -1,16 +1,16 @@
 import actionTypes from './actionTypes';
-import APIConstants from '../../constants/APIConstants';
+// import APIConstants from '../../constants/APIConstants';
 
 function loadTournamentError(error) {
   return {
-    type: actionTypes.GET_TOURNAMENT_ERROR,
+    type: actionTypes.LOAD_TOURNAMENT_ERROR,
     error,
   };
 }
 
 function loadTournamentSuccess(tournament) {
   return {
-    type: actionTypes.GET_TOURNAMENT_SUCCESS,
+    type: actionTypes.LOAD_TOURNAMENT_SUCCESS,
     tournament,
   };
 }
@@ -27,7 +27,7 @@ export default function loadTournament() {
   return async (dispatch) => {
     try {
     //   const loadTournamentEndpoint =
-      `${APIConstants.HOSTNAME}${APIConstants.LOAD_TOURNAMENT(loadTournamentMock.name)}`;
+    //   `${APIConstants.HOSTNAME}${APIConstants.LOAD_TOURNAMENT(loadTournamentMock.name)}`;
       const data = await loadTournamentMock;
 
       dispatch(loadTournamentSuccess(data));
