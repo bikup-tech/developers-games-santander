@@ -18,7 +18,7 @@ import closeMenuIcon from '../../assets/images/close-icon.svg';
 
 const unloggedNavigation = [
   { name: 'Register', route: '/santander' },
-  { name: 'Prizes', route: '/awards' },
+  { name: 'Prizes', route: '/prizes' },
   { name: 'Terms & conditions', route: '/terms' },
   { name: 'Login', route: '/login' },
 ];
