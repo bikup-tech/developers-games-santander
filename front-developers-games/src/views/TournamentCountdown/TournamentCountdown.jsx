@@ -18,7 +18,7 @@ function TournamentCountdown({ date }) {
   const CompletedCountdown = () => (
     <div className="countdown-container">
       <div className="countdown-field-container">
-        <span className="countdown-field__number">0<span>
+        <span className="countdown-field__number">0</span>
         <span className="countdown-field__name">Days</span>
       </div>
       <div className="countdown-field-container">
@@ -64,6 +64,8 @@ function TournamentCountdown({ date }) {
     );
   };
 
+  const defaultDate = 1631858400000;
+
   return (
     <>
       <AppWrapper title="Hi <team name>">
@@ -71,7 +73,7 @@ function TournamentCountdown({ date }) {
           <p className="countdown__text countdown__text--blue">Red Hat and Santander Developer Games will start on</p>
           <p className="countdown__text countdown__text--red">September 17th at 08:00 AM CEST.</p>
         </div>
-        <Countdown date={date || 1631858400000} renderer={renderer} />
+        <Countdown date={date || defaultDate} renderer={renderer} />
 
         <div className="challenges__actions">
           <div className="actions__welcome-kit">
