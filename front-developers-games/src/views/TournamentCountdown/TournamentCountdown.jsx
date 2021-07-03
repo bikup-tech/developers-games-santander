@@ -16,7 +16,24 @@ import MainButton from '../../components/MainButton/MainButton';
 
 function TournamentCountdown({ date }) {
   const CompletedCountdown = () => (
-    <div className="">done</div>
+    <div className="countdown-container">
+      <div className="countdown-field-container">
+        <span className="countdown-field__number">0<span>
+        <span className="countdown-field__name">Days</span>
+      </div>
+      <div className="countdown-field-container">
+        <span className="countdown-field__number">0</span>
+        <span className="countdown-field__name">Hours</span>
+      </div>
+      <div className="countdown-field-container">
+        <span className="countdown-field__number">0</span>
+        <span className="countdown-field__name">Minutes</span>
+      </div>
+      <div className="countdown-field-container">
+        <span className="countdown-field__number">0</span>
+        <span className="countdown-field__name">Seconds</span>
+      </div>
+    </div>
   );
   const renderer = ({
     days, hours, minutes, seconds, completed,
