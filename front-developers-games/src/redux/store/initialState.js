@@ -50,4 +50,8 @@ export default {
     password: '',
     newPassword: '',
   },
+
+  tournamentReducer: {
+
+  },
 };

@@ -19,4 +19,5 @@ export default {
   GET_COMPLETED_CHALLENGES: (tournamentChallengeId) => `/api/teamChallenges/completed/${tournamentChallengeId}`,
   LOAD_TOURNAMENT_CHALLENGES: (tournamentId) => `/api/tournamentChallenges?tournamentId=${tournamentId}`,
   CREATE_PARTICIPANT: '/api/participants',
+  LOAD_TOURNAMENT: (tournamentName) => `/api/tournaments/${tournamentName}`,
 };

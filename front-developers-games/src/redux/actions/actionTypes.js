@@ -66,4 +66,7 @@ export default {
   // get participant
   GET_MENTORS: 'GET_MENTORS',
 
+  // get tournament data
+  GET_TOURNAMENT: 'GET_TOURNAMENT',
+
 };

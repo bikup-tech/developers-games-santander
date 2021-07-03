@@ -96,7 +96,7 @@ function teamsController() {
     }
   }
 
-  async function getTournamentTeams({ query: { tournamentId } }, res) {
+  async function loadTournamentTeams({ query: { tournamentId } }, res) {
     try {
       if (!tournamentId) {
         throw new CustomError(BAD_REQUEST, MISSING_QUERY_PROPERTIES('tournamentId'));
@@ -105,12 +105,12 @@ function teamsController() {
       const tournamentTeams = await teamService.findTournamentTeams(tournamentId);
 
       return handleResponseSuccess(res, tournamentTeams);
-    } catch (getTournamentTeamsError) {
-      return handleResponseError(res, getTournamentTeamsError);
+    } catch (loadTournamentTeamsError) {
+      return handleResponseError(res, loadTournamentTeamsError);
     }
   }
 
-  return { createTeam, getTournamentTeams };
+  return { createTeam, loadTournamentTeams };
 }
 
 module.exports = teamsController();
