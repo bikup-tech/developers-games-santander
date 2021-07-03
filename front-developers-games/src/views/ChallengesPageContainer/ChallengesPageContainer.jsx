@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import userRoles from '../../constants/userRoles';
 //  components
 import Challenges from './components/Challenges/Challenges';
+import TournamentCountdown from '../TournamentCountdown/TournamentCountdown';
 
 function ChallengesPageContainer() {
   const { userLogged } = useSelector(({ authReducer }) => authReducer.user);
@@ -14,14 +15,16 @@ function ChallengesPageContainer() {
   return (
     <>
       {
-          userLogged.role < userRoles.MENTOR ? (
-            tournament?.isActive ? (
-              <Challenges />
+          tournament && (
+            userLogged.role < userRoles.MENTOR ? (
+              tournament?.isActive ? (
+                <Challenges />
+              ) : (
+                <TournamentCountdown date={tournament.startDate} />
+              )
             ) : (
-              <div>adios</div>
+              <Challenges />
             )
-          ) : (
-            <Challenges />
           )
 
    }

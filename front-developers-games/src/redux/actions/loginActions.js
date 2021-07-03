@@ -7,6 +7,7 @@ import alertConstants from '../../constants/alertConstants';
 
 // actions
 import { setAlert } from './alertActions';
+import loadTournament from './tournamentActions';
 
 export function loginSuccess(user) {
   return {
@@ -35,6 +36,7 @@ export function login(email, password) {
       data.teamId && localStorage.setItem('toLoadTeamDetail', data.teamId);
 
       dispatch(loginSuccess(data));
+      dispatch(loadTournament('santander'));
     } catch (logError) {
       dispatch(
         setAlert(
