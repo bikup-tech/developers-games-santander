@@ -10,6 +10,7 @@ import TermsAndConditions from './views/TermsAndConditions/TermsAndConditions';
 import Register from './views/Register/Register';
 import Login from './views/Login/Login';
 import EditProfile from './views/EditProfile/EditProfile';
+import TournamentCountdown from './views/TournamentCountdown/TournamentCountdown';
 
 // Components
 import Home from './views/Home/Home';
@@ -30,6 +31,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/terms" component={TermsAndConditions} />
         <Route path="/prizes" component={Prizes} />
+        <Route path="/count" component={TournamentCountdown} />
         <ProtectedRoute path="/santander/challenges" exact component={Challenges} />
         <ProtectedRoute path="/santander/challenges/:challengeId" component={ChallengeDetail} />
         <ProtectedRoute path="/profile" component={EditProfile} />
