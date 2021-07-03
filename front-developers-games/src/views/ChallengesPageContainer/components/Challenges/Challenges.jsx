@@ -1,4 +1,3 @@
-/* eslint-disable no-mixed-operators */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -44,7 +43,9 @@ function Challenges() {
   useEffect(() => {
     if (!teamChallenges || !teamChallenges?.length) {
       if (user.userLogged.role < userRoles.MENTOR) {
-        dispatch(loadTeamChallenges(team?._id));
+        if (team?._id) {
+          dispatch(loadTeamChallenges(team?._id));
+        }
       } else {
         dispatch(loadAdminTemplateChallenges(tournamentId));
       }
@@ -116,7 +117,6 @@ function Challenges() {
           Enter each of the categories and complete the
           challenges proposed to ensure a place on the pole!
         </p>
-
         {
           teamChallengesLoading
             ? (

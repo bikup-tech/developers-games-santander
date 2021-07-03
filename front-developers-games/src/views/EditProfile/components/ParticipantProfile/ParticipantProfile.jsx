@@ -1,5 +1,3 @@
-/* eslint-disable no-debugger */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 

@@ -105,8 +105,7 @@ function TeamProfile() {
 
   // FUNCIO QUE ELIMINA EL TEAM
   // function handleDeleteTeam() {
-  // eslint-disable-next-line max-len
-  //   if (window.confirm("Are your sure you want to delete your team and all it's participants?")) {
+  //  if (window.confirm("Are your sure you want to delete your team and all it's participants?")) {
   //     dispatch(deleteTeam(team._id));
   //   }
   // }

@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable max-len */
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -230,7 +228,12 @@ function AdminProfile() {
           <MainButton onClick={handleSaveChangesClick}>Save Changes</MainButton>
         </div>
       </div>
-      <CreateParticipantModal userRole={userRoles.MENTOR} userNumber={1} isFormVisible={isFormVisible} setIsFormVisible={setIsFormVisible} />
+      <CreateParticipantModal
+        userRole={userRoles.MENTOR}
+        userNumber={1}
+        isFormVisible={isFormVisible}
+        setIsFormVisible={setIsFormVisible}
+      />
     </section>
   );
 }
