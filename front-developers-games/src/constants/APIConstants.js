@@ -1,5 +1,5 @@
 export default {
-  HOSTNAME: 'http://localhost:4200',
+  HOSTNAME: 'https://developer-games-back-318613.ew.r.appspot.com',
   LOAD_TEAM_CHALLENGES_ENDPOINT: (teamId) => `/api/teamChallenges?teamId=${teamId}`,
   LOAD_ADMIN_TEMPLATE_CHALLENGES: (tournamentId) => `/api/teamChallenges/adminTemplates/${tournamentId}`,
   REGISTER_TEAM: '/api/teams',
@@ -19,4 +19,5 @@ export default {
   GET_COMPLETED_CHALLENGES: (tournamentChallengeId) => `/api/teamChallenges/completed/${tournamentChallengeId}`,
   LOAD_TOURNAMENT_CHALLENGES: (tournamentId) => `/api/tournamentChallenges?tournamentId=${tournamentId}`,
   CREATE_PARTICIPANT: '/api/participants',
+  LOAD_TOURNAMENT: (tournamentName) => `/api/tournaments/${tournamentName}`,
 };

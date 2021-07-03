@@ -5,23 +5,23 @@ import { Link } from 'react-router-dom';
 import './Challenges.scss';
 
 // Constants
-import userRoles from '../../constants/userRoles';
+import userRoles from '../../../../constants/userRoles';
 
 // Images
-import teamIcon from '../../assets/images/team-icon.svg';
-import kitIcon from '../../assets/images/kit-icon.svg';
-import guidesIcon from '../../assets/images/guides-icon.svg';
+import teamIcon from '../../../../assets/images/team-icon.svg';
+import guidesIcon from '../../../../assets/images/guides-icon.svg';
+import kitIcon from '../../../../assets/images/kit-icon.svg';
 
 // Action-Creators
-import { loadAdminTemplateChallenges, loadTeamChallenges } from '../../redux/actions/mainActions';
-import { loadTeam } from '../../redux/actions/loginActions';
+import { loadAdminTemplateChallenges, loadTeamChallenges } from '../../../../redux/actions/mainActions';
+import { loadTeam } from '../../../../redux/actions/loginActions';
 
 // Components
-import AppWrapper from '../../components/AppWrapper/AppWrapper';
-import Loading from '../../components/Loading/Loading';
-import LoadingError from '../../components/LoadingError/LoadingError';
-import ChallengeCard from './components/ChallengeCard/ChallengeCard';
-import MainButton from '../../components/MainButton/MainButton';
+import AppWrapper from '../../../../components/AppWrapper/AppWrapper';
+import Loading from '../../../../components/Loading/Loading';
+import LoadingError from '../../../../components/LoadingError/LoadingError';
+import ChallengeCard from '../ChallengeCard/ChallengeCard';
+import MainButton from '../../../../components/MainButton/MainButton';
 
 function Challenges() {
   const dispatch = useDispatch();

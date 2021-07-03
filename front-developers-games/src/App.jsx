@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import './App.scss';
 
 // Views
-import Challenges from './views/Challenges/Challenges';
+import ChallengesPageContainer from './views/ChallengesPageContainer/ChallengesPageContainer';
 import ChallengeDetail from './views/ChallengeDetail/ChallengeDetail';
 import Teams from './views/Teams/Teams';
 import TermsAndConditions from './views/TermsAndConditions/TermsAndConditions';
@@ -30,7 +30,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/terms" component={TermsAndConditions} />
         <Route path="/prizes" component={Prizes} />
-        <ProtectedRoute path="/santander/challenges" exact component={Challenges} />
+        <ProtectedRoute path="/santander/challenges" exact component={ChallengesPageContainer} />
         <ProtectedRoute path="/santander/challenges/:challengeId" component={ChallengeDetail} />
         <ProtectedRoute path="/profile" component={EditProfile} />
         <SuperProtectedRoute path="/santander/teams" component={Teams} />

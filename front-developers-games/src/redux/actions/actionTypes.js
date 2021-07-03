@@ -66,4 +66,8 @@ export default {
   // get participant
   GET_MENTORS: 'GET_MENTORS',
 
+  // get tournament data
+  LOAD_TOURNAMENT_SUCCESS: 'LOAD_TOURNAMENT_SUCCESS',
+  LOAD_TOURNAMENT_ERROR: 'LOAD_TOURNAMENT_ERROR',
+
 };
