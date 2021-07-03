@@ -28,20 +28,20 @@ function TournamentCountdown({ date }) {
     return (
       <div className="countdown-container">
         <div className="countdown-field-container">
-          <span className="countdown-field">{days}</span>
-          <span>Days</span>
+          <span className="countdown-field__number">{days}</span>
+          <span className="countdown-field__name">Days</span>
         </div>
         <div className="countdown-field-container">
-          <span className="countdown-field">{hours}</span>
-          <span>Hours</span>
+          <span className="countdown-field__number">{hours}</span>
+          <span className="countdown-field__name">Hours</span>
         </div>
         <div className="countdown-field-container">
-          <span className="countdown-field">{minutes}</span>
-          <span>Minutes</span>
+          <span className="countdown-field__number">{minutes}</span>
+          <span className="countdown-field__name">Minutes</span>
         </div>
         <div className="countdown-field-container">
-          <span className="countdown-field">{seconds}</span>
-          <span>Seconds</span>
+          <span className="countdown-field__number">{seconds}</span>
+          <span className="countdown-field__name">Seconds</span>
         </div>
       </div>
     );

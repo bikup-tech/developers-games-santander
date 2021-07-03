@@ -25,7 +25,7 @@
     width: 100%;
     margin-bottom: $m-42;
     @media only screen and (min-width: $query-1280) {
-        
+        max-width: 720px;
     }
 }
 
@@ -34,7 +34,7 @@
    
 }
 
-.countdown-field {
+.countdown-field__number {
     @include flex();
     width: 80px;
     height: 80px;
@@ -44,10 +44,22 @@
     font-size: 2.5rem;
     font-weight: 700;
     color: $lightBlue;
+    margin-bottom: $m-6;
 
     @media screen and (max-width: 320px) {
         width: 60px;
         height: 60px;
         font-size: 2rem;
     }
+
+    @media only screen and (min-width: $query-1280) {
+        width: 160px;
+        height: 160px;
+        font-size: 6rem;
+    }
+}
+
+.countdown-field__name {
+    color: $darkBlue;
+    font-weight: $text-semibold;
 }
