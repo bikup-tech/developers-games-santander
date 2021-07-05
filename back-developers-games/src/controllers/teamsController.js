@@ -48,8 +48,8 @@ function teamsController() {
       const createdParticipants = await Promise.all(pendingParticipants);
 
       // Send e-mails
-      createdParticipants.forEach((participant) => {
-        mailService.sendRegisteredUser(
+      createdParticipants.forEach(async (participant) => {
+        await mailService.sendRegisteredUser(
           participant.email, participant.password,
         );
       });

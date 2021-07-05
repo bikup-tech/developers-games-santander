@@ -64,7 +64,7 @@ function mailService() {
         `,
     };
 
-    transporter.sendMail(mailOptions);
+    return transporter.sendMail(mailOptions);
   }
 
   async function sendRegisteredMentor(email, password) {
