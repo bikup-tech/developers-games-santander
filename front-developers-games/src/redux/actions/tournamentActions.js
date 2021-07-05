@@ -21,7 +21,6 @@ export default function loadTournament(tournamentName) {
     try {
       const loadTournamentEndpoint = `${APIConstants.HOSTNAME}${APIConstants.LOAD_TOURNAMENT(tournamentName)}`;
       const { data } = await axios.get(loadTournamentEndpoint);
-      console.log(data);
       dispatch(loadTournamentSuccess(data));
     } catch (error) {
       dispatch(loadTournamentError(error));
