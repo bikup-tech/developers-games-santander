@@ -17,7 +17,13 @@ function tournamentService() {
     return tournamentModel.findOne(filter);
   }
 
-  return { findTournamentById };
+  function findTournamentByName(tournamentName) {
+    const filter = { name: tournamentName };
+
+    return tournamentModel.findOne(filter);
+  }
+
+  return { findTournamentById, findTournamentByName };
 }
 
 module.exports = tournamentService();
