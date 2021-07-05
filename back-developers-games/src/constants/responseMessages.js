@@ -5,6 +5,7 @@ module.exports = {
   NO_CHALLENGE_FOUND: (challengeId) => `There is not a challenge with the id ${challengeId}`,
   NO_TOURNAMENT_CHALLENGES_FOUND: (tournamentId) => `There are no active challenges for this tournament with id: ${tournamentId}.`,
   NO_TOURNAMENT_FOUND: (tournamentId) => `There is no active tournament with the id: ${tournamentId}.`,
+  NO_TOURNAMENT_NAME_FOUND: (tournamentName) => `There is no tournament with the name: ${tournamentName}.`,
   MISSING_QUERY: 'The query param is missing',
   ALREADY_EXISTING_TEAM: (teamName) => `A team called ${teamName} already exist.`,
   ALREADY_EXISTING_PARTICIPANT: 'A participant with that email already exist.',

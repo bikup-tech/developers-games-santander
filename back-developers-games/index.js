@@ -24,6 +24,7 @@ const tournamentChallengesRouter = require('./src/routes/tournamentChallengesRou
 const teamChallengesRouter = require('./src/routes/teamChallengesRouter');
 const participantsRouter = require('./src/routes/participantsRouter');
 const uploadFilesRouter = require('./src/routes/uploadFilesRouter')(devGamesBucket);
+const tournamentsRouter = require('./src/routes/tournamentsRouter');
 
 const app = express();
 const PORT = process.env.PORT || 4200;
@@ -51,5 +52,6 @@ app.use('/api/tournamentChallenges', tournamentChallengesRouter);
 app.use('/api/teamChallenges', teamChallengesRouter);
 app.use('/api/participants', participantsRouter);
 app.use('/api/upload', uploadFilesRouter);
+app.use('/api/tournaments', tournamentsRouter);
 
 app.listen(PORT, () => debug(`Server running in port: ${PORT}`));
