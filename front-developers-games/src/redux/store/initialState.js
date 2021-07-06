@@ -52,6 +52,6 @@ export default {
   },
 
   tournamentReducer: {
-
+    tournament: {},
   },
 };
