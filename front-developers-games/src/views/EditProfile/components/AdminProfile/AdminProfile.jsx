@@ -15,7 +15,7 @@ import plusIcon from '../../../../assets/images/plus-icon.svg';
 
 // Action Creators
 import { updateAdminProfile, uploadAvatar, getMentors } from '../../../../redux/actions/profileActions';
-
+import { setTournamentIsActive } from '../../../../redux/actions/tournamentActions';
 // Utils
 import getGcloudBucketFileUrl from '../../../../utils/getGcloudBucketFileUrl';
 
@@ -33,6 +33,8 @@ function AdminProfile() {
     name, email, phone, _id, avatar,
   } = useSelector(({ authReducer }) => authReducer.user.userLogged);
   const { mentors } = useSelector(({ mainReducer }) => mainReducer);
+  const { tournament } = useSelector(({ tournamentReducer }) => tournamentReducer);
+  console.log(tournament);
 
   const initialState = {
     adminName: name,
@@ -55,6 +57,10 @@ function AdminProfile() {
   useEffect(() => {
     localStorage.setItem('user', JSON.stringify(userLogged));
   }, [userLogged]);
+
+  // useEffect(() => {
+  //   // TODO: upload del tournament en el login?
+  // }, [tournament.isActive]);
 
   const [editAdminProfile, setEditAdminProfile] = useState(initialState);
   const [warningMessage, setWarningMessage] = useState('');
@@ -143,6 +149,29 @@ function AdminProfile() {
       <div className="view-profile__top">
         <span className="top__text">Edit your profile</span>
         <div className="button-actions-profile__container">
+          {
+            tournament?.isActive ? (
+              <div className="profile-button-container profile-button-container--logout">
+                <MainButton isSecondary onClick={() => dispatch(setTournamentIsActive(false))}>
+                  Desactivate
+                  {' '}
+                  {tournament.name.toUpperCase()}
+                  {' '}
+                  Challenges
+                </MainButton>
+              </div>
+            ) : (
+              <div className="profile-button-container profile-button-container--logout">
+                <MainButton isSecondary onClick={() => dispatch(setTournamentIsActive(true))}>
+                  Activate
+                  {' '}
+                  {tournament?.name.toUpperCase()}
+                  {' '}
+                  Challenges
+                </MainButton>
+              </div>
+            )
+          }
           <div className="profile-button-container profile-button-container--logout">
             <LogoutButton>Log Out</LogoutButton>
           </div>

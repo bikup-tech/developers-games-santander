@@ -64,7 +64,7 @@
 }
 
 .view-profile__top {
-    @include flex($justify-content: space-between);
+    @include flex($justify-content: space-between, $align-items: flex-end);
 
     width: 80%;
     margin-bottom: $m-12;
