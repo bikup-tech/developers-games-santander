@@ -35,6 +35,7 @@ function Header() {
 
   const participantNavigation = [
     { name: 'Challenges', route: '/santander/challenges' },
+    { name: 'Prizes', route: '/prizes' },
     { name: 'Participant Guide', route: '/' },
     { name: 'Request your welcome kit', route: '/' },
     { name: userName, route: '/profile' },

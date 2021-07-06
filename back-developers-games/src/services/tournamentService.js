@@ -23,7 +23,19 @@ function tournamentService() {
     return tournamentModel.findOne(filter);
   }
 
-  return { findTournamentById, findTournamentByName };
+  function updateTournamentIsActive(tournamentName, isActive) {
+    const filter = { name: tournamentName };
+    const query = {
+      $set: {
+        isActive,
+      },
+    };
+    const options = { new: true, useFindAndModify: false };
+
+    return tournamentModel.findOneAndUpdate(filter, query, options);
+  }
+
+  return { findTournamentById, findTournamentByName, updateTournamentIsActive };
 }
 
 module.exports = tournamentService();
