@@ -15,7 +15,7 @@ function Home() {
     return () => {
       dispatch({ type: 'SHOW_HEADER' });
     };
-  });
+  }, []);
 
   return (
     <div className="home__container">
