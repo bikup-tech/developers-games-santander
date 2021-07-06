@@ -29,6 +29,7 @@ export function loadTournament(tournamentName) {
         APIConstants.HOSTNAME
       }${APIConstants.LOAD_TOURNAMENT(tournamentName)}`;
       const { data } = await axios.get(loadTournamentEndpoint);
+      localStorage.setItem('tournamentName', data.name);
       dispatch(loadTournamentSuccess(data));
     } catch (error) {
       dispatch(loadTournamentError(error));
@@ -50,11 +51,12 @@ function setTournamentIsActiveError(error) {
   };
 }
 
-// export function setTournamentIsActive(booleanValue) {
-export function setTournamentIsActive(booleanValue) {
+// eslint-disable-next-line no-unused-vars
+export function setTournamentIsActive(isActive, tournamentName) {
   return async (dispatch) => {
     try {
-      const data = await booleanValue;
+      // endpoint
+      const data = await isActive;
       dispatch(setTournamentIsActiveSuccess(data));
       dispatch(
         setAlert(
