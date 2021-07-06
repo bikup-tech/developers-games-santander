@@ -185,7 +185,7 @@ function AdminProfile() {
                 isSecondary
                 onClick={() => handleTournamentIsActive(false)}
               >
-                Desactivate
+                Deactivate
                 {' '}
                 {(tournament?.name).toUpperCase()}
                 {' '}
