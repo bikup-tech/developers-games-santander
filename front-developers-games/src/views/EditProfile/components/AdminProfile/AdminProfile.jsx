@@ -166,6 +166,12 @@ function AdminProfile() {
     }
   }
 
+  function handleTournamentIsActive(isActive) {
+    if (window.confirm('Are you sure you want to update the tournament?')) {
+      dispatch(setTournamentIsActive(isActive, tournament.name));
+    }
+  }
+
   return (
     <section className="view-profile">
       <div className="view-profile__top">
@@ -175,7 +181,7 @@ function AdminProfile() {
             <div className="profile-button-container profile-button-container--logout">
               <MainButton
                 isSecondary
-                onClick={() => dispatch(setTournamentIsActive(false, tournament.name))}
+                onClick={() => handleTournamentIsActive(false)}
               >
                 Desactivate
                 {' '}
@@ -188,7 +194,7 @@ function AdminProfile() {
             <div className="profile-button-container profile-button-container--logout">
               <MainButton
                 isSecondary
-                onClick={() => dispatch(setTournamentIsActive(true, tournament.name))}
+                onClick={() => handleTournamentIsActive(true)}
               >
                 Activate
                 {' '}
