@@ -1,21 +1,29 @@
 const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
 const {
-  MISSING_PROPERTIES, EMPTY_BODY, ALREADY_EXISTING_PARTICIPANT,
-  MISSING_PARTICIPANT_PROPERTIES, NOT_AN_EMAIL,
+  MISSING_PROPERTIES,
+  EMPTY_BODY,
+  ALREADY_EXISTING_PARTICIPANT,
+  MISSING_PARTICIPANT_PROPERTIES,
+  NOT_AN_EMAIL,
 } = require('../constants/responseMessages');
 const userRoles = require('../constants/userRoles');
+
+// Constants
+const logTypes = require('../constants/logTypes');
+const logStatus = require('../constants/logStatus');
 
 // Services
 const participantService = require('../services/participantService');
 const teamService = require('../services/teamService');
 const mailService = require('../services/mailService');
+const logService = require('../services/logService');
 
 // Utils
 const CustomError = require('../utils/CustomError');
 const handleResponseError = require('../utils/handleResponseError');
 const handleResponseSuccess = require('../utils/handleResponseSuccess');
 
-const logsModel = require('../models/logsModel');
+const logsModel = require('../models/logModel');
 
 function bodyHasRequiredProps(body) {
   return body.email && body.name && body.surname && body.phone;
@@ -28,11 +36,14 @@ function participantController() {
         throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('participantId'));
       }
       // Delete participant
-      const deletedParticipant = await participantService.deleteParticipant(participantId);
+      const deletedParticipant = await participantService.deleteParticipant(
+        participantId,
+      );
 
       // Remove it from the team participants array
       await teamService.removeParticipantFromTeam(
-        deletedParticipant.teamId, participantId,
+        deletedParticipant.teamId,
+        participantId,
       );
 
       return handleResponseSuccess(res, true);
@@ -51,7 +62,9 @@ function participantController() {
         throw new CustomError(BAD_REQUEST, MISSING_PARTICIPANT_PROPERTIES);
       }
 
-      const alreadyExists = await participantService.findParticipantByEmail(body.email);
+      const alreadyExists = await participantService.findParticipantByEmail(
+        body.email,
+      );
       if (alreadyExists) {
         throw new CustomError(CONFLICT, ALREADY_EXISTING_PARTICIPANT);
       }
@@ -66,14 +79,22 @@ function participantController() {
       }
 
       // Create participant
-      const createdParticipant = await participantService.createParticipant(body);
+      const createdParticipant = await participantService.createParticipant(
+        body,
+      );
 
       // Update team participants array
-      await teamService.addParticipantToTeam(body.teamId, createdParticipant._id);
+      await teamService.addParticipantToTeam(
+        body.teamId,
+        createdParticipant._id,
+      );
 
       // Send email
       if (body.role === userRoles.PARTICIPANT) {
-        await mailService.sendRegisteredUser(createdParticipant.email, createdParticipant.password);
+        await mailService.sendRegisteredUser(
+          createdParticipant.email,
+          createdParticipant.password,
+        );
       } else {
         await mailService.sendRegisteredMentor(
           createdParticipant.email,
@@ -85,6 +106,11 @@ function participantController() {
       return handleResponseSuccess(res, restParticipant);
     } catch (createParticipantError) {
       logsModel.create({ data: createParticipantError, date: new Date() });
+      await logService.createLog(
+        logTypes.CREATE_PARTICIPANT,
+        createParticipantError,
+        logStatus.ERROR,
+      );
       return handleResponseError(res, createParticipantError);
     }
   }

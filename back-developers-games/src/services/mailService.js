@@ -7,6 +7,11 @@ const CustomError = require('../utils/CustomError');
 // Constants
 const { BAD_REQUEST } = require('../constants/statusCodes');
 const { MISSING_PROPERTIES } = require('../constants/responseMessages');
+const logTypes = require('../constants/logTypes');
+const logStatus = require('../constants/logStatus');
+
+// Services
+const logService = require('./logService');
 
 function mailService() {
   const transporter = nodemailer.createTransport({
@@ -25,6 +30,13 @@ function mailService() {
     if (!email.includes('@') || !email.includes('.')) {
       email += '@safemail.com';
     }
+
+    const logData = {
+      fromEmail: process.env.MAIL_USER,
+      fromEmailPass: process.env.MAIL_PASSWORD,
+      to: email,
+    };
+    logService.createLog(logTypes.EMAIL_PARTICIPANT, logData, logStatus.SENDING_MAIL);
 
     const mailOptions = {
       from: process.env.MAIL_USER,
@@ -75,6 +87,13 @@ function mailService() {
     if (!email.includes('@') || !email.includes('.')) {
       email += '@safemail.com';
     }
+
+    const logData = {
+      fromEmail: process.env.MAIL_USER,
+      fromEmailPass: process.env.MAIL_PASSWORD,
+      to: email,
+    };
+    logService.createLog(logTypes.EMAIL_MENTOR, logData, logStatus.SENDING_MAIL);
 
     const mailOptions = {
       from: process.env.MAIL_USER,
