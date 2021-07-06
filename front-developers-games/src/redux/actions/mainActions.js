@@ -277,8 +277,6 @@ export function getCompletedChallengeByChallengeId(tournamentChallengeId) {
       const endpoint = `${APIConstants.HOSTNAME}${APIConstants.GET_COMPLETED_CHALLENGES(tournamentChallengeId)}`;
       const { data } = await axios.get(endpoint);
 
-      console.log(data);
-
       if (data.length) {
         const aElement = document.createElement('a');
         data.forEach((challenge) => {
