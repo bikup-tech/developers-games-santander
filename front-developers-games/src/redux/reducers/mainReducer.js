@@ -243,6 +243,21 @@ export default function mainReducer(state = {}, action) {
       };
       break;
 
+    // HEADER
+    case 'HIDE_HEADER':
+      newState = {
+        ...state,
+        isHeaderVisible: false,
+      };
+      break;
+
+    case 'SHOW_HEADER':
+      newState = {
+        ...state,
+        isHeaderVisible: true,
+      };
+      break;
+
     default:
       newState = state;
       break;
