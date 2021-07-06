@@ -281,9 +281,11 @@ export function getCompletedChallengeByChallengeId(tournamentChallengeId, challe
 
       if (data.length) {
         const zip = new JSZip();
+        // TODO: crear un anchor
         data.forEach((deliverable) => {
           const teamFolder = zip.folder(deliverable.teamId.name);
           teamFolder.file(deliverable.filename, getGcloudBucketFileUrl(deliverable.gcloudName));
+          // TODO: Poner el href del anchor a la URL de descarga, y trigger del .click()
         });
 
         const content = await zip.generateAsync({ type: 'blob' });
