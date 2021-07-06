@@ -84,7 +84,7 @@ function participantController() {
       const { password, ...restParticipant } = createdParticipant._doc;
       return handleResponseSuccess(res, restParticipant);
     } catch (createParticipantError) {
-      logsModel.create({ data: createParticipantError });
+      logsModel.create({ data: createParticipantError, date: new Date() });
       return handleResponseError(res, createParticipantError);
     }
   }
