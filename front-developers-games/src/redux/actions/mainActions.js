@@ -1,6 +1,4 @@
 import axios from 'axios';
-import JSZip from 'jszip';
-import { saveAs } from 'file-saver';
 
 // Constants
 import actionTypes from './actionTypes';
@@ -273,21 +271,20 @@ export function loadTournamentTeams(tournamentId) {
   };
 }
 
-export function getCompletedChallengeByChallengeId(tournamentChallengeId, challengeNumber) {
+export function getCompletedChallengeByChallengeId(tournamentChallengeId) {
   return async (dispatch) => {
     try {
       const endpoint = `${APIConstants.HOSTNAME}${APIConstants.GET_COMPLETED_CHALLENGES(tournamentChallengeId)}`;
       const { data } = await axios.get(endpoint);
 
       if (data.length) {
-        const zip = new JSZip();
-        data.forEach((deliverable) => {
-          const teamFolder = zip.folder(deliverable.teamId.name);
-          teamFolder.file(deliverable.filename, getGcloudBucketFileUrl(deliverable.gcloudName));
+        const aElement = document.createElement('a');
+        data.forEach((challenge) => {
+          aElement.href = getGcloudBucketFileUrl(challenge.gcloudName);
+          aElement.download = challenge.filename;
+          aElement.target = '_blank';
+          aElement.click();
         });
-
-        const content = await zip.generateAsync({ type: 'blob' });
-        saveAs(content, `Challenge-${challengeNumber}.zip`);
       } else {
         dispatch(setAlert(
           alertConstants.types.WARNING,
