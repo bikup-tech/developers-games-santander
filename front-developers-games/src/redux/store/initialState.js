@@ -53,6 +53,8 @@ export default {
   },
 
   tournamentReducer: {
-    tournament: {},
+    tournament: {
+      name: localStorage.getItem('tournamentName') || '',
+    },
   },
 };

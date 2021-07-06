@@ -7,7 +7,7 @@ import alertConstants from '../../constants/alertConstants';
 
 // actions
 import { setAlert } from './alertActions';
-import loadTournament from './tournamentActions';
+import { loadTournament } from './tournamentActions';
 
 export function loginSuccess(user) {
   return {

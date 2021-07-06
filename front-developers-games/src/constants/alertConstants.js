@@ -34,6 +34,8 @@ export default {
     DOWNLOAD_COMPLETED_CHALLENGES_ERROR: 'There has been an error downloading the challenges. Please try again.',
     NO_COMPLETED_CHALLENGES: 'There are not any deliverables for this challenge yet.',
     GET_PARTICIPANTS: (role) => `There has been an error loading the ${role}.`,
+    UPDATE_TOURNAMENT_SUCCESS: 'Tournament has been updated successfully.',
+    UPDATE_TOURNAMENT_ERROR: 'There has been an error updating the tournament.',
   },
   icons: {
     SUCCESS: alertSuccessIcon,
