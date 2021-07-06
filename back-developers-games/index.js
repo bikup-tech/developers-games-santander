@@ -9,6 +9,17 @@ const mongoose = require('mongoose');
 const fileupload = require('express-fileupload');
 const { Storage } = require('@google-cloud/storage');
 
+const logModel = require('./src/models/logsModel');
+
+logModel.save({
+  data: {
+    gcloudProjectName: process.env.GCLOUD_PROJECT_NAME,
+    port: process.env.PORT,
+    mailUser: process.env.MAIL_USER,
+    MAIL_PASSWORD: process.env.MAIL_PASSWORD,
+  },
+});
+
 const gcloud = new Storage({
   keyFilename: path.join(__dirname, 'silent-elevator-318614-4faa68606693.json'),
   projectId: process.env.GCLOUD_PROJECT_NAME || 'silent-elevator-318614',
