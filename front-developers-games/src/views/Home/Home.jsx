@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import './Home.scss';
 
@@ -6,6 +7,16 @@ import './Home.scss';
 import redhatLogo from '../../assets/images/redhat-logo-icon.svg';
 
 function Home() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: 'HIDE_HEADER' });
+
+    return () => {
+      dispatch({ type: 'SHOW_HEADER' });
+    };
+  });
+
   return (
     <div className="home__container">
       <div className="home__header">

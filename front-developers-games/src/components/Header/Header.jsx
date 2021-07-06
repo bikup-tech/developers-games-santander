@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
 
 import './Header.scss';
 
@@ -32,6 +32,8 @@ function Header() {
     name: userName,
     avatar,
   } = useSelector(({ authReducer }) => authReducer.user.userLogged);
+
+  const { isHeaderVisible } = useSelector(({ mainReducer }) => mainReducer);
 
   const participantNavigation = [
     { name: 'Challenges', route: '/santander/challenges' },
@@ -136,47 +138,51 @@ function Header() {
   ));
 
   return (
-    <header className="header">
-      <div className="header__menu">
-        <NavLink to="/santander" className="menu__logo">
-          <img
-            className="logo__image"
-            src={headerLogos}
-            alt="Developers games Redhat and Santander logos"
+    <>
+      {isHeaderVisible && (
+        <header className="header">
+          <div className="header__menu">
+            <NavLink to="/santander" className="menu__logo">
+              <img
+                className="logo__image"
+                src={headerLogos}
+                alt="Developers games Redhat and Santander logos"
+              />
+            </NavLink>
+            <img
+              src={openMenuIcon}
+              alt="Open menu icon"
+              onClick={handleHamburgerClick}
+              className="menu__hamburger mobile"
+            />
+            <nav className="menu__navigation desktop">{renderMenu}</nav>
+          </div>
+          {/* Menu behind opacity */}
+          <div
+            onClick={handleHamburgerClick}
+            className={`mobile-menu__behind mobile ${
+              isMenuOpen && 'mobile-menu__behind--visible'
+            }`}
           />
-        </NavLink>
-        <img
-          src={openMenuIcon}
-          alt="Open menu icon"
-          onClick={handleHamburgerClick}
-          className="menu__hamburger mobile"
-        />
-        <nav className="menu__navigation desktop">{renderMenu}</nav>
-      </div>
-      {/* Menu behind opacity */}
-      <div
-        onClick={handleHamburgerClick}
-        className={`mobile-menu__behind mobile ${
-          isMenuOpen && 'mobile-menu__behind--visible'
-        }`}
-      />
-      <div
-        className={`header__mobile-menu mobile ${
-          isMenuOpen && 'header__mobile-menu--visible '
-        }`}
-      >
-        <img
-          src={closeMenuIcon}
-          alt="Close menu icon"
-          className="mobile-menu__close"
-          onClick={handleHamburgerClick}
-        />
-        <nav className="menu__navigation">{renderMenu}</nav>
-      </div>
-      <div
-        className={isLogged ? 'header__banner--small' : 'header__banner--big'}
-      />
-    </header>
+          <div
+            className={`header__mobile-menu mobile ${
+              isMenuOpen && 'header__mobile-menu--visible '
+            }`}
+          >
+            <img
+              src={closeMenuIcon}
+              alt="Close menu icon"
+              className="mobile-menu__close"
+              onClick={handleHamburgerClick}
+            />
+            <nav className="menu__navigation">{renderMenu}</nav>
+          </div>
+          <div
+            className={isLogged ? 'header__banner--small' : 'header__banner--big'}
+          />
+        </header>
+      )}
+    </>
   );
 }
 

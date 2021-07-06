@@ -12,6 +12,7 @@ export default {
     toLoadUserDetail: localStorage.getItem('toLoadUserDetail') || '',
     toLoadChallengeDetail: localStorage.getItem('toLoadChallengeDetail') || '',
     toLoadTeamDetail: localStorage.getItem('toLoadTeamDetail') || '',
+    isHeaderVisible: true,
   },
 
   registerReducer: {
