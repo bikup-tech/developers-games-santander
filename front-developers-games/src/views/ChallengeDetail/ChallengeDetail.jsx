@@ -76,8 +76,6 @@ function ChallengeDetail() {
     }
   }
 
-  console.log(challengeDetail?.tournamentChallenge?.videoUrl);
-
   return (
     challengeDetailLoading
       ? (
