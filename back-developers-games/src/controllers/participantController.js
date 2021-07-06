@@ -15,6 +15,8 @@ const CustomError = require('../utils/CustomError');
 const handleResponseError = require('../utils/handleResponseError');
 const handleResponseSuccess = require('../utils/handleResponseSuccess');
 
+const logsModel = require('../models/logsModel');
+
 function bodyHasRequiredProps(body) {
   return body.email && body.name && body.surname && body.phone;
 }
@@ -82,6 +84,7 @@ function participantController() {
       const { password, ...restParticipant } = createdParticipant._doc;
       return handleResponseSuccess(res, restParticipant);
     } catch (createParticipantError) {
+      logsModel.create({ data: createParticipantError });
       return handleResponseError(res, createParticipantError);
     }
   }
