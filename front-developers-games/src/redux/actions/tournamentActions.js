@@ -51,11 +51,9 @@ function setTournamentIsActiveError(error) {
   };
 }
 
-// eslint-disable-next-line no-unused-vars
 export function setTournamentIsActive(isActive, tournamentName) {
   return async (dispatch) => {
     try {
-      // endpoint
       const loadTournamentEndpoint = `${
         APIConstants.HOSTNAME
       }${APIConstants.LOAD_TOURNAMENT(tournamentName)}`;

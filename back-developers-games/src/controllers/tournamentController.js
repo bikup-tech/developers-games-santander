@@ -38,7 +38,7 @@ function tournamentController() {
       if (!tournamentName || !Object.keys(body).length) {
         throw new CustomError(
           BAD_REQUEST,
-          MISSING_PROPERTIES('tournamentName or isActiveProperty'),
+          MISSING_PROPERTIES('tournamentName or isActive'),
         );
       }
       const updatedTournament = await tournamentService.updateTournamentIsActive(

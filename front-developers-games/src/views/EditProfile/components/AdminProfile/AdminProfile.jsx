@@ -69,8 +69,10 @@ function AdminProfile() {
   }, [userLogged]);
 
   useEffect(() => {
-    dispatch(loadTournament(tournament.name));
-  }, [tournament._id === undefined]);
+    if (!tournament._id) {
+      dispatch(loadTournament(tournament.name));
+    }
+  }, [tournament._id]);
 
   const [editAdminProfile, setEditAdminProfile] = useState(initialState);
   const [warningMessage, setWarningMessage] = useState('');
