@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Countdown from 'react-countdown';
 
@@ -14,6 +15,7 @@ import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import MainButton from '../../components/MainButton/MainButton';
 
 function TournamentCountdown({ date }) {
+  const { userLogged } = useSelector(({ authReducer }) => authReducer.user);
   const CompletedCountdown = () => (
     <div className="countdown-container">
       <div className="countdown-field-container">
@@ -67,7 +69,7 @@ function TournamentCountdown({ date }) {
 
   return (
     <>
-      <AppWrapper title="Hi <team name>">
+      <AppWrapper title={`Hi ${userLogged?.name}`}>
         <div className="countdown__text-container">
           <p className="countdown__text countdown__text--blue">Red Hat and Santander Developer Games will start on</p>
           <p className="countdown__text countdown__text--red">September 17th at 08:00 AM CEST.</p>
