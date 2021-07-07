@@ -17,6 +17,7 @@ const tournamentChallengeModel = new Schema({
   notes: { type: String },
   video: { type: String },
   tournamentId: { type: String },
+  videoUrl: { type: String },
 });
 
 module.exports = model('Tournament_challenges', tournamentChallengeModel);

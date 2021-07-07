@@ -36,7 +36,9 @@ function Challenges() {
 
   useEffect(() => {
     if (!team || !team?._id) {
-      dispatch(loadTeam(user?.userLogged?.teamId));
+      if (user.userLogged.role < userRoles.MENTOR) {
+        dispatch(loadTeam(user?.userLogged?.teamId));
+      }
     }
   }, [team, team?._id]);
 

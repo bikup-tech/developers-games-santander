@@ -185,11 +185,7 @@ function AdminProfile() {
                 isSecondary
                 onClick={() => handleTournamentIsActive(false)}
               >
-                Desactivate
-                {' '}
-                {(tournament?.name).toUpperCase()}
-                {' '}
-                Challenges
+                Deactivate Challenges
               </MainButton>
             </div>
           ) : (
@@ -198,11 +194,7 @@ function AdminProfile() {
                 isSecondary
                 onClick={() => handleTournamentIsActive(true)}
               >
-                Activate
-                {' '}
-                {tournament?.name.toUpperCase()}
-                {' '}
-                Challenges
+                Activate Challenges
               </MainButton>
             </div>
           )}

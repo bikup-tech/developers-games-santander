@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import './ChallengeDetail.scss';
 
 // Assets
-import testVideo from '../../assets/videos/test-video.mp4';
 import uploadIcon from '../../assets/images/upload-icon.svg';
 
 // Constants
@@ -101,7 +100,15 @@ function ChallengeDetail() {
               </div>
               <div className="challenge__video">
                 <div className="video__background" />
-                <video src={testVideo} controls className="video__player" />
+                <div className="video__player">
+                  <iframe
+                    src={challengeDetail.tournamentChallenge.videoUrl}
+                    title="Video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
               </div>
               <div className="challenge__specific-info">
                 <div className="specific-info__column">
