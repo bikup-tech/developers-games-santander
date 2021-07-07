@@ -65,14 +65,14 @@ function TournamentCountdown({ date }) {
     );
   };
 
-  const defaultDate = 1631858400000;
+  const defaultDate = 1632729600000;
 
   return (
     <>
       <AppWrapper title={`Hi ${userLogged?.name}`}>
         <div className="countdown__text-container">
           <p className="countdown__text countdown__text--blue">Red Hat and Santander Developer Games will start on</p>
-          <p className="countdown__text countdown__text--red">September 17th at 08:00 AM CEST.</p>
+          <p className="countdown__text countdown__text--red">September 27th at 08:00 AM CEST.</p>
         </div>
         <Countdown date={date || defaultDate} renderer={renderer} />
 
