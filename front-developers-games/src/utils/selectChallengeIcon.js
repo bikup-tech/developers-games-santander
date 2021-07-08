@@ -11,8 +11,8 @@ import challenge5Icon from '../assets/images/challenge-5-icon.svg';
 import challenge5Icon_done from '../assets/images/challenge-5-done-icon.svg';
 import challenge6Icon from '../assets/images/challenge-6-icon.svg';
 import challenge6Icon_done from '../assets/images/challenge-6-done-icon.svg';
-// import challenge7Icon from '../assets/images/challenge-7-icon.svg';
-// import challenge7Icon_done from '../assets/images/challenge-7-done-icon.svg';
+import challenge7Icon from '../assets/images/challenge-7-icon.svg';
+import challenge7Icon_done from '../assets/images/challenge-7-done-icon.svg';
 // import challenge8Icon from '../assets/images/challenge-8-icon.svg';
 // import challenge8Icon_done from '../assets/images/challenge-8-done-icon.svg';
 // import challenge9Icon from '../assets/images/challenge-9-icon.svg';
@@ -31,8 +31,8 @@ const indexedIcons = {
   icon_5_done: challenge5Icon_done,
   icon_6: challenge6Icon,
   icon_6_done: challenge6Icon_done,
-  icon_7: challenge4Icon,
-  icon_7_done: challenge4Icon_done,
+  icon_7: challenge7Icon,
+  icon_7_done: challenge7Icon_done,
   icon_8: challenge5Icon,
   icon_8_done: challenge5Icon_done,
   icon_9: challenge6Icon,
