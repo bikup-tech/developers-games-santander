@@ -24,11 +24,174 @@ function ParticipantGuide() {
             formats, such as images and screenshots, can be added. Here is a
             guide to getting started with github.
             {' '}
-            <a href="https://developers.redhat.com/">
+            <a
+              href="https://www.youtube.com/user/GitHubGuides"
+              target="_blank"
+              rel="noreferrer"
+            >
+              getting started with github
+            </a>
+            .
+          </p>
+        </div>
+
+        <div className="therms__group">
+          <h3 className="terms__subtitle">Help is at hand!</h3>
+          <p className="terms__text">
+            Every great team needs support. We will provide training on the
+            different technologies you will need to know to achieve the
+            challenges we will propose. Ensure to register to the trainings on
+            our web.
+          </p>
+          <p className="terms__text">
+            If you like to fly solo, here are some coaching materials to give
+            your team the best shot. And you can find more at
+            {' '}
+            <a
+              href="https://developers.redhat.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
               https://developers.redhat.com/
             </a>
             .
           </p>
+        </div>
+
+        <div className="terms__group">
+          <h3 className="terms__subtitle">OpenShift:</h3>
+          <ul className="terms__list">
+            <li className="list__item">
+              This
+              {' '}
+              <a
+                href="https://github.com/cvicens/state-machine-assistant"
+                target="_blank"
+                rel="noreferrer"
+              >
+                OpenShift workshop
+              </a>
+              {' '}
+              shows how to integrate different apps using
+              {' '}
+              <a
+                href="https://developers.redhat.com/blog/2018/10/29/how-to-run-kafka-on-openshift-the-enterprise-kubernetes-with-amq-streams"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Kafka
+              </a>
+              {' '}
+              &
+              {' '}
+              <a
+                href="https://developers.redhat.com/blog/2019/04/25/build-and-deploy-an-api-with-camel-k-on-red-hat-openshift"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Camel K.
+              </a>
+              {' '}
+              The project contains artifacts to deploy an app based on Angular
+              like FrontEnd and a Node.js backend.
+            </li>
+            <li className="list__item">
+              This
+              {' '}
+              <a
+                href="https://www.openshift.com/blog/from-red-hat-developers-blog-using-a-custom-builder-image-on-red-hat-openshift-with-openshift-do"
+                target="_blank"
+                rel="noreferrer"
+              >
+                blog post
+              </a>
+              {' '}
+              describes how to deploy an OpenShift from an image.
+            </li>
+            <li className="list__item">
+              <a
+                href="https://learn.openshift.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Quick user guides
+              </a>
+              {' '}
+              for OpenShift.
+            </li>
+          </ul>
+        </div>
+
+        <div className="terms__group">
+          <h3 className="terms__subtitle">Quarkus:</h3>
+          <ul className="terms__list">
+            <li className="list__item">
+              <a
+                href="https://developers.redhat.com/blog/2019/08/26/10-quarkus-videos-to-get-you-up-to-speed-with-supersonic-subatomic-java"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Getting started in Quarkus
+              </a>
+            </li>
+            <li className="list__item">
+              <a
+                href="https://bbvahackathon.github.io/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Using Quarkus
+              </a>
+              to create APIs, microservices and database access.
+            </li>
+            <li className="list__item">
+              <a
+                href="https://developers.redhat.com/blog/2019/03/18/getting-started-with-codeready-workspaces-and-red-hat-openshift-application-runtimes"
+                target="_blank"
+                rel="noreferrer"
+              >
+                CodeReady Workspaces
+              </a>
+              , including information for those who want to work with CodeReady
+              Workspaces for project development and deployment in OpenShift.
+              Información para aquellos que quieran trabajar con CodeReady
+              Workspaces para el desarrollo del proyecto y despliegue en
+              Openshift.
+            </li>
+          </ul>
+        </div>
+
+        <div className="terms__group">
+          <h3 className="terms__subtitle">Datagrid</h3>
+          <ul className="terms__list">
+            <li className="list__item">
+              <a
+                href="https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.2/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Data Grid documentation.
+              </a>
+            </li>
+            <li className="list__item">
+              <a
+                href="https://github.com/redhat-developer/redhat-datagrid-tutorials"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Data Grid tutorials.
+              </a>
+            </li>
+            <li className="list__item">
+              <a
+                href="https://quarkus.io/guides/infinispan-client"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Quarkus and Datagrid (Infinispan).
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </AppWrapper>
