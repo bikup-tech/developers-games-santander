@@ -22,7 +22,9 @@ function TermsAndConditions() {
           {' '}
           or
           {' '}
-          <a href="mailto: veronica@redhat.com?Subject=Contacto%20desde%20página%20términos%20y%20condiciones%20developerGames">veronica@redhat.com</a>
+          <a href="mailto: veronica@redhat.com?Subject=Contacto%20desde%20página%20términos%20y%20condiciones%20developerGames">
+            veronica@redhat.com
+          </a>
           .
         </p>
 
@@ -101,7 +103,7 @@ function TermsAndConditions() {
             </li>
             <li className="list__item">
               Each challenge will be uploaded on the web as request in its
-              instructions
+              instructions.
             </li>
           </ul>
         </div>
@@ -145,7 +147,7 @@ function TermsAndConditions() {
           <h3 className="terms__subtitle">What are the prizes?</h3>
           <ul className="terms__list--nopoint">
             <li className="list__item">
-              1st position: Gifts valued at € 700 for each member
+              1st position: Gifts valued at € 400 for each member
             </li>
             <li className="list__item">
               2nd position: Gifts valued at €300 for each member
@@ -218,7 +220,9 @@ function TermsAndConditions() {
             cancellation and opposition by sending an email to Benjamin
             Granados:
             {' '}
-            <a href="mailto: benjamin.granados@gruposantander.com?Subject=Contacto%20desde%20página%20términos%20y%20condiciones%20developerGames">benjamin.granados@gruposantander.com</a>
+            <a href="mailto: benjamin.granados@gruposantander.com?Subject=Contacto%20desde%20página%20términos%20y%20condiciones%20developerGames">
+              benjamin.granados@gruposantander.com
+            </a>
           </p>
           <p className="terms__text">
             The participants also assign to Banco Santander the image rights
