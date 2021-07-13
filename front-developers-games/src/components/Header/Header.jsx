@@ -38,7 +38,7 @@ function Header() {
   const participantNavigation = [
     { name: 'Challenges', route: '/santander/challenges' },
     { name: 'Prizes', route: '/prizes' },
-    { name: 'Participant Guide', route: '/' },
+    { name: 'Participant Guide', route: '/participantsGuide' },
     { name: 'Request your welcome kit', route: '/' },
     { name: userName, route: '/profile' },
   ];
@@ -110,33 +110,19 @@ function Header() {
           {element.name}
         </a>
       ) : (
-        (element.name === 'Participant Guide' ? (
-          <a
-            href="https://docs.google.com/document/d/1YQ7BL2Li2Bedrz1yJmNAuz_ofaoui__eT392T5WsT0U/edit"
-            target="_blank"
-            rel="noreferrer"
-            className="navigation__item"
-            onClick={handleHamburgerClick}
-            key={element.name}
-          >
-            {element.name}
-          </a>
-        ) : (
-          <NavLink
-            to={element.route}
-            key={element.name}
-            className="navigation__item"
-            activeClassName="navigation__item--active"
-            onClick={handleHamburgerClick}
-            exact
-          >
-            {element.name}
-          </NavLink>
-        ))
-
+        <NavLink
+          to={element.route}
+          key={element.name}
+          className="navigation__item"
+          activeClassName="navigation__item--active"
+          onClick={handleHamburgerClick}
+          exact
+        >
+          {element.name}
+        </NavLink>
+      )
       ))
-    ))
-  ));
+    )));
 
   return (
     <>
