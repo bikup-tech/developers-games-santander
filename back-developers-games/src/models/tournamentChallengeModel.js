@@ -7,17 +7,20 @@ const tournamentChallengeModel = new Schema({
   subtitle: { type: String },
   mentor: { type: String },
   description: { type: String },
-  bonus: { type: String },
+  bonus: [{ type: String }],
   duration: [{
     level: { type: String },
     duration: { type: Number },
   }],
   technologies: [{ type: String }],
-  hints: { type: String },
-  notes: { type: String },
+  hints: [{ type: String }],
+  deliverables: [{ type: String }],
   video: { type: String },
   tournamentId: { type: String },
   videoUrl: { type: String },
+  link: [{ type: String }],
+  evaluationCriteria: { type: String },
+  references: [{ type: String }],
 });
 
 module.exports = model('Tournament_challenges', tournamentChallengeModel);
