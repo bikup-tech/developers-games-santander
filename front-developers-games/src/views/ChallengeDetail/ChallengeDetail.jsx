@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+/* eslint-disable react/no-danger */
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import './ChallengeDetail.scss';
@@ -11,7 +12,6 @@ import userRoles from '../../constants/userRoles';
 
 // Utils
 import renderChallengeNumber from '../../utils/renderChallengeNumber';
-import getGcloudBucketFileUrl from '../../utils/getGcloudBucketFileUrl';
 
 // Action-Creators
 import {
@@ -25,20 +25,34 @@ import Loading from '../../components/Loading/Loading';
 import LoadingError from '../../components/LoadingError/LoadingError';
 import MainButton from '../../components/MainButton/MainButton';
 
-function renderLevelBoxes(duration) {
-  const renderedBoxes = [];
-  for (let index = 0; index < 5; index += 1) {
-    const tempBoxElement = (
-      <div className={`boxes__box ${index < duration && 'boxes__box--full'}`} key={`box-${index}`} />
-    );
-    renderedBoxes.push(tempBoxElement);
-  }
+// function renderLevelBoxes(duration) {
+//   const renderedBoxes = [];
+//   for (let index = 0; index < 5; index += 1) {
+//     const tempBoxElement = (
+//       <div className={`boxes__box ${index < duration && 'boxes__box--full'}`}
+//          key={`box-${index}`} />
+//     );
+//     renderedBoxes.push(tempBoxElement);
+//   }
 
-  return renderedBoxes;
+//   return renderedBoxes;
+// }
+
+function upperCaseFirstLetter(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
 function ChallengeDetail() {
   const dispatch = useDispatch();
+
+  let left = [];
+  let right = [];
+  let printedProps = 0;
+
+  const [hasRendered, setHasRendered] = useState(false);
+
+  const [toRenderProps, setToRenderProps] = useState({ leftProps: [], rightProps: [] });
+
   const {
     challengeDetail, toLoadChallengeDetail, teamChallengesError, challengeDetailLoading, team,
   } = useSelector(({ mainReducer }) => mainReducer);
@@ -55,6 +69,155 @@ function ChallengeDetail() {
       dispatch(loadChallengeDetail(toLoadChallengeDetail));
     }
   }, [challengeDetail, challengeDetail?.filename]);
+
+  function isIgnoredKey(key) {
+    const ignoredKeys = ['number', 'name', 'title', 'subtitle', 'mentor', 'description', 'videoUrl', 'tournamentId', '_id', '__v'];
+
+    if (ignoredKeys.includes(key)) {
+      return true;
+    }
+    return false;
+  }
+
+  function createChallengeDefaultField(key, index) {
+    if (challengeDetail.tournamentChallenge[key]) {
+      const field = (
+        <div className="challenge__info-group--leftalign">
+          <p className="info-group__title">{upperCaseFirstLetter(key)}</p>
+          <p className="info-group__description info-group__description--leftalign">{challengeDetail.tournamentChallenge[key]}</p>
+        </div>
+      );
+
+      if (index % 2 === 0) {
+        right.push(field);
+      } else {
+        left.push(field);
+      }
+      printedProps += 1;
+    }
+  }
+
+  function createChallengeHtmlField(key, index) {
+    if (challengeDetail.tournamentChallenge[key]) {
+      const field = (
+        <div className="challenge__info-group--leftalign" key={key}>
+          <p className="info-group__title">{upperCaseFirstLetter(key)}</p>
+          <p className="info-group__description info-group__description--leftalign" dangerouslySetInnerHTML={{ __html: challengeDetail.tournamentChallenge[key] }} />
+        </div>
+      );
+
+      if (index % 2 === 0) {
+        right.push(field);
+      } else {
+        left.push(field);
+      }
+
+      printedProps += 1;
+    }
+  }
+
+  function createChallengeDurationField(key, index) {
+    if (challengeDetail.tournamentChallenge[key].length) {
+      const values = challengeDetail.tournamentChallenge[key];
+
+      const field = (
+        <div className="challenge__duration">
+          <p className="info-group__title">Duration &#38; difficulty:</p>
+          {
+          values.map((level) => (
+            <div className="duration__level custom-left-padding" key={level.level}>
+              <p className="level__title">
+                {level.level}
+                {' '}
+                level:
+              </p>
+              <div className="level__bottom">
+                <p className="custom-left-padding--more">
+                  {level.duration}
+                  {' '}
+                  hours
+                </p>
+              </div>
+            </div>
+          ))
+        }
+        </div>
+
+      );
+
+      if (index % 2 === 0) {
+        right.push(field);
+      } else {
+        left.push(field);
+      }
+
+      printedProps += 1;
+    }
+  }
+
+  function createChallengeUlField(key, index) {
+    if (challengeDetail.tournamentChallenge[key].length) {
+      const values = challengeDetail.tournamentChallenge[key];
+
+      const field = (
+        <div className="challenge__info-group--leftalign">
+          <p className="info-group__title">
+            {upperCaseFirstLetter(key)}
+            :
+          </p>
+
+          <ul className="info-group__list">
+            {values.map((value) => (
+              <li className={`list__element ${key === 'technologies' && 'list__element--bold'}`} key={value}>{value}</li>
+            ))}
+          </ul>
+        </div>
+      );
+
+      if (index % 2 === 0) {
+        right.push(field);
+      } else {
+        left.push(field);
+      }
+      printedProps += 1;
+    }
+  }
+
+  function prepareChallengeProps(challenge) {
+    left = [];
+    right = [];
+    Object.keys(challenge.tournamentChallenge).forEach((key) => {
+      if (!isIgnoredKey(key)) {
+        switch (key) {
+          case 'duration':
+            createChallengeDurationField(key, printedProps);
+            break;
+          case 'deliverables':
+          case 'technologies':
+          case 'bonus':
+            createChallengeUlField(key, printedProps);
+            break;
+          case 'hints':
+          case 'references':
+          case 'evaluationCriteria':
+          case 'link':
+            createChallengeHtmlField(key, printedProps);
+            break;
+          default:
+            createChallengeDefaultField(key, printedProps);
+        }
+      }
+    });
+
+    setToRenderProps({ leftProps: left, rightProps: right });
+  }
+
+  useEffect(() => {
+    if (challengeDetail && challengeDetail.tournamentChallenge && !hasRendered) {
+      setHasRendered(() => true);
+      prepareChallengeProps(challengeDetail);
+    }
+  }, [challengeDetail, challengeDetail?._id]);
 
   function handleUploadClick() {
     const fileInputElement = document.getElementById('deliverable__input');
@@ -112,69 +275,13 @@ function ChallengeDetail() {
               </div>
               <div className="challenge__specific-info">
                 <div className="specific-info__column">
-                  <div className="challenge__info-group--leftalign">
-                    <p className="info-group__title">Bonus</p>
-                    <p className="info-group__description info-group__description--leftalign">{challengeDetail.tournamentChallenge.bonus}</p>
-                  </div>
-                  <div className="challenge__duration">
-                    <p className="info-group__title">Duration &#38; difficulty:</p>
-                    {
-                      challengeDetail?.tournamentChallenge?.duration?.map((level) => (
-                        <div className="duration__level" key={level.level}>
-                          <p className="level__title">
-                            {level.level}
-                            {' '}
-                            level:
-                          </p>
-                          <div className="level__bottom">
-                            <div className="bottom__boxes">
-                              {renderLevelBoxes(level.duration)}
-                            </div>
-                            <p>
-                              {level.duration}
-                              {' '}
-                              hours
-                            </p>
-                          </div>
-                        </div>
-                      ))
-                    }
-                  </div>
-                  <div className="challenge__info-group--leftalign">
-                    <p className="info-group__title">Technologies:</p>
-
-                    <ul className="info-group__list">
-                      {challengeDetail.tournamentChallenge.technologies?.map((technology) => (
-                        <li className="list__element" key={technology}>{technology}</li>
-                      ))}
-                    </ul>
-                  </div>
+                  {toRenderProps.leftProps}
                 </div>
 
                 <div className="specific-info__separator" />
 
                 <div className="specific-info__column specific-info__column--spaced">
-                  <div className="challenge__info-group--leftalign">
-                    <p className="info-group__title">Deliverable</p>
-                    <p className="info-group__description info-group__description--leftalign">
-                      <a
-                        href={getGcloudBucketFileUrl(challengeDetail.gcloudName)}
-                        target="_blank"
-                        rel="noreferrer"
-                        download
-                      >
-                        {challengeDetail.filename}
-                      </a>
-                    </p>
-                  </div>
-                  <div className="challenge__info-group--leftalign">
-                    <p className="info-group__title">Hints</p>
-                    <p className="info-group__description info-group__description--leftalign">{challengeDetail.tournamentChallenge.hints}</p>
-                  </div>
-                  <div className="challenge__info-group--leftalign">
-                    <p className="info-group__title">Notes for owner</p>
-                    <p className="info-group__description info-group__description--leftalign">{challengeDetail.tournamentChallenge.notes}</p>
-                  </div>
+                  {toRenderProps.rightProps}
                 </div>
               </div>
               {userLogged.role < userRoles.MENTOR && (

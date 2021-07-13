@@ -13,14 +13,14 @@ const tournamentChallengeModel = new Schema({
     duration: { type: Number },
   }],
   technologies: [{ type: String }],
-  hints: [{ type: String }],
+  hints: { type: String },
   deliverables: [{ type: String }],
   video: { type: String },
   tournamentId: { type: String },
   videoUrl: { type: String },
-  link: [{ type: String }],
+  link: { type: String },
   evaluationCriteria: { type: String },
-  references: [{ type: String }],
+  references: { type: String },
 });
 
 module.exports = model('Tournament_challenges', tournamentChallengeModel);
