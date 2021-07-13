@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import './Prizes.scss';
 
@@ -39,10 +39,10 @@ function Prizes() {
         {(user.userLogged.role === 1 || user.userLogged.role === 0) && (
         <div className="actions__edit-team">
           <MainButton isSecondary>
-            <a href="https://docs.google.com/document/d/1YQ7BL2Li2Bedrz1yJmNAuz_ofaoui__eT392T5WsT0U/edit" target="_blank" className="welcome-kit__link" rel="noreferrer">
+            <NavLink to="/participantsGuide">
               <img src={guidesIcon} alt="edit team" className="link__image" />
               <span className="link__text">Participant guide</span>
-            </a>
+            </NavLink>
           </MainButton>
         </div>
         )}
