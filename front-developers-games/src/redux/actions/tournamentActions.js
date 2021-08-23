@@ -56,10 +56,12 @@ export function setTournamentIsActive(isActive, tournamentName) {
     try {
       const loadTournamentEndpoint = `${
         APIConstants.HOSTNAME
-      }${APIConstants.LOAD_TOURNAMENT(tournamentName)}`;
-      const body = { isActive };
-      const { data } = await axios.patch(loadTournamentEndpoint, body);
-      dispatch(setTournamentIsActiveSuccess(data.isActive));
+      }${APIConstants.ACTIVATE_TOURNAMENT(tournamentName)}`;
+
+      await axios.patch(loadTournamentEndpoint);
+
+      dispatch(setTournamentIsActiveSuccess(true));
+
       dispatch(
         setAlert(
           alertConstants.types.SUCCESS,

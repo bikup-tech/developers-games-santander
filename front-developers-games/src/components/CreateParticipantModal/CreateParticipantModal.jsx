@@ -22,7 +22,7 @@ const isIncorrectValues = {
 };
 
 function CreateParticipantModal({
-  userRole, isFormVisible, setIsFormVisible, teamId,
+  userRole, isFormVisible, setIsFormVisible, teamId, tournamentId,
 }) {
   const dispatch = useDispatch();
 
@@ -74,7 +74,7 @@ function CreateParticipantModal({
       if (userRole === userRoles.MENTOR) {
         dispatch(createParticipant(participant));
       } else {
-        const body = { ...participant, teamId };
+        const body = { ...participant, teamId, tournamentId };
         dispatch(createParticipant(body));
       }
       setParticipant(initialStateValues);
