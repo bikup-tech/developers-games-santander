@@ -6,6 +6,7 @@ const { MISSING_PROPERTIES } = require('../constants/responseMessages');
 
 // Utils
 const CustomError = require('../utils/CustomError');
+const participantsRepository = require('../repositories/participantsRepository');
 
 function tournamentService() {
   function findTournamentById(tournamentId) {
@@ -40,6 +41,11 @@ function tournamentService() {
     updateTournamentIsActive(tournamentName, true);
 
     // 2- Obtenir tots els participants del tournament
+    const tournament = findTournamentByName(tournamentName);
+    const tournamentParticipants = participantsRepository
+      .getParticipantsByTournamentId(tournament._id);
+
+    console.log(tournamentParticipants);
     // 3- Enviar mails
   }
 
