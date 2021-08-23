@@ -58,6 +58,8 @@ function tournamentController() {
       // Gestio d'errors
       // Cridar al service
       // Retornar resposta
+      const activatedTournament = await tournamentService.activateTournament(tournamentName);
+      return handleResponseSuccess(res, true);
     } catch (activateTournamentError) {
       return handleResponseError(res, activateTournamentError);
     }

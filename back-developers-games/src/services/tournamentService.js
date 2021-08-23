@@ -1,12 +1,13 @@
 const tournamentModel = require('../models/tournamentModel');
 
 // Constants
-const { BAD_REQUEST } = require('../constants/statusCodes');
-const { MISSING_PROPERTIES } = require('../constants/responseMessages');
+const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
+const { MISSING_PROPERTIES, NO_TOURNAMENT_NAME_FOUND } = require('../constants/responseMessages');
 
 // Utils
 const CustomError = require('../utils/CustomError');
 const participantsRepository = require('../repositories/participantsRepository');
+const mailService = require('./mailService');
 
 function tournamentService() {
   function findTournamentById(tournamentId) {
@@ -18,7 +19,7 @@ function tournamentService() {
     return tournamentModel.findOne(filter);
   }
 
-  function findTournamentByName(tournamentName) {
+  async function findTournamentByName(tournamentName) {
     const filter = { name: tournamentName };
 
     return tournamentModel.findOne(filter);
@@ -36,17 +37,26 @@ function tournamentService() {
     return tournamentModel.findOneAndUpdate(filter, query, options);
   }
 
-  function activateTournament(tournamentName) {
+  async function activateTournament(tournamentName) {
     // 1- Actualitzar el tournament: posar active a true
     updateTournamentIsActive(tournamentName, true);
 
     // 2- Obtenir tots els participants del tournament
-    const tournament = findTournamentByName(tournamentName);
-    const tournamentParticipants = participantsRepository
+    const tournament = await findTournamentByName(tournamentName);
+
+    if (!tournament) {
+      throw new CustomError(CONFLICT, NO_TOURNAMENT_NAME_FOUND(tournamentName));
+    }
+
+    const tournamentParticipants = await participantsRepository
       .getParticipantsByTournamentId(tournament._id);
 
-    console.log(tournamentParticipants);
     // 3- Enviar mails
+    tournamentParticipants.forEach(async (participant) => {
+      await mailService.sendActivatedTournament(participant.email);
+    });
+
+    return true;
   }
 
   return {

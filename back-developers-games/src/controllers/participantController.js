@@ -79,7 +79,6 @@ function participantController() {
       }
 
       // Create participant
-      console.log(body);
       const createdParticipant = await participantService.createParticipant(
         body,
       );

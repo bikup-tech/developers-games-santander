@@ -34,8 +34,6 @@ function participantService() {
       participant.tournamentId = tournamentId;
     }
 
-    console.log(participant);
-
     return participantModel.create(participant);
   }
 
