@@ -31,7 +31,7 @@ import LogoutButton from '../LogoutButton/LogoutButton';
 function TeamProfile() {
   const dispatch = useDispatch();
   const { user } = useSelector(({ authReducer }) => authReducer);
-  const { team, toLoadTeamDetail } = useSelector(({ mainReducer }) => mainReducer);
+  const { team, toLoadTeamDetail, tournamentId } = useSelector(({ mainReducer }) => mainReducer);
   const { password, newPassword, teamName } = useSelector(({ profileReducer }) => profileReducer);
 
   const [isNameModified, setIsNameModified] = useState(false);
@@ -175,6 +175,7 @@ function TeamProfile() {
         isFormVisible={isFormVisible}
         setIsFormVisible={setIsFormVisible}
         teamId={team?._id}
+        tournamentId={tournamentId}
       />
     </div>
   );

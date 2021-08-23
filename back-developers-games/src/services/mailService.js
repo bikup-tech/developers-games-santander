@@ -139,7 +139,7 @@ function mailService() {
       fromEmailPass: process.env.MAIL_PASSWORD,
       to: email,
     };
-    logService.createLog(logTypes.EMAIL_MENTOR, logData, logStatus.SENDING_MAIL);
+    logService.createLog(logTypes.ACTIVATE_TOURNAMENT, logData, logStatus.SENDING_MAIL);
 
     const mailOptions = {
       from: process.env.MAIL_USER,
