@@ -20,7 +20,7 @@ function participantHasRequiredProps(participant) {
 }
 
 function participantService() {
-  async function createParticipant(participant) {
+  async function createParticipant(participant, tournamentId) {
     if (!participantHasRequiredProps(participant)) {
       throw new CustomError(BAD_REQUEST, MISSING_USER_PROPERTIES);
     }
@@ -29,6 +29,12 @@ function participantService() {
       numbers: true,
     });
     participant.password = generatedPassword;
+
+    if (tournamentId) {
+      participant.tournamentId = tournamentId;
+    }
+
+    console.log(participant);
 
     return participantModel.create(participant);
   }

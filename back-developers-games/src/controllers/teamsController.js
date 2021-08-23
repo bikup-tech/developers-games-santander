@@ -41,7 +41,7 @@ function teamsController() {
       // Create participants
       const pendingParticipants = [];
       participants.forEach((participant) => {
-        const pendingParticipant = participantService.createParticipant(participant);
+        const pendingParticipant = participantService.createParticipant(participant, tournamentId);
         pendingParticipants.push(pendingParticipant);
       });
 

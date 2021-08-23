@@ -35,7 +35,17 @@ function tournamentService() {
     return tournamentModel.findOneAndUpdate(filter, query, options);
   }
 
-  return { findTournamentById, findTournamentByName, updateTournamentIsActive };
+  function activateTournament(tournamentName) {
+    // 1- Actualitzar el tournament: posar active a true
+    updateTournamentIsActive(tournamentName, true);
+
+    // 2- Obtenir tots els participants del tournament
+    // 3- Enviar mails
+  }
+
+  return {
+    findTournamentById, findTournamentByName, updateTournamentIsActive, activateTournament,
+  };
 }
 
 module.exports = tournamentService();
