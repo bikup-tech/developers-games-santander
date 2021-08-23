@@ -55,10 +55,12 @@ function tournamentController() {
 
   async function activateTournament({ params: { tournamentName } }, res) {
     try {
-      // Gestio d'errors
-      // Cridar al service
-      // Retornar resposta
-      const activatedTournament = await tournamentService.activateTournament(tournamentName);
+      if (!tournamentName) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('tournamentName'));
+      }
+
+      await tournamentService.activateTournament(tournamentName);
+
       return handleResponseSuccess(res, true);
     } catch (activateTournamentError) {
       return handleResponseError(res, activateTournamentError);

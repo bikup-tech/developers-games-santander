@@ -25,7 +25,7 @@ function tournamentService() {
     return tournamentModel.findOne(filter);
   }
 
-  function updateTournamentIsActive(tournamentName, isActive) {
+  async function updateTournamentIsActive(tournamentName, isActive) {
     const filter = { name: tournamentName };
     const query = {
       $set: {
@@ -38,12 +38,9 @@ function tournamentService() {
   }
 
   async function activateTournament(tournamentName) {
-    // 1- Actualitzar el tournament: posar active a true
-    updateTournamentIsActive(tournamentName, true);
+    await updateTournamentIsActive(tournamentName, true);
 
-    // 2- Obtenir tots els participants del tournament
     const tournament = await findTournamentByName(tournamentName);
-
     if (!tournament) {
       throw new CustomError(CONFLICT, NO_TOURNAMENT_NAME_FOUND(tournamentName));
     }
@@ -51,7 +48,6 @@ function tournamentService() {
     const tournamentParticipants = await participantsRepository
       .getParticipantsByTournamentId(tournament._id);
 
-    // 3- Enviar mails
     tournamentParticipants.forEach(async (participant) => {
       await mailService.sendActivatedTournament(participant.email);
     });
