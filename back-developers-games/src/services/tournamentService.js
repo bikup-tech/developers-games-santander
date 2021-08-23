@@ -38,12 +38,12 @@ function tournamentService() {
   }
 
   async function activateTournament(tournamentName) {
-    await updateTournamentIsActive(tournamentName, true);
-
     const tournament = await findTournamentByName(tournamentName);
     if (!tournament) {
       throw new CustomError(CONFLICT, NO_TOURNAMENT_NAME_FOUND(tournamentName));
     }
+
+    await updateTournamentIsActive(tournamentName, true);
 
     const tournamentParticipants = await participantsRepository
       .getParticipantsByTournamentId(tournament._id);
