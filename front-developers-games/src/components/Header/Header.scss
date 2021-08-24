@@ -107,7 +107,7 @@
     max-height: 300px;
     @media only screen and (min-width: $query-1280) {
       @include flex($justify-content: flex-end);
-      width: 70%;
+      // width: 70%;
       max-height: unset;
     }
   }

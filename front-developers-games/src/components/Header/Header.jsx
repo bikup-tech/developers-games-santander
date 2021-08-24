@@ -40,6 +40,7 @@ function Header() {
     { name: 'Prizes', route: '/prizes' },
     { name: 'Participant Guide', route: '/participantsGuide' },
     { name: 'Request your welcome kit', route: '/' },
+    { name: 'Hands-on Workshops', route: '/handsOnWorkshops' },
     { name: userName, route: '/profile' },
   ];
   const adminNavigation = [
