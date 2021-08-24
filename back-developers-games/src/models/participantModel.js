@@ -10,6 +10,7 @@ const participantModel = new Schema({
   teamNumber: { type: Number },
   teamId: { type: String },
   avatar: { type: String, default: 'avatar-icon.svg' },
+  tournamentId: { type: String },
 });
 
 module.exports = model('Participants', participantModel);

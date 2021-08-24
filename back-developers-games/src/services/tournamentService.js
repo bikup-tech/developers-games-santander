@@ -1,11 +1,13 @@
 const tournamentModel = require('../models/tournamentModel');
 
 // Constants
-const { BAD_REQUEST } = require('../constants/statusCodes');
-const { MISSING_PROPERTIES } = require('../constants/responseMessages');
+const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
+const { MISSING_PROPERTIES, NO_TOURNAMENT_NAME_FOUND } = require('../constants/responseMessages');
 
 // Utils
 const CustomError = require('../utils/CustomError');
+const participantsRepository = require('../repositories/participantsRepository');
+const mailService = require('./mailService');
 
 function tournamentService() {
   function findTournamentById(tournamentId) {
@@ -17,13 +19,13 @@ function tournamentService() {
     return tournamentModel.findOne(filter);
   }
 
-  function findTournamentByName(tournamentName) {
+  async function findTournamentByName(tournamentName) {
     const filter = { name: tournamentName };
 
     return tournamentModel.findOne(filter);
   }
 
-  function updateTournamentIsActive(tournamentName, isActive) {
+  async function updateTournamentIsActive(tournamentName, isActive) {
     const filter = { name: tournamentName };
     const query = {
       $set: {
@@ -35,7 +37,27 @@ function tournamentService() {
     return tournamentModel.findOneAndUpdate(filter, query, options);
   }
 
-  return { findTournamentById, findTournamentByName, updateTournamentIsActive };
+  async function activateTournament(tournamentName) {
+    const tournament = await findTournamentByName(tournamentName);
+    if (!tournament) {
+      throw new CustomError(CONFLICT, NO_TOURNAMENT_NAME_FOUND(tournamentName));
+    }
+
+    await updateTournamentIsActive(tournamentName, true);
+
+    const tournamentParticipants = await participantsRepository
+      .getParticipantsByTournamentId(tournament._id);
+
+    tournamentParticipants.forEach(async (participant) => {
+      await mailService.sendActivatedTournament(participant.email);
+    });
+
+    return true;
+  }
+
+  return {
+    findTournamentById, findTournamentByName, updateTournamentIsActive, activateTournament,
+  };
 }
 
 module.exports = tournamentService();

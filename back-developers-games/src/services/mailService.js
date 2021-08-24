@@ -133,7 +133,29 @@ function mailService() {
     return transporter.sendMail(mailOptions);
   }
 
-  return { sendRegisteredUser, sendRegisteredMentor };
+  async function sendActivatedTournament(email) {
+    const logData = {
+      fromEmail: process.env.MAIL_USER,
+      fromEmailPass: process.env.MAIL_PASSWORD,
+      to: email,
+    };
+    logService.createLog(logTypes.ACTIVATE_TOURNAMENT, logData, logStatus.SENDING_MAIL);
+
+    const mailOptions = {
+      from: process.env.MAIL_USER,
+      to: email,
+      subject: 'Developer games begin.',
+      html: `
+        <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto; overflow-y: auto; overflow-x: hidden;">
+         se ha activado test.
+        </div>
+      `,
+    };
+
+    return transporter.sendMail(mailOptions);
+  }
+
+  return { sendRegisteredUser, sendRegisteredMentor, sendActivatedTournament };
 }
 
 module.exports = mailService();

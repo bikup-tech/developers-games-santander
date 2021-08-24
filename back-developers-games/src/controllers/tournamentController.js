@@ -31,6 +31,7 @@ function tournamentController() {
       return handleResponseError(res, getTournamentError);
     }
   }
+
   async function updateTournament({ params, body }, res) {
     const { tournamentName } = params;
     const { isActive } = body;
@@ -51,7 +52,22 @@ function tournamentController() {
       return handleResponseError(res, updateTournamentError);
     }
   }
-  return { getTournamentByName, updateTournament };
+
+  async function activateTournament({ params: { tournamentName } }, res) {
+    try {
+      if (!tournamentName) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('tournamentName'));
+      }
+
+      await tournamentService.activateTournament(tournamentName);
+
+      return handleResponseSuccess(res, true);
+    } catch (activateTournamentError) {
+      return handleResponseError(res, activateTournamentError);
+    }
+  }
+
+  return { getTournamentByName, updateTournament, activateTournament };
 }
 
 module.exports = tournamentController();

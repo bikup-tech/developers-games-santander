@@ -183,9 +183,9 @@ function AdminProfile() {
             <div className="profile-button-container profile-button-container--logout">
               <MainButton
                 isSecondary
-                onClick={() => handleTournamentIsActive(false)}
+                isDisabled
               >
-                Deactivate Challenges
+                Tournament is active
               </MainButton>
             </div>
           ) : (
@@ -194,7 +194,7 @@ function AdminProfile() {
                 isSecondary
                 onClick={() => handleTournamentIsActive(true)}
               >
-                Activate Challenges
+                Activate Tournament
               </MainButton>
             </div>
           )}
