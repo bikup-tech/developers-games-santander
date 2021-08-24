@@ -11,9 +11,9 @@ function TermsAndConditions() {
       <div className="terms">
         <p className="terms__text">
           Rules for participation in the Santander & Red Hat Developer Games
-          2021, which will take place from September 01 to October 14, 2021
+          2021, which will take place from September 01 to October 12, 2021
           (including registration time frame, workshops and actual games). If
-          you have questions or need additional information, please email to:
+          you have questions or need additional information, please email to
           {' '}
           <br />
           <a href="mailto: developergamesEMEA@redhat.com?Subject=Contacto%20desde%20página%20términos%20y%20condiciones%20developerGames">
@@ -22,8 +22,8 @@ function TermsAndConditions() {
           {' '}
           or
           {' '}
-          <a href="mailto: veronica@redhat.com?Subject=Contacto%20desde%20página%20términos%20y%20condiciones%20developerGames">
-            veronica@redhat.com
+          <a href="mailto: manadon@redhat.com?Subject=Contacto%20desde%20página%20términos%20y%20condiciones%20developerGames">
+            manadon@redhat.com
           </a>
           .
         </p>
@@ -67,7 +67,7 @@ function TermsAndConditions() {
         <div className="terms__group">
           <h3 className="terms__subtitle">When can teams register?</h3>
           <p className="terms__text">
-            The registration period will begin on September 01, 2021 and will
+            The registration period will begin on September 01 , 2021 and will
             close on September 17, 2021 at 11:59 p.m.
           </p>
         </div>
@@ -75,17 +75,17 @@ function TermsAndConditions() {
           <h3 className="terms__subtitle">How does the competition work?</h3>
           <ul className="terms__list">
             <li className="list__item">
-              Over the course of 3 weeks, teams will be tasked with completing 7
+              Over the course of 2 weeks, teams will be tasked with completing 6
               challenges that require using Red Hat OpenShift and Quarkus. See
-              the full list of challenges here:
+              the full list of challenges here.
               {' '}
               <br />
               <a
-                href="https://www.developergames.io/santander/challenges"
+                href="https://www.developergames.io/santander"
                 target="_blank"
                 rel="noreferrer"
               >
-                https://www.developergames.io/santander/challenges
+                https://www.developergames.io/santander
               </a>
             </li>
             <li className="list__item">
@@ -94,9 +94,9 @@ function TermsAndConditions() {
               needed the week before the event starts.
             </li>
             <li className="list__item">
-              Teams will be required to complete each task in a set timeframe (3
+              Teams will be required to complete each task in a set timeframe (2
               weeks) and in a dedicated environment. (each team will receive
-              access starting date).
+              access starting date)
             </li>
             <li className="list__item">
               Red Hat experts will be on hand to help out.
@@ -112,9 +112,9 @@ function TermsAndConditions() {
             When and where does the competition take place?
           </h3>
           <p className="terms__text">
-            The competition starts on the 27th of september and ends the 14th of
+            The competition starts on the 27th of september and ends the 12th of
             October. It is an online competition, though rooms at Red Hat or
-            Banco Santander offices may be available on request. During the 3
+            Banco Santander offices may be available on request. During the 2
             weeks of the competition, participants will be able to work at any
             time, in line with their job responsibilities and permissions from
             their manager.
@@ -126,7 +126,7 @@ function TermsAndConditions() {
           </h3>
           <p className="terms__text">
             A dedicated chat and email has been created for the competition for
-            support:
+            support.
             {' '}
             <br />
             <a href="https://t.me/joinchat/mJsJNzYtIa9jMzM0 ">
@@ -146,15 +146,9 @@ function TermsAndConditions() {
         <div className="terms__group">
           <h3 className="terms__subtitle">What are the prizes?</h3>
           <ul className="terms__list--nopoint">
-            <li className="list__item">
-              1st position: Gifts valued at € 400 for each member
-            </li>
-            <li className="list__item">
-              2nd position: Gifts valued at €300 for each member
-            </li>
-            <li className="list__item">
-              3rd position: Gift valued at €200 for each member
-            </li>
+            <li className="list__item">1st position: Oculus Quest 2</li>
+            <li className="list__item">2nd position: Super Mario Lego set</li>
+            <li className="list__item">3rd position: Nintendo switch lite</li>
           </ul>
           <p className="terms__text">
             If the jury considers that the projects are not of sufficient
@@ -168,8 +162,8 @@ function TermsAndConditions() {
             The judges on behalf of Red Hat will be: Mentors in each challenge
           </p>
           <p className="terms__text">
-            The judges on behalf of Banco Santander will be: Elizabeth Pinilla,
-            Benjamin Granados
+            The judges on behalf of Banco Santander will be: Openshift Santander
+            Team members
           </p>
           <p className="terms__text">
             The judging panel is subject to change, and final names will be
