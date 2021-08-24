@@ -22,7 +22,7 @@ function ParticipantGuide() {
             given on the challenge page. Challenges must be submitted in repo or
             .txt formats (depending on the exercise) via a github account. Other
             formats, such as images and screenshots, can be added. Here is a
-            guide to getting started with github.
+            guide to
             {' '}
             <a
               href="https://www.youtube.com/user/GitHubGuides"
@@ -53,6 +53,16 @@ function ParticipantGuide() {
               rel="noreferrer"
             >
               https://developers.redhat.com/
+            </a>
+            .
+          </p>
+          <p className="terms__text">
+            If you have questions during the Developer Games about the
+            challenges or any other technical doubt, please join the Yammer
+            Channel or write us at:
+            {' '}
+            <a href="mailto: developergamesEMEA@redhat.com?Subject=Contacto%20desde%20página%guía%20y%del%20participante">
+              DevelopergamesEMEA@redhat.com
             </a>
             .
           </p>
@@ -154,9 +164,6 @@ function ParticipantGuide() {
               </a>
               , including information for those who want to work with CodeReady
               Workspaces for project development and deployment in OpenShift.
-              Información para aquellos que quieran trabajar con CodeReady
-              Workspaces para el desarrollo del proyecto y despliegue en
-              Openshift.
             </li>
           </ul>
         </div>
@@ -189,6 +196,15 @@ function ParticipantGuide() {
                 rel="noreferrer"
               >
                 Quarkus and Datagrid (Infinispan).
+              </a>
+            </li>
+            <li className="list__item">
+              <a
+                href="https://github.com/infinispan-demos/harry-potter-quarkus/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Datagrid and Quarkus Demo
               </a>
             </li>
           </ul>

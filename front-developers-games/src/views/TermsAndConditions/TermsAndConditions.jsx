@@ -9,6 +9,7 @@ function TermsAndConditions() {
   return (
     <AppWrapper title="Terms & Conditions">
       <div className="terms">
+        <h3 className="terms__subtitle">Terms & Conditions</h3>
         <p className="terms__text">
           Rules for participation in the Santander & Red Hat Developer Games
           2021, which will take place from September 01 to October 12, 2021
