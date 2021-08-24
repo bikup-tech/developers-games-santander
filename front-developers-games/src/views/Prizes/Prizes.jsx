@@ -20,23 +20,26 @@ function Prizes() {
     <AppWrapper title="Prizes">
       <div className="prizes__image" />
       <div className="challenges__actions">
-        <div className="actions__welcome-kit">
-          <MainButton isSecondary>
-            <a href="https://events.redhat.com/profile/395144" target="_blank" className="welcome-kit__link" rel="noreferrer">
-              <img src={kitIcon} alt="welcome kit" className="link__image" />
-              <span className="link__text">Request your welcome kit</span>
-            </a>
-          </MainButton>
-        </div>
-        <div className="actions__welcome-kit">
-          <MainButton isSecondary>
-            <Link to="/profile" className="edit-team__link">
-              <img src={teamIcon} alt="edit team" className="link__image" />
-              <span className="link__text">Edit your profile</span>
-            </Link>
-          </MainButton>
-        </div>
-        {(user.userLogged.role === 1 || user.userLogged.role === 0) && (
+        {(user.userLogged.role <= 1 && user.isLogged) && (
+          <>
+            <div className="actions__welcome-kit">
+              <MainButton isSecondary>
+                <a href="https://events.redhat.com/profile/395144" target="_blank" className="welcome-kit__link" rel="noreferrer">
+                  <img src={kitIcon} alt="welcome kit" className="link__image" />
+                  <span className="link__text">Request your welcome kit</span>
+                </a>
+              </MainButton>
+            </div>
+            <div className="actions__welcome-kit">
+              <MainButton isSecondary>
+                <Link to="/profile" className="edit-team__link">
+                  <img src={teamIcon} alt="edit team" className="link__image" />
+                  <span className="link__text">Edit your profile</span>
+                </Link>
+              </MainButton>
+            </div>
+          </>
+        )}
         <div className="actions__edit-team">
           <MainButton isSecondary>
             <NavLink to="/participantsGuide">
@@ -45,7 +48,6 @@ function Prizes() {
             </NavLink>
           </MainButton>
         </div>
-        )}
       </div>
     </AppWrapper>
   );
