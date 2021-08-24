@@ -1,5 +1,6 @@
 import React from 'react';
 
+// TODO: html siguiendo el modelo
 function WorkShopCard({ workShop }) {
   return (
     <div className="workShop-container">
