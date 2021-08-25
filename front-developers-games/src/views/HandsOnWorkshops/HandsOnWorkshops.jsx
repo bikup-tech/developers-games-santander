@@ -12,8 +12,8 @@ import WorkShopCard from './components/WorkShopCard';
 function HandsOnWorkshops() {
   return (
     <AppWrapper title="Hands-on Workshops">
-      <div className="terms">
-        <h3 className="terms__subtitle">Attend our Hands-on workshops and train your skills before the competition starts.</h3>
+      <div className="workshop-container">
+        <h3 className="workshop__subtitle">Attend our Hands-on workshops and train your skills before the competition starts.</h3>
         {
             workshops.map((workShop) => (
               <WorkShopCard
