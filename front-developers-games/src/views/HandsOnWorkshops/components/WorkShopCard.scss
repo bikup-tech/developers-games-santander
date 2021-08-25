@@ -7,22 +7,26 @@
     margin-bottom: $m-18;
 }
 
-.challenge__subtitle {
+.challenge__subtitle--workshop {
     color: $lighterBlue;
     font-size: $text-20;
 }
 
 .challenge__author {
     color: $semiBlue;
+    margin-top: $m-2;
 }
 
 .challenge__date {
     color: $darkBlue;
     font-weight: bold;
+    margin-top: $m-2;
+
 }
 
 .challenge__regiter-button{
     width: 100px;
+    margin: $m-8 0px;
 }
 
 .challenge__separator{
