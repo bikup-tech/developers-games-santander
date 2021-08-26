@@ -85,6 +85,7 @@ function ParticipantProfile() {
       };
 
       const body = {
+        participantId: _id,
         name: editParticipantProfile.participantName,
         newPassword: editParticipantProfile.newPassword || null,
         phone: editParticipantProfile.phone,

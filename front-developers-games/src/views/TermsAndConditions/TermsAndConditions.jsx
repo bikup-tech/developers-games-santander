@@ -12,7 +12,7 @@ function TermsAndConditions() {
         <h3 className="terms__subtitle">Terms & Conditions</h3>
         <p className="terms__text">
           Rules for participation in the Santander & Red Hat Developer Games
-          2021, which will take place from September 01 to October 12, 2021
+          2021, which will take place from September 01 to October 09, 2021
           (including registration time frame, workshops and actual games). If
           you have questions or need additional information, please email to
           {' '}
@@ -113,7 +113,7 @@ function TermsAndConditions() {
             When and where does the competition take place?
           </h3>
           <p className="terms__text">
-            The competition starts on the 27th of september and ends the 12th of
+            The competition starts on the 27th of september and ends the 9th of
             October. It is an online competition, though rooms at Red Hat or
             Banco Santander offices may be available on request. During the 2
             weeks of the competition, participants will be able to work at any
