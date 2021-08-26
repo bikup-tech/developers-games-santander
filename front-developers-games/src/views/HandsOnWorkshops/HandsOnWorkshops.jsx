@@ -2,7 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 
-import './Prizes.scss';
+import './HandsOnWorkshops.scss';
+
+// constants
+import workshops from '../../constants/workshops';
 
 // Images
 import teamIcon from '../../assets/images/team-icon.svg';
@@ -11,16 +14,25 @@ import guidesIcon from '../../assets/images/guides-icon.svg';
 
 // components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
+import WorkShopCard from './components/WorkShopCard';
 import MainButton from '../../components/MainButton/MainButton';
 
-function Prizes() {
+function HandsOnWorkshops() {
   const { user } = useSelector(({ authReducer }) => authReducer);
-
   return (
-    <AppWrapper title="Prizes">
-      <div className="prizes__image" />
-      <div className="challenges__actions">
-        {(user.userLogged.role <= 1 && user.isLogged) && (
+    <AppWrapper title="Hands-on Workshops">
+      <div className="workshop-container">
+        <h3 className="workshop__subtitle">Attend our Hands-on workshops and train your skills before the competition starts.</h3>
+        {
+            workshops.map((workShop) => (
+              <WorkShopCard
+                workShop={workShop}
+                key={workShop.name}
+              />
+            ))
+        }
+        <div className="challenges__actions">
+          {(user.userLogged.role <= 1 && user.isLogged) && (
           <>
             <div className="actions__welcome-kit">
               <MainButton isSecondary>
@@ -39,18 +51,19 @@ function Prizes() {
               </MainButton>
             </div>
           </>
-        )}
-        <div className="actions__edit-team">
-          <MainButton isSecondary>
-            <NavLink to="/participantsGuide">
-              <img src={guidesIcon} alt="edit team" className="link__image" />
-              <span className="link__text">Participant guide</span>
-            </NavLink>
-          </MainButton>
+          )}
+          <div className="actions__edit-team">
+            <MainButton isSecondary>
+              <NavLink to="/participantsGuide">
+                <img src={guidesIcon} alt="edit team" className="link__image" />
+                <span className="link__text">Participant guide</span>
+              </NavLink>
+            </MainButton>
+          </div>
         </div>
       </div>
     </AppWrapper>
   );
 }
 
-export default Prizes;
+export default HandsOnWorkshops;

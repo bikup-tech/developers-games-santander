@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import './Challenges.scss';
 
@@ -33,6 +33,8 @@ function Challenges() {
     tournamentId,
   } = useSelector(({ mainReducer }) => mainReducer);
   const { user } = useSelector(({ authReducer }) => authReducer);
+
+  console.log(teamChallenges);
 
   useEffect(() => {
     if (!team || !team?._id) {
@@ -97,10 +99,10 @@ function Challenges() {
           {user.userLogged.role < userRoles.MENTOR && (
           <div className="actions__edit-team">
             <MainButton isSecondary>
-              <a href="https://docs.google.com/document/d/1YQ7BL2Li2Bedrz1yJmNAuz_ofaoui__eT392T5WsT0U/edit" target="_blank" className="welcome-kit__link" rel="noreferrer">
+              <NavLink to="/participantsGuide">
                 <img src={guidesIcon} alt="edit team" className="link__image" />
                 <span className="link__text">Participant guide</span>
-              </a>
+              </NavLink>
             </MainButton>
           </div>
           )}

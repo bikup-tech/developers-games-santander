@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import Countdown from 'react-countdown';
 
 import './TournamentCountdown.scss';
@@ -65,14 +65,14 @@ function TournamentCountdown({ date }) {
     );
   };
 
-  const defaultDate = 1631858400000;
+  const defaultDate = 1632729600000;
 
   return (
     <>
       <AppWrapper title={`Hi ${userLogged?.name}`}>
         <div className="countdown__text-container">
           <p className="countdown__text countdown__text--blue">Red Hat and Santander Developer Games will start on</p>
-          <p className="countdown__text countdown__text--red">September 17th at 08:00 AM CEST.</p>
+          <p className="countdown__text countdown__text--red">September 27th at 08:00 AM CEST.</p>
         </div>
         <Countdown date={date || defaultDate} renderer={renderer} />
 
@@ -97,10 +97,10 @@ function TournamentCountdown({ date }) {
           </div>
           <div className="actions__edit-team">
             <MainButton isSecondary>
-              <a href="https://docs.google.com/document/d/1YQ7BL2Li2Bedrz1yJmNAuz_ofaoui__eT392T5WsT0U/edit" target="_blank" className="welcome-kit__link" rel="noreferrer">
+              <NavLink to="/participantsGuide">
                 <img src={guidesIcon} alt="edit team" className="link__image" />
                 <span className="link__text">Participant guide</span>
-              </a>
+              </NavLink>
             </MainButton>
           </div>
 
