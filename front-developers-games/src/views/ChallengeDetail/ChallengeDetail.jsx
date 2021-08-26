@@ -201,6 +201,7 @@ function ChallengeDetail() {
           case 'references':
           case 'evaluationCriteria':
           case 'link':
+          case 'challengeGuide':
             createChallengeHtmlField(key, printedProps);
             break;
           default:

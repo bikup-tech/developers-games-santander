@@ -28,6 +28,8 @@ function participantService() {
     const generatedPassword = generator.generate({
       numbers: true,
     });
+
+    // Bcrypt la password
     participant.password = generatedPassword;
 
     if (tournamentId) {

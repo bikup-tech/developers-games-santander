@@ -34,8 +34,6 @@ function Challenges() {
   } = useSelector(({ mainReducer }) => mainReducer);
   const { user } = useSelector(({ authReducer }) => authReducer);
 
-  console.log(teamChallenges);
-
   useEffect(() => {
     if (!team || !team?._id) {
       if (user.userLogged.role < userRoles.MENTOR) {

@@ -18,6 +18,19 @@ function authController() {
         throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('Email or Pasword'));
       }
 
+      // Canviar la logica -> primer buscar el user per email. Canviar findOne per find
+      // Find SEMPRE retorna un array, s'ha de tenir en compte.
+
+      // Despres mirar si la password esta be amb bcrypt.compare(userPassword,
+      // foundParticipant.password)
+
+      // tenir en compte la possibilitat de que hi hagi 2 users amb el mateix email
+      // (xk al crear els teams no es comprova).
+
+      // en aqeust cas s'ha de filtrar per el que tingui la password correcte.
+
+      // Si tot ok, enviar user.
+
       const findQuery = {
         email,
         password: userPassword,
@@ -47,6 +60,10 @@ function authController() {
         _id: userId,
         password,
       };
+
+      // Canviar la logica -> primer buscar el user sencer
+
+      // Comprovar que la password sigui correcte amb bcrypt.compare(password, user.password)
 
       const foundUser = await participantsModel.findOne(findQuery);
 
