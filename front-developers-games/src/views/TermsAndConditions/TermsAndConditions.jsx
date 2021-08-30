@@ -36,9 +36,9 @@ function TermsAndConditions() {
         <div className="terms__group">
           <h3 className="terms__subtitle">Who can participate?</h3>
           <p className="terms__text">
-            Any employee or existing contractor of Banco Santander can
-            participate. Participation is voluntary, and subject to approval
-            from your manager.
+            Any existing contractor of Banco Santander can participate.
+            Participation is voluntary, and subject to approval from your
+            manager.
           </p>
           <p className="terms__text">
             Participation is part of your employment, and as such you are
@@ -148,8 +148,8 @@ function TermsAndConditions() {
           <h3 className="terms__subtitle">What are the prizes?</h3>
           <ul className="terms__list--nopoint">
             <li className="list__item">1st position: Oculus Quest 2</li>
-            <li className="list__item">2nd position: Super Mario Lego set</li>
-            <li className="list__item">3rd position: Nintendo switch lite</li>
+            <li className="list__item">2nd position: Nintendo switch lite</li>
+            <li className="list__item">3rd position: Super Mario Lego set </li>
           </ul>
           <p className="terms__text">
             If the jury considers that the projects are not of sufficient
