@@ -23,7 +23,7 @@ export default [
   {
     name: '3Scale CICD with Jenkins workshop',
     authors: 'Mikel Sánchez Herrero',
-    date: 'September 24 / 11:00 - 15:00 CEST',
+    date: 'September 24 / 11:00 - 12:30 CEST',
     seats: '30 seats',
     link: 'https://events.redhat.com/profile/form/index.cfm?PKformID=0x437552abcd',
   },
