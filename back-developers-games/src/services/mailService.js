@@ -39,7 +39,7 @@ function mailService() {
     logService.createLog(logTypes.EMAIL_PARTICIPANT, logData, logStatus.SENDING_MAIL);
 
     const mailOptions = {
-      from: process.env.MAIL_USER,
+      from: `Developer Games <${process.env.MAIL_USER}>`,
       to: email,
       subject: 'Thank you for registering your team to the Developer Games',
       html: `
@@ -103,7 +103,7 @@ function mailService() {
     logService.createLog(logTypes.EMAIL_MENTOR, logData, logStatus.SENDING_MAIL);
 
     const mailOptions = {
-      from: process.env.MAIL_USER,
+      from: `Developer Games <${process.env.MAIL_USER}>`,
       to: email,
       subject: 'You are registered as Staff of the Developer Games',
       html: `
