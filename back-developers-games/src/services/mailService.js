@@ -43,7 +43,7 @@ function mailService() {
       to: email,
       subject: 'Thank you for registering your team to the Developer Games',
       html: `<span style="opacity: 0"> ${Date.now()} </span>
-      <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto; overflow-y: auto; overflow-x: hidden;">
+      <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto; overflow-y: hidden; overflow-x: hidden;">
         <img
           src="https://storage.googleapis.com/developer-games-bucket/mail-header.jpg"
           alt="redhat logo"
@@ -101,7 +101,7 @@ function mailService() {
       subject: 'You are registered as Staff of the Developer Games',
       html: `
       <span style="opacity: 0"> ${Date.now()} </span>
-        <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto; overflow-y: auto; overflow-x: hidden;">
+        <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto; overflow-y: hidden; overflow-x: hidden;">
           <img
             src="https://storage.googleapis.com/developer-games-bucket/mail-header.jpg"
             alt="redhat logo"
@@ -146,7 +146,7 @@ function mailService() {
       to: email,
       subject: 'Developer games begin.',
       html: `
-        <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto; overflow-y: auto; overflow-x: hidden;">
+        <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto; overflow-y: hidden; overflow-x: hidden;">
          se ha activado test.
         </div>
       `,
