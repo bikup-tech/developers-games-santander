@@ -43,6 +43,11 @@ function mailService() {
       to: email,
       subject: 'Thank you for registering your team to the Developer Games',
       html: `
+      <html>
+      <head>
+      <meta name=“format-detection” content=“telephone=no”>
+      </head>
+      <body>
       <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto;  overflow-x: hidden;">
         <img
           src="https://storage.googleapis.com/developer-games-bucket/mail-header.jpg"
@@ -80,6 +85,8 @@ function mailService() {
             <span style="display:table-cell; vertical-align:middle;">Copyright ©2021 Red Hat, Inc</span>
         </footer>
       </div>
+      </body>
+      </html>
         `,
     };
 
