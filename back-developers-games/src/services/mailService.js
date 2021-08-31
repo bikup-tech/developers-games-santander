@@ -42,8 +42,8 @@ function mailService() {
       from: process.env.MAIL_USER,
       to: email,
       subject: 'Thank you for registering your team to the Developer Games',
-      html: `<span style="opacity: 0"> ${Date.now()} </span>
-      <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto; overflow-y: hidden; overflow-x: hidden;">
+      html: `
+      <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto;  overflow-x: hidden;">
         <img
           src="https://storage.googleapis.com/developer-games-bucket/mail-header.jpg"
           alt="redhat logo"
@@ -55,7 +55,7 @@ function mailService() {
                 Hello Team!<br><br>
                 Game is on! Thanks for registering to the Developer Games.
                 Please find below your login details. You will not be able to see the
-                challenges until the start date.<br><br>
+                challenges until the start date (September, 27 at 08:00 am CEST).<br><br>
                 <b>User:</b> ${email}<br>
                 <b>Password:</b> ${password}<br><br>
                 Don't forget to request your participant's welcome kit!
@@ -63,16 +63,23 @@ function mailService() {
             <button style="background-color: #FF0000; color: white; font-weight: bold; padding: 6px 24px; border-radius: 6px; border: none; font-size: 1.3rem; margin-bottom: 24px;">
                <a href="https://events.redhat.com/profile/395144" style="text-decoration: none; color: white;">Request here your welcome kit</a>   
             </button>
+            <p style="line-height: 1.45rem; text-align: justify; font-size: 1.1rem; margin: 0; color: black; margin-bottom: 16px;">
+            <b>Ensure to check the available workshops to help you solve the challenges!</b><br>
+            These training sessions are fundamental to win the game! Few seats available:<br>
+            <a href="https://www.developergames.io/handsOnWorkshops" style="color: #00ADAF;">https://www.developergames.io/handsOnWorkshops</a>   
+
+
+        </p>
             <p style="line-height: 1.45rem; text-align: justify; font-size: 1.1rem; margin: 0; color: black;">
                 If you have any problems with login details please contact:<br>
                 <a href="mailto:games@developergames.io?Subject=Login%20issue" style="color: #00ADAF">games@developergames.io</a>
             </p>
+           
         </div>
         <footer style="width: 100%; background-color: #00ADAF; height: 40px; color: white; font-size: 1.1rem; display:table; text-align: center;">
             <span style="display:table-cell; vertical-align:middle;">Copyright ©2021 Red Hat, Inc</span>
         </footer>
       </div>
-      <span style="opacity: 0"> ${Date.now()} </span>
         `,
     };
 
@@ -100,8 +107,7 @@ function mailService() {
       to: email,
       subject: 'You are registered as Staff of the Developer Games',
       html: `
-      <span style="opacity: 0"> ${Date.now()} </span>
-        <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto; overflow-y: hidden; overflow-x: hidden;">
+        <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto; overflow-x: hidden;">
           <img
             src="https://storage.googleapis.com/developer-games-bucket/mail-header.jpg"
             alt="redhat logo"
@@ -126,7 +132,6 @@ function mailService() {
             <span style="display:table-cell; vertical-align:middle;">Copyright ©2021 Red Hat, Inc</span>
           </footer>
         </div>
-      <span style="opacity: 0"> ${Date.now()} </span>
       `,
     };
 
@@ -146,7 +151,7 @@ function mailService() {
       to: email,
       subject: 'Developer games begin.',
       html: `
-        <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto; overflow-y: hidden; overflow-x: hidden;">
+        <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto;  overflow-x: hidden;">
          se ha activado test.
         </div>
       `,
