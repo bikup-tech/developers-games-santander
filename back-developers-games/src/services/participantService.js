@@ -11,6 +11,7 @@ const userRoles = require('../constants/userRoles');
 
 // Utils
 const CustomError = require('../utils/CustomError');
+const { encryptPassword } = require('../utils/bcryptUtils');
 
 function participantHasRequiredProps(participant) {
   return participant.email
@@ -29,13 +30,18 @@ function participantService() {
       numbers: true,
     });
 
-    participant.password = generatedPassword;
+    const encryptedPassword = await encryptPassword(generatedPassword);
+
+    participant.password = encryptedPassword;
 
     if (tournamentId) {
       participant.tournamentId = tournamentId;
     }
 
-    return participantModel.create(participant);
+    const createdParticipant = await participantModel.create(participant);
+    createdParticipant.tempPassword = generatedPassword;
+
+    return createdParticipant;
   }
 
   async function updateParticipant(participantId, updateQuery) {
