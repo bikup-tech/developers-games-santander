@@ -99,7 +99,6 @@ function teamsController() {
 
       return handleResponseSuccess(res, REGISTER_TEAM_SUCCESS, CREATED);
     } catch (error) {
-      console.log(error);
       return handleResponseError(res, error);
     }
   }
