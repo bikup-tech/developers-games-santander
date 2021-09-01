@@ -135,10 +135,11 @@ export function registerTeam(tournamentId, name, participants) {
       dispatch(registerTeamSuccess());
     } catch (registerError) {
       if (registerError?.response?.status === 409) {
+        console.log(registerError.response.data.message);
         dispatch(
           setAlert(
             alertConstants.types.ERROR,
-            alertConstants.messages.ALREADY_EXISTING_TEAM(name),
+            registerError.response.data.message,
           ),
         );
       } else {
