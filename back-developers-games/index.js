@@ -25,6 +25,7 @@ const teamChallengesRouter = require('./src/routes/teamChallengesRouter');
 const participantsRouter = require('./src/routes/participantsRouter');
 const uploadFilesRouter = require('./src/routes/uploadFilesRouter')(devGamesBucket);
 const tournamentsRouter = require('./src/routes/tournamentsRouter');
+const { encryptPassword } = require('./src/utils/bcryptUtils');
 
 const app = express();
 const PORT = process.env.PORT || 4200;
