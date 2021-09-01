@@ -21,4 +21,6 @@ module.exports = {
   MISSING_AVATAR_FILE: 'Please provide an avatar file.',
   MISSING_DELIVERABLE_FILE: 'Please provide a deliverable file.',
   NOT_AN_EMAIL: 'Please provide a valid email.',
+  ALREADY_REGISTERED_EMAILS: (emails) => `The emails <${emails.toString().replaceAll(',', ', ')}> are already being used.`,
+
 };

@@ -82,6 +82,20 @@ function participantService() {
     return participantModel.find({ role: userRoles.MENTOR });
   }
 
+  async function findParticipantEmails(emails) {
+    const findQuery = {
+      email: { $in: emails },
+    };
+
+    const foundParticipants = await participantModel.find(findQuery);
+
+    if (!foundParticipants.length) {
+      return null;
+    }
+
+    return foundParticipants.map((participant) => participant.email);
+  }
+
   return {
     createParticipant,
     updateParticipant,
@@ -92,6 +106,7 @@ function participantService() {
     findAndUpdateParticipant,
     findParticipantByEmail,
     findMentors,
+    findParticipantEmails,
   };
 }
 
