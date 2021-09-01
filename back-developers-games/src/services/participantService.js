@@ -28,6 +28,7 @@ function participantService() {
     const generatedPassword = generator.generate({
       numbers: true,
     });
+
     participant.password = generatedPassword;
 
     if (tournamentId) {
