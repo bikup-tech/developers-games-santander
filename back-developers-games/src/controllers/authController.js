@@ -8,6 +8,7 @@ const { MISSING_PROPERTIES, NO_USER_FOUND } = require('../constants/responseMess
 const CustomError = require('../utils/CustomError');
 const handleResponseError = require('../utils/handleResponseError');
 const handleResponseSuccess = require('../utils/handleResponseSuccess');
+const { comparePasswords } = require('../utils/bcryptUtils');
 
 function authController() {
   async function login(req, res) {
@@ -20,11 +21,11 @@ function authController() {
 
       const findQuery = {
         email,
-        password: userPassword,
       };
 
       const foundParticipant = await participantsModel.findOne(findQuery);
-      if (!foundParticipant) {
+      const isPasswordCorrect = await comparePasswords(userPassword, foundParticipant.password);
+      if (!foundParticipant || !isPasswordCorrect) {
         throw new CustomError(CONFLICT, NO_USER_FOUND);
       }
 

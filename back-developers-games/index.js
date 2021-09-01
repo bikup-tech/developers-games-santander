@@ -54,4 +54,8 @@ app.use('/api/participants', participantsRouter);
 app.use('/api/upload', uploadFilesRouter);
 app.use('/api/tournaments', tournamentsRouter);
 
+// app.get('/api/test', async (req, res) => {
+
+// });
+
 app.listen(PORT, () => debug(`Server running in port: ${PORT}`));

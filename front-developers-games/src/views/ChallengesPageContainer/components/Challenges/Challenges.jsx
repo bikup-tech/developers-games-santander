@@ -34,8 +34,6 @@ function Challenges() {
   } = useSelector(({ mainReducer }) => mainReducer);
   const { user } = useSelector(({ authReducer }) => authReducer);
 
-  console.log(teamChallenges);
-
   useEffect(() => {
     if (!team || !team?._id) {
       if (user.userLogged.role < userRoles.MENTOR) {
@@ -75,7 +73,7 @@ function Challenges() {
               />
             ))
           )
-            }
+          }
         </div>
         <div className="challenges__actions">
           <div className="actions__welcome-kit">
@@ -97,14 +95,14 @@ function Challenges() {
             </MainButton>
           </div>
           {user.userLogged.role < userRoles.MENTOR && (
-          <div className="actions__edit-team">
-            <MainButton isSecondary>
-              <NavLink to="/participantsGuide">
-                <img src={guidesIcon} alt="edit team" className="link__image" />
-                <span className="link__text">Participant guide</span>
-              </NavLink>
-            </MainButton>
-          </div>
+            <div className="actions__edit-team">
+              <MainButton isSecondary>
+                <NavLink to="/participantsGuide">
+                  <img src={guidesIcon} alt="edit team" className="link__image" />
+                  <span className="link__text">Participant guide</span>
+                </NavLink>
+              </MainButton>
+            </div>
           )}
         </div>
       </div>

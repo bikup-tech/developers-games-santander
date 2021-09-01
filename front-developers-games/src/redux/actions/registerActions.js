@@ -138,7 +138,7 @@ export function registerTeam(tournamentId, name, participants) {
         dispatch(
           setAlert(
             alertConstants.types.ERROR,
-            alertConstants.messages.ALREADY_EXISTING_TEAM(name),
+            registerError.response.data.message,
           ),
         );
       } else {

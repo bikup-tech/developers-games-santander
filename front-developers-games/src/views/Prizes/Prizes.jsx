@@ -40,14 +40,16 @@ function Prizes() {
             </div>
           </>
         )}
-        <div className="actions__edit-team">
-          <MainButton isSecondary>
-            <NavLink to="/participantsGuide">
-              <img src={guidesIcon} alt="edit team" className="link__image" />
-              <span className="link__text">Participant guide</span>
-            </NavLink>
-          </MainButton>
-        </div>
+        {user?.isLogged && (
+          <div className="actions__edit-team">
+            <MainButton isSecondary>
+              <NavLink to="/participantsGuide">
+                <img src={guidesIcon} alt="edit team" className="link__image" />
+                <span className="link__text">Participant guide</span>
+              </NavLink>
+            </MainButton>
+          </div>
+        )}
       </div>
     </AppWrapper>
   );

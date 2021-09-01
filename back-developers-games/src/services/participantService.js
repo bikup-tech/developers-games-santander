@@ -11,6 +11,7 @@ const userRoles = require('../constants/userRoles');
 
 // Utils
 const CustomError = require('../utils/CustomError');
+const { encryptPassword } = require('../utils/bcryptUtils');
 
 function participantHasRequiredProps(participant) {
   return participant.email
@@ -28,13 +29,19 @@ function participantService() {
     const generatedPassword = generator.generate({
       numbers: true,
     });
-    participant.password = generatedPassword;
+
+    const encryptedPassword = await encryptPassword(generatedPassword);
+
+    participant.password = encryptedPassword;
 
     if (tournamentId) {
       participant.tournamentId = tournamentId;
     }
 
-    return participantModel.create(participant);
+    const createdParticipant = await participantModel.create(participant);
+    createdParticipant.tempPassword = generatedPassword;
+
+    return createdParticipant;
   }
 
   async function updateParticipant(participantId, updateQuery) {
@@ -82,6 +89,20 @@ function participantService() {
     return participantModel.find({ role: userRoles.MENTOR });
   }
 
+  async function findParticipantEmails(emails) {
+    const findQuery = {
+      email: { $in: emails },
+    };
+
+    const foundParticipants = await participantModel.find(findQuery);
+
+    if (!foundParticipants.length) {
+      return null;
+    }
+
+    return foundParticipants.map((participant) => participant.email);
+  }
+
   return {
     createParticipant,
     updateParticipant,
@@ -92,6 +113,7 @@ function participantService() {
     findAndUpdateParticipant,
     findParticipantByEmail,
     findMentors,
+    findParticipantEmails,
   };
 }
 

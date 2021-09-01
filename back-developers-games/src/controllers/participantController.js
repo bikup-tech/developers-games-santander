@@ -93,12 +93,12 @@ function participantController() {
       if (body.role === userRoles.PARTICIPANT) {
         await mailService.sendRegisteredUser(
           createdParticipant.email,
-          createdParticipant.password,
+          createdParticipant.tempPassword,
         );
       } else {
         await mailService.sendRegisteredMentor(
           createdParticipant.email,
-          createdParticipant.password,
+          createdParticipant.tempPassword,
         );
       }
 

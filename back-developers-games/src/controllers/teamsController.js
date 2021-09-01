@@ -5,6 +5,7 @@ const {
 const {
   MISSING_PROPERTIES, ALREADY_EXISTING_TEAM, REGISTER_TEAM_SUCCESS, NO_TOURNAMENT_FOUND,
   MISSING_QUERY_PROPERTIES,
+  ALREADY_REGISTERED_EMAILS,
 } = require('../constants/responseMessages');
 const userRoles = require('../constants/userRoles');
 
@@ -28,11 +29,17 @@ function teamsController() {
         throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('participants, name or tournamentId'));
       }
 
-      // Check team name && existing tournament
+      // Check team name, team emails && existing tournament
       const foundTeam = await teamService.findTeam({ name });
       if (foundTeam) {
         throw new CustomError(CONFLICT, ALREADY_EXISTING_TEAM(name));
       }
+      const participantEmails = participants.map((participant) => participant.email);
+      const foundParticipants = await participantService.findParticipantEmails(participantEmails);
+      if (foundParticipants) {
+        throw new CustomError(CONFLICT, ALREADY_REGISTERED_EMAILS(foundParticipants));
+      }
+
       const foundTournament = await tournamentService.findTournamentById(tournamentId);
       if (!foundTournament) {
         throw new CustomError(CONFLICT, NO_TOURNAMENT_FOUND(tournamentId));
