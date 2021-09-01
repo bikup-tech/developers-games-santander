@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 const bcrypt = require('bcrypt');
 
 const saltRounds = 10;
