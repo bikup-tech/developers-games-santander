@@ -126,22 +126,16 @@ function TermsAndConditions() {
             How do you ask questions during the competition?
           </h3>
           <p className="terms__text">
-            A dedicated chat and email has been created for the competition for
-            support.
+            A dedicated MS Teams Support chat. will be shared with participants and
+            you can also contact through this email
             {' '}
-            <br />
-            <a href="https://t.me/joinchat/mJsJNzYtIa9jMzM0 ">
-              https://t.me/joinchat/mJsJNzYtIa9jMzM0
-            </a>
-            {' '}
-            Telegram Support chat.
-            <br />
-            {' '}
+
             <a href="mailto: DevelopergamesEMEA@redhat.com?Subject=Contacto%20desde%20página%20términos%20y%20condiciones%20developerGames">
               DevelopergamesEMEA@redhat.com
             </a>
             {' '}
             Support Email.
+
           </p>
         </div>
         <div className="terms__group">
