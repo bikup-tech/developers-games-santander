@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import './Login.scss';
 
@@ -106,6 +106,7 @@ function Login() {
               onKeyUp={handleKeyUp}
             />
           </div>
+          <Link to="/forgotPassword">Forgot your password?</Link>
           <small className="form__warningMessage">{warningMessage}</small>
           <div className="form__button">
             <MainButton onClick={handleLoginClick}>Login</MainButton>
