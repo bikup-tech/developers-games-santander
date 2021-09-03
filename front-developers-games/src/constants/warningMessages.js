@@ -10,4 +10,8 @@ export default {
     LOGIN_ERROR: 'Invalid login credentials.',
     LOGIN_REQUIRED_ENTRY: 'There are empty requiered fields.',
   },
+  forgotPassword: {
+    REQUIRED_ENTRY: 'There are empty requiered fields.',
+    WRONG_EMAIL: 'There is a invalid email',
+  },
 };

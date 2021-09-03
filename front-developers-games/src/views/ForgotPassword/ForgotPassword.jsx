@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+// constants
+import warningMessages from '../../constants/warningMessages';
+
 // components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import Input from '../../components/Input/Input';
@@ -18,10 +21,36 @@ function ForgotPassword() {
 
   function handleTextInputChange({ target: { name, value } }) {
     setRestoreMail({ ...restoreMail, [name]: value, [`${name}IsWrong`]: false });
+    setWarningMessage('');
   }
 
   function handleRestorePasswordClick() {
-    setWarningMessage('hago cosas');
+    Object.entries(restoreMail).forEach(([key, value]) => {
+      if (value === '') {
+        setRestoreMail({ ...restoreMail, [`${key}IsWrong`]: true });
+        setWarningMessage(warningMessages.forgotPassword.REQUIRED_ENTRY);
+      }
+    });
+
+    if (restoreMail.email === restoreMail.repeatEmail) {
+      const splitEmail = restoreMail.email;
+      const splitRepeatEmail = restoreMail.repeatEmail;
+
+      if (splitEmail.includes('@') && splitRepeatEmail.includes('@')) {
+        setWarningMessage('');
+        // enviar les dades al back
+      } else {
+        setWarningMessage(warningMessages.forgotPassword.WRONG_EMAIL);
+      }
+    } else {
+      setWarningMessage(warningMessages.forgotPassword.MAILS_ARE_NOT_THE_SAME);
+    }
+  }
+
+  function handleKeyUp({ keyCode }) {
+    if (keyCode === 13) {
+      handleRestorePasswordClick();
+    }
   }
 
   return (
@@ -34,7 +63,7 @@ function ForgotPassword() {
           <div className="form__input form__login">
             <Input
               type="text"
-              name="captainEmail"
+              name="email"
               placeholder="e-mail"
               value={restoreMail.email}
               onChange={handleTextInputChange}
@@ -44,11 +73,12 @@ function ForgotPassword() {
           <div className="form__input form__login">
             <Input
               type="text"
-              name="captainEmail"
+              name="repeatEmail"
               placeholder="Repeat e-mail"
               value={restoreMail.repeatEmail}
               onChange={handleTextInputChange}
               isIncorrect={restoreMail.repeatEmailIsWrong}
+              onKeyUp={handleKeyUp}
             />
           </div>
           <small className="form__warningMessage">{warningMessage}</small>
