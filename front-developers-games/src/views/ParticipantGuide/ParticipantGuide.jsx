@@ -144,16 +144,7 @@ function ParticipantGuide() {
                 Getting started in Quarkus
               </a>
             </li>
-            <li className="list__item">
-              <a
-                href="https://bbvahackathon.github.io/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Using Quarkus
-              </a>
-              to create APIs, microservices and database access.
-            </li>
+
             <li className="list__item">
               <a
                 href="https://developers.redhat.com/blog/2019/03/18/getting-started-with-codeready-workspaces-and-red-hat-openshift-application-runtimes"
@@ -205,6 +196,39 @@ function ParticipantGuide() {
                 rel="noreferrer"
               >
                 Datagrid and Quarkus Demo
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className="terms__group">
+          <h3 className="terms__subtitle">Apache Kafka:</h3>
+          <ul className="terms__list">
+            <li className="list__item">
+              <a
+                href="https://strimzi.io/quickstarts/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Strimzi Quick Starts
+              </a>
+            </li>
+            <li className="list__item">
+              <a
+                href="https://access.redhat.com/documentation/en-us/red_hat_amq/2021.q3/html/deploying_and_upgrading_amq_streams_on_openshift/index"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Deploying and Upgrading AMQ Streams on OpenShift
+              </a>
+            </li>
+            <li className="list__item">
+              <a
+                href="https://access.redhat.com/documentation/en-us/red_hat_amq/2021.q3/html/using_amq_streams_on_openshift/index"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Using AMQ Streams on OpenShift
               </a>
             </li>
           </ul>

@@ -77,7 +77,7 @@ function TermsAndConditions() {
           <ul className="terms__list">
             <li className="list__item">
               Over the course of 2 weeks, teams will be tasked with completing 6
-              challenges that require using Red Hat OpenShift and Quarkus. See
+              challenges that require using Red Hat OpenShift and other technologies. See
               the full list of challenges here.
               {' '}
               <br />
