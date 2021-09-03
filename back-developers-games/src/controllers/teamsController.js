@@ -57,7 +57,7 @@ function teamsController() {
       // Send e-mails
       createdParticipants.forEach(async (participant) => {
         await mailService.sendRegisteredUser(
-          participant.email, participant.password,
+          participant.email, participant.tempPassword,
         );
       });
 
