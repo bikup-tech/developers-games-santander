@@ -54,8 +54,19 @@ app.use('/api/participants', participantsRouter);
 app.use('/api/upload', uploadFilesRouter);
 app.use('/api/tournaments', tournamentsRouter);
 
-// app.get('/api/test', async (req, res) => {
+// const { encryptPassword } = require('./src/utils/bcryptUtils');
+// const mailService = require('./src/services/mailService');
 
+// app.get('/api/generatePassword', async (req, res) => {
+//   const password = '';
+//   const encrypted = await encryptPassword(password);
+//   console.log(encrypted);
+
+//   res.send(encrypted);
+// });
+
+// app.get('/api/sendMailToUser', async (req, res) => {
+//   mailService.sendRegisteredUser('ggonzalezrod@produban.com.mx', '');
 // });
 
 app.listen(PORT, () => debug(`Server running in port: ${PORT}`));
