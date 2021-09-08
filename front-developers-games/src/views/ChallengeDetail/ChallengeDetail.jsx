@@ -71,7 +71,7 @@ function ChallengeDetail() {
   }, [challengeDetail, challengeDetail?.filename]);
 
   function isIgnoredKey(key) {
-    const ignoredKeys = ['number', 'name', 'title', 'subtitle', 'mentor', 'description', 'videoUrl', 'tournamentId', '_id', '__v'];
+    const ignoredKeys = ['number', 'name', 'title', 'subtitle', 'mentor', 'videoUrl', 'tournamentId', 'description', '_id', '__v'];
 
     if (ignoredKeys.includes(key)) {
       return true;
@@ -259,7 +259,7 @@ function ChallengeDetail() {
               </div>
               <div className="challenge__info-group">
                 <p className="info-group__title">Description</p>
-                <p className="info-group__description">{challengeDetail.tournamentChallenge.description}</p>
+                <p className="info-group__description" dangerouslySetInnerHTML={{ __html: challengeDetail.tournamentChallenge.description }} />
               </div>
               <div className="challenge__video">
                 <div className="video__background" />
