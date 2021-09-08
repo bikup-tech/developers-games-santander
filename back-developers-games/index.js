@@ -29,11 +29,19 @@ const tournamentsRouter = require('./src/routes/tournamentsRouter');
 const app = express();
 const PORT = process.env.PORT || 4200;
 
-// mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(
-  'mongodb+srv://developer-games:developer-games@developer-games-cluster.f0myq.mongodb.net/developer-games?retryWrites=true&w=majority',
-  { useNewUrlParser: true, useUnifiedTopology: true },
-);
+debug(`>>> Starting server in -- ${process.env.NODE_ENV.toUpperCase()} -- mode <<<`);
+
+if (process.env.NODE_ENV === 'pro') {
+  mongoose.connect(
+    process.env.DB_HOST_PRO,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+  );
+} else {
+  mongoose.connect(
+    process.env.DB_HOST_DEV,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+  );
+}
 
 app.use(cors());
 
@@ -58,14 +66,16 @@ app.use('/api/tournaments', tournamentsRouter);
 // const mailService = require('./src/services/mailService');
 
 // app.get('/api/generatePassword', async (req, res) => {
-//   const password = 'asdasd';
+//   const password = 'L0SV2I03uh';
 //   const encrypted = await encryptPassword(password);
 
 //   res.send(encrypted);
 // });
 
 // app.get('/api/sendMailToUser', async (req, res) => {
-//   mailService.sendRegisteredUser('ggonzalezrod@produban.com.mx', 'fsd87fsd9f79');
+//   mailService.sendRegisteredUser('', '');
+
+//   res.send(true);
 // });
 
 app.listen(PORT, () => debug(`Server running in port: ${PORT}`));
