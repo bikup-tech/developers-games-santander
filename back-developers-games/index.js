@@ -33,7 +33,7 @@ debug(`>>> Starting server in -- ${process.env.NODE_ENV.toUpperCase()} -- mode <
 
 if (process.env.NODE_ENV === 'pro') {
   mongoose.connect(
-    process.env.DB_HOST_ENV,
+    process.env.DB_HOST_PRO,
     { useNewUrlParser: true, useUnifiedTopology: true },
   );
 } else {
