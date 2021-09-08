@@ -13,5 +13,6 @@ export default {
   forgotPassword: {
     REQUIRED_ENTRY: 'There are empty requiered fields.',
     WRONG_EMAIL: 'There is a invalid email',
+    PASSWORDS_ARE_NOT_THE_SAME: 'The emails are not the same.',
   },
 };

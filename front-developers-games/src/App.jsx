@@ -21,7 +21,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import RedirectComponent from './components/RedirectComponent/RedirectComponent';
 import Prizes from './views/Prizes/Prizes';
-import ForgotPassword from './views/ForgotPassword/ForgotPassword';
+import RestorePasswordByMail from './views/RestorePasswordByMail/RestorePasswordByMail';
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
         <Route path="/terms" component={TermsAndConditions} />
         <Route path="/participantsGuide" component={ParticipantGuide} />
         <Route path="/prizes" component={Prizes} />
-        <Route path="/forgotPassword" component={ForgotPassword} />
+        <Route path="/restorePasswordByMail" component={RestorePasswordByMail} />
         <ProtectedRoute path="/santander/challenges" exact component={ChallengesPageContainer} />
         <ProtectedRoute path="/santander/challenges/:challengeId" component={ChallengeDetail} />
         <ProtectedRoute path="/handsOnWorkshops" component={HandsOnWorkshops} />

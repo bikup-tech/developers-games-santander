@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 // constants
 import warningMessages from '../../constants/warningMessages';
@@ -8,42 +9,42 @@ import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import Input from '../../components/Input/Input';
 import MainButton from '../../components/MainButton/MainButton';
 
-const initialRestoreMailState = {
+const initialRestorePasswordState = {
   email: '',
-  repeatEmail: '',
   emailIsWrong: false,
-  repeatEmailIsWrong: false,
 };
 
-function ForgotPassword() {
+function RestorePasswordByMail() {
+  const history = useHistory();
+
   const [warningMessage, setWarningMessage] = useState('');
-  const [restoreMail, setRestoreMail] = useState(initialRestoreMailState);
+  const [restorePassword, setRestorePassword] = useState(initialRestorePasswordState);
 
   function handleTextInputChange({ target: { name, value } }) {
-    setRestoreMail({ ...restoreMail, [name]: value, [`${name}IsWrong`]: false });
+    setRestorePassword({ ...restorePassword, [name]: value, emailIsWrong: false });
     setWarningMessage('');
   }
 
   function handleRestorePasswordClick() {
-    Object.entries(restoreMail).forEach(([key, value]) => {
+    const splitEmail = restorePassword.email;
+
+    const restorePassToValdate = (({
+      emailIsWrong, ...rest
+    }) => rest)(restorePassword);
+
+    Object.entries(restorePassToValdate).forEach((value) => {
       if (value === '') {
-        setRestoreMail({ ...restoreMail, [`${key}IsWrong`]: true });
+        setRestorePassword({ ...restorePassword, emailIsWrong: true });
         setWarningMessage(warningMessages.forgotPassword.REQUIRED_ENTRY);
       }
     });
 
-    if (restoreMail.email === restoreMail.repeatEmail) {
-      const splitEmail = restoreMail.email;
-      const splitRepeatEmail = restoreMail.repeatEmail;
-
-      if (splitEmail.includes('@') && splitRepeatEmail.includes('@')) {
-        setWarningMessage('');
-        // enviar les dades al back
-      } else {
-        setWarningMessage(warningMessages.forgotPassword.WRONG_EMAIL);
-      }
+    if (splitEmail.includes('@', '.')) {
+      setWarningMessage('');
+      // enviar les dades al back
+      history.replace('/login');
     } else {
-      setWarningMessage(warningMessages.forgotPassword.MAILS_ARE_NOT_THE_SAME);
+      setWarningMessage(warningMessages.forgotPassword.WRONG_EMAIL);
     }
   }
 
@@ -57,7 +58,7 @@ function ForgotPassword() {
     <AppWrapper title="Recover your password!">
       <section className="login-container">
         <h3 className="app__title">
-          Enter your email twice to send you a new password
+          Enter your email to send you a new password
         </h3>
         <form className="login__form">
           <div className="form__input form__login">
@@ -65,19 +66,9 @@ function ForgotPassword() {
               type="text"
               name="email"
               placeholder="e-mail"
-              value={restoreMail.email}
+              value={restorePassword.email}
               onChange={handleTextInputChange}
-              isIncorrect={restoreMail.emailIsWrong}
-            />
-          </div>
-          <div className="form__input form__login">
-            <Input
-              type="text"
-              name="repeatEmail"
-              placeholder="Repeat e-mail"
-              value={restoreMail.repeatEmail}
-              onChange={handleTextInputChange}
-              isIncorrect={restoreMail.repeatEmailIsWrong}
+              isIncorrect={restorePassword.emailIsWrong}
               onKeyUp={handleKeyUp}
             />
           </div>
@@ -89,8 +80,7 @@ function ForgotPassword() {
 
       </section>
     </AppWrapper>
-
   );
 }
 
-export default ForgotPassword;
+export default RestorePasswordByMail;
