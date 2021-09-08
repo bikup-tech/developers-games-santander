@@ -8,6 +8,7 @@ import ChallengeDetail from './views/ChallengeDetail/ChallengeDetail';
 import Teams from './views/Teams/Teams';
 import TermsAndConditions from './views/TermsAndConditions/TermsAndConditions';
 import Register from './views/Register/Register';
+// import FinishedRegistration from './views/FinishedRegistration/FinishedRegistration';
 import Login from './views/Login/Login';
 import EditProfile from './views/EditProfile/EditProfile';
 import ParticipantGuide from './views/ParticipantGuide/ParticipantGuide';
@@ -29,7 +30,10 @@ function App() {
       <Header />
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/santander" exact component={Register} />
+        <Route path="/santander" exact>
+          <Register />
+          {/* <FinishedRegistration /> */}
+        </Route>
         <Route path="/login" exact component={Login} />
         <Route path="/terms" component={TermsAndConditions} />
         <Route path="/participantsGuide" component={ParticipantGuide} />

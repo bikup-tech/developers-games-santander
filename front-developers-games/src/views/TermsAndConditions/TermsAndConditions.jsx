@@ -36,9 +36,8 @@ function TermsAndConditions() {
         <div className="terms__group">
           <h3 className="terms__subtitle">Who can participate?</h3>
           <p className="terms__text">
-            Any existing contractor of Banco Santander can participate.
-            Participation is voluntary, and subject to approval from your
-            manager.
+            Only can participate Banco Santander employees.
+            Participation is voluntary, and subject to approval from your manager.
           </p>
           <p className="terms__text">
             Participation is part of your employment, and as such you are
