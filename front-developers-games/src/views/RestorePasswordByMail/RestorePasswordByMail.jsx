@@ -26,7 +26,7 @@ function RestorePasswordByMail() {
   }
 
   function handleRestorePasswordClick() {
-    const splitEmail = restorePassword.email;
+    const tempEmail = restorePassword.email;
 
     const restorePassToValdate = (({
       emailIsWrong, ...rest
@@ -39,9 +39,9 @@ function RestorePasswordByMail() {
       }
     });
 
-    if (splitEmail.includes('@', '.')) {
+    if (tempEmail.includes('@') && tempEmail.includes('.')) {
       setWarningMessage('');
-      // enviar les dades al back
+      // TODO: enviar les dades al back
       history.replace('/login');
     } else {
       setWarningMessage(warningMessages.forgotPassword.WRONG_EMAIL);

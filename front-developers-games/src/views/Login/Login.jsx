@@ -106,7 +106,7 @@ function Login() {
               onKeyUp={handleKeyUp}
             />
           </div>
-          <Link to="/restorePasswordByMail">Forgot your password?</Link>
+          <Link className="app__title normal__font-size" to="/restorePasswordByMail">Forgot your password?</Link>
           <small className="form__warningMessage">{warningMessage}</small>
           <div className="form__button">
             <MainButton onClick={handleLoginClick}>Login</MainButton>
