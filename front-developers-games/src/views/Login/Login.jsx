@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
@@ -106,7 +107,8 @@ function Login() {
               onKeyUp={handleKeyUp}
             />
           </div>
-          <Link className="app__title normal__font-size" to="/restorePasswordByMail">Forgot your password?</Link>
+          {/* <Link className="app__title normal__font-size"
+          to="/restorePasswordByMail">Forgot your password?</Link> */}
           <small className="form__warningMessage">{warningMessage}</small>
           <div className="form__button">
             <MainButton onClick={handleLoginClick}>Login</MainButton>
