@@ -31,7 +31,7 @@ const PORT = process.env.PORT || 4200;
 
 debug(`>>> Starting server in -- ${process.env.NODE_ENV.toUpperCase()} -- mode <<<`);
 
-if (process.env.NODE_ENV === 'pro') {
+if (process.env.NODE_ENV === 'production') {
   mongoose.connect(
     process.env.DB_HOST_PRO,
     { useNewUrlParser: true, useUnifiedTopology: true },
@@ -77,5 +77,9 @@ app.use('/api/tournaments', tournamentsRouter);
 
 //   res.send(true);
 // });
+
+app.get('/api/checkEnv', (req, res) => {
+  res.send(process.env.NODE_ENV);
+});
 
 app.listen(PORT, () => debug(`Server running in port: ${PORT}`));
