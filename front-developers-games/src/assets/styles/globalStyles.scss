@@ -86,6 +86,10 @@
 }
 
 
+.normal__font-size {
+    font-size: $text-16;
+}
+
 @media only screen and (min-width:$query-1280) {
     .mobile {
         display: none;
