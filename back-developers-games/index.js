@@ -33,12 +33,12 @@ debug(`>>> Starting server in -- ${process.env.NODE_ENV.toUpperCase()} -- mode <
 
 if (process.env.NODE_ENV === 'production') {
   mongoose.connect(
-    process.env.DB_HOST_PRO,
+    'mongodb+srv://developer-games:developer-games@developer-games-cluster.f0myq.mongodb.net/developer-games?retryWrites=true&w=majority',
     { useNewUrlParser: true, useUnifiedTopology: true },
   );
 } else {
   mongoose.connect(
-    process.env.DB_HOST_DEV,
+    'mongodb+srv://developer-games:developer-games-dev@developergames-devenv-c.mrnww.mongodb.net/developer-games?retryWrites=true&w=majority',
     { useNewUrlParser: true, useUnifiedTopology: true },
   );
 }
@@ -79,7 +79,11 @@ app.use('/api/tournaments', tournamentsRouter);
 // });
 
 app.get('/api/checkEnv', (req, res) => {
-  res.send(process.env.NODE_ENV);
+  res.json({
+    node_env: process.env.NODE_ENV,
+    db_host_pro: process.env.DB_HOST_PRO,
+    db_host_dev: process.env.DB_HOST_DEV,
+  });
 });
 
 app.listen(PORT, () => debug(`Server running in port: ${PORT}`));
