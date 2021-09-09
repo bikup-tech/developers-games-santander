@@ -219,6 +219,10 @@ function TermsAndConditions() {
             without having the right to any remuneration derived from their
             dissemination.
           </p>
+          <p className="terms__text">
+            At the end of the games no data will be stored by S&amp;D,
+            Red Hat or any 3rd parties. All will be erased.
+          </p>
         </div>
         <div className="terms__group">
           <h3 className="terms__subtitle">Compliance</h3>

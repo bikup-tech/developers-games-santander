@@ -5,12 +5,10 @@ import { useSelector } from 'react-redux';
 import './Footer.scss';
 
 const participantFooter = [
-  { name: 'Privacy statement', route: '/terms' },
   { name: 'Terms & conditions', route: '/terms' },
   { name: 'Prizes', route: '/prizes' },
 ];
 const adminFooter = [
-  { name: 'Privacy statement', route: '/awards' },
   { name: 'Terms & conditions', route: '/terms' },
 ];
 
@@ -48,7 +46,8 @@ function Footer() {
   return (
     <footer className="footer-container">
       <div className="footer__items">
-        <p className="items__text">Copyright ©2021 Red Hat, Inc</p>
+        <p className="items__text">Copyright ©2021 S&amp;D</p>
+        <p className="items__text">Sponsored by Red Hat</p>
         <nav className="items__navigation">
           {
             renderedFooter
