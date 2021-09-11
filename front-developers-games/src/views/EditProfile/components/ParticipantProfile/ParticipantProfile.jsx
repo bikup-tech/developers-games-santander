@@ -197,7 +197,7 @@ function ParticipantProfile() {
           </div>
           <div className="entries__number last-entry">
             <Input
-              type="number"
+              type="tel"
               name="phone"
               placeholder="Phone*"
               value={editParticipantProfile.phone}

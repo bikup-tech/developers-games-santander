@@ -295,7 +295,7 @@ function AdminProfile() {
           </div>
           <div className="entries__number last-entry">
             <Input
-              type="number"
+              type="tel"
               name="phone"
               placeholder="Phone*"
               value={editAdminProfile.phone}

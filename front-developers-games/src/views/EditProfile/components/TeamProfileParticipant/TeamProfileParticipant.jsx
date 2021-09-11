@@ -79,7 +79,7 @@ function TeamProfileParticipant({ participantNumber, participant }) {
           </div>
           <div className="entries__number">
             <Input
-              type="number"
+              type="tel"
               name="phone"
               placeholder="Phone*"
               value={participant.phone}
