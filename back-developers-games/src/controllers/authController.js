@@ -2,13 +2,14 @@ const participantsModel = require('../models/participantModel');
 
 // Constants
 const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
-const { MISSING_PROPERTIES, NO_USER_FOUND } = require('../constants/responseMessages');
+const { MISSING_PROPERTIES, NO_USER_FOUND, NOT_AN_EMAIL } = require('../constants/responseMessages');
 
 // Utils
 const CustomError = require('../utils/CustomError');
 const handleResponseError = require('../utils/handleResponseError');
 const handleResponseSuccess = require('../utils/handleResponseSuccess');
 const { comparePasswords } = require('../utils/bcryptUtils');
+const isValidEmail = require('../utils/isValidEmail');
 
 function authController() {
   async function login(req, res) {
@@ -61,7 +62,20 @@ function authController() {
     }
   }
 
-  return { login, checkCorrectPassword };
+  async function resetPassword({ params: { participantEmail } }, res) {
+    try {
+      if (!participantEmail) {
+        throw new CustomError(BAD_REQUEST, MISSING_PROPERTIES('participantEmail'));
+      }
+      if (!isValidEmail(participantEmail)) {
+        throw new CustomError(BAD_REQUEST, NOT_AN_EMAIL);
+      }
+    } catch (error) {
+
+    }
+  }
+
+  return { login, checkCorrectPassword, resetPassword };
 }
 
 module.exports = authController();
