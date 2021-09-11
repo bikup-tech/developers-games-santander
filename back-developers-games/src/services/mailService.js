@@ -168,9 +168,9 @@ function mailService() {
     const mailOptions = {
       from: process.env.MAIL_USER,
       to: email,
-      subject: 'Developer games begin.',
+      subject: 'Reset your Password',
       text: `
-      Tu nueva contraseña es ${password}
+      Your new password is ${password}
       `,
     };
 
