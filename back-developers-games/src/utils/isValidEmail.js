@@ -5,4 +5,4 @@ function isValidEmail(email) {
   return false;
 }
 
-module.export = isValidEmail;
+module.exports = isValidEmail;

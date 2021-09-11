@@ -17,6 +17,7 @@ module.exports = {
   UPDATE_PROFILE_SUCCESS: 'Tu perfil ha sido actualizado correctamente.',
   NO_TEAM_FOUND: (teamId) => `There is no team with the ID ${teamId}.`,
   NO_USER_ID_FOUND: (userId) => `There is no user with the ID ${userId}.`,
+  NO_USER_EMAIL_FOUND: (participantEmail) => `There is no user with ${participantEmail} email.`,
   WRONG_PASSWORD: 'The password is not correct.',
   MISSING_AVATAR_FILE: 'Please provide an avatar file.',
   MISSING_DELIVERABLE_FILE: 'Please provide a deliverable file.',
