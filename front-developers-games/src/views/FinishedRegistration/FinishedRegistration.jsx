@@ -5,7 +5,7 @@ import AppWrapper from '../../components/AppWrapper/AppWrapper';
 
 function FinishedRegistration() {
   return (
-    <AppWrapper title="The registration is closed">
+    <AppWrapper title="The registration is closed!">
       <section className="register-container">
         <h3 className="app__title normal__font-size">
           Sorry but, we have reached maximum capacity for this edition.
@@ -23,6 +23,7 @@ function FinishedRegistration() {
           >
             (https://developers.redhat.com/)
           </a>
+          .
         </h3>
       </section>
     </AppWrapper>
