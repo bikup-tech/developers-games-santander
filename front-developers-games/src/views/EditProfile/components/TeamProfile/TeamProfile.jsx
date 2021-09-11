@@ -103,7 +103,7 @@ function TeamProfile() {
     }
   }
 
-  // FUNCIO QUE ELIMINA EL TEAM
+  // FUNCIO QUE ELIMINA EL TEAM (ens va demanar que no existis aquest boto)
   // function handleDeleteTeam() {
   //  if (window.confirm("Are your sure you want to delete your team and all it's participants?")) {
   //     dispatch(deleteTeam(team._id));
