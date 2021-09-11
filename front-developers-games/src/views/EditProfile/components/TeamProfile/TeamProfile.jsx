@@ -47,7 +47,7 @@ function TeamProfile() {
   }, [team?.name]);
 
   useEffect(() => {
-    if (!team?._id) {
+    if (!team?._id && tournamentId) {
       dispatch(loadTeam(toLoadTeamDetail));
     }
   }, [team]);

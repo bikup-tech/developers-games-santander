@@ -32,11 +32,13 @@ const PORT = process.env.PORT || 4200;
 debug(`>>> Starting server in -- ${process.env.NODE_ENV.toUpperCase()} -- mode <<<`);
 
 if (process.env.NODE_ENV === 'production') {
+  debug('--- Connecting to <PRODUCTION> database ---');
   mongoose.connect(
     'mongodb+srv://developer-games:developer-games@developer-games-cluster.f0myq.mongodb.net/developer-games?retryWrites=true&w=majority',
     { useNewUrlParser: true, useUnifiedTopology: true },
   );
 } else {
+  debug('--- Connecting to <DEV> database ---');
   mongoose.connect(
     'mongodb+srv://developer-games:developer-games-dev@developergames-devenv-c.mrnww.mongodb.net/developer-games?retryWrites=true&w=majority',
     { useNewUrlParser: true, useUnifiedTopology: true },
