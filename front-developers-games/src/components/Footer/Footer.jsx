@@ -46,9 +46,9 @@ function Footer() {
   return (
     <footer className="footer-container">
       <div className="footer__items">
-        <p className="items__text">Copyright ©2021 S&amp;D</p>
-        <p className="items__text">Sponsored by Red Hat</p>
         <nav className="items__navigation">
+          <p className="items__item">Copyright ©2021 S&amp;D</p>
+          <p className="items__item">Sponsored by Red Hat</p>
           {
             renderedFooter
           }
