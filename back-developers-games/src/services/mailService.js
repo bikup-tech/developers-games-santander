@@ -159,7 +159,27 @@ function mailService() {
     return transporter.sendMail(mailOptions);
   }
 
-  return { sendRegisteredUser, sendRegisteredMentor, sendActivatedTournament };
+  async function sendResetPassword(email, password) {
+    const logData = {
+      user: email,
+    };
+    logService.createLog(logTypes.RESET_PASSWORD, logData, logStatus.SUCCESS);
+
+    const mailOptions = {
+      from: process.env.MAIL_USER,
+      to: email,
+      subject: 'Reset your Password',
+      text: `
+      Your new password is ${password}
+      `,
+    };
+
+    return transporter.sendMail(mailOptions);
+  }
+
+  return {
+    sendRegisteredUser, sendRegisteredMentor, sendActivatedTournament, sendResetPassword,
+  };
 }
 
 module.exports = mailService();

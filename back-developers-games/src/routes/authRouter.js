@@ -9,4 +9,7 @@ router.route('/')
 router.route('/check')
   .post(authController.checkCorrectPassword);
 
+router.route('/resetPassword/:participantEmail')
+  .post(authController.resetPassword);
+
 module.exports = router;
