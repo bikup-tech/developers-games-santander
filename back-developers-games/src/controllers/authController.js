@@ -93,8 +93,8 @@ function authController() {
       const updateQuery = {
         password: encryptedPassword,
       };
-      const coso = await updateParticipant(foundParticipant._id, updateQuery);
-      console.log(coso);
+
+      await updateParticipant(foundParticipant._id, updateQuery);
 
       await sendResetPassword(participantEmail, generatedPassword);
 
