@@ -9,6 +9,10 @@ const mongoose = require('mongoose');
 const fileupload = require('express-fileupload');
 const { Storage } = require('@google-cloud/storage');
 
+const JSZip = require('jszip');
+const JSZipUtils = require('jszip-utils');
+const getGcloudBucketFileUrl = require('./src/utils/getGcloudBucketFileUrl');
+
 const gcloud = new Storage({
   keyFilename: path.join(__dirname, 'silent-elevator-318614-4faa68606693.json'),
   projectId: process.env.GCLOUD_PROJECT_NAME || 'silent-elevator-318614',
@@ -64,21 +68,23 @@ app.use('/api/participants', participantsRouter);
 app.use('/api/upload', uploadFilesRouter);
 app.use('/api/tournaments', tournamentsRouter);
 
-// const { encryptPassword } = require('./src/utils/bcryptUtils');
-// const mailService = require('./src/services/mailService');
+const { encryptPassword } = require('./src/utils/bcryptUtils');
+const mailService = require('./src/services/mailService');
+const { default: axios } = require('axios');
+const { listeners } = require('node-notifier');
 
-// app.get('/api/generatePassword', async (req, res) => {
-//   const password = 'L0SV2I03uh';
-//   const encrypted = await encryptPassword(password);
+app.get('/api/generatePassword', async (req, res) => {
+  const password = 'lsP3j8RpU0';
+  const encrypted = await encryptPassword(password);
 
-//   res.send(encrypted);
-// });
+  res.send(encrypted);
+});
 
-// app.get('/api/sendMailToUser', async (req, res) => {
-//   mailService.sendRegisteredUser('', '');
+app.get('/api/sendMailToUser', async (req, res) => {
+  mailService.sendRegisteredUser('', '');
 
-//   res.send(true);
-// });
+  res.send(true);
+});
 
 app.get('/api/checkEnv', (req, res) => {
   res.json({
@@ -86,6 +92,46 @@ app.get('/api/checkEnv', (req, res) => {
     db_host_pro: process.env.DB_HOST_PRO,
     db_host_dev: process.env.DB_HOST_DEV,
   });
+});
+
+app.post('/api/download/challenges', (req, res) => {
+  const { files, challengeNumber } = req.body;
+
+  console.log('starting zip');
+  try {
+    const zip = new JSZip();
+    const zipName = `Challenge-${challengeNumber}`;
+
+    let count = 0;
+
+    const mockFiles = ['https://storage.googleapis.com/developer-games-bucket/cors.json', 'https://storage.googleapis.com/developer-games-bucket/cors.json'];
+
+    mockFiles.forEach(async (challenge) => {
+      // const tempFileUrl = getGcloudBucketFileUrl(challenge.gcloudName);
+      // console.log(tempFileUrl);
+
+      // const tempFile = await JSZipUtils.getBinaryContent(challenge);
+
+      const { data } = await axios.get(challenge, {
+        responseType: 'arraybuffer',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/pdf',
+        },
+      });
+
+      zip.file(`file-${count}`, data, { binary: true });
+      count += 1;
+
+      if (count === files.length) {
+        zip.generateAsync({ type: 'arraybuffer' }).then((content) => {
+          res.send(content);
+        });
+      }
+    });
+  } catch (error) {
+    console.log('error');
+  }
 });
 
 app.listen(PORT, () => debug(`Server running in port: ${PORT}`));
