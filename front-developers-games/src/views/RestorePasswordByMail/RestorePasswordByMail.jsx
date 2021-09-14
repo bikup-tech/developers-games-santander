@@ -5,6 +5,9 @@ import { useDispatch } from 'react-redux';
 // constants
 import warningMessages from '../../constants/warningMessages';
 
+// action creators
+import { restorePasswordAction } from '../../redux/actions/loginActions';
+
 // components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import Input from '../../components/Input/Input';
@@ -43,7 +46,7 @@ function RestorePasswordByMail() {
 
     if (tempEmail.includes('@') && tempEmail.includes('.')) {
       setWarningMessage('');
-      dispatch(restorePassword(tempEmail));
+      dispatch(restorePasswordAction(tempEmail));
       history.replace('/login');
     } else {
       setWarningMessage(warningMessages.forgotPassword.WRONG_EMAIL);

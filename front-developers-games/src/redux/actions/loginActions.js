@@ -94,7 +94,7 @@ export function logOut() {
   window.location.replace('/login');
 }
 
-export function restorePassword(userEmail) {
+export function restorePasswordAction(userEmail) {
   return async (dispatch) => {
     try {
       const endpoint = `${APIConstants.HOSTNAME}${APIConstants.RESTORE_PASSWORD(userEmail)}`;
@@ -110,10 +110,17 @@ export function restorePassword(userEmail) {
         throw new Error();
       }
     } catch (error) {
-      dispatch(setAlert(
-        alertConstants.types.ERROR,
-        alertConstants.messages.RESTORE_PASSWORD_ERROR,
-      ));
+      if (error.message === 'Request failed with status code 404') {
+        dispatch(setAlert(
+          alertConstants.types.ERROR,
+          alertConstants.messages.RESTORE_PASSWORD_EMIAl_INVALID,
+        ));
+      } else {
+        dispatch(setAlert(
+          alertConstants.types.ERROR,
+          alertConstants.messages.RESTORE_PASSWORD_ERROR,
+        ));
+      }
     }
   };
 }

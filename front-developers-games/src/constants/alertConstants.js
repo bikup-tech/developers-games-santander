@@ -38,6 +38,7 @@ export default {
     UPDATE_TOURNAMENT_ERROR: 'There has been an error updating the tournament.',
     RESTORE_PASSWORD: 'We have sent an email with the new credentials',
     RESTORE_PASSWORD_ERROR: 'There has been an error sending the email with the credentials.',
+    RESTORE_PASSWORD_EMIAl_INVALID: 'There is no user with this email.',
   },
   icons: {
     SUCCESS: alertSuccessIcon,
