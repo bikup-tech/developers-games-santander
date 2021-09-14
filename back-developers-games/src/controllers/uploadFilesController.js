@@ -54,8 +54,6 @@ function uploadFilesController(gcBucket) {
         throw new CustomError(BAD_REQUEST, MISSING_DELIVERABLE_FILE);
       }
 
-      console.log(files);
-
       const file = files.deliverable;
       const filePath = files.deliverable.tempFilePath;
 
