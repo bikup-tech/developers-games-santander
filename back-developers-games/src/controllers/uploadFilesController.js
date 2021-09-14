@@ -44,11 +44,17 @@ function uploadFilesController(gcBucket) {
     }
   }
 
-  async function uploadDeliverable({ files, params: { teamChallengeId } }, res) {
+  async function uploadDeliverable({
+    files,
+    params: { teamChallengeId },
+    query: { teamName, challengeNumber },
+  }, res) {
     try {
       if (!files || !files.deliverable) {
         throw new CustomError(BAD_REQUEST, MISSING_DELIVERABLE_FILE);
       }
+
+      console.log(files);
 
       const file = files.deliverable;
       const filePath = files.deliverable.tempFilePath;
@@ -56,10 +62,15 @@ function uploadFilesController(gcBucket) {
       let uploadedFilename = filePath.split('/');
       uploadedFilename = uploadedFilename[uploadedFilename.length - 1];
 
+      let fileExtension = file.name.split('.');
+      fileExtension = fileExtension[fileExtension.length - 1];
+
+      const downloadFileName = `${teamName}_challenge-${challengeNumber}.${fileExtension}`;
+
       await gcBucket.upload(filePath, {
         metadata: {
           contentType: file.mimetype,
-          contentDisposition: `inline; filename="${file.name}"`,
+          contentDisposition: `inline; filename="${downloadFileName}"`,
         },
       });
 
