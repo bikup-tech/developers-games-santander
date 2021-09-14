@@ -1,6 +1,6 @@
 // Constants
 const { BAD_REQUEST } = require('../constants/statusCodes');
-const { MISSING_AVATAR_FILE, MISSING_DELIVERABLE_FILE } = require('../constants/responseMessages');
+const { MISSING_AVATAR_FILE, MISSING_DELIVERABLE_FILE, MISSING_QUERY_PROPERTIES } = require('../constants/responseMessages');
 
 // Services
 const participantService = require('../services/participantService');
@@ -52,6 +52,10 @@ function uploadFilesController(gcBucket) {
     try {
       if (!files || !files.deliverable) {
         throw new CustomError(BAD_REQUEST, MISSING_DELIVERABLE_FILE);
+      }
+
+      if (!teamName || !challengeNumber) {
+        throw new CustomError(BAD_REQUEST, MISSING_QUERY_PROPERTIES('teamName, challengeNumber'));
       }
 
       const file = files.deliverable;
