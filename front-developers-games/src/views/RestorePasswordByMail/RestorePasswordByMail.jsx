@@ -65,7 +65,7 @@ function RestorePasswordByMail() {
         <h3 className="app__title">
           Enter your email to send you a new password
         </h3>
-        <form className="login__form">
+        <form className="login__form" onSubmit={() => {}}>
           <div className="form__input form__login">
             <Input
               type="text"
