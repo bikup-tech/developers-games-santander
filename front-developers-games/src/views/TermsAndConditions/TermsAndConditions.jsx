@@ -125,15 +125,17 @@ function TermsAndConditions() {
             How do you ask questions during the competition?
           </h3>
           <p className="terms__text">
-            A dedicated MS Teams Support chat. will be shared with participants and
-            you can also contact through this email
+            A dedicated MS Teams Support chat will be shared with participants
             {' '}
-
-            <a href="mailto: DevelopergamesEMEA@redhat.com?Subject=Contacto%20desde%20página%20términos%20y%20condiciones%20developerGames">
-              DevelopergamesEMEA@redhat.com
+            <a
+              href="https://teams.microsoft.com/l/channel/19%3aVMnxgwa0nflBxB87AzUt1ptpTn1YanBlfAmqPwfB8yE1%40thread.tacv2/General?groupId=178f5d07-5a32-4359-873a-c29327d1d991&tenantId=35595a02-4d6d-44ac-99e1-f9ab4cd872db"
+              target="_blank"
+              rel="noreferrer"
+            >
+              (https://teams.microsoft.com/l/channel/19%3aVMnxgwa0nflBxB87AzUt1ptpTn1YanBlfAmqPwfB8yE1%40thread.tacv2/General?groupId=178f5d07-5a32-4359-873a-c29327d1d991&tenantId=35595a02-4d6d-44ac-99e1-f9ab4cd872db)
             </a>
             {' '}
-            Support Email.
+            and you can also contact through this email DevelopergamesEMEA@redhat.com Support Email.
 
           </p>
         </div>
@@ -145,9 +147,12 @@ function TermsAndConditions() {
             <li className="list__item">3rd position: Super Mario Lego set </li>
           </ul>
           <p className="terms__text">
-            If the jury considers that the projects are not of sufficient
-            quality or do not sufficiently conform to the evaluation criteria,
-            prizes may be void.
+            If the jury considers that the projects are not of sufficient quality or do
+            not sufficiently conform to the evaluation criteria, prizes may be void.
+          </p>
+          <p className="terms__text">
+            Prizes may vary if they have to be shipped outside Europe.
+            Prizes will be subject to similar costs.
           </p>
         </div>
         <div className="terms__group">

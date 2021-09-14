@@ -93,3 +93,34 @@ export function logOut() {
   localStorage.removeItem('isLogged');
   window.location.replace('/login');
 }
+
+export function restorePasswordAction(userEmail) {
+  return async (dispatch) => {
+    try {
+      const endpoint = `${APIConstants.HOSTNAME}${APIConstants.RESTORE_PASSWORD(userEmail)}`;
+      const { data } = await axios.post(endpoint);
+      if (data) {
+        dispatch(
+          setAlert(
+            alertConstants.types.SUCCESS,
+            alertConstants.messages.RESTORE_PASSWORD,
+          ),
+        );
+      } else {
+        throw new Error();
+      }
+    } catch (error) {
+      if (error?.response?.status === 404) {
+        dispatch(setAlert(
+          alertConstants.types.ERROR,
+          alertConstants.messages.RESTORE_PASSWORD_EMIAl_INVALID,
+        ));
+      } else {
+        dispatch(setAlert(
+          alertConstants.types.ERROR,
+          alertConstants.messages.RESTORE_PASSWORD_ERROR,
+        ));
+      }
+    }
+  };
+}

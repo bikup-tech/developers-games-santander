@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 // constants
 import warningMessages from '../../constants/warningMessages';
+
+// action creators
+import { restorePasswordAction } from '../../redux/actions/loginActions';
 
 // components
 import AppWrapper from '../../components/AppWrapper/AppWrapper';
@@ -16,6 +20,7 @@ const initialRestorePasswordState = {
 
 function RestorePasswordByMail() {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [warningMessage, setWarningMessage] = useState('');
   const [restorePassword, setRestorePassword] = useState(initialRestorePasswordState);
@@ -41,7 +46,7 @@ function RestorePasswordByMail() {
 
     if (tempEmail.includes('@') && tempEmail.includes('.')) {
       setWarningMessage('');
-      // TODO: enviar les dades al back
+      dispatch(restorePasswordAction(tempEmail));
       history.replace('/login');
     } else {
       setWarningMessage(warningMessages.forgotPassword.WRONG_EMAIL);

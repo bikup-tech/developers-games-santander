@@ -22,4 +22,5 @@ export default {
   CREATE_PARTICIPANT: '/api/participants',
   LOAD_TOURNAMENT: (tournamentName) => `/api/tournaments/${tournamentName}`,
   ACTIVATE_TOURNAMENT: (tournamentName) => `/api/tournaments/${tournamentName}/activate`,
+  RESTORE_PASSWORD: (userEmail) => `/api/auth/resetPassword/${userEmail}`,
 };
