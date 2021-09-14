@@ -169,8 +169,32 @@ function mailService() {
       from: process.env.MAIL_USER,
       to: email,
       subject: 'Reset your Password',
-      text: `
-      Your new password is ${password}
+      html: `
+      <div style="width: 600px;">
+      <img
+        src="https://storage.googleapis.com/developer-games-bucket/mail-header.jpg"
+        alt="redhat logo"
+        style="margin-bottom: 16px"
+      />
+
+      <div style="padding: 0 24px; margin-bottom: 36px;">
+        <p style="line-height: 1.45; text-align: justify; font-size: 1.1rem; margin-bottom: 24px; color: black;">
+          Hi!<br><br>
+          Your password was restored successfully!<br>
+          Please find below your login details.<br><br>
+          <b>User:</b> ${email}<br>
+          <b>Password:</b> ${password}
+        </p>
+        
+          <p style="line-height: 1.45; text-align: justify; font-size: 1.1rem; margin: 0; color: black;">
+              If you have any problems with login details please contact:<br>
+              <a href="mailto:games@developergames.io?Subject=Login%20admin%20issue" style="color: #00ADAF">games@developergames.io</a>
+          </p>
+      </div>
+      <footer style="width: 100%; background-color: #00ADAF; height: 40px; color: white; font-size: 1.1rem; display:table; text-align: center;">
+        <span style="display:table-cell; vertical-align:middle;">Copyright ©2021 Red Hat, Inc</span>
+      </footer>
+    </div>
       `,
     };
 

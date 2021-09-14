@@ -110,7 +110,7 @@ export function restorePasswordAction(userEmail) {
         throw new Error();
       }
     } catch (error) {
-      if (error.message === 'Request failed with status code 404') {
+      if (error?.response?.status === 404) {
         dispatch(setAlert(
           alertConstants.types.ERROR,
           alertConstants.messages.RESTORE_PASSWORD_EMIAl_INVALID,

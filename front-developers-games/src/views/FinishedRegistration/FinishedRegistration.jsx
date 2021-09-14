@@ -5,7 +5,7 @@ import AppWrapper from '../../components/AppWrapper/AppWrapper';
 
 function FinishedRegistration() {
   return (
-    <AppWrapper title="The registration is closed!">
+    <AppWrapper title="The Tournament is Full">
       <section className="register-container">
         <h3 className="app__title normal__font-size">
           Sorry but, we have reached maximum capacity for this edition.
