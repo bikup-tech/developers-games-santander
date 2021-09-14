@@ -8,10 +8,7 @@ const debug = require('debug')('app');
 const mongoose = require('mongoose');
 const fileupload = require('express-fileupload');
 const { Storage } = require('@google-cloud/storage');
-
-const JSZip = require('jszip');
-const JSZipUtils = require('jszip-utils');
-const getGcloudBucketFileUrl = require('./src/utils/getGcloudBucketFileUrl');
+const axios = require('axios');
 
 const gcloud = new Storage({
   keyFilename: path.join(__dirname, 'silent-elevator-318614-4faa68606693.json'),
@@ -70,8 +67,6 @@ app.use('/api/tournaments', tournamentsRouter);
 
 const { encryptPassword } = require('./src/utils/bcryptUtils');
 const mailService = require('./src/services/mailService');
-const { default: axios } = require('axios');
-const { listeners } = require('node-notifier');
 
 app.get('/api/generatePassword', async (req, res) => {
   const password = 'lsP3j8RpU0';
@@ -95,16 +90,11 @@ app.get('/api/checkEnv', (req, res) => {
 });
 
 app.post('/api/download/challenges', (req, res) => {
-  const { files, challengeNumber } = req.body;
+  const { files } = req.body;
 
-  console.log('starting zip');
   try {
-    const zip = new JSZip();
-    const zipName = `Challenge-${challengeNumber}`;
-
-    let count = 0;
-
-    const mockFiles = ['https://storage.googleapis.com/developer-games-bucket/cors.json', 'https://storage.googleapis.com/developer-games-bucket/cors.json'];
+    const mockFiles = ['https://storage.googleapis.com/developer-games-bucket/mail-header.jpg', 'https://storage.googleapis.com/developer-games-bucket/mail-header.jpg'];
+    const blobFiles = [];
 
     mockFiles.forEach(async (challenge) => {
       // const tempFileUrl = getGcloudBucketFileUrl(challenge.gcloudName);
@@ -113,20 +103,13 @@ app.post('/api/download/challenges', (req, res) => {
       // const tempFile = await JSZipUtils.getBinaryContent(challenge);
 
       const { data } = await axios.get(challenge, {
-        responseType: 'arraybuffer',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/pdf',
-        },
+        responseType: 'binarycontent',
       });
 
-      zip.file(`file-${count}`, data, { binary: true });
-      count += 1;
+      blobFiles.push(data);
 
-      if (count === files.length) {
-        zip.generateAsync({ type: 'arraybuffer' }).then((content) => {
-          res.send(content);
-        });
+      if (blobFiles.length === mockFiles.length) {
+        res.send(blobFiles);
       }
     });
   } catch (error) {

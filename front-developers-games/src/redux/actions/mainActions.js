@@ -1,4 +1,8 @@
+/* eslint-disable no-unused-vars */
 import axios from 'axios';
+// eslint-disable-next-line no-unused-vars
+import { saveAs } from 'file-saver';
+import JSZip from 'jszip';
 
 // Constants
 import actionTypes from './actionTypes';
@@ -292,6 +296,45 @@ export function getCompletedChallengeByChallengeId(tournamentChallengeId) {
         ));
       }
     } catch (error) {
+      dispatch(setAlert(
+        alertConstants.types.ERROR,
+        alertConstants.messages.DOWNLOAD_COMPLETED_CHALLENGES_ERROR,
+      ));
+      dispatch(loadTournamentTeamsError(error.message));
+    }
+  };
+}
+
+export function donwloadZipChallenges(tournamentChallengeId, challengeNumber) {
+  return async (dispatch) => {
+    try {
+      const zip = new JSZip();
+
+      const endpoint = `${APIConstants.HOSTNAME}${APIConstants.GET_COMPLETED_CHALLENGES(tournamentChallengeId)}`;
+      const { data } = await axios.get(endpoint);
+
+      const downloadEndpoint = `${APIConstants.HOSTNAME}/api/download/challenges`;
+      const { data: blobedFiles } = await axios
+        .post(downloadEndpoint, { files: data, challengeNumber });
+
+      const reader = new FileReader();
+      const blobedCoso = new Blob([blobedFiles[0]]);
+
+      const blobUrl = URL.createObjectURL(blobedCoso);
+
+      const link = document.createElement('a');
+      // eslint-disable-next-line prefer-destructuring
+      link.href = 'https://storage.googleapis.com/developer-games-bucket/mail-header.jpg';
+      link.target = '_blank';
+
+      link.setAttribute('download', 'Challenge.jpg');
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+
+      // saveAs(downloadedFile, 'Challenges.zip');
+    } catch (error) {
+      console.log(error);
       dispatch(setAlert(
         alertConstants.types.ERROR,
         alertConstants.messages.DOWNLOAD_COMPLETED_CHALLENGES_ERROR,

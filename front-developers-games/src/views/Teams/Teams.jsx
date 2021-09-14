@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -8,6 +9,7 @@ import {
   loadTournamentTeams,
   getCompletedChallengeByChallengeId,
   loadTournamentChallenges,
+  donwloadZipChallenges,
 } from '../../redux/actions/mainActions';
 
 // Components
@@ -37,7 +39,7 @@ function Teams() {
   }, [tournamentChallenges]);
 
   function handleDownload(challengeId, challengeNumber) {
-    dispatch(getCompletedChallengeByChallengeId(challengeId, challengeNumber));
+    dispatch(donwloadZipChallenges(challengeId, challengeNumber));
   }
 
   return (
