@@ -139,8 +139,6 @@ function mailService() {
 
   async function sendActivatedTournament(email) {
     const logData = {
-      fromEmail: process.env.MAIL_USER,
-      fromEmailPass: process.env.MAIL_PASSWORD,
       to: email,
     };
     logService.createLog(logTypes.ACTIVATE_TOURNAMENT, logData, logStatus.SENDING_MAIL);
@@ -150,9 +148,42 @@ function mailService() {
       to: email,
       subject: 'Developer games begin.',
       html: `
-        <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto;  overflow-x: hidden;">
-         se ha activado test.
-        </div>
+      <div style="width: 600px;">
+    <img
+      src="https://storage.googleapis.com/developer-games-bucket/mail-header.jpg"
+      alt="redhat logo"
+      style="margin-bottom: 16px"
+    />
+  
+    <div style="padding: 0 24px; margin-bottom: 36px;">
+      <p style="line-height: 1.50; text-align: left; font-size: 1.1rem; margin-bottom: 24px; color: black;">
+        Hello!<br><br>
+        Gather your team and check the available challenges NOW!<br><br>
+        Access here: <a href="https://developergames.io/login" style="color: #00ADAF;">https://developergames.io/login</a> with your credentials.<br>
+        Remember that we sent them to you when you registered, and if you don't remember them you can always reset your password from the login screen.
+      </p>
+      
+      <p style="line-height: 1.5; text-align: left; font-size: 1.1rem; margin: 0; color: black;">
+        It’s time to go to your team, login and review each of the available challenges,
+        once the challenges are finished, submit the required documentation in each
+        of them. <br><br>
+        If you have questions about the dynamic of the game check the <a href="https://developergames.io/participantsGuide" style="color: #00ADAF;">Participant Guide</a> or contact the support team: 
+        <a href="mailto:DevelopergamesEMEA@redhat.com?Subject=Dynamics-question" style="color: #00ADAF;">DevelopergamesEMEA@redhat.com</a><br><br>
+        
+        Remember all <b>challenges must be submitted before the 09th of October at 23:59 pm CEST.</b><br><br>
+        <b>Winners will be announced</b> in the closing ceremony <b>on 13th of October at 16:00 pm CEST.</b><br><br>
+
+        Remember to <a href="https://events.redhat.com/profile/form/index.cfm?PKformID=0x395144abcd" style="color: #00ADAF;" >request your welcome kit</a> if you haven't done that yet!<br><br>
+
+        If you have any problems with login details please contact:<br>
+        <a href="mailto:games@developergames.com?Subject=Login-problem" style="color: #00ADAF;">games@developergames.com</a>
+      </p>
+    </div>
+  
+    <footer style="width: 100%; background-color: #00ADAF; height: 40px; color: white; font-size: 1.1rem; display:table; text-align: center;">
+      <span style="display:table-cell; vertical-align:middle;">Copyright ©2021 Red Hat, Inc</span>
+    </footer>
+  </div>
       `,
     };
 
@@ -171,30 +202,30 @@ function mailService() {
       subject: 'Reset your Password',
       html: `
       <div style="width: 600px;">
-      <img
-        src="https://storage.googleapis.com/developer-games-bucket/mail-header.jpg"
-        alt="redhat logo"
-        style="margin-bottom: 16px"
-      />
+        <img
+          src="https://storage.googleapis.com/developer-games-bucket/mail-header.jpg"
+          alt="redhat logo"
+          style="margin-bottom: 16px"
+        />
 
-      <div style="padding: 0 24px; margin-bottom: 36px;">
-        <p style="line-height: 1.45; text-align: justify; font-size: 1.1rem; margin-bottom: 24px; color: black;">
-          Hi!<br><br>
-          Your password was restored successfully!<br>
-          Please find below your login details.<br><br>
-          <b>User:</b> ${email}<br>
-          <b>Password:</b> ${password}
-        </p>
-        
-          <p style="line-height: 1.45; text-align: justify; font-size: 1.1rem; margin: 0; color: black;">
-              If you have any problems with login details please contact:<br>
-              <a href="mailto:games@developergames.io?Subject=Login%20admin%20issue" style="color: #00ADAF">games@developergames.io</a>
+        <div style="padding: 0 24px; margin-bottom: 36px;">
+          <p style="line-height: 1.45; text-align: justify; font-size: 1.1rem; margin-bottom: 24px; color: black;">
+            Hi!<br><br>
+            Your password was restored successfully!<br>
+            Please find below your login details.<br><br>
+            <b>User:</b> ${email}<br>
+            <b>Password:</b> ${password}
           </p>
+          
+            <p style="line-height: 1.45; text-align: justify; font-size: 1.1rem; margin: 0; color: black;">
+                If you have any problems with login details please contact:<br>
+                <a href="mailto:games@developergames.io?Subject=Login%20admin%20issue" style="color: #00ADAF">games@developergames.io</a>
+            </p>
+        </div>
+        <footer style="width: 100%; background-color: #00ADAF; height: 40px; color: white; font-size: 1.1rem; display:table; text-align: center;">
+          <span style="display:table-cell; vertical-align:middle;">Copyright ©2021 Red Hat, Inc</span>
+        </footer>
       </div>
-      <footer style="width: 100%; background-color: #00ADAF; height: 40px; color: white; font-size: 1.1rem; display:table; text-align: center;">
-        <span style="display:table-cell; vertical-align:middle;">Copyright ©2021 Red Hat, Inc</span>
-      </footer>
-    </div>
       `,
     };
 
