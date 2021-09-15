@@ -15,7 +15,6 @@ import isValidEmail from '../../utils/isValidEmail';
 
 import {
   addTeamName, addParticipant, isCheckedRegisterTherms,
-  // eslint-disable-next-line no-unused-vars
   setGeneralEntriesWrongValues, setParticipantWrongValues, registerTeam, clearisTeamRegistered,
 } from '../../redux/actions/registerActions';
 
@@ -34,7 +33,6 @@ function Register() {
   const history = useHistory();
 
   const registerReducer = useSelector(({ registerReducer }) => registerReducer);
-  // eslint-disable-next-line no-unused-vars
   const { tournamentId } = useSelector(({ mainReducer }) => mainReducer);
   const {
     teamName, registerTermsConditions, registerWrongValues, isTeamRegistered,
