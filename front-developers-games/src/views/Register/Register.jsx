@@ -9,6 +9,10 @@ import './Register.scss';
 import warningMessages from '../../constants/warningMessages';
 import userRoles from '../../constants/userRoles';
 
+// utils
+import checkArrayHasRepeatedItems from '../../utils/checkArrayHasRepeatedItems';
+import isValidEmail from '../../utils/isValidEmail';
+
 import {
   addTeamName, addParticipant, isCheckedRegisterTherms,
   setGeneralEntriesWrongValues, setParticipantWrongValues, registerTeam, clearisTeamRegistered,
@@ -85,6 +89,7 @@ function Register() {
   function handleSendTeamClick(e) {
     e.preventDefault();
     let isFormValid = true;
+    const participantsEmails = [];
     const developersParticipants = (({
       participants, teamName, registerTermsConditions, registerWrongValues,
       registerTeamError, isTeamRegistered, ...rest
@@ -92,6 +97,14 @@ function Register() {
 
     Object.entries(developersParticipants).forEach(([participantName, participantValues]) => {
       Object.entries(participantValues).forEach(([participantKey, participantValue]) => {
+        if (participantKey === 'email') {
+          if (!isValidEmail(participantValue)) {
+            dispatch(setParticipantWrongValues(true, participantName, participantKey));
+            isFormValid = false;
+            setWarningMessage(warningMessages.register.INVALID_EMAIL);
+          }
+          participantsEmails.push(participantValue);
+        }
         if (participantValue === '') {
           dispatch(setParticipantWrongValues(true, participantName, participantKey));
           isFormValid = false;
@@ -99,6 +112,12 @@ function Register() {
         }
       });
     });
+
+    if (checkArrayHasRepeatedItems(participantsEmails)) {
+      isFormValid = false;
+      dispatch(setGeneralEntriesWrongValues(true));
+      setWarningMessage(warningMessages.register.PARTICIPANTS_HAVE_SAME_EMAIL);
+    }
 
     if (teamName === '') {
       setWarningMessage(warningMessages.inputs.TEAM_NAME);
