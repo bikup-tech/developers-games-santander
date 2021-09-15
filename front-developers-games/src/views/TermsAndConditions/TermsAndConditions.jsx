@@ -164,6 +164,79 @@ function TermsAndConditions() {
             announced on the first day of the competition.
           </p>
         </div>
+        {/*  */}
+        <div className="terms__group">
+          <h3 className="terms__subtitle">Evaluation Criteria</h3>
+          <p className="terms__text">
+            <span className="terms__text-title">Judges duty:</span>
+            <br />
+            You are responsible for helping us provide developers with feedback on the
+            challenges as well as helping the organizers select winning projects
+          </p>
+          <p className="terms__text">
+            <span className="terms__text-title">Judging Overview:</span>
+            <br />
+            Developers will submit their responses through the platform on the
+            deliverable method state in each challenge.
+          </p>
+          <p className="terms__text">
+            We will export a list of the Challenges from the platform to an
+            excel sheet and give a number to each one.
+          </p>
+          <p className="terms__text">
+            We will assign the complete set of a single challenge to each judge.
+          </p>
+          <p className="terms__text">
+            Judges will review the documentation delivered to ensure the challenge
+            was completed.
+            If a challenge is not completed the challenge will not be evaluated.
+          </p>
+          <p className="terms__text">
+            If it is, judges will review any relevant code or a link to GitHub or
+            the platform or any other stuff requested by the mentor.
+            Judges will rate each challenge they have been assigned under the following criteria:
+          </p>
+          <p className="terms__text">
+            <span className="terms__text-title">Completion: </span>
+            successfully complete the challenge.
+          </p>
+          <p className="terms__text">
+            <span className="terms__text-title">Execution: </span>
+            is the solution usable in its current state? Does everything appear to work?
+          </p>
+          <p className="terms__text">
+            <span className="terms__text-title">Usefulness:  </span>
+            is this something usable for other peers?
+            Does the solution fulfill the goal?
+          </p>
+          <p className="terms__text">
+            <span className="terms__text-title">Learning: </span>
+            did the team stretch themselves? Did they apply what they
+            learned during the available workshops or from the shared material?
+          </p>
+          <p className="terms__text">
+            <span className="terms__text-title">Bonus: </span>
+            were the bonus tasks completed successfully?
+          </p>
+          <p className="terms__text">
+            These criteria will guide judges but ultimately judges will have the opportunity
+            to give extra points to those 3 teams that have shown to be mindful of the available
+            resources and how well executed bonus activities were performed.
+          </p>
+          <p className="terms__text">
+            It&apos;s important to note that these judging criteria do not include:
+            How good your code is. It doesn&apos;t matter
+            if your code is messy, or not well commented,
+            or uses inefficient algorithms.
+            Developer Games is about playing around, making mistakes, and learning new things.
+            If your code isn&apos;t production ready, we&apos;re not going to mark you down.
+          </p>
+          <p className="terms__text">
+            We will average each team’s scores. The teams with the highest score will win the prize.
+            No team can win more than one prize.
+          </p>
+        </div>
+        {/*  */}
         <div className="terms__group">
           <h3 className="terms__subtitle">How will they score entries?</h3>
           <p className="terms__text">
