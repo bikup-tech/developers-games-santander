@@ -72,7 +72,7 @@ function mailService() {
         </p>
             <p style="line-height: 1.45; text-align: justify; font-size: 1.1rem; margin: 0; color: black;">
                 If you have any problems with login details please contact:<br>
-                <a href="mailto:games@developergames.io?Subject=Login%20issue" style="color: #00ADAF">games@developergames.io</a>
+                <a href="mailto:games@developergames.net?Subject=Login%20issue" style="color: #00ADAF">games@developergames.net</a>
             </p>
            
         </div>
@@ -124,7 +124,7 @@ function mailService() {
             
               <p style="line-height: 1.45; text-align: justify; font-size: 1.1rem; margin: 0; color: black;">
                   If you have any problems with login details please contact:<br>
-                  <a href="mailto:games@developergames.io?Subject=Login%20admin%20issue" style="color: #00ADAF">games@developergames.io</a>
+                  <a href="mailto:games@developergames.net?Subject=Login%20admin%20issue" style="color: #00ADAF">games@developergames.net</a>
               </p>
           </div>
           <footer style="width: 100%; background-color: #00ADAF; height: 40px; color: white; font-size: 1.1rem; display:table; text-align: center;">
@@ -176,7 +176,7 @@ function mailService() {
         Remember to <a href="https://events.redhat.com/profile/form/index.cfm?PKformID=0x395144abcd" style="color: #00ADAF;" >request your welcome kit</a> if you haven't done that yet!<br><br>
 
         If you have any problems with login details please contact:<br>
-        <a href="mailto:games@developergames.com?Subject=Login-problem" style="color: #00ADAF;">games@developergames.com</a>
+        <a href="mailto:games@developergames.net?Subject=Login-problem" style="color: #00ADAF;">games@developergames.net</a>
       </p>
     </div>
   
@@ -219,7 +219,7 @@ function mailService() {
           
             <p style="line-height: 1.45; text-align: justify; font-size: 1.1rem; margin: 0; color: black;">
                 If you have any problems with login details please contact:<br>
-                <a href="mailto:games@developergames.io?Subject=Login%20admin%20issue" style="color: #00ADAF">games@developergames.io</a>
+                <a href="mailto:games@developergames.net?Subject=Login%20admin%20issue" style="color: #00ADAF">games@developergames.net</a>
             </p>
         </div>
         <footer style="width: 100%; background-color: #00ADAF; height: 40px; color: white; font-size: 1.1rem; display:table; text-align: center;">
