@@ -116,7 +116,7 @@ function Login() {
         </form>
         <div className="login__info">
           <h3 className="app__title">
-            Remember the deadline to submit all the challenges is October 9th at 11:59 p.m. CEST.
+            Remember the deadline to submit all the challenges is October 10th at 23:59 P.M. GMT-5.
             {' '}
             <br />
             If you have any questions  please contact DevelopergamesEMEA@redhat.com

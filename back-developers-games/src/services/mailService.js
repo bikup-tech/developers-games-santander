@@ -151,7 +151,8 @@ function mailService() {
       subject: 'Developer games begin.',
       html: `
         <div style="width: 600px; height: 100%; font-family: Arial, Helvetica, sans-serif; margin: auto;  overflow-x: hidden;">
-         se ha activado test.
+        The competition starts!! Ends the 10th of October.
+        The awards ceremony will be the 14th of October at 16:15 P.M. CEST.
         </div>
       `,
     };
