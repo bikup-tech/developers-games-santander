@@ -24,6 +24,7 @@ import AppWrapper from '../../components/AppWrapper/AppWrapper';
 import Loading from '../../components/Loading/Loading';
 import LoadingError from '../../components/LoadingError/LoadingError';
 import MainButton from '../../components/MainButton/MainButton';
+import { loadTeam } from '../../redux/actions/loginActions';
 
 // function renderLevelBoxes(duration) {
 //   const renderedBoxes = [];
@@ -54,7 +55,8 @@ function ChallengeDetail() {
   const [toRenderProps, setToRenderProps] = useState({ leftProps: [], rightProps: [] });
 
   const {
-    challengeDetail, toLoadChallengeDetail, teamChallengesError, challengeDetailLoading, team,
+    challengeDetail, toLoadChallengeDetail, teamChallengesError,
+    challengeDetailLoading, team, toLoadTeamDetail,
   } = useSelector(({ mainReducer }) => mainReducer);
 
   const { userLogged } = useSelector(({ authReducer }) => authReducer.user);
@@ -69,6 +71,12 @@ function ChallengeDetail() {
       dispatch(loadChallengeDetail(toLoadChallengeDetail));
     }
   }, [challengeDetail, challengeDetail?.filename]);
+
+  useEffect(() => {
+    if (!team?._id) {
+      dispatch(loadTeam(toLoadTeamDetail));
+    }
+  }, [toLoadTeamDetail, team]);
 
   function isIgnoredKey(key) {
     const ignoredKeys = ['number', 'name', 'title', 'subtitle', 'mentor', 'videoUrl', 'tournamentId', 'description', '_id', '__v'];
@@ -226,7 +234,9 @@ function ChallengeDetail() {
 
   function handleFileOnChange({ target: { files } }) {
     if (files.length) {
-      dispatch(uploadChallengeDeliverable(challengeDetail._id, files[0]));
+      dispatch(uploadChallengeDeliverable(
+        challengeDetail._id, files[0], team.name, challengeDetail.challengeNumber,
+      ));
     }
   }
 
@@ -290,7 +300,7 @@ function ChallengeDetail() {
                   <MainButton isSecondary onClick={handleUploadClick}>
                     <img src={uploadIcon} alt="upload" className="upload-button__icon" />
                     <span>Upload Deliverable</span>
-                    <input type="file" id="deliverable__input" name="deliverable__input" onChange={handleFileOnChange} />
+                    <input type="file" id="deliverable__input" name="deliverable__input" accept="application/msword,text/plain,application/zip,application/vnd.rar,application/x-7z-compressed" onChange={handleFileOnChange} />
                   </MainButton>
                 </div>
                 <div className="actions__submit-button">

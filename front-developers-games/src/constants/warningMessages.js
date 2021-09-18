@@ -15,4 +15,8 @@ export default {
     WRONG_EMAIL: 'This is not a valid email',
     PASSWORDS_ARE_NOT_THE_SAME: 'The emails are not the same.',
   },
+  register: {
+    PARTICIPANTS_HAVE_SAME_EMAIL: 'The participants can not have the same email.',
+    INVALID_EMAIL: 'There are some invalid emails.',
+  },
 };

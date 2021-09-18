@@ -152,10 +152,10 @@ function uploadChallengeDeliverableSuccess(filename, gcloudName) {
   };
 }
 
-export function uploadChallengeDeliverable(challengeId, file) {
+export function uploadChallengeDeliverable(challengeId, file, teamName, challengeNumber) {
   return async (dispatch) => {
     try {
-      const loadChallengeDetailEndpoint = `${APIConstants.HOSTNAME}${APIConstants.UPLOAD_CHALLENGE_DELIVERABLE(challengeId)}`;
+      const loadChallengeDetailEndpoint = `${APIConstants.HOSTNAME}${APIConstants.UPLOAD_CHALLENGE_DELIVERABLE(challengeId)}?teamName=${teamName}&challengeNumber=${challengeNumber}`;
 
       const formData = new FormData();
       formData.append('deliverable', file);
