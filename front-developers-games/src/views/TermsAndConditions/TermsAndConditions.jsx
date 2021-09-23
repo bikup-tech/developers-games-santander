@@ -77,7 +77,7 @@ function TermsAndConditions() {
             <li className="list__item">
               Over the course of 2 weeks, teams will be tasked with completing 6
               challenges that require using Red Hat OpenShift and other technologies. See
-              the full list of challenges here.
+              the full list of challenges here:
               {' '}
               <br />
               <a
@@ -89,21 +89,21 @@ function TermsAndConditions() {
               </a>
             </li>
             <li className="list__item">
-              Each challenge will last for between 1 and 5 hours, depending on
-              ability, skills and knowledge but we will provide training if
-              needed the week before the event starts.
+              Each challenge will last for between 1 and 5 hours, depending on ability,
+              skills and knowledge but we will provide training if needed the week
+              before the event starts.
             </li>
             <li className="list__item">
-              Teams will be required to complete each task in a set timeframe (2
-              weeks) and in a dedicated environment. (each team will receive
-              access starting date)
+              Teams will be required to complete each task in a set timeframe (2 weeks) and
+              in a dedicated environment (environments will be open 16h a day). (
+              each team will receive access starting date).
             </li>
             <li className="list__item">
               Red Hat experts will be on hand to help out.
             </li>
             <li className="list__item">
-              Each challenge will be uploaded on the web as request in its
-              instructions.
+              Each challenge will be uploaded on the web as request in
+              its instructions.
             </li>
           </ul>
         </div>
