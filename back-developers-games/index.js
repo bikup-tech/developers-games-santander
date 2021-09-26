@@ -39,12 +39,8 @@ if (process.env.NODE_ENV === 'production') {
   );
 } else {
   debug('--- Connecting to <DEV> database ---');
-  // mongoose.connect(
-  //   'mongodb+srv://developer-games:developer-games-dev@developergames-devenv-c.mrnww.mongodb.net/developer-games?retryWrites=true&w=majority',
-  //   { useNewUrlParser: true, useUnifiedTopology: true },
-  // );
   mongoose.connect(
-    'mongodb+srv://developer-games-test:developer-games-test@cluster0.l2rzc.mongodb.net/developer-games?retryWrites=true&w=majority',
+    'mongodb+srv://developer-games:developer-games-dev@developergames-devenv-c.mrnww.mongodb.net/developer-games?retryWrites=true&w=majority',
     { useNewUrlParser: true, useUnifiedTopology: true },
   );
 }
