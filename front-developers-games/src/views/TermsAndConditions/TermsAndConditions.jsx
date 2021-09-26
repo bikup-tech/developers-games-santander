@@ -75,7 +75,7 @@ function TermsAndConditions() {
           <h3 className="terms__subtitle">How does the competition work?</h3>
           <ul className="terms__list">
             <li className="list__item">
-              Over the course of 2 weeks, teams will be tasked with completing 6
+              Over the course of 2 weeks, teams will be tasked with completing 5
               challenges that require using Red Hat OpenShift and other technologies. See
               the full list of challenges here:
               {' '}
