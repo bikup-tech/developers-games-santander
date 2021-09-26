@@ -53,6 +53,7 @@ function tournamentController() {
     }
   }
 
+  // eslint-disable-next-line consistent-return
   async function activateTournament({ params: { tournamentName } }, res) {
     try {
       if (!tournamentName) {
@@ -61,7 +62,7 @@ function tournamentController() {
 
       await tournamentService.activateTournament(tournamentName);
 
-      return handleResponseSuccess(res, true);
+      await handleResponseSuccess(res, true);
     } catch (activateTournamentError) {
       return handleResponseError(res, activateTournamentError);
     }

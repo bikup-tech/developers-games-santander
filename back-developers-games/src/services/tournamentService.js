@@ -3,6 +3,11 @@ const tournamentModel = require('../models/tournamentModel');
 // Constants
 const { BAD_REQUEST, CONFLICT } = require('../constants/statusCodes');
 const { MISSING_PROPERTIES, NO_TOURNAMENT_NAME_FOUND } = require('../constants/responseMessages');
+const logStatus = require('../constants/logStatus');
+const logTypes = require('../constants/logTypes');
+
+// Services
+const logService = require('./logService');
 
 // Utils
 const CustomError = require('../utils/CustomError');
@@ -38,21 +43,49 @@ function tournamentService() {
   }
 
   async function activateTournament(tournamentName) {
-    const tournament = await findTournamentByName(tournamentName);
-    if (!tournament) {
-      throw new CustomError(CONFLICT, NO_TOURNAMENT_NAME_FOUND(tournamentName));
+    try {
+      const tournament = await findTournamentByName(tournamentName);
+
+      if (!tournament) {
+        throw new CustomError(CONFLICT, NO_TOURNAMENT_NAME_FOUND(tournamentName));
+      }
+
+      const logData = {
+        startsAt: new Date(),
+        tournamentId: tournament._id,
+        tournamentName: tournament.name,
+      };
+
+      logService.createLog(
+        logTypes.ACTIVATE_TOURNAMENT_START,
+        logData,
+        logStatus.STARTING_ACTIVATION,
+      );
+
+      await updateTournamentIsActive(tournamentName, true);
+
+      const tournamentParticipants = await participantsRepository
+        .getParticipantsByTournamentId(tournament._id);
+
+      tournamentParticipants.forEach(async (participant, index) => {
+        setTimeout(async () => {
+          await mailService.sendActivatedTournament(participant.email);
+        }, index * 5000);
+      });
+
+      return true;
+    } catch (error) {
+      const logData = {
+        startsAt: new Date(),
+      };
+
+      logService.createLog(
+        logTypes.ACTIVATE_TOURNAMENT_ERROR,
+        logData,
+        logStatus.ERROR,
+      );
+      return false;
     }
-
-    await updateTournamentIsActive(tournamentName, true);
-
-    const tournamentParticipants = await participantsRepository
-      .getParticipantsByTournamentId(tournament._id);
-
-    tournamentParticipants.forEach(async (participant) => {
-      await mailService.sendActivatedTournament(participant.email);
-    });
-
-    return true;
   }
 
   return {

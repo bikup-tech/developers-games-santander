@@ -39,8 +39,12 @@ if (process.env.NODE_ENV === 'production') {
   );
 } else {
   debug('--- Connecting to <DEV> database ---');
+  // mongoose.connect(
+  //   'mongodb+srv://developer-games:developer-games-dev@developergames-devenv-c.mrnww.mongodb.net/developer-games?retryWrites=true&w=majority',
+  //   { useNewUrlParser: true, useUnifiedTopology: true },
+  // );
   mongoose.connect(
-    'mongodb+srv://developer-games:developer-games-dev@developergames-devenv-c.mrnww.mongodb.net/developer-games?retryWrites=true&w=majority',
+    'mongodb+srv://developer-games-test:developer-games-test@cluster0.l2rzc.mongodb.net/developer-games?retryWrites=true&w=majority',
     { useNewUrlParser: true, useUnifiedTopology: true },
   );
 }
@@ -80,12 +84,20 @@ app.use('/api/tournaments', tournamentsRouter);
 //   res.send(true);
 // });
 
-app.get('/api/sendActivateTournament', async (req, res) => {
-  const { email } = req.query;
-  const mailService = require('./src/services/mailService');
-  await mailService.sendActivatedTournament(email);
+// app.get('/api/sendActivateTournament', async (req, res) => {
+//   const { email } = req.query;
+//   const mailService = require('./src/services/mailService');
+//   await mailService.sendActivatedTournament(email);
 
-  res.send(true);
+//   res.send(true);
+// });
+
+app.get('/api/tournamentParticipants', async (req, res) => {
+  const participantsRepository = require('./src/repositories/participantsRepository');
+  const tournamentParticipants = await participantsRepository
+    .getParticipantsByTournamentId('60be036d5695a3805e903f91');
+
+  res.json(tournamentParticipants);
 });
 
 app.get('/api/checkEnv', (req, res) => {

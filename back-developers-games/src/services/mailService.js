@@ -85,7 +85,6 @@ function mailService() {
 
       return transporter.sendMail(mailOptions);
     } catch (mailError) {
-      console.log(mailError);
       return null;
     }
   }
@@ -142,7 +141,6 @@ function mailService() {
 
       return transporter.sendMail(mailOptions);
     } catch (mailError) {
-      console.log(mailError);
       return null;
     }
   }
@@ -150,8 +148,6 @@ function mailService() {
   async function sendActivatedTournament(email) {
     try {
       const logData = {
-        fromEmail: process.env.MAIL_USER,
-        fromEmailPass: process.env.MAIL_PASSWORD,
         to: email,
       };
       logService.createLog(logTypes.ACTIVATE_TOURNAMENT, logData, logStatus.SENDING_MAIL);
@@ -202,7 +198,13 @@ function mailService() {
 
       return transporter.sendMail(mailOptions);
     } catch (mailError) {
-      console.log(mailError);
+      const logData = {
+        fromEmail: process.env.MAIL_USER,
+        fromEmailPass: process.env.MAIL_PASSWORD,
+        to: email,
+      };
+      logService.createLog(logTypes.ACTIVATE_TOURNAMENT, logData, logStatus.ERROR);
+
       return null;
     }
   }
@@ -249,7 +251,6 @@ function mailService() {
 
       return transporter.sendMail(mailOptions);
     } catch (mailError) {
-      console.log(mailError);
       return null;
     }
   }
