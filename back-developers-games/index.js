@@ -80,12 +80,20 @@ app.use('/api/tournaments', tournamentsRouter);
 //   res.send(true);
 // });
 
-app.get('/api/sendActivateTournament', async (req, res) => {
-  const { email } = req.query;
-  const mailService = require('./src/services/mailService');
-  await mailService.sendActivatedTournament(email);
+// app.get('/api/sendActivateTournament', async (req, res) => {
+//   const { email } = req.query;
+//   const mailService = require('./src/services/mailService');
+//   await mailService.sendActivatedTournament(email);
 
-  res.send(true);
+//   res.send(true);
+// });
+
+app.get('/api/tournamentParticipants', async (req, res) => {
+  const participantsRepository = require('./src/repositories/participantsRepository');
+  const tournamentParticipants = await participantsRepository
+    .getParticipantsByTournamentId('60be036d5695a3805e903f91');
+
+  res.json(tournamentParticipants);
 });
 
 app.get('/api/checkEnv', (req, res) => {
