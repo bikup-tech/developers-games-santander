@@ -65,7 +65,7 @@ app.use('/api/upload', uploadFilesRouter);
 app.use('/api/tournaments', tournamentsRouter);
 
 // const { encryptPassword } = require('./src/utils/bcryptUtils');
-// const mailService = require('./src/services/mailService');
+// const mailService = require('./src/model/mailService');
 
 // app.get('/api/generatePassword', async (req, res) => {
 //   const password = 'L0SV2I03uh';
@@ -102,6 +102,19 @@ app.get('/api/checkEnv', (req, res) => {
     db_host_pro: process.env.DB_HOST_PRO,
     db_host_dev: process.env.DB_HOST_DEV,
   });
+});
+
+// Posar tots els challenge a active true
+
+app.post('/api/coso', async (req, res) => {
+  const tournamentChallengeModel = require('./src/models/tournamentChallengeModel');
+
+  const options = { new: true };
+  const query = { isActive: true };
+
+  const updated = await tournamentChallengeModel.updateMany({}, query, options);
+
+  res.json(updated);
 });
 
 app.listen(PORT, () => debug(`Server running in port: ${PORT}`));

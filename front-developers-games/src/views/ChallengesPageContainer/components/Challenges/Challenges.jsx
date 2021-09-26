@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
@@ -65,13 +67,17 @@ function Challenges() {
         <div className="challenges__challenge-list">
           {
           teamChallenges && (
-            teamChallenges.map((challenge) => (
-              <ChallengeCard
-                challenge={challenge}
-                isCompleted={challenge.isCompleted}
-                key={challenge._id}
-              />
-            ))
+            teamChallenges.map((challenge) => {
+              if (challenge.tournamentChallenge?.isActive) {
+                return (
+                  <ChallengeCard
+                    challenge={challenge}
+                    isCompleted={challenge.isCompleted}
+                    key={challenge._id}
+                  />
+                );
+              }
+            })
           )
           }
         </div>
