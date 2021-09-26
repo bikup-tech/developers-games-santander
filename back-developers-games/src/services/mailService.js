@@ -199,8 +199,6 @@ function mailService() {
       return transporter.sendMail(mailOptions);
     } catch (mailError) {
       const logData = {
-        fromEmail: process.env.MAIL_USER,
-        fromEmailPass: process.env.MAIL_PASSWORD,
         to: email,
       };
       logService.createLog(logTypes.ACTIVATE_TOURNAMENT, logData, logStatus.ERROR);
