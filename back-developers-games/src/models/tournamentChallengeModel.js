@@ -21,6 +21,8 @@ const tournamentChallengeModel = new Schema({
   link: { type: String },
   evaluationCriteria: { type: String },
   references: { type: String },
+  isActive: { type: Boolean, default: true },
+
 });
 
 module.exports = model('Tournament_challenges', tournamentChallengeModel);
