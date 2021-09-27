@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -14,7 +15,7 @@ function ChallengesPageContainer() {
 
   return (
     <>
-      {
+      {/* {
           tournament && (
             userLogged.role < userRoles.MENTOR ? (
               tournament?.isActive ? (
@@ -27,7 +28,9 @@ function ChallengesPageContainer() {
             )
           )
 
-   }
+      } */}
+
+      <Challenges />
     </>
   );
 }
