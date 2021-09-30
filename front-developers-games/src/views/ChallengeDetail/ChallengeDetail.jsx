@@ -300,7 +300,7 @@ function ChallengeDetail() {
                   <MainButton isSecondary onClick={handleUploadClick}>
                     <img src={uploadIcon} alt="upload" className="upload-button__icon" />
                     <span>Upload Deliverable</span>
-                    <input type="file" id="deliverable__input" name="deliverable__input" accept="application/msword,text/plain,application/zip,application/vnd.rar,application/x-7z-compressed" onChange={handleFileOnChange} />
+                    <input type="file" id="deliverable__input" name="deliverable__input" accept="application/msword,text/plain,application/zip,application/vnd.rar,application/x-7z-compressed,application/vnd.openxmlformats-officedocument.wordprocessingml.document" onChange={handleFileOnChange} />
                   </MainButton>
                 </div>
                 <div className="actions__submit-button">
