@@ -151,8 +151,8 @@ function TermsAndConditions() {
             not sufficiently conform to the evaluation criteria, prizes may be void.
           </p>
           <p className="terms__text">
-            Prizes may vary if they have to be shipped outside Europe.
-            Prizes will be subject to similar costs.
+            Prizes were already delivered to Santander España as the distribution
+            relies on the internal guidelines of Santander.
           </p>
         </div>
         <div className="terms__group">
