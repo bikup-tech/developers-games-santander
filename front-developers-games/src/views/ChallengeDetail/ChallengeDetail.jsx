@@ -302,6 +302,7 @@ function ChallengeDetail() {
                     <span>Upload Deliverable</span>
                     <input type="file" id="deliverable__input" name="deliverable__input" accept="application/msword,text/plain,application/zip,application/vnd.rar,application/x-7z-compressed,application/vnd.openxmlformats-officedocument.wordprocessingml.document" onChange={handleFileOnChange} />
                   </MainButton>
+                  <span className="upload-button__message"><i>* compatible files: txt, xls, xlsx, zip, rar.</i></span>
                 </div>
                 <div className="actions__submit-button">
                   <MainButton onClick={handleSubmitClick} color={challengeDetail.isCompleted ? 'blue' : 'red'}>
