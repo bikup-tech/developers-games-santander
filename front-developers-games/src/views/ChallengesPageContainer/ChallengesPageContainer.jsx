@@ -41,7 +41,11 @@ function ChallengesPageContainer() {
       } */}
 
       {
-        tournament && tournament?.isActive ? (<Challenges />) : (<FinishedTournament />)
+        tournament && (
+          userLogged.role < userRoles.MENTOR ? (
+            tournament?.isActive ? (<Challenges />) : (<FinishedTournament />)
+          ) : (<Challenges />)
+        )
       }
 
     </>
