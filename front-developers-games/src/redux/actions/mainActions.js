@@ -283,6 +283,7 @@ export function getCompletedChallengeByChallengeId(tournamentChallengeId) {
           aElement.href = getGcloudBucketFileUrl(challenge.gcloudName);
           aElement.download = challenge.filename;
           aElement.target = '_blank';
+          aElement.rel = 'noreferrer';
           aElement.click();
         });
       } else {
