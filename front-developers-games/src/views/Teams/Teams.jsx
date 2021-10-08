@@ -17,6 +17,10 @@ import LoadingError from '../../components/LoadingError/LoadingError';
 import TeamCard from './components/TeamCard/TeamCard';
 import MainButton from '../../components/MainButton/MainButton';
 
+const downloadLinks = {
+  challenge1: 'https://storage.googleapis.com/developer-games-bucket/tmp-13-1633391323189',
+};
+
 function Teams() {
   const dispatch = useDispatch();
   const {
@@ -36,8 +40,14 @@ function Teams() {
     }
   }, [tournamentChallenges]);
 
-  function handleDownload(challengeId, challengeNumber) {
-    dispatch(getCompletedChallengeByChallengeId(challengeId, challengeNumber));
+  function handleDownload(challengeNumber) {
+    // dispatch(getCompletedChallengeByChallengeId(challengeId, challengeNumber));
+    const aElement = document.createElement('a');
+
+    aElement.href = downloadLinks[`challenge${challengeNumber}`];
+    aElement.download = `Challenges-${challengeNumber}`;
+    aElement.target = '_blank';
+    aElement.click();
   }
 
   return (
@@ -59,12 +69,13 @@ function Teams() {
                           <div className="downloads__button">
                             <MainButton
                               isSecondary
-                              onClick={() => { handleDownload(challenge._id, challenge.number); }}
+                              onClick={() => { handleDownload(challenge.number); }}
                             >
                               {`Challenge ${challenge.number}`}
                             </MainButton>
                           </div>
                         ))
+
                       )}
                     </div>
                   </div>
