@@ -6,6 +6,7 @@ import './Teams.scss';
 // Action Creators
 import {
   loadTournamentTeams,
+  // eslint-disable-next-line no-unused-vars
   getCompletedChallengeByChallengeId,
   loadTournamentChallenges,
 } from '../../redux/actions/mainActions';
@@ -18,7 +19,12 @@ import TeamCard from './components/TeamCard/TeamCard';
 import MainButton from '../../components/MainButton/MainButton';
 
 const downloadLinks = {
-  challenge1: 'https://storage.googleapis.com/developer-games-bucket/tmp-13-1633391323189',
+  challenge1: 'https://storage.googleapis.com/developer-games-bucket/challenge1.zip',
+  challenge2: 'https://storage.googleapis.com/developer-games-bucket/challenge2.zip',
+  challenge3: 'https://storage.googleapis.com/developer-games-bucket/challenge3.zip',
+  challenge4: 'https://storage.googleapis.com/developer-games-bucket/challenge4.zip',
+  challenge5: 'https://storage.googleapis.com/developer-games-bucket/challenge5.zip',
+  challenge6: 'https://storage.googleapis.com/developer-games-bucket/challenge6.zip',
 };
 
 function Teams() {
